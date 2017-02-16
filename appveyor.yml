@@ -8,6 +8,5 @@ install:
   - ps: $env:DOTNET_INSTALL_DIR = "$pwd\.dotnetcli"
   - ps: '& .\build\installcli.ps1 -InstallDir "$env:DOTNET_INSTALL_DIR" -NoPath -Version 1.0.0-preview2-003121'
   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
-build_script:
-- ps: .\build.ps1
-test: off
+before_build:
+  - dotnet restore
