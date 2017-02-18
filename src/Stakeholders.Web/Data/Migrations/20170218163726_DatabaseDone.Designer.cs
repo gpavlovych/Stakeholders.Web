@@ -8,9 +8,10 @@ using Stakeholders.Web.Data;
 namespace Stakeholders.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170218163726_DatabaseDone")]
+    partial class DatabaseDone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -445,7 +446,7 @@ namespace Stakeholders.Web.Data.Migrations
                     b.HasIndex("NormalizedName")
                         .HasName("RoleNameIndex");
 
-                    b.ToTable("Role");
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
