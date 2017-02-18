@@ -6,7 +6,7 @@
 // Last Modified By : George
 // Last Modified On : 02-18-2017
 // ***********************************************************************
-// <copyright file="ActivityTaskStatus.cs" company="">
+// <copyright file="BaseEntity.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
@@ -14,21 +14,14 @@
 namespace Stakeholders.Web.Models
 {
     /// <summary>
-    /// Activity task status
+    /// Class BaseEntity.
     /// </summary>
-    /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
-    public class ActivityTaskStatus : BaseEntity
+    public class BaseEntity
     {
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the identifier.
         /// </summary>
-        /// <value>The name.</value>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name en.
-        /// </summary>
-        /// <value>The name en.</value>
-        public string NameEn { get; set; }
+        /// <value>The identifier.</value>
+        public int Id { get; set; }
     }
 }

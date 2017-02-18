@@ -1,18 +1,26 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : Stakeholders.Web
+// Author           : George
+// Created          : 02-18-2017
+//
+// Last Modified By : George
+// Last Modified On : 02-18-2017
+// ***********************************************************************
+// <copyright file="ActivityTask.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 
 namespace Stakeholders.Web.Models
 {
     /// <summary>
     /// Activity Task
     /// </summary>
-    public class ActivityTask
+    /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
+    public class ActivityTask: BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the subject.
         /// </summary>

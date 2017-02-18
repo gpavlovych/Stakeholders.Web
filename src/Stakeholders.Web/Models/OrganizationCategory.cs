@@ -1,9 +1,23 @@
-﻿namespace Stakeholders.Web.Models
+﻿// ***********************************************************************
+// Assembly         : Stakeholders.Web
+// Author           : George
+// Created          : 02-16-2017
+//
+// Last Modified By : George
+// Last Modified On : 02-18-2017
+// ***********************************************************************
+// <copyright file="OrganizationCategory.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace Stakeholders.Web.Models
 {
     /// <summary>
     /// Class OrganizationCategory.
     /// </summary>
-    public class OrganizationCategory
+    /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
+    public class OrganizationCategory: BaseEntity
     {
         /// <summary>
         /// Gets or sets the identifier.

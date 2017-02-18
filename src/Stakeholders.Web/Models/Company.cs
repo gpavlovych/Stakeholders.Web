@@ -1,11 +1,25 @@
-﻿using System.Collections.Generic;
+﻿// ***********************************************************************
+// Assembly         : Stakeholders.Web
+// Author           : George
+// Created          : 02-16-2017
+//
+// Last Modified By : George
+// Last Modified On : 02-18-2017
+// ***********************************************************************
+// <copyright file="Company.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System.Collections.Generic;
 
 namespace Stakeholders.Web.Models
 {
     /// <summary>
     /// Class Company.
     /// </summary>
-    public class Company
+    /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
+    public class Company: BaseEntity
     {
         /// <summary>
         /// Gets or sets the identifier.

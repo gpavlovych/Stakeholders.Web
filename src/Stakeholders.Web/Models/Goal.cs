@@ -1,16 +1,24 @@
-﻿namespace Stakeholders.Web.Models
+﻿// ***********************************************************************
+// Assembly         : Stakeholders.Web
+// Author           : George
+// Created          : 02-16-2017
+//
+// Last Modified By : George
+// Last Modified On : 02-18-2017
+// ***********************************************************************
+// <copyright file="Goal.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace Stakeholders.Web.Models
 {
     /// <summary>
     /// Class Goal.
     /// </summary>
-    public class Goal
+    /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
+    public class Goal : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the title.
         /// </summary>

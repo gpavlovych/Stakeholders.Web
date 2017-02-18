@@ -1,16 +1,24 @@
-﻿namespace Stakeholders.Web.Models
+﻿// ***********************************************************************
+// Assembly         : Stakeholders.Web
+// Author           : George
+// Created          : 02-16-2017
+//
+// Last Modified By : George
+// Last Modified On : 02-18-2017
+// ***********************************************************************
+// <copyright file="Organization.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+namespace Stakeholders.Web.Models
 {
     /// <summary>
     /// Class Organization.
     /// </summary>
-    public class Organization
+    /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
+    public class Organization: BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the identifier.
-        /// </summary>
-        /// <value>The identifier.</value>
-        public int Id { get; set; }
-
         /// <summary>
         /// Gets or sets the name.
         /// </summary>

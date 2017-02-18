@@ -1,4 +1,18 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿// ***********************************************************************
+// Assembly         : Stakeholders.Web
+// Author           : George
+// Created          : 02-16-2017
+//
+// Last Modified By : George
+// Last Modified On : 02-18-2017
+// ***********************************************************************
+// <copyright file="ApplicationDbContext.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Stakeholders.Web.Models;
 
@@ -7,11 +21,11 @@ namespace Stakeholders.Web.Data
     /// <summary>
     /// The application database context
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{Stakeholders.Web.Models.ApplicationUser, Stakeholders.Web.Data.Role, System.String}" />
+    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{ApplicationUser, Role, string}" />
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, string>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApplicationDbContext"/> class.
+        /// Initializes a new instance of the <see cref="ApplicationDbContext" /> class.
         /// </summary>
         /// <param name="options">The options.</param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -22,73 +36,55 @@ namespace Stakeholders.Web.Data
         /// <summary>
         /// Gets or sets the activities.
         /// </summary>
-        /// <value>
-        /// The activities.
-        /// </value>
+        /// <value>The activities.</value>
         public DbSet<Activity> Activities { get; set; }
 
         /// <summary>
         /// Gets or sets the activity tasks.
         /// </summary>
-        /// <value>
-        /// The activity tasks.
-        /// </value>
+        /// <value>The activity tasks.</value>
         public DbSet<ActivityTask> ActivityTasks { get; set; }
 
         /// <summary>
         /// Gets or sets the activity types.
         /// </summary>
-        /// <value>
-        /// The activity types.
-        /// </value>
+        /// <value>The activity types.</value>
         public DbSet<ActivityType> ActivityTypes { get; set; }
 
         /// <summary>
         /// Gets or sets the companies.
         /// </summary>
-        /// <value>
-        /// The companies.
-        /// </value>
+        /// <value>The companies.</value>
         public DbSet<Company> Companies{ get; set; }
 
         /// <summary>
         /// Gets or sets the contacts.
         /// </summary>
-        /// <value>
-        /// The contacts.
-        /// </value>
+        /// <value>The contacts.</value>
         public DbSet<Contact> Contacts { get; set; }
 
         /// <summary>
         /// Gets or sets the goals.
         /// </summary>
-        /// <value>
-        /// The goals.
-        /// </value>
+        /// <value>The goals.</value>
         public DbSet<Goal> Goals { get; set; }
 
         /// <summary>
         /// Gets or sets the organizations.
         /// </summary>
-        /// <value>
-        /// The organizations.
-        /// </value>
+        /// <value>The organizations.</value>
         public DbSet<Organization> Organizations { get; set; }
 
         /// <summary>
         /// Gets or sets the organization types.
         /// </summary>
-        /// <value>
-        /// The organization types.
-        /// </value>
+        /// <value>The organization types.</value>
         public DbSet<OrganizationType> OrganizationTypes { get; set; }
 
         /// <summary>
         /// Gets or sets the organization categories.
         /// </summary>
-        /// <value>
-        /// The organization categories.
-        /// </value>
+        /// <value>The organization categories.</value>
         public DbSet<OrganizationCategory> OrganizationCategories { get; set; }
 
         /// <summary>
