@@ -10,3 +10,5 @@ install:
   - ps: $env:Path = "$env:DOTNET_INSTALL_DIR;$env:Path"
 before_build:
   - dotnet restore
+test_script:
+  - dotnet test ".\test\Stakeholders.Web.Tests\project.json"
