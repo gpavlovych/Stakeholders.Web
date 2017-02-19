@@ -102,7 +102,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task GetOrganizationTypeTestInvalidModel()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
 
             // act
@@ -121,7 +121,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task GetOrganizationTypeTestNotFound()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(OrganizationType));
 
             // act
@@ -139,7 +139,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task GetOrganizationTypeTest()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             var entity = new OrganizationType()
             {
                 Id = id,
@@ -172,7 +172,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PutOrganizationTypeTestInvalidModel()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
             var viewModel = new PutOrganizationTypeViewModel()
             {
@@ -195,7 +195,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PutOrganizationTypeTestNotFound()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             var viewModel = new PutOrganizationTypeViewModel()
             {
                 Name = "someName"
@@ -217,7 +217,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PutOrganizationTypeTest()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             var entity = new OrganizationType()
             {
                 Id = id,
@@ -250,7 +250,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PostOrganizationTypeTypeTestInvalidModel()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
             var viewModel = new PutOrganizationTypeViewModel()
             {
@@ -273,7 +273,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PostOrganizationTypeTypeTestNotFound()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             var viewModel = new PutOrganizationTypeViewModel()
             {
                 Name = "someName"
@@ -295,7 +295,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PostOrganizationTypeTypeTest()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             var viewModel = new PostOrganizationTypeViewModel()
             {
                 Name = "someName"
@@ -334,7 +334,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task DeleteOrganizationTypeInvalidModel()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
 
             // act
@@ -353,7 +353,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task DeleteOrganizationTypeTestNotFound()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(OrganizationType));
 
             // act
@@ -371,7 +371,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task DeleteOrganizationTypeTest()
         {
             // arrange
-            var id = 3;
+            var id = 3L;
             var entity = new OrganizationType()
             {
                 Id = id,
