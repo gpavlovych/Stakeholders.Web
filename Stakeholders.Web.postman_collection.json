@@ -8,6 +8,107 @@
 	},
 	"item": [
 		{
+			"name": "Activities",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/Activities",
+					"request": {
+						"url": "http://localhost:33346/api/Activities",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"taskId\": 1,\n    \"companyId\": 1,\n    \"contactId\": 1,\n    \"dateActivity\": \"2017-02-19T19:15:05.6094681\",\n    \"dateCreated\": \"2017-02-19T19:15:05.79\",\n    \"description\": \"some description1\",\n    \"observerCompanyIds\": [\n      1\n    ],\n    \"observerUserIds\": [\n      1,\n      2\n    ],\n    \"subject\": \"some subject 1\",\n    \"typeId\": 1,\n    \"userId\": 1\n  }"
+						},
+						"description": "Adding new Activity"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Activities/count",
+					"request": {
+						"url": "http://localhost:33346/api/Activities/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all activities"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Activities",
+					"request": {
+						"url": "http://localhost:33346/api/Activities",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activities with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Activities?start=0&count=10 copy",
+					"request": {
+						"url": "http://localhost:33346/api/Activities?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activities"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Activities/3",
+					"request": {
+						"url": "http://localhost:33346/api/Activities/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting activity with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Activities/1",
+					"request": {
+						"url": "http://localhost:33346/api/Activities/4",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"taskId\": 1,\n  \"companyId\": 1,\n  \"contactId\": null,\n  \"dateActivity\": \"2017-02-19T19:15:05.6094681\",\n  \"dateCreated\": \"2017-02-19T20:26:16.0133333\",\n  \"description\": \"some descriptionpublic 2332321\",\n  \"observerCompanyIds\": [\n    1\n  ],\n  \"observerUserIds\": [\n   1,2\n  ],\n  \"subject\": \"some subject 1\",\n  \"typeId\": 1,\n  \"userId\": 1\n}"
+						},
+						"description": "Updates the activity with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Activities/3",
+					"request": {
+						"url": "http://localhost:33346/api/Activities/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the activity with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "OrganizationTypes",
 			"description": "",
 			"item": [
@@ -32,6 +133,17 @@
 					"response": []
 				},
 				{
+					"name": "http://localhost:33346/api/OrganizationTypes/count",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes/4",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all organization types"
+					},
+					"response": []
+				},
+				{
 					"name": "http://localhost:33346/api/OrganizationTypes",
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationTypes",
@@ -45,11 +157,22 @@
 				{
 					"name": "http://localhost:33346/api/OrganizationTypes?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes?start=1&count=1",
+						"url": "http://localhost:33346/api/OrganizationTypes?start=0&count=10",
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"description": "Getting all organization types"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationTypes/4",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets the organization type with id=4"
 					},
 					"response": []
 				},
@@ -74,20 +197,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes/count",
-					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes/count",
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"description": "Gets total count of all organization types"
-					},
-					"response": []
-				},
-				{
 					"name": "http://localhost:33346/api/OrganizationTypes/3",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes/3",
+						"url": "http://localhost:33346/api/OrganizationTypes/9",
 						"method": "DELETE",
 						"header": [],
 						"body": {},

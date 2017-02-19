@@ -13,6 +13,7 @@
 // ***********************************************************************
 using System;
 using System.Collections.Generic;
+using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Models
 {
@@ -20,7 +21,7 @@ namespace Stakeholders.Web.Models
     /// Activity
     /// </summary>
     /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
-    public class Activity: BaseEntity
+    public class Activity : BaseEntity
     {
         /// <summary>
         /// Gets or sets the subject.
@@ -62,7 +63,7 @@ namespace Stakeholders.Web.Models
         /// Gets or sets the date activity.
         /// </summary>
         /// <value>The date activity.</value>
-        public DateTime DateActivity { get; set; }
+        public DateTime? DateActivity { get; set; }
 
         /// <summary>
         /// Gets or sets the date created.
@@ -77,15 +78,9 @@ namespace Stakeholders.Web.Models
         public Company Company { get; set; }
 
         /// <summary>
-        /// Gets or sets the observer companies.
-        /// </summary>
-        /// <value>The observer companies.</value>
-        public ICollection<Company> ObserverCompanies { get; set; }
-
-        /// <summary>
         /// Gets or sets the observer users.
         /// </summary>
         /// <value>The observer users.</value>
-        public ICollection<ApplicationUser> ObserverUsers { get; set; }
+        public ICollection<ActivityObserverUserCompany> ObserverUsersCompanies { get; set; }
     }
 }

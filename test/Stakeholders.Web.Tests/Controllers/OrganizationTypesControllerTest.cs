@@ -11,6 +11,8 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,10 +32,13 @@ namespace Stakeholders.Web.Tests.Controllers
     /// </summary>
     public class OrganizationTypesControllerTest
     {
+        private readonly EntitiesForTest entitiesForTest;
+
         /// <summary>
         /// The repository mock
         /// </summary>
         private readonly Mock<IRepository<OrganizationType>> repositoryMock;
+
         /// <summary>
         /// The target
         /// </summary>
@@ -44,6 +49,7 @@ namespace Stakeholders.Web.Tests.Controllers
         /// </summary>
         public OrganizationTypesControllerTest()
         {
+            this.entitiesForTest = new EntitiesForTest();
             this.repositoryMock = new Mock<IRepository<OrganizationType>>();
             this.target = new OrganizationTypesController(this.repositoryMock.Object);
         }
@@ -57,28 +63,9 @@ namespace Stakeholders.Web.Tests.Controllers
         public void GetOrganizationTypesTest()
         {
             // arrange
-            var entities = new List<OrganizationType>()
-            {
-                new OrganizationType()
-                {
-                    Id = 2,
-                    Type = "organizationType1"
-                },
-                new OrganizationType()
-                {
-                    Id = 3,
-                    Type = "organizationType2"
-                }
-            };
-            var expectedResult = new GetOrganizationTypesViewModel()
-            {
-                OrganizationTypes = entities.Select(
-                    it => new OrganizationTypeInfoViewModel()
-                    {
-                        Id = it.Id,
-                        Name = it.Type
-                    }).ToArray()
-            };
+            var entities = this.entitiesForTest.CreateCollection(2, this.entitiesForTest.CreateOrganizationType);
+            var expectedResult = entities.Select(OrganizationTypesControllerTest.ToInfoViewModel).ToArray();
+
             var start = 2;
             var count = 3;
             this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
@@ -161,14 +148,10 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var id = 3L;
-            var entity = new OrganizationType()
-            {
-                Id = id,
-                Type = "some type"
-            };
+            var entity = this.entitiesForTest.CreateOrganizationType();
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
-            var expectedResult = new GetOrganizationTypeViewModel()
+            var expectedResult = new OrganizationTypeViewModel()
             {
                 Name = entity.Type
             };
@@ -195,10 +178,7 @@ namespace Stakeholders.Web.Tests.Controllers
             // arrange
             var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
-            var viewModel = new PutOrganizationTypeViewModel()
-            {
-                Name = "someName"
-            };
+            var viewModel = this.entitiesForTest.CreateOrganizationTypeViewModel();
 
             // act
             var result = await this.target.PutOrganizationType(id, viewModel) as BadRequestObjectResult;
@@ -217,10 +197,7 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var id = 3L;
-            var viewModel = new PutOrganizationTypeViewModel()
-            {
-                Name = "someName"
-            };
+            var viewModel = this.entitiesForTest.CreateOrganizationTypeViewModel();
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(OrganizationType));
 
             // act
@@ -239,15 +216,8 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var id = 3L;
-            var entity = new OrganizationType()
-            {
-                Id = id,
-                Type = "some type"
-            };
-            var viewModel = new PutOrganizationTypeViewModel()
-            {
-                Name = "someName"
-            };
+            var entity = this.entitiesForTest.CreateOrganizationType();
+            var viewModel = this.entitiesForTest.CreateOrganizationTypeViewModel();
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
             // act
@@ -271,41 +241,15 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PostOrganizationTypeTypeTestInvalidModel()
         {
             // arrange
-            var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
-            var viewModel = new PutOrganizationTypeViewModel()
-            {
-                Name = "someName"
-            };
+            var viewModel = this.entitiesForTest.CreateOrganizationTypeViewModel();
 
             // act
-            var result = await this.target.PutOrganizationType(id, viewModel) as BadRequestObjectResult;
+            var result = await this.target.PostOrganizationType(viewModel) as BadRequestObjectResult;
 
             // assert
             result.Should().NotBeNull();
             result.Value.ShouldBeEquivalentTo(new SerializableError(this.target.ModelState));
-        }
-
-        /// <summary>
-        /// Posts the organization type type test not found.
-        /// </summary>
-        /// <returns>Task.</returns>
-        [Fact]
-        public async Task PostOrganizationTypeTypeTestNotFound()
-        {
-            // arrange
-            var id = 3L;
-            var viewModel = new PutOrganizationTypeViewModel()
-            {
-                Name = "someName"
-            };
-            this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(OrganizationType));
-
-            // act
-            var result = await this.target.PutOrganizationType(id, viewModel) as NotFoundResult;
-
-            // assert
-            result.Should().NotBeNull();
         }
 
         /// <summary>
@@ -317,10 +261,7 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var id = 3L;
-            var viewModel = new PostOrganizationTypeViewModel()
-            {
-                Name = "someName"
-            };
+            var viewModel = this.entitiesForTest.CreateOrganizationTypeViewModel();
             this.repositoryMock.Setup(it => it.InsertAsync(It.IsAny<OrganizationType>()))
                 .Returns<OrganizationType>(
                     entity =>
@@ -393,15 +334,8 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var id = 3L;
-            var entity = new OrganizationType()
-            {
-                Id = id,
-                Type = "some type"
-            };
-            var expectedResultViewModel = new DeleteOrganizationTypeViemModel()
-            {
-                Name = entity.Type
-            };
+            var entity = this.entitiesForTest.CreateOrganizationType();
+            var expectedResultViewModel = ToViewModel(entity);
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
             // act
@@ -414,5 +348,27 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         #endregion DeleteOrganizationType
+
+        private static OrganizationTypeInfoViewModel ToInfoViewModel(OrganizationType entity)
+        {
+            var result = new OrganizationTypeInfoViewModel()
+            {
+                Id = entity.Id
+            };
+            OrganizationTypesControllerTest.UpdateViewModel(result, entity);
+            return result;
+        }
+
+        private static OrganizationTypeViewModel ToViewModel(OrganizationType entity)
+        {
+            var result = new OrganizationTypeViewModel();
+            OrganizationTypesControllerTest.UpdateViewModel(result, entity);
+            return result;
+        }
+
+        private static void UpdateViewModel(OrganizationTypeViewModel target, OrganizationType entity)
+        {
+            target.Name = entity.Type;
+        }
     }
 }

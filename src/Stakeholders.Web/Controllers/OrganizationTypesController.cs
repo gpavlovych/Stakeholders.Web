@@ -56,18 +56,14 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         [HttpGet]
-        public GetOrganizationTypesViewModel GetOrganizationTypes(int start = 0, int count = 10)
+        public OrganizationTypeInfoViewModel[] GetOrganizationTypes(int start = 0, int count = 10)
         {
-            return
-                new GetOrganizationTypesViewModel()
-                {
-                    OrganizationTypes = this.repository.GetAll(start, count).Select(
-                        it => new OrganizationTypeInfoViewModel()
-                        {
-                            Id = it.Id,
-                            Name = it.Type
-                        }).ToArray()
-                };
+            return this.repository.GetAll(start, count).Select(
+                    it => new OrganizationTypeInfoViewModel()
+                    {
+                        Id = it.Id,
+                        Name = it.Type
+                    }).ToArray();
         }
 
         /// <summary>
@@ -99,7 +95,7 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            var result = new GetOrganizationTypeViewModel()
+            var result = new OrganizationTypeViewModel()
             {
                 Name = entity.Type
             };
@@ -116,7 +112,7 @@ namespace Stakeholders.Web.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrganizationType(
             [FromRoute] long id,
-            [FromBody] PutOrganizationTypeViewModel organizationType)
+            [FromBody] OrganizationTypeViewModel organizationType)
         {
             if (!this.ModelState.IsValid)
             {
@@ -142,7 +138,7 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="organizationType">Type of the organization.</param>
         [HttpPost]
-        public async Task<IActionResult> PostOrganizationType([FromBody] PostOrganizationTypeViewModel organizationType)
+        public async Task<IActionResult> PostOrganizationType([FromBody] OrganizationTypeViewModel organizationType)
         {
             if (!this.ModelState.IsValid)
             {
@@ -185,7 +181,7 @@ namespace Stakeholders.Web.Controllers
 
             await this.repository.DeleteAsync(entity);
 
-            var result = new DeleteOrganizationTypeViemModel
+            var result = new OrganizationTypeViewModel()
             {
                 Name = entity.Type
             };

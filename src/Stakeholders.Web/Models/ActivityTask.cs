@@ -12,6 +12,8 @@
 // <summary></summary>
 // ***********************************************************************
 using System;
+using System.Collections.Generic;
+using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Models
 {
@@ -86,5 +88,23 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The goal.</value>
         public Goal Goal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the contacts.
+        /// </summary>
+        /// <value>The contacts.</value>
+        public ICollection<ActivityTaskContact> Contacts { get; set; }
+
+        /// <summary>
+        /// Gets or sets the contacts.
+        /// </summary>
+        /// <value>The contacts.</value>
+        public ICollection<ActivityTaskObserverUser> ObserverUsers { get; set; }
+    }
+
+    public class ActivityTaskObserverUser: BaseEntity
+    {
+        public ActivityTask Task { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

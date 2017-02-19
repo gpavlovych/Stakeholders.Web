@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using System.Collections.Generic;
+using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Models
 {
@@ -58,12 +59,6 @@ namespace Stakeholders.Web.Models
         public string Address { get; set; }
 
         /// <summary>
-        /// Gets or sets the observer activities.
-        /// </summary>
-        /// <value>The observer activities.</value>
-        public ICollection<Activity> ObserverActivities { get; set; }
-
-        /// <summary>
         /// Gets or sets the city.
         /// </summary>
         /// <value>The city.</value>
@@ -80,5 +75,11 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The email.</value>
         public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets the observer activities.
+        /// </summary>
+        /// <value>The observer activities.</value>
+        public ICollection<ActivityObserverUserCompany> ObserverActivities { get; set; }
     }
 }

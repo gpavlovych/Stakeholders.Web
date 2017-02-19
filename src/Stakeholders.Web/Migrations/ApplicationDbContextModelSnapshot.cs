@@ -104,17 +104,15 @@ namespace Stakeholders.Web.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long?>("ApplicationUserId");
-
                     b.Property<long?>("CompanyId");
-
-                    b.Property<long?>("CompanyId1");
 
                     b.Property<long?>("ContactId");
 
-                    b.Property<DateTime>("DateActivity");
+                    b.Property<DateTime?>("DateActivity");
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<string>("Description");
 
@@ -128,11 +126,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.HasIndex("CompanyId");
-
-                    b.HasIndex("CompanyId1");
 
                     b.HasIndex("ContactId");
 
@@ -145,6 +139,28 @@ namespace Stakeholders.Web.Migrations
                     b.ToTable("Activities");
                 });
 
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUserCompany", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("ActivityId");
+
+                    b.Property<long?>("CompanyId");
+
+                    b.Property<long?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ActivityObserverUserCompany");
+                });
+
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTask", b =>
                 {
                     b.Property<long>("Id")
@@ -154,7 +170,9 @@ namespace Stakeholders.Web.Migrations
 
                     b.Property<long?>("CreatedById");
 
-                    b.Property<DateTime>("DateCreated");
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<DateTime>("DateDeadline");
 
@@ -185,6 +203,42 @@ namespace Stakeholders.Web.Migrations
                     b.ToTable("ActivityTasks");
                 });
 
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskContact", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("ContactId");
+
+                    b.Property<long?>("TaskId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactId");
+
+                    b.HasIndex("TaskId");
+
+                    b.ToTable("ActivityTaskContact");
+                });
+
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskObserverUser", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<long?>("TaskId");
+
+                    b.Property<long?>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TaskId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ActivityTaskObserverUser");
+                });
+
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskStatus", b =>
                 {
                     b.Property<long>("Id")
@@ -196,7 +250,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ActivityTaskStatus");
+                    b.ToTable("ActivityTaskStatuses");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityType", b =>
@@ -217,8 +271,6 @@ namespace Stakeholders.Web.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
-
-                    b.Property<long?>("ActivityId");
 
                     b.Property<long?>("CompanyId");
 
@@ -261,8 +313,6 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActivityId");
-
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("NormalizedEmail")
@@ -281,8 +331,6 @@ namespace Stakeholders.Web.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<long?>("ActivityId");
 
                     b.Property<string>("Address");
 
@@ -303,8 +351,6 @@ namespace Stakeholders.Web.Migrations
                     b.Property<string>("Phone");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
 
                     b.ToTable("Companies");
                 });
@@ -486,17 +532,9 @@ namespace Stakeholders.Web.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Activity", b =>
                 {
-                    b.HasOne("Stakeholders.Web.Models.ApplicationUser")
-                        .WithMany("ObserverActivities")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("Stakeholders.Web.Models.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
-
-                    b.HasOne("Stakeholders.Web.Models.Company")
-                        .WithMany("ObserverActivities")
-                        .HasForeignKey("CompanyId1");
 
                     b.HasOne("Stakeholders.Web.Models.Contact", "Contact")
                         .WithMany()
@@ -512,6 +550,21 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
                         .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUserCompany", b =>
+                {
+                    b.HasOne("Stakeholders.Web.Models.Activity", "Activity")
+                        .WithMany("ObserverUsersCompanies")
+                        .HasForeignKey("ActivityId");
+
+                    b.HasOne("Stakeholders.Web.Models.Company", "Company")
+                        .WithMany("ObserverActivities")
+                        .HasForeignKey("CompanyId");
+
+                    b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
+                        .WithMany("ObserverActivities")
                         .HasForeignKey("UserId");
                 });
 
@@ -534,12 +587,30 @@ namespace Stakeholders.Web.Migrations
                         .HasForeignKey("StatusId");
                 });
 
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskContact", b =>
+                {
+                    b.HasOne("Stakeholders.Web.Models.Contact", "Contact")
+                        .WithMany("Tasks")
+                        .HasForeignKey("ContactId");
+
+                    b.HasOne("Stakeholders.Web.Models.ActivityTask", "Task")
+                        .WithMany("Contacts")
+                        .HasForeignKey("TaskId");
+                });
+
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskObserverUser", b =>
+                {
+                    b.HasOne("Stakeholders.Web.Models.ActivityTask", "Task")
+                        .WithMany("ObserverUsers")
+                        .HasForeignKey("TaskId");
+
+                    b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
+                        .WithMany("ObserverTasks")
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("Stakeholders.Web.Models.ApplicationUser", b =>
                 {
-                    b.HasOne("Stakeholders.Web.Models.Activity")
-                        .WithMany("ObserverUsers")
-                        .HasForeignKey("ActivityId");
-
                     b.HasOne("Stakeholders.Web.Models.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
@@ -547,13 +618,6 @@ namespace Stakeholders.Web.Migrations
                     b.HasOne("Stakeholders.Web.Models.Role", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId");
-                });
-
-            modelBuilder.Entity("Stakeholders.Web.Models.Company", b =>
-                {
-                    b.HasOne("Stakeholders.Web.Models.Activity")
-                        .WithMany("ObserverCompanies")
-                        .HasForeignKey("ActivityId");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.Contact", b =>

@@ -13,6 +13,7 @@
 // ***********************************************************************
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Models
 {
@@ -36,12 +37,6 @@ namespace Stakeholders.Web.Models
         public string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the observer activities.
-        /// </summary>
-        /// <value>The observer activities.</value>
-        public ICollection<Activity> ObserverActivities { get; set; }
-
-        /// <summary>
         /// Gets or sets the company.
         /// </summary>
         /// <value>The company.</value>
@@ -52,5 +47,17 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The role.</value>
         public Role Role { get; set; }
+
+        /// <summary>
+        /// Gets or sets the observer activities.
+        /// </summary>
+        /// <value>The observer activities.</value>
+        public ICollection<ActivityObserverUserCompany> ObserverActivities { get; set; }
+
+        /// <summary>
+        /// Gets or sets the observer activities.
+        /// </summary>
+        /// <value>The observer activities.</value>
+        public ICollection<ActivityTaskObserverUser> ObserverTasks { get; set; }
     }
 }

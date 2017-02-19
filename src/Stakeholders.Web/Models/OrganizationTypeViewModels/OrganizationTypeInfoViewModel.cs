@@ -16,18 +16,13 @@ namespace Stakeholders.Web.Models.OrganizationTypeViewModels
     /// <summary>
     /// Class OrganizationTypeInfoViewModel.
     /// </summary>
-    public class OrganizationTypeInfoViewModel
+    /// <seealso cref="Stakeholders.Web.Models.OrganizationTypeViewModels.OrganizationTypeViewModel" />
+    public class OrganizationTypeInfoViewModel: OrganizationTypeViewModel
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
         public long Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        /// <value>The name.</value>
-        public string Name { get; set; }
     }
 }

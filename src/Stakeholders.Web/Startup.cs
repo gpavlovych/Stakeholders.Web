@@ -13,9 +13,11 @@
 // ***********************************************************************
 
 using System;
+using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.DotNet.Cli.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -73,10 +75,24 @@ namespace Stakeholders.Web
             // Add framework services.
             services.AddApplicationInsightsTelemetry(this.Configuration);
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ApplicationDbContext>(
+                options =>
+                        options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddScoped<IDataSource<Activity>, ActivityDataSource>();
+            services.AddScoped<IDataSource<ActivityTask>, ActivityTaskDataSource>();
+            services.AddScoped<IDataSource<ActivityTaskStatus>, ActivityTaskStatusDataSource>();
+            services.AddScoped<IDataSource<ActivityType>, ActivityTypeDataSource>();
+            services.AddScoped<IDataSource<Company>, CompanyDataSource>();
+            services.AddScoped<IDataSource<Contact>, ContactDataSource>();
+            services.AddScoped<IDataSource<Goal>, GoalDataSource>();
+            services.AddScoped<IDataSource<Organization>, OrganizationDataSource>();
+            services.AddScoped<IDataSource<OrganizationType>, OrganizationTypeDataSource>();
+            services.AddScoped<IDataSource<OrganizationCategory>, OrganizationCategoryDataSource>();
+            services.AddScoped<IDataSource<ApplicationUser>, ApplicationUserDataSource>();
+            services.AddScoped<IDataSource<Role>, RoleDataSource>();
 
             services.AddIdentity<ApplicationUser, Role>()
                 .AddEntityFrameworkStores<ApplicationDbContext, long>()
@@ -113,6 +129,13 @@ namespace Stakeholders.Web
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
                 app.UseBrowserLink();
+
+                using (
+                    var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+                {
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().EnsureSeedData();
+                }
             }
             else
             {
@@ -156,19 +179,21 @@ namespace Stakeholders.Web
                 ClockSkew = TimeSpan.Zero
             };
 
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                TokenValidationParameters = tokenValidationParameters
-            });
+            app.UseJwtBearerAuthentication(
+                new JwtBearerOptions
+                {
+                    AutomaticAuthenticate = true,
+                    AutomaticChallenge = true,
+                    TokenValidationParameters = tokenValidationParameters
+                });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc(
+                routes =>
+                {
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+                });
         }
     }
 }

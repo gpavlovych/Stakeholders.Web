@@ -11,6 +11,10 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using System.Collections.Generic;
+using Stakeholders.Web.Data;
+
 namespace Stakeholders.Web.Models
 {
     /// <summary>
@@ -78,5 +82,11 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The company.</value>
         public Company Company { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tasks.
+        /// </summary>
+        /// <value>The tasks.</value>
+        public ICollection<ActivityTaskContact> Tasks { get; set; }
     }
 }

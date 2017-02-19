@@ -1,17 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : Stakeholders.Web
-// Author           : George
-// Created          : 02-18-2017
-//
-// Last Modified By : George
-// Last Modified On : 02-19-2017
-// ***********************************************************************
-// <copyright file="Repository.cs" company="">
-//     Copyright (c) . All rights reserved.
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,40 +7,31 @@ using Stakeholders.Web.Models;
 
 namespace Stakeholders.Web.Data
 {
-    /// <summary>
-    /// Class Repository.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <seealso cref="Stakeholders.Web.Data.IRepository{T}" />
-    public class Repository<T> : IRepository<T> where T : class, IBaseEntity
+    public class ActivityRepository: IRepository<Activity>
     {
         /// <summary>
         /// The context
         /// </summary>
         private readonly ApplicationDbContext context;
+
         /// <summary>
-        /// The data source
+        /// The entities
         /// </summary>
-        private readonly IDataSource<T> dataSource;
+        private readonly DbSet<Activity> entities;
+
+        /// <summary>
+        /// The error message
+        /// </summary>
+        string errorMessage = string.Empty;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Repository{T}" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="dataSource">The data source.</param>
-        public Repository(ApplicationDbContext context, IDataSource<T> dataSource)
+        public ActivityRepository(ApplicationDbContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-            if (dataSource == null)
-            {
-                throw new ArgumentNullException(nameof(dataSource));
-            }
-
             this.context = context;
-            this.dataSource = dataSource;
+            this.entities = context.Set<Activity>();
         }
 
         /// <summary>
@@ -62,9 +40,18 @@ namespace Stakeholders.Web.Data
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         /// <returns>The entities</returns>
-        public IEnumerable<T> GetAll(int start, int count)
+        public IEnumerable<Activity> GetAll(int start, int count)
         {
-            return this.dataSource.GetDataQueryable().Skip(start).Take(count).ToList();
+            return
+                this.entities.Include(it => it.Company)
+                    .Include(it => it.ObserverUsersCompanies)
+                    .Include(it => it.Type)
+                    .Include(it => it.User)
+                    .Include(it => it.Contact)
+                    .Include(it => it.Task).Skip(start)
+                    .Take(count)
+
+                    .ToList();
         }
 
         /// <summary>
@@ -74,9 +61,16 @@ namespace Stakeholders.Web.Data
         /// <param name="count">The count.</param>
         /// <returns>The entities</returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<IEnumerable<T>> GetAllAsync(int start, int count)
+        public async Task<IEnumerable<Activity>> GetAllAsync(int start, int count)
         {
-            return await this.dataSource.GetDataQueryable().Skip(start).Take(count).ToListAsync();
+            return await this.entities.Include(it => it.Company)
+                .Include(it => it.ObserverUsersCompanies)
+                .Include(it => it.Type)
+                .Include(it => it.User)
+                .Include(it => it.Contact)
+                .Include(it => it.Task).Skip(start).Take(count)
+
+                .ToListAsync();
         }
 
         /// <summary>
@@ -85,7 +79,7 @@ namespace Stakeholders.Web.Data
         /// <returns>System.Int64.</returns>
         public long Count()
         {
-            return this.dataSource.GetDataQueryable().LongCount();
+            return this.entities.LongCount();
         }
 
         /// <summary>
@@ -94,7 +88,7 @@ namespace Stakeholders.Web.Data
         /// <returns>System.Int64.</returns>
         public async Task<long> CountAsync()
         {
-            return await this.dataSource.GetDataQueryable().LongCountAsync();
+            return await this.entities.LongCountAsync();
         }
 
         /// <summary>
@@ -102,9 +96,9 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>The entity.</returns>
-        public T GetById(long id)
+        public Activity GetById(long id)
         {
-            return this.dataSource.GetDataQueryable().Single(s => s.Id == id);
+            return this.entities.Single(s => s.Id == id);
         }
 
         /// <summary>
@@ -112,29 +106,29 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>The entity.</returns>
-        public async Task<T> GetByIdAsync(long id)
+        public async Task<Activity> GetByIdAsync(long id)
         {
-            return await this.dataSource.GetDataQueryable().SingleAsync(s => s.Id == id);
+            return await this.entities.SingleAsync(s => s.Id == id);
         }
 
         /// <summary>
-        /// Gets the entity by specified identifier, returning null if no corresponding entity is found.
+        ///Gets the entity by specified identifier, returning null if no corresponding entity is found.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>The entity.</returns>
-        public T FindById(long id)
+        public Activity FindById(long id)
         {
-            return this.dataSource.GetDataQueryable().SingleOrDefault(s => s.Id == id);
+            return this.entities.SingleOrDefault(s => s.Id == id);
         }
 
         /// <summary>
-        /// Gets the entity by specified identifier, returning null if no corresponding entity is found asynchronously.
+        ///Gets the entity by specified identifier, returning null if no corresponding entity is found asynchronously.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>The entity.</returns>
-        public async Task<T> FindByIdAsync(long id)
+        public async Task<Activity> FindByIdAsync(long id)
         {
-            return await this.dataSource.GetDataQueryable().SingleOrDefaultAsync(s => s.Id == id);
+            return await this.entities.SingleOrDefaultAsync(s => s.Id == id);
         }
 
         /// <summary>
@@ -142,14 +136,14 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <exception cref="ArgumentNullException">entity</exception>
-        public void Insert(T entity)
+        public void Insert(Activity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            this.context.Set<T>().Add(entity);
+            this.entities.Add(entity);
             this.context.SaveChanges();
         }
 
@@ -157,16 +151,14 @@ namespace Stakeholders.Web.Data
         /// Inserts the specified entity asynchronously.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Task.</returns>
-        /// <exception cref="ArgumentNullException">entity</exception>
-        public async Task InsertAsync(T entity)
+        public async Task InsertAsync(Activity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            this.context.Set<T>().Add(entity);
+            this.entities.Add(entity);
             await this.context.SaveChangesAsync();
         }
 
@@ -175,7 +167,7 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <exception cref="ArgumentNullException">entity</exception>
-        public void Update(T entity)
+        public void Update(Activity entity)
         {
             if (entity == null)
             {
@@ -189,9 +181,7 @@ namespace Stakeholders.Web.Data
         /// Updates the specified entity asynchronously.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <returns>Task.</returns>
-        /// <exception cref="ArgumentNullException">entity</exception>
-        public async Task UpdateAsync(T entity)
+        public async Task UpdateAsync(Activity entity)
         {
             if (entity == null)
             {
@@ -206,14 +196,14 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <exception cref="ArgumentNullException">entity</exception>
-        public void Delete(T entity)
+        public void Delete(Activity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            this.context.Set<T>().Remove(entity);
+            this.entities.Remove(entity);
             this.context.SaveChanges();
         }
 
@@ -222,16 +212,15 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <returns>Task.</returns>
-        /// <exception cref="ArgumentNullException">entity</exception>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task DeleteAsync(T entity)
+        public async Task DeleteAsync(Activity entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException(nameof(entity));
             }
 
-            this.context.Set<T>().Remove(entity);
+            this.entities.Remove(entity);
             await this.context.SaveChangesAsync();
         }
     }
