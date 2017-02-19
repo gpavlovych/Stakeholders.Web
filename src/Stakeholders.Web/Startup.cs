@@ -79,7 +79,7 @@ namespace Stakeholders.Web
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddIdentity<ApplicationUser, Role>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext, long>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
@@ -122,8 +122,10 @@ namespace Stakeholders.Web
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
+
             // Add JWT generation endpoint:
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+
             var options = new TokenProviderOptions
             {
                 Audience = "ExampleAudience",

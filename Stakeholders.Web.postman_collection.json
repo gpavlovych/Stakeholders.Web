@@ -1,0 +1,128 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Stakeholders.Web",
+		"_postman_id": "60942225-3a0c-cb75-6c6c-6f010541f823",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "OrganizationTypes",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/OrganizationTypes",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"somename2\"\n}"
+						},
+						"description": "Adding new OrganizationType"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationTypes",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all organization types with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationTypes?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes?start=1&count=1",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all organization types"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationTypes/1",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"sometype2\"\n}"
+						},
+						"description": "Updates the organization type with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationTypes/count",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all organization types"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationTypes/3",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationTypes/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the organization type with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "http://localhost:33346/token",
+			"request": {
+				"url": "http://localhost:33346/token",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "TEST",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "TEST123",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "Generating JWT for Stakeholders.Web"
+			},
+			"response": []
+		}
+	]
+}

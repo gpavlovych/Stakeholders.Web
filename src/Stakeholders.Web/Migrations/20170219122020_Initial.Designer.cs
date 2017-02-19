@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Stakeholders.Web.Data;
 
-namespace Stakeholders.Web.Data.Migrations
+namespace Stakeholders.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170218164307_newmigration")]
-    partial class newmigration
+    [Migration("20170219122020_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,7 +17,7 @@ namespace Stakeholders.Web.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<long>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -26,8 +26,7 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired();
+                    b.Property<long>("RoleId");
 
                     b.HasKey("Id");
 
@@ -36,7 +35,7 @@ namespace Stakeholders.Web.Data.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<long>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -45,8 +44,7 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<long>("UserId");
 
                     b.HasKey("Id");
 
@@ -55,7 +53,7 @@ namespace Stakeholders.Web.Data.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<long>", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -63,8 +61,7 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<long>("UserId");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -73,11 +70,11 @@ namespace Stakeholders.Web.Data.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<long>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<long>("UserId");
 
-                    b.Property<string>("RoleId");
+                    b.Property<long>("RoleId");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -88,9 +85,9 @@ namespace Stakeholders.Web.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<long>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<long>("UserId");
 
                     b.Property<string>("LoginProvider");
 
@@ -105,16 +102,16 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Activity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ApplicationUserId");
+                    b.Property<long?>("ApplicationUserId");
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<long?>("CompanyId");
 
-                    b.Property<int?>("CompanyId1");
+                    b.Property<long?>("CompanyId1");
 
-                    b.Property<int?>("ContactId");
+                    b.Property<long?>("ContactId");
 
                     b.Property<DateTime>("DateActivity");
 
@@ -124,11 +121,11 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("Subject");
 
-                    b.Property<int?>("TaskId");
+                    b.Property<long?>("TaskId");
 
-                    b.Property<int?>("TypeId");
+                    b.Property<long?>("TypeId");
 
-                    b.Property<string>("UserId");
+                    b.Property<long?>("UserId");
 
                     b.HasKey("Id");
 
@@ -151,12 +148,12 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTask", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("AssignToId");
+                    b.Property<long?>("AssignToId");
 
-                    b.Property<string>("CreatedById");
+                    b.Property<long?>("CreatedById");
 
                     b.Property<DateTime>("DateCreated");
 
@@ -166,11 +163,11 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<int?>("GoalId");
+                    b.Property<long?>("GoalId");
 
                     b.Property<bool>("IsImportant");
 
-                    b.Property<int?>("StatusId");
+                    b.Property<long?>("StatusId");
 
                     b.Property<string>("Subject");
 
@@ -191,7 +188,7 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
@@ -205,7 +202,7 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
@@ -217,13 +214,14 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int?>("ActivityId");
+                    b.Property<long?>("ActivityId");
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<long?>("CompanyId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -251,7 +249,7 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("RoleId");
+                    b.Property<long?>("RoleId");
 
                     b.Property<string>("SecurityStamp");
 
@@ -282,10 +280,10 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Company", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ActivityId");
+                    b.Property<long?>("ActivityId");
 
                     b.Property<string>("Address");
 
@@ -314,12 +312,12 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Contact", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Comments");
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<long?>("CompanyId");
 
                     b.Property<string>("Email");
 
@@ -327,7 +325,7 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("NameL");
 
-                    b.Property<int?>("OrganizationId");
+                    b.Property<long?>("OrganizationId");
 
                     b.Property<string>("Phone");
 
@@ -335,7 +333,7 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("Title");
 
-                    b.Property<string>("UserId");
+                    b.Property<long?>("UserId");
 
                     b.HasKey("Id");
 
@@ -350,7 +348,7 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Goal", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Title");
@@ -362,12 +360,12 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Organization", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<long?>("CategoryId");
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<long?>("CompanyId");
 
                     b.Property<string>("InfluencedBy");
 
@@ -375,9 +373,9 @@ namespace Stakeholders.Web.Data.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("TypeId");
+                    b.Property<long?>("TypeId");
 
-                    b.Property<string>("UserId");
+                    b.Property<long?>("UserId");
 
                     b.HasKey("Id");
 
@@ -394,10 +392,10 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.OrganizationCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CompanyId");
+                    b.Property<long?>("CompanyId");
 
                     b.Property<string>("IconUrl");
 
@@ -416,7 +414,7 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.OrganizationType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Type");
@@ -428,7 +426,8 @@ namespace Stakeholders.Web.Data.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Role", b =>
                 {
-                    b.Property<string>("Id");
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -449,7 +448,7 @@ namespace Stakeholders.Web.Data.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<long>", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.Role")
                         .WithMany("Claims")
@@ -457,7 +456,7 @@ namespace Stakeholders.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<long>", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser")
                         .WithMany("Claims")
@@ -465,7 +464,7 @@ namespace Stakeholders.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<long>", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser")
                         .WithMany("Logins")
@@ -473,7 +472,7 @@ namespace Stakeholders.Web.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<long>", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.Role")
                         .WithMany("Users")

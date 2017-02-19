@@ -1,28 +1,33 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : Stakeholders.Web
 // Author           : George
-// Created          : 02-18-2017
+// Created          : 02-19-2017
 //
 // Last Modified By : George
 // Last Modified On : 02-19-2017
 // ***********************************************************************
-// <copyright file="BaseEntity.cs" company="">
+// <copyright file="OrganizationTypeInfoViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-namespace Stakeholders.Web.Models
+namespace Stakeholders.Web.Models.OrganizationTypeViewModels
 {
     /// <summary>
-    /// Class BaseEntity.
+    /// Class OrganizationTypeInfoViewModel.
     /// </summary>
-    /// <seealso cref="Stakeholders.Web.Models.IBaseEntity" />
-    public class BaseEntity : IBaseEntity
+    public class OrganizationTypeInfoViewModel
     {
         /// <summary>
         /// Gets or sets the identifier.
         /// </summary>
         /// <value>The identifier.</value>
         public long Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
+        public string Name { get; set; }
     }
 }

@@ -1,31 +1,27 @@
 ﻿// ***********************************************************************
 // Assembly         : Stakeholders.Web
 // Author           : George
-// Created          : 02-16-2017
+// Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-18-2017
+// Last Modified On : 02-19-2017
 // ***********************************************************************
-// <copyright file="Role.cs" company="">
+// <copyright file="IBaseEntity.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
 namespace Stakeholders.Web.Models
 {
     /// <summary>
-    /// Class Role.
+    /// Interface IBaseEntity
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole{int}" />
-    /// <seealso cref="string" />
-    public class Role: IdentityRole<long>, IBaseEntity
+    public interface IBaseEntity
     {
         /// <summary>
-        /// Gets or sets the name en.
+        /// Gets or sets the identifier.
         /// </summary>
-        /// <value>The name en.</value>
-        public string NameEn { get; set; }
+        /// <value>The identifier.</value>
+        long Id { get; set; }
     }
 }

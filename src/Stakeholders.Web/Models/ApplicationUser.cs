@@ -19,8 +19,9 @@ namespace Stakeholders.Web.Models
     /// <summary>
     /// Class ApplicationUser.
     /// </summary>
-    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser" />
-    public class ApplicationUser : IdentityUser
+    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser{int}" />
+    /// <seealso cref="Stakeholders.Web.Models.IBaseEntity" />
+    public class ApplicationUser : IdentityUser<long>, IBaseEntity
     {
         /// <summary>
         /// Gets or sets the name.

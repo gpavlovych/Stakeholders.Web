@@ -22,7 +22,7 @@ namespace Stakeholders.Web.Data
     /// The application database context
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{ApplicationUser, Role, string}" />
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, string>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, long>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationDbContext" /> class.
