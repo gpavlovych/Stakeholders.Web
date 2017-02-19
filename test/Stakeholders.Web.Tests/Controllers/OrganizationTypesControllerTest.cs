@@ -92,6 +92,27 @@ namespace Stakeholders.Web.Tests.Controllers
 
         #endregion GetOrganizationTypes
 
+        #region GetOrganizationTypesCount
+
+        /// <summary>
+        /// Gets the organization types count test.
+        /// </summary>
+        [Fact]
+        public void GetOrganizationTypesCountTest()
+        {
+            // arrange
+            var expectedResult = 42L;
+            this.repositoryMock.Setup(it => it.Count()).Returns(expectedResult);
+
+            // act 
+            var result = this.target.GetOrganizationTypesCount();
+
+            // assert
+            result.ShouldBeEquivalentTo(expectedResult);
+        }
+
+        #endregion GetOrganizationTypes
+
         #region GetOrganizationType
 
         /// <summary>
