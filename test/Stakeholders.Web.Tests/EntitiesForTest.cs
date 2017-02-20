@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Stakeholders.Web.Models;
+using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
 using Stakeholders.Web.Models.OrganizationTypeViewModels;
 
@@ -388,6 +389,26 @@ namespace Stakeholders.Web.Tests
                 TaskId = this.CreateInt(),
                 ObserverUserIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
                 UserId = this.CreateInt()
+            };
+        }
+
+        public ActivityTaskViewModel CreateActivityTaskViewModel()
+        {
+            return new ActivityTaskViewModel()
+            {
+                AssignToId = this.CreateInt(),
+                ContactIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
+                ObserverUserIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
+                Subject = this.CreateString(),
+                DateCreated = this.CreateDate(),
+                Description = this.CreateString(),
+                DateEnd = this.CreateDate(),
+                DateDeadline = this.CreateDate(),
+                IsImportant = this.CreateBool(),
+                SuccessFactor = this.CreateString(),
+                CreatedById = this.CreateInt(),
+                StatusId = this.CreateInt(),
+                GoalId = this.CreateInt()
             };
         }
     }

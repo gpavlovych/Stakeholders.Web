@@ -109,6 +109,107 @@
 			]
 		},
 		{
+			"name": "ActivityTasks",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/ActivityTasks",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTasks",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"goalId\": 1,\n    \"assignToId\": 1,\n    \"contactIds\": [\n      1\n    ],\n    \"createdById\": 2,\n    \"observerUserIds\": [1, 2],\n    \"subject\": \"some subject 43431\",\n    \"dateDeadline\": \"2017-02-24T01:05:20.4590503\",\n    \"dateEnd\": \"2017-02-23T01:05:20.4590503\",\n    \"description\": \"some description3434\",\n    \"isImportant\": true,\n    \"statusId\": 2,\n    \"successFactor\": \"some success facto434r\"\n  }"
+						},
+						"description": "Adding new Activity Task"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTasks/count",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTasks/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all activity tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTasks",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTasks",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activity tasks with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTasks?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTasks?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activity tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTasks/3",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTasks/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting activity task with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTasks/1",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTasks/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"dateCreated\": \"2017-02-20T01:13:26.13\",\n  \"goalId\": 1,\n  \"assignToId\": 1,\n  \"contactIds\": [\n    1\n  ],\n  \"createdById\": 2,\n  \"observerUserIds\": [\n    1,\n    2\n  ],\n  \"subject\": \"some subject 43431\",\n  \"dateDeadline\": \"2017-02-24T01:05:20.4590503\",\n  \"dateEnd\": \"2017-02-23T01:05:20.4590503\",\n  \"description\": \"some description3434\",\n  \"isImportant\": true,\n  \"statusId\": 2,\n  \"successFactor\": \"some success facto434r\"\n}"
+						},
+						"description": "Updates the activity task with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTasks/3",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTasks/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the activity task with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "OrganizationTypes",
 			"description": "",
 			"item": [

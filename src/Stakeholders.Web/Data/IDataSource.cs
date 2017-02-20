@@ -333,8 +333,11 @@ namespace Stakeholders.Web.Data
                 .Include(it => it.AssignTo)
                 .Include(it => it.CreatedBy)
                 .Include(it => it.ObserverUsers)
+                    .ThenInclude(it => it.User)
                 .Include(it => it.Contacts)
-                .Include(it => it.Goal);
+                    .ThenInclude(it => it.Contact)
+                .Include(it => it.Goal)
+                .Include(it => it.Status);
         }
     }
 
