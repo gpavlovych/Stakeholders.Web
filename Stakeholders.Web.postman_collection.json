@@ -54,7 +54,7 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities?start=0&count=10 copy",
+					"name": "http://localhost:33346/api/Activities?start=0&count=10",
 					"request": {
 						"url": "http://localhost:33346/api/Activities?start=0&count=10",
 						"method": "GET",
@@ -103,6 +103,107 @@
 						"header": [],
 						"body": {},
 						"description": "Deletes the activity with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ActivityTaskStatuses",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/ActivityTaskStatuses",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTaskStatuses",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"some name 1\",\n  \"nameEn\": \"some name en 1\"\n}"
+						},
+						"description": "Adding new Activity Task Status"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTaskStatuses/count",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTaskStatuses/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all activities"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTaskStatuses",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTaskStatuses",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activity task statuses with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTaskStatuses?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTaskStatuses?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activity task statuses"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTaskStatuses/3",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTaskStatuses/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting activity task status with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTaskStatuses/1",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTaskStatuses/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"sometaskstat\",\n  \"nameEn\": \"sometaskstaten\"\n}"
+						},
+						"description": "Updates the activity task status with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTaskStatuses/3",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTaskStatuses/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the activity task status with id=3"
 					},
 					"response": []
 				}
@@ -204,6 +305,107 @@
 						"header": [],
 						"body": {},
 						"description": "Deletes the activity task with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ActivityTypes",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/ActivityTypes",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTypes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"name\": \"somename1\"\n  }"
+						},
+						"description": "Adding new ActivityType"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTypes/count",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTypes/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all activity types"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTypes",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTypes",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activity types with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTypes?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTypes?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all activity types"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTypes/3",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTypes/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting activity type with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTypes/1",
+					"request": {
+						"url": "http://localhost:33346/api/Activities/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"some name2\"\n}"
+						},
+						"description": "Updates the activity type with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ActivityTypes/3",
+					"request": {
+						"url": "http://localhost:33346/api/ActivityTypes/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the activity type with id=3"
 					},
 					"response": []
 				}

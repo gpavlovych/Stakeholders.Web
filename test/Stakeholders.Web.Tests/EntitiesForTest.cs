@@ -15,7 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Stakeholders.Web.Models;
+using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
+using Stakeholders.Web.Models.ActivityTypeViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
 using Stakeholders.Web.Models.OrganizationTypeViewModels;
 
@@ -392,6 +394,10 @@ namespace Stakeholders.Web.Tests
             };
         }
 
+        /// <summary>
+        /// Creates the activity task view model.
+        /// </summary>
+        /// <returns>ActivityTaskViewModel.</returns>
         public ActivityTaskViewModel CreateActivityTaskViewModel()
         {
             return new ActivityTaskViewModel()
@@ -409,6 +415,31 @@ namespace Stakeholders.Web.Tests
                 CreatedById = this.CreateInt(),
                 StatusId = this.CreateInt(),
                 GoalId = this.CreateInt()
+            };
+        }
+
+        /// <summary>
+        /// Creates the activity task status view model.
+        /// </summary>
+        /// <returns>ActivityTaskStatusViewModel.</returns>
+        public ActivityTaskStatusViewModel CreateActivityTaskStatusViewModel()
+        {
+            return new ActivityTaskStatusViewModel()
+            {
+                Name = this.CreateString(),
+                NameEn = this.CreateString()
+            };
+        }
+
+        /// <summary>
+        /// Creates the activity type view model.
+        /// </summary>
+        /// <returns>ActivityTypeViewModel.</returns>
+        public ActivityTypeViewModel CreateActivityTypeViewModel()
+        {
+            return new ActivityTypeViewModel()
+            {
+                Name = this.CreateString()
             };
         }
     }
