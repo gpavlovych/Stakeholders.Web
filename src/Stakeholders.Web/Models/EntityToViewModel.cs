@@ -17,12 +17,14 @@ using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
 using Stakeholders.Web.Models.ApplicationUserViewModels;
 using Stakeholders.Web.Models.CompanyViewModels;
+using Stakeholders.Web.Models.ContactViewModels;
 
 namespace Stakeholders.Web.Models
 {
     /// <summary>
     /// Class EntityToViewModel.
     /// </summary>
+    /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.Contact, Stakeholders.Web.Models.ContactViewModels.ContactViewModel}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ApplicationUser, Stakeholders.Web.Models.ApplicationUserViewModels.ApplicationUserViewModel}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.Activity, Stakeholders.Web.Models.ActivityViewModels.ActivityViewModel}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ActivityTask, Stakeholders.Web.Models.ActivityTaskViewModels.ActivityTaskViewModel}" />
@@ -31,7 +33,8 @@ namespace Stakeholders.Web.Models
         : IMappingAction<Activity, ActivityViewModel>,
             IMappingAction<ActivityTask, ActivityTaskViewModel>,
             IMappingAction<Company, CompanyViewModel>,
-            IMappingAction<ApplicationUser, ApplicationUserViewModel>
+            IMappingAction<ApplicationUser, ApplicationUserViewModel>,
+            IMappingAction<Contact, ContactViewModel>
     {
         /// <summary>
         /// Implementors can modify both the source and destination objects
@@ -85,6 +88,18 @@ namespace Stakeholders.Web.Models
 
             destination.ObserverTaskIds =
             (source.ObserverTasks?.Where(it => it.Task != null).Select(it => it.Task.Id) ??
+             Enumerable.Empty<long>()).ToArray();
+        }
+
+        /// <summary>
+        /// Implementors can modify both the source and destination objects
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <param name="destination">Destination object</param>
+        public void Process(Contact source, ContactViewModel destination)
+        {
+            destination.TaskIds =
+            (source.Tasks?.Where(it => it.Task != null).Select(it => it.Task.Id) ??
              Enumerable.Empty<long>()).ToArray();
         }
     }

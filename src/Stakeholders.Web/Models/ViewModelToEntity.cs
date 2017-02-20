@@ -233,6 +233,7 @@ namespace Stakeholders.Web.Models
                 source.ObserverUserIds?.Select(
                     contactId => new ActivityTaskObserverUser()
                     {
+                        Task = destination,
                         User = this.repositoryUsers.FindById(contactId)
                     }).ToList();
 

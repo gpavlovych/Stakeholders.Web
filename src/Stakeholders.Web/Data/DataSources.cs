@@ -30,21 +30,6 @@ namespace Stakeholders.Web.Data
         IQueryable<T> GetDataQueryable();
     }
 
-    //class DataSource<T> : IDataSource<T> where T : class, IBaseEntity
-    //{
-    //    private readonly ApplicationDbContext context;
-
-    //    public DataSource(ApplicationDbContext context)
-    //    {
-    //        this.context = context;
-    //    }
-
-    //    public virtual IQueryable<T> GetDataQueryable()
-    //    {
-    //        return this.context.Set<T>();
-    //    }
-    //}
-
     /// <summary>
     /// Class RoleDataSource.
     /// </summary>
@@ -230,7 +215,7 @@ namespace Stakeholders.Web.Data
                 .Include(it => it.Company)
                 .Include(it => it.Organization)
                 .Include(it => it.Tasks)
-                .ThenInclude(it => it.Task)
+                    .ThenInclude(it => it.Task)
                 .Include(it => it.User);
         }
     }
@@ -429,7 +414,13 @@ namespace Stakeholders.Web.Data
         /// <returns>IQueryable&lt;ApplicationUser&gt;.</returns>
         public IQueryable<ApplicationUser> GetDataQueryable()
         {
-            return this.context.Users;
+            return this.context.Users
+                .Include(it => it.Company)
+                .Include(it => it.ObserverActivities)
+                .ThenInclude(it => it.Activity)
+                .Include(it => it.ObserverTasks)
+                .ThenInclude(it => it.Task)
+                .Include(it=>it.Role);
         }
     }
 }

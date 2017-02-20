@@ -78,7 +78,7 @@
 				{
 					"name": "http://localhost:33346/api/Activities/1",
 					"request": {
-						"url": "http://localhost:33346/api/Activities/4",
+						"url": "http://localhost:33346/api/Activities/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -280,7 +280,7 @@
 				{
 					"name": "http://localhost:33346/api/ActivityTasks/1",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks/3",
+						"url": "http://localhost:33346/api/ActivityTasks/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -381,7 +381,7 @@
 				{
 					"name": "http://localhost:33346/api/ActivityTypes/1",
 					"request": {
-						"url": "http://localhost:33346/api/Activities/1",
+						"url": "http://localhost:33346/api/ActivityTypes/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -406,6 +406,107 @@
 						"header": [],
 						"body": {},
 						"description": "Deletes the activity type with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ApplicationUsers",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/ApplicationUsers",
+					"request": {
+						"url": "http://localhost:33346/api/ApplicationUsers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"name\": \"user322\",\n    \"title\": \"Mr.\",\n    \"companyId\": 1,\n    \"roleId\": 1,\n    \"observerActivityIds\": [1,2],\n    \"observerTaskIds\": [1,2]\n  }"
+						},
+						"description": "Adding new ApplicationUser"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ApplicationUsers/count",
+					"request": {
+						"url": "http://localhost:33346/api/ApplicationUsers/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all application users"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ApplicationUsers",
+					"request": {
+						"url": "http://localhost:33346/api/ApplicationUsers",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all application users with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ApplicationUsers?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/ApplicationUsers?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all application users"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ApplicationUsers/3",
+					"request": {
+						"url": "http://localhost:33346/api/ApplicationUsers/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting application user with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ApplicationUsers/3",
+					"request": {
+						"url": "http://localhost:33346/api/ApplicationUsers/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"user322\",\n  \"title\": \"Mr.\",\n  \"companyId\": 2,\n  \"roleId\": 1,\n  \"observerActivityIds\": [1],\n  \"observerTaskIds\": [1]\n}"
+						},
+						"description": "Updates the application user with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/ApplicationUsers/3",
+					"request": {
+						"url": "http://localhost:33346/api/ApplicationUsers/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the application user with id=3"
 					},
 					"response": []
 				}
@@ -471,7 +572,7 @@
 				{
 					"name": "http://localhost:33346/api/Companies/10003",
 					"request": {
-						"url": "http://localhost:33346/api/Companies/10003",
+						"url": "http://localhost:33346/api/Companies/2",
 						"method": "GET",
 						"header": [],
 						"body": {},
@@ -493,7 +594,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n    \"address\": \"some address\",\n    \"city\": \"Seattle, WA\",\n    \"companyCode\": \"MS\",\n    \"name\": \"Microsoft\",\n    \"influencing\": \"some2\",\n    \"influencedBy\": \"some1\",\n    \"email\": \"myself@example.com\",\n    \"phone\": \"9-11\",\n    \"observerActivityIds\": [\n    ],\n    \"logoUrl\": \"https://assets.onestore.ms/cdnfiles/external/uhf/long/9a49a7e9d8e881327e81b9eb43dabc01de70a9bb/images/microsoft-gray.png\"\n  }"
+							"raw": " {\n    \"address\": \"some address\",\n    \"city\": \"Seattle, WA\",\n    \"companyCode\": \"MS\",\n    \"name\": \"Microsoft\",\n    \"influencing\": \"some2\",\n    \"influencedBy\": \"some1\",\n    \"email\": \"myself@example.com\",\n    \"phone\": \"9-11\",\n    \"observerActivityIds\": [1\n    ],\n    \"logoUrl\": \"https://assets.onestore.ms/cdnfiles/external/uhf/long/9a49a7e9d8e881327e81b9eb43dabc01de70a9bb/images/microsoft-gray.png\"\n  }"
 						},
 						"description": "Updates the company with id=1"
 					},
@@ -507,6 +608,309 @@
 						"header": [],
 						"body": {},
 						"description": "Deletes the company with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacts",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/Contacts",
+					"request": {
+						"url": "http://localhost:33346/api/Contacts",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nameL\": \"somenamel1\",\n    \"nameF\": \"somenamef1\",\n    \"title\": \"some title\",\n    \"organizationId\": 1,\n    \"phone\": \"9-11\",\n    \"email\": \"someemail@example.com\",\n    \"photoUrl\": \"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRwyRtEsYBw-PRRscvqnEgD0DvQEbRb3HpHm3pOnWNFvhk9hwS3rgzkbAo\",\n    \"userId\": 1,\n    \"comments\": \"some comments\",\n    \"companyId\": 1,\n    \"taskIds\": null,\n    \"id\": 1\n  }"
+						},
+						"description": "Adding new Contact"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Contacts/count",
+					"request": {
+						"url": "http://localhost:33346/api/Contacts/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all activities"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Contacts",
+					"request": {
+						"url": "http://localhost:33346/api/Contacts",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all contacts with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Contacts?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/Contacts?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all contacts"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Contacts/3",
+					"request": {
+						"url": "http://localhost:33346/api/Contacts/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting contact with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Contacts/3",
+					"request": {
+						"url": "http://localhost:33346/api/Contacts/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nameL\": \"somenamel1\",\n  \"nameF\": \"somenamef1\",\n  \"title\": \"some title\",\n  \"organizationId\": 1,\n  \"phone\": \"9-11\",\n  \"email\": \"someemail@example.com\",\n  \"photoUrl\": \"https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRwyRtEsYBw-PRRscvqnEgD0DvQEbRb3HpHm3pOnWNFvhk9hwS3rgzkbAo\",\n  \"userId\": 1,\n  \"comments\": \"some comments\",\n  \"companyId\": 2,\n  \"taskIds\": [1]\n}"
+						},
+						"description": "Updates the contact with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Activities/3",
+					"request": {
+						"url": "http://localhost:33346/api/Activities/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the contact with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Goals",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/Goals",
+					"request": {
+						"url": "http://localhost:33346/api/Goals",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"title\": \"mygoal\"\n  }"
+						},
+						"description": "Adding new Goal"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Goals/count",
+					"request": {
+						"url": "http://localhost:33346/api/Goals/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all goals"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Goals",
+					"request": {
+						"url": "http://localhost:33346/api/Goals",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all goals with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Goals?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/Goals?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all goals"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Goals/3",
+					"request": {
+						"url": "http://localhost:33346/api/Goals/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting goal with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Goals/3",
+					"request": {
+						"url": "http://localhost:33346/api/Goals/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"mygoal1\"\n}"
+						},
+						"description": "Updates the goal with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Goals/3",
+					"request": {
+						"url": "http://localhost:33346/api/Goals/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the goal with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OrganizationCategories",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/OrganizationCategories",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationCategories",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"some org catego2ewery\",\n    \"influencing\": \"sminfdf\",\n    \"influencedBy\": \"sbew\",\n    \"iconUrl\": \"https://aessets.onestore.ms/cdnfiles/external/uhf/long/9a49a7e9d8e881327e81b9eb43dabc01de70a9bb/images/microsoft-gray.png\",\n    \"companyId\": 2\n  }"
+						},
+						"description": "Adding new OrganizationCategory"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationCategories/count",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationCategories/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all organization categories"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationCategories",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationCategories",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all organization categories with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationCategories?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationCategories?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all organization categories"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationCategories/3",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationCategories/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting organization category with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationCategories/3",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationCategories/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"some org cateedfgo2ewery\",\n  \"influencing\": \"sminfdf\",\n  \"influencedBy\": \"sbew\",\n  \"iconUrl\": \"https://aessets.onestore.ms/cdnfiles/external/uhf/long/9a49a7e9d8e881327e81b9eb43dabc01de70a9bb/images/microsoft-gray.png\",\n  \"companyId\": 2\n}"
+						},
+						"description": "Updates the organization category with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/OrganizationCategories/3",
+					"request": {
+						"url": "http://localhost:33346/api/OrganizationCategories/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the organization category with id=3"
 					},
 					"response": []
 				}
@@ -608,6 +1012,208 @@
 						"header": [],
 						"body": {},
 						"description": "Deletes the organization type with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organizations",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/Organizations",
+					"request": {
+						"url": "http://localhost:33346/api/Organizations",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"name\": \"some org 23\",\n    \"categoryId\": 1,\n    \"typeId\": 2,\n    \"influencing\": \"sm2\",\n    \"influencedBy\": \"sm1\",\n    \"userId\": 2,\n    \"companyId\": 1\n  }"
+						},
+						"description": "Adding new Organization"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Organizations/count",
+					"request": {
+						"url": "http://localhost:33346/api/Organizations/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all organizations"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Organizations",
+					"request": {
+						"url": "http://localhost:33346/api/Organizations",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all organizations with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Organizations?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/Organizations?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all organizations"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Organizations/3",
+					"request": {
+						"url": "http://localhost:33346/api/Organizations/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting organization with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Organizations/3",
+					"request": {
+						"url": "http://localhost:33346/api/Organizations/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"some org 2333232\",\n  \"categoryId\": 1,\n  \"typeId\": 2,\n  \"influencing\": \"sm2\",\n  \"influencedBy\": \"sm1\",\n  \"userId\": 2,\n  \"companyId\": 1\n}"
+						},
+						"description": "Updates the organization with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Organizations/3",
+					"request": {
+						"url": "http://localhost:33346/api/Organizations/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the organization with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/Roles",
+					"request": {
+						"url": "http://localhost:33346/api/Roles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"nameEn\": \"somerole\"\n  }"
+						},
+						"description": "Adding new Role"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Roles/count",
+					"request": {
+						"url": "http://localhost:33346/api/Roles/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all roles"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Roles",
+					"request": {
+						"url": "http://localhost:33346/api/Roles",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all roles with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Roles?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/Roles?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all roles"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Roles/3",
+					"request": {
+						"url": "http://localhost:33346/api/Roles/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting role with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Roles/3",
+					"request": {
+						"url": "http://localhost:33346/api/Roles/3",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nameEn\": \"somerolrerwee\"\n}"
+						},
+						"description": "Updates the role with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Roles/3",
+					"request": {
+						"url": "http://localhost:33346/api/Roles/3",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the role with id=3"
 					},
 					"response": []
 				}

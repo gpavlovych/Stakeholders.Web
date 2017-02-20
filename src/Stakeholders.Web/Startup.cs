@@ -167,6 +167,7 @@ namespace Stakeholders.Web
 
                     mapperConfigurationExpression
                         .CreateMap<Contact, ContactViewModel>()
+                        .AfterMap<EntityToViewModel>()
                         .ReverseMap()
                         .ForMember(it => it.Id, resolve => resolve.Ignore())
                         .AfterMap<ViewModelToEntity>();
