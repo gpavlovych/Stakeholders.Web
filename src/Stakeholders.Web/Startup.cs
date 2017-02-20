@@ -31,6 +31,7 @@ using Stakeholders.Web.Models;
 using Stakeholders.Web.Services;
 using AutoMapper;
 using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
+using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityTypeViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
 using Stakeholders.Web.Models.CompanyViewModels;
@@ -123,9 +124,71 @@ namespace Stakeholders.Web
                     mapperConfigurationExpression.CreateMap<OrganizationTypeViewModel, OrganizationType>();
 
                     mapperConfigurationExpression.CreateMap<CompanyViewModel, Company>()
-                        .ForMember(it => it.ObserverActivities, c => c.ResolveUsing<ObserverActivitiesToEntityResolver>());
+                        .ForMember(
+                            it => it.ObserverActivities,
+                            c => c.ResolveUsing<ObserverActivitiesToEntityResolver>());
                     mapperConfigurationExpression.CreateMap<Company, CompanyViewModel>()
-                        .ForMember(it => it.ObserverActivityIds, c => c.ResolveUsing<ObserverActivitiesToViewModelResolver>());
+                        .ForMember(
+                            it => it.ObserverActivityIds,
+                            resolver =>
+                            {
+                                resolver.ResolveUsing(
+                                    (entity, model) =>
+                                        (entity.ObserverActivities?.Where(it => it.Activity != null)
+                                             .Select(it => it.Activity.Id) ??
+                                         Enumerable.Empty<long>()).ToArray());
+                            });
+
+                    mapperConfigurationExpression.CreateMap<Activity, ActivityViewModel>()
+                        .ForMember(it => it.ContactId, resolver => resolver.MapFrom(it => it.Contact.Id))
+                        .ForMember(it => it.TaskId, resolver => resolver.MapFrom(it => it.Task.Id))
+                        .ForMember(it => it.CompanyId, resolver => resolver.MapFrom(it => it.Company.Id))
+                        .ForMember(it => it.UserId, resolver => resolver.MapFrom(it => it.User.Id))
+                        .ForMember(it => it.TypeId, resolver => resolver.MapFrom(it => it.Type.Id))
+                        .ForMember(it => it.ObserverCompanyIds,
+                            resolver =>
+                            {
+                                resolver.ResolveUsing(
+                                    (entity, model) =>
+                                        (entity.ObserverUsersCompanies?.Where(it => it.Company != null)
+                                             .Select(it => it.Company.Id) ??
+                                         Enumerable.Empty<long>()).ToArray());
+                            })
+                        .ForMember(it=>it.ObserverUserIds,
+                            resolver =>
+                            {
+                                resolver.ResolveUsing(
+                                    (entity, model) =>
+                                        (entity.ObserverUsersCompanies?.Where(it => it.User != null)
+                                             .Select(it => it.User.Id) ??
+                                         Enumerable.Empty<long>()).ToArray());
+                            });
+                    mapperConfigurationExpression.CreateMap<ActivityViewModel, Activity>();
+
+                    mapperConfigurationExpression.CreateMap<ActivityTask, ActivityTaskViewModel>()
+                        .ForMember(it => it.GoalId, resolver => resolver.MapFrom(it => it.Goal.Id))
+                        .ForMember(it => it.AssignToId, resolver => resolver.MapFrom(it => it.AssignTo.Id))
+                        .ForMember(it => it.CreatedById, resolver => resolver.MapFrom(it => it.CreatedBy.Id))
+                        .ForMember(it => it.StatusId, resolver => resolver.MapFrom(it => it.Status.Id))
+                        .ForMember(it => it.ContactIds,
+                            resolver =>
+                            {
+                                resolver.ResolveUsing(
+                                    (entity, model) =>
+                                        (entity.Contacts?.Where(it => it.Contact != null)
+                                             .Select(it => it.Contact.Id) ??
+                                         Enumerable.Empty<long>()).ToArray());
+                            })
+                        .ForMember(it => it.ObserverUserIds,
+                            resolver =>
+                            {
+                                resolver.ResolveUsing(
+                                    (entity, model) =>
+                                        (entity.ObserverUsers?.Where(it => it.User != null)
+                                             .Select(it => it.User.Id) ??
+                                         Enumerable.Empty<long>()).ToArray());
+                            });
+                    mapperConfigurationExpression.CreateMap<ActivityTaskViewModel, ActivityTask>();
 
                     //cfg.CreateMap<Activity, ActivityInfoViewModel>().ForMember(
                     //      it => it.ObserverCompanyIds,
@@ -232,10 +295,6 @@ namespace Stakeholders.Web
         }
     }
 
-    public class ObserverCompanyIdsToViewModelResolver
-    {
-    }
-
     public class ObserverActivitiesToEntityResolver
         : IValueResolver<CompanyViewModel, Company, ICollection<ActivityObserverUserCompany>>
     {
@@ -258,18 +317,6 @@ namespace Stakeholders.Web
                     Activity = this.repositoryActivities.FindById(id)
                 }).ToList();
             return result;
-        }
-    }
-
-    public class ObserverActivitiesToViewModelResolver : IValueResolver<Company, CompanyViewModel, long[]>
-    {
-        public long[] Resolve(
-            Company source,
-            CompanyViewModel destination,
-            long[] destMember,
-            ResolutionContext context)
-        {
-            return (source.ObserverActivities?.Select(it => it.Activity?.Id ?? 0) ?? Enumerable.Empty<long>()).ToArray();
         }
     }
 }
