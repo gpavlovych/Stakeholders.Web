@@ -14,7 +14,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -89,6 +88,7 @@ namespace Stakeholders.Web
                         options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
             services.AddScoped<IDataSource<Activity>, ActivityDataSource>();
             services.AddScoped<IDataSource<ActivityTask>, ActivityTaskDataSource>();
             services.AddScoped<IDataSource<ActivityTaskStatus>, ActivityTaskStatusDataSource>();
@@ -101,7 +101,7 @@ namespace Stakeholders.Web
             services.AddScoped<IDataSource<OrganizationCategory>, OrganizationCategoryDataSource>();
             services.AddScoped<IDataSource<ApplicationUser>, ApplicationUserDataSource>();
             services.AddScoped<IDataSource<Role>, RoleDataSource>();
-
+            
             services.AddIdentity<ApplicationUser, Role>()
                 .AddEntityFrameworkStores<ApplicationDbContext, long>()
                 .AddDefaultTokenProviders();
@@ -111,97 +111,49 @@ namespace Stakeholders.Web
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<EntityToViewModel>();
+            services.AddScoped<ViewModelToEntity>();
             services.AddAutoMapper(
                 mapperConfigurationExpression =>
                 {
-                    mapperConfigurationExpression.CreateMap<ActivityTaskStatus, ActivityTaskStatusViewModel>();
-                    mapperConfigurationExpression.CreateMap<ActivityTaskStatusViewModel, ActivityTaskStatus>();
+                    mapperConfigurationExpression
+                        .CreateMap<ActivityTaskStatus, ActivityTaskStatusViewModel>()
+                        .ReverseMap()
+                            .ForMember(it=>it.Id, resolve=>resolve.Ignore());
 
-                    mapperConfigurationExpression.CreateMap<ActivityType, ActivityTypeViewModel>();
-                    mapperConfigurationExpression.CreateMap<ActivityTypeViewModel, ActivityType>();
+                    mapperConfigurationExpression
+                        .CreateMap<ActivityType, ActivityTypeViewModel>()
+                        .ReverseMap()
+                            .ForMember(it => it.Id, resolve => resolve.Ignore());
 
-                    mapperConfigurationExpression.CreateMap<OrganizationType, OrganizationTypeViewModel>();
-                    mapperConfigurationExpression.CreateMap<OrganizationTypeViewModel, OrganizationType>();
+                    mapperConfigurationExpression
+                        .CreateMap<OrganizationType, OrganizationTypeViewModel>()
+                        .ReverseMap()
+                            .ForMember(it => it.Id, resolve => resolve.Ignore());
 
-                    mapperConfigurationExpression.CreateMap<CompanyViewModel, Company>()
-                        .ForMember(
-                            it => it.ObserverActivities,
-                            c => c.ResolveUsing<ObserverActivitiesToEntityResolver>());
-                    mapperConfigurationExpression.CreateMap<Company, CompanyViewModel>()
-                        .ForMember(
-                            it => it.ObserverActivityIds,
-                            resolver =>
-                            {
-                                resolver.ResolveUsing(
-                                    (entity, model) =>
-                                        (entity.ObserverActivities?.Where(it => it.Activity != null)
-                                             .Select(it => it.Activity.Id) ??
-                                         Enumerable.Empty<long>()).ToArray());
-                            });
+                    mapperConfigurationExpression
+                        .CreateMap<Company, CompanyViewModel>()
+                            .AfterMap<EntityToViewModel>()
+                        .ReverseMap()
+                            .ForMember(it => it.Id, resolve => resolve.Ignore())
+                            .AfterMap<ViewModelToEntity>();
 
-                    mapperConfigurationExpression.CreateMap<Activity, ActivityViewModel>()
-                        .ForMember(it => it.ContactId, resolver => resolver.MapFrom(it => it.Contact.Id))
-                        .ForMember(it => it.TaskId, resolver => resolver.MapFrom(it => it.Task.Id))
-                        .ForMember(it => it.CompanyId, resolver => resolver.MapFrom(it => it.Company.Id))
-                        .ForMember(it => it.UserId, resolver => resolver.MapFrom(it => it.User.Id))
-                        .ForMember(it => it.TypeId, resolver => resolver.MapFrom(it => it.Type.Id))
-                        .ForMember(it => it.ObserverCompanyIds,
-                            resolver =>
-                            {
-                                resolver.ResolveUsing(
-                                    (entity, model) =>
-                                        (entity.ObserverUsersCompanies?.Where(it => it.Company != null)
-                                             .Select(it => it.Company.Id) ??
-                                         Enumerable.Empty<long>()).ToArray());
-                            })
-                        .ForMember(it=>it.ObserverUserIds,
-                            resolver =>
-                            {
-                                resolver.ResolveUsing(
-                                    (entity, model) =>
-                                        (entity.ObserverUsersCompanies?.Where(it => it.User != null)
-                                             .Select(it => it.User.Id) ??
-                                         Enumerable.Empty<long>()).ToArray());
-                            });
-                    mapperConfigurationExpression.CreateMap<ActivityViewModel, Activity>();
+                    mapperConfigurationExpression
+                        .CreateMap<Activity, ActivityViewModel>()
+                            .AfterMap<EntityToViewModel>()
+                        .ReverseMap()
+                            .ForMember(it => it.Id, resolve => resolve.Ignore())
+                            .AfterMap<ViewModelToEntity>();
 
-                    mapperConfigurationExpression.CreateMap<ActivityTask, ActivityTaskViewModel>()
-                        .ForMember(it => it.GoalId, resolver => resolver.MapFrom(it => it.Goal.Id))
-                        .ForMember(it => it.AssignToId, resolver => resolver.MapFrom(it => it.AssignTo.Id))
-                        .ForMember(it => it.CreatedById, resolver => resolver.MapFrom(it => it.CreatedBy.Id))
-                        .ForMember(it => it.StatusId, resolver => resolver.MapFrom(it => it.Status.Id))
-                        .ForMember(it => it.ContactIds,
-                            resolver =>
-                            {
-                                resolver.ResolveUsing(
-                                    (entity, model) =>
-                                        (entity.Contacts?.Where(it => it.Contact != null)
-                                             .Select(it => it.Contact.Id) ??
-                                         Enumerable.Empty<long>()).ToArray());
-                            })
-                        .ForMember(it => it.ObserverUserIds,
-                            resolver =>
-                            {
-                                resolver.ResolveUsing(
-                                    (entity, model) =>
-                                        (entity.ObserverUsers?.Where(it => it.User != null)
-                                             .Select(it => it.User.Id) ??
-                                         Enumerable.Empty<long>()).ToArray());
-                            });
-                    mapperConfigurationExpression.CreateMap<ActivityTaskViewModel, ActivityTask>();
-
-                    //cfg.CreateMap<Activity, ActivityInfoViewModel>().ForMember(
-                    //      it => it.ObserverCompanyIds,
-                    //      c => c.ResolveUsing<ObserverCompanyIdsToViewModelResolver>());
-                    //cfg.CreateMap<ActivityViewModel, Activity>().ForMember(
-                    //        it => it.ObserverActivities,
-                    //        c => c.ResolveUsing<ObserverActivitiesToEntityResolver>());
-                    //cfg.CreateMap<Activity, ActivityViewModel>()
-                    //    .ForMember(
-                    //        it => it.ObserverCompanyIds,
-                    //        c => c.ResolveUsing<ObserverActivitiesToViewModelResolver>());
+                    mapperConfigurationExpression
+                        .CreateMap<ActivityTask, ActivityTaskViewModel>()
+                            .AfterMap<EntityToViewModel>()
+                        .ReverseMap()
+                            .ForMember(it => it.Id, resolve => resolve.Ignore())
+                            .AfterMap<ViewModelToEntity>();
                 });
         }
+
 
         // The secret key every token will be signed with.
         // In production, you should store this securely in environment variables
@@ -292,31 +244,6 @@ namespace Stakeholders.Web
                         name: "default",
                         template: "{controller=Home}/{action=Index}/{id?}");
                 });
-        }
-    }
-
-    public class ObserverActivitiesToEntityResolver
-        : IValueResolver<CompanyViewModel, Company, ICollection<ActivityObserverUserCompany>>
-    {
-        private readonly IRepository<Activity> repositoryActivities;
-
-        public ObserverActivitiesToEntityResolver(IRepository<Activity> repositoryActivities)
-        {
-            this.repositoryActivities = repositoryActivities;
-        }
-
-        public ICollection<ActivityObserverUserCompany> Resolve(
-            CompanyViewModel source,
-            Company destination,
-            ICollection<ActivityObserverUserCompany> destMember,
-            ResolutionContext context)
-        {
-            var result = source.ObserverActivityIds?.Select(
-                id => new ActivityObserverUserCompany()
-                {
-                    Activity = this.repositoryActivities.FindById(id)
-                }).ToList();
-            return result;
         }
     }
 }
