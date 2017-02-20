@@ -16,8 +16,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Stakeholders.Web.Models;
 
 namespace Stakeholders.Web
 {
@@ -32,6 +34,16 @@ namespace Stakeholders.Web
         private readonly RequestDelegate _next;
 
         /// <summary>
+        /// The user manager
+        /// </summary>
+        private readonly UserManager<ApplicationUser> userManager;
+
+        /// <summary>
+        /// The sign in manager
+        /// </summary>
+        private readonly SignInManager<ApplicationUser> signInManager;
+
+        /// <summary>
         /// The options
         /// </summary>
         private readonly TokenProviderOptions _options;
@@ -42,20 +54,21 @@ namespace Stakeholders.Web
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
         /// <returns>Task&lt;ClaimsIdentity&gt;.</returns>
-        private Task<ClaimsIdentity> GetIdentity(string username, string password)
+        private async Task<ClaimsIdentity> GetIdentity(string username, string password)
         {
             // DON'T do this in production, obviously!
-            if ((username == "TEST") && (password == "TEST123"))
+            var result = await this.signInManager.PasswordSignInAsync(username, password, false, false);
+            if (result.Succeeded)
             {
                 return
-                    Task.FromResult(
+                    
                         new ClaimsIdentity(
                             new System.Security.Principal.GenericIdentity(username, "Token"),
-                            new Claim[] {}));
+                            new Claim[] {});
             }
 
             // Credentials are invalid, or account doesn't exist
-            return Task.FromResult<ClaimsIdentity>(null);
+            return null;
         }
 
         /// <summary>
@@ -121,9 +134,14 @@ namespace Stakeholders.Web
         /// <param name="options">The options.</param>
         public TokenProviderMiddleware(
             RequestDelegate next,
-            IOptions<TokenProviderOptions> options)
+            IOptions<TokenProviderOptions> options,
+
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
             this._next = next;
+            this.userManager = userManager;
+            this.signInManager = signInManager;
             this._options = options.Value;
         }
 

@@ -429,7 +429,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n    \"name\": \"user322\",\n    \"title\": \"Mr.\",\n    \"companyId\": 1,\n    \"roleId\": 1,\n    \"observerActivityIds\": [1,2],\n    \"observerTaskIds\": [1,2]\n  }"
+							"raw": " {\n    \"name\": \"user322\",\n    \"title\": \"Mr.\",\n    \"login\": \"TEST\",\n    \"password\": \"TEST123\"\n  }"
 						},
 						"description": "Adding new ApplicationUser"
 					},
@@ -743,7 +743,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Goals/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all goals"
 					},
@@ -754,7 +760,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Goals",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all goals with default start (0) and count (10) request query parameters"
 					},
@@ -765,7 +777,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Goals?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all goals"
 					},
@@ -776,7 +794,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Goals/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting goal with id=3"
 					},
@@ -791,6 +815,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -807,7 +836,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Goals/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the goal with id=3"
 					},
@@ -1230,7 +1265,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "TEST",
+							"value": "user322",
 							"type": "text",
 							"enabled": true
 						},

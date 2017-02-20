@@ -52,6 +52,8 @@ namespace Stakeholders.Web.Tests.Controllers
         /// </summary>
         private readonly Mock<IMapper> mapperMock;
 
+        private readonly Mock<IApplicationUserManager> userManagerMock;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationUsersControllerTest" /> class.
         /// </summary>
@@ -60,10 +62,12 @@ namespace Stakeholders.Web.Tests.Controllers
             this.entitiesForTest = new EntitiesForTest();
             this.repositoryMock = new Mock<IRepository<ApplicationUser>>();
             this.mapperMock = new Mock<IMapper>();
+            this.userManagerMock = new Mock<IApplicationUserManager>();
 
             this.target = new ApplicationUsersController(
                 this.repositoryMock.Object,
-                this.mapperMock.Object);
+                this.mapperMock.Object,
+                this.userManagerMock.Object);
         }
 
         #region GetApplicationUsers
@@ -260,7 +264,7 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
-            var viewModel = this.entitiesForTest.CreateApplicationUserViewModel();
+            var viewModel = this.entitiesForTest.CreateCreateApplicationUserViewModel();
 
             // act
             var result = await this.target.PostApplicationUser(viewModel) as BadRequestObjectResult;
@@ -278,7 +282,7 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PostApplicationUserTest()
         {
             // arrange
-            var model = this.entitiesForTest.CreateApplicationUserViewModel();
+            var model = this.entitiesForTest.CreateCreateApplicationUserViewModel();
             var entity = this.entitiesForTest.CreateApplicationUser();
             this.mapperMock.Setup(it => it.Map<ApplicationUser>(model)).Returns(entity);
 
@@ -289,7 +293,7 @@ namespace Stakeholders.Web.Tests.Controllers
             result.Should().NotBeNull();
             result.ActionName.Should().Be("GetApplicationUser");
             result.RouteValues["id"].Should().Be(entity.Id);
-            this.repositoryMock.Verify(it => it.InsertAsync(entity));
+            this.userManagerMock.Verify(it => it.CreateAsync(entity, model.Password));
         }
 
         #endregion PostApplicationUser

@@ -15,6 +15,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
@@ -28,6 +29,7 @@ namespace Stakeholders.Web.Controllers
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
     [Route("api/Roles")]
+    [Authorize]
     public class RolesController : Controller
     {
         /// <summary>

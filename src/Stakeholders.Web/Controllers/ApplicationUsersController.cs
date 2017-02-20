@@ -15,6 +15,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
@@ -28,6 +30,7 @@ namespace Stakeholders.Web.Controllers
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
     [Route("api/ApplicationUsers")]
+    [Authorize]
     public class ApplicationUsersController : Controller
     {
         /// <summary>
@@ -39,6 +42,8 @@ namespace Stakeholders.Web.Controllers
         /// The mapper
         /// </summary>
         private readonly IMapper mapper;
+
+        private readonly IApplicationUserManager userManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationUsersController" /> class.
@@ -53,7 +58,8 @@ namespace Stakeholders.Web.Controllers
         /// mapper</exception>
         public ApplicationUsersController(
             IRepository<ApplicationUser> repository,
-            IMapper mapper)
+            IMapper mapper,
+            IApplicationUserManager userManager)
         {
             if (repository == null)
             {
@@ -67,6 +73,7 @@ namespace Stakeholders.Web.Controllers
 
             this.repository = repository;
             this.mapper = mapper;
+            this.userManager = userManager;
         }
 
         // GET: api/ApplicationUsers
@@ -149,13 +156,15 @@ namespace Stakeholders.Web.Controllers
         }
 
         // POST: api/ApplicationUsers
+        // does not require authorization
         /// <summary>
         /// Posts the application user.
         /// </summary>
         /// <param name="model">the application user.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpPost]
-        public async Task<IActionResult> PostApplicationUser([FromBody] ApplicationUserViewModel model)
+        [AllowAnonymous]
+        public async Task<IActionResult> PostApplicationUser([FromBody] CreateUserViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -163,16 +172,22 @@ namespace Stakeholders.Web.Controllers
             }
 
             var entity = this.mapper.Map<ApplicationUser>(model);
+            try
+            {
+                await this.userManager.CreateAsync(entity, model.Password);
 
-            await this.repository.InsertAsync(entity);
-
-            return this.CreatedAtAction(
-                "GetApplicationUser",
-                new
-                {
-                    id = entity.Id
-                },
-                model);
+                return this.CreatedAtAction(
+                    "GetApplicationUser",
+                    new
+                    {
+                        id = entity.Id
+                    },
+                    model);
+            }
+            catch (Exception ex)
+            {
+                return this.BadRequest(ex);
+            }
         }
 
         // DELETE: api/ApplicationUsers/5

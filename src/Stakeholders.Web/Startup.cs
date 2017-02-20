@@ -94,7 +94,7 @@ namespace Stakeholders.Web
                         options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
+            services.AddScoped<IApplicationUserManager, ApplicationUserManager>();
             services.AddScoped<IDataSource<Activity>, ActivityDataSource>();
             services.AddScoped<IDataSource<ActivityTask>, ActivityTaskDataSource>();
             services.AddScoped<IDataSource<ActivityTaskStatus>, ActivityTaskStatusDataSource>();
@@ -164,6 +164,10 @@ namespace Stakeholders.Web
                         .ReverseMap()
                         .ForMember(it => it.Id, resolve => resolve.Ignore())
                         .AfterMap<ViewModelToEntity>();
+
+                    mapperConfigurationExpression
+                        .CreateMap<CreateUserViewModel, ApplicationUser>()
+                        .ForMember(it => it.UserName, resolver => resolver.MapFrom(src => src.Login));
 
                     mapperConfigurationExpression
                         .CreateMap<Contact, ContactViewModel>()

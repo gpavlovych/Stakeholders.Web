@@ -98,6 +98,16 @@ namespace Stakeholders.Web.Tests
             return this.CreateInt()%2 == 0;
         }
 
+        /// <summary>
+        /// Creates the exception.
+        /// </summary>
+        /// <returns>Exception.</returns>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public Exception CreateException()
+        {
+            return new Exception(this.CreateString());
+        }
+
         #endregion
 
         #region Entities
@@ -574,6 +584,21 @@ namespace Stakeholders.Web.Tests
                 Title = this.CreateString(),
                 ObserverTaskIds = this.CreateCollection(3, this.CreateInt).ToArray(),
                 ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
+            };
+        }
+
+        /// <summary>
+        /// Creates the create application user view model.
+        /// </summary>
+        /// <returns>CreateUserViewModel.</returns>
+        public CreateUserViewModel CreateCreateApplicationUserViewModel()
+        {
+            return new CreateUserViewModel()
+            {
+                Name = this.CreateString(),
+                Title = this.CreateString(),
+                Login = this.CreateString(),
+                Password = this.CreateString()
             };
         }
 
