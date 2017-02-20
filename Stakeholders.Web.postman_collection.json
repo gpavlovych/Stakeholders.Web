@@ -190,7 +190,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"sometaskstat\",\n  \"nameEn\": \"sometaskstaten\"\n}"
+							"raw": "{\n  \"name\": \"sometafffggggggggggggskstat\",\n  \"nameEn\": \"sometaskstfffffffffffffffffaten\"\n}"
 						},
 						"description": "Updates the activity task status with id=1"
 					},
@@ -406,6 +406,107 @@
 						"header": [],
 						"body": {},
 						"description": "Deletes the activity type with id=3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Companies",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:33346/api/Companies",
+					"request": {
+						"url": "http://localhost:33346/api/Companies",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"some address\",\n    \"city\": \"Seattle, WA\",\n    \"companyCode\": \"MS\",\n    \"name\": \"Microsoft\",\n    \"influencing\": \"some2\",\n    \"influencedBy\": \"some1\",\n    \"email\": \"myself@example.com\",\n    \"phone\": \"9-11\",\n    \"observerActivityIds\": [\n\n    ],\n    \"logoUrl\": \"https://assets.onestore.ms/cdnfiles/external/uhf/long/9a49a7e9d8e881327e81b9eb43dabc01de70a9bb/images/microsoft-gray.png\"\n  }"
+						},
+						"description": "Adding new Company"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Companies/count",
+					"request": {
+						"url": "http://localhost:33346/api/Companies/count",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets total count of all companies"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Companies",
+					"request": {
+						"url": "http://localhost:33346/api/Companies",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all companies with default start (0) and count (10) request query parameters"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Companies?start=0&count=10",
+					"request": {
+						"url": "http://localhost:33346/api/Companies?start=0&count=10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting all companies"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Companies/10003",
+					"request": {
+						"url": "http://localhost:33346/api/Companies/10003",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Getting company with id=3"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Companies/2",
+					"request": {
+						"url": "http://localhost:33346/api/Companies/2",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n    \"address\": \"some address\",\n    \"city\": \"Seattle, WA\",\n    \"companyCode\": \"MS\",\n    \"name\": \"Microsoft\",\n    \"influencing\": \"some2\",\n    \"influencedBy\": \"some1\",\n    \"email\": \"myself@example.com\",\n    \"phone\": \"9-11\",\n    \"observerActivityIds\": [\n    ],\n    \"logoUrl\": \"https://assets.onestore.ms/cdnfiles/external/uhf/long/9a49a7e9d8e881327e81b9eb43dabc01de70a9bb/images/microsoft-gray.png\"\n  }"
+						},
+						"description": "Updates the company with id=1"
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:33346/api/Companies/10002",
+					"request": {
+						"url": "http://localhost:33346/api/Companies/10002",
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"description": "Deletes the company with id=3"
 					},
 					"response": []
 				}

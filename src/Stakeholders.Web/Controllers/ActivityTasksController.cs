@@ -14,6 +14,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
@@ -35,71 +36,36 @@ namespace Stakeholders.Web.Controllers
         private readonly IRepository<ActivityTask> repository;
 
         /// <summary>
-        /// The repository users
+        /// The mapper
         /// </summary>
-        private readonly IRepository<ApplicationUser> repositoryUsers;
-
-        /// <summary>
-        /// The repository contacts
-        /// </summary>
-        private readonly IRepository<Contact> repositoryContacts;
-
-        /// <summary>
-        /// The repository goals
-        /// </summary>
-        private readonly IRepository<Goal> repositoryGoals;
-
-        /// <summary>
-        /// The repository statuses
-        /// </summary>
-        private readonly IRepository<ActivityTaskStatus> repositoryStatuses;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivityTasksController" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
-        /// <param name="repositoryUsers">The repository users.</param>
-        /// <param name="repositoryContacts">The repository contacts.</param>
-        /// <param name="repositoryGoals">The repository goals.</param>
-        /// <param name="repositoryStatuses">The repository statuses.</param>
-        /// <exception cref="ArgumentNullException">repository</exception>
+        /// <param name="mapper">The mapper.</param>
+        /// <exception cref="ArgumentNullException">
+        /// repository
+        /// or
+        /// mapper
+        /// </exception>
         public ActivityTasksController(
             IRepository<ActivityTask> repository,
-            IRepository<ApplicationUser> repositoryUsers,
-            IRepository<Contact> repositoryContacts,
-            IRepository<Goal> repositoryGoals,
-            IRepository<ActivityTaskStatus> repositoryStatuses)
+            IMapper mapper)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
-            if (repositoryUsers == null)
+            if (mapper == null)
             {
-                throw new ArgumentNullException(nameof(repositoryUsers));
-            }
-
-            if (repositoryContacts == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryContacts));
-            }
-
-            if (repositoryGoals == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryGoals));
-            }
-
-            if (repositoryStatuses == null)
-            {
-                throw new ArgumentNullException(nameof(repositoryStatuses));
+                throw new ArgumentNullException(nameof(mapper));
             }
 
             this.repository = repository;
-            this.repositoryUsers = repositoryUsers;
-            this.repositoryContacts = repositoryContacts;
-            this.repositoryGoals = repositoryGoals;
-            this.repositoryStatuses = repositoryStatuses;
+            this.mapper = mapper;
         }
 
         // GET: api/ActivityTasks
@@ -112,17 +78,7 @@ namespace Stakeholders.Web.Controllers
         [HttpGet]
         public ActivityTaskViewModel[] GetActivityTasks(int start = 0, int count = 10)
         {
-            return
-                this.repository.GetAll(start, count).Select(
-                    it =>
-                    {
-                        var result = new ActivityTaskViewModel()
-                        {
-                            Id = it.Id
-                        };
-                        ActivityTasksController.UpdateViewModel(result, it);
-                        return result;
-                    }).ToArray();
+            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<ActivityTaskViewModel>(it)).ToArray();
         }
 
         // GET: api/ActivityTasks/count
@@ -156,8 +112,7 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            var result = new ActivityTaskViewModel();
-            ActivityTasksController.UpdateViewModel(result, entity);
+            var result = this.mapper.Map<ActivityTaskViewModel>(entity);
 
             return this.Ok(result);
         }
@@ -185,7 +140,7 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            this.UpdateEntityFromViewModel(model, entity);
+            this.mapper.Map(model, entity);
 
             await this.repository.UpdateAsync(entity);
 
@@ -206,9 +161,7 @@ namespace Stakeholders.Web.Controllers
                 return this.BadRequest(this.ModelState);
             }
 
-            var entity = new ActivityTask();
-
-            this.UpdateEntityFromViewModel(model, entity);
+            var entity = this.mapper.Map<ActivityTask>(model);
 
             await this.repository.InsertAsync(entity);
 
@@ -243,71 +196,70 @@ namespace Stakeholders.Web.Controllers
 
             await this.repository.DeleteAsync(entity);
 
-            var result = new ActivityTaskViewModel();
-            ActivityTasksController.UpdateViewModel(result, entity);
+            var result = this.mapper.Map<ActivityTaskViewModel>(entity);
 
             return this.Ok(result);
         }
 
-        /// <summary>
-        /// Updates the view model.
-        /// </summary>
-        /// <param name="model">The result.</param>
-        /// <param name="entity">The entity.</param>
-        private static void UpdateViewModel(ActivityTaskViewModel model, ActivityTask entity)
-        {
-            model.DateCreated = entity.DateCreated.ToNullable();
-            model.AssignToId = entity.AssignTo?.Id;
-            model.ContactIds = entity.Contacts?.Select(it => it.Contact.Id).ToArray();
-            model.CreatedById = entity.CreatedBy?.Id;
-            model.GoalId = entity.Goal?.Id;
-            model.ObserverUserIds = entity.ObserverUsers.Select(it => it.User.Id).ToArray();
-            model.Subject = entity.Subject;
-            model.DateDeadline = entity.DateDeadline;
-            model.DateEnd = entity.DateEnd;
-            model.Description = entity.Description;
-            model.IsImportant = entity.IsImportant;
-            model.StatusId = entity.Status?.Id;
-            model.SuccessFactor = entity.SuccessFactor;
-        }
+        ///// <summary>
+        ///// Updates the view model.
+        ///// </summary>
+        ///// <param name="model">The result.</param>
+        ///// <param name="entity">The entity.</param>
+        //private static void UpdateViewModel(ActivityTaskViewModel model, ActivityTask entity)
+        //{
+        //    model.DateCreated = entity.DateCreated.ToNullable();
+        //    model.AssignToId = entity.AssignTo?.Id;
+        //    model.ContactIds = entity.Contacts?.Select(it => it.Contact.Id).ToArray();
+        //    model.CreatedById = entity.CreatedBy?.Id;
+        //    model.GoalId = entity.Goal?.Id;
+        //    model.ObserverUserIds = entity.ObserverUsers.Select(it => it.User.Id).ToArray();
+        //    model.Subject = entity.Subject;
+        //    model.DateDeadline = entity.DateDeadline;
+        //    model.DateEnd = entity.DateEnd;
+        //    model.Description = entity.Description;
+        //    model.IsImportant = entity.IsImportant;
+        //    model.StatusId = entity.Status?.Id;
+        //    model.SuccessFactor = entity.SuccessFactor;
+        //}
 
-        /// <summary>
-        /// Updates the entity from view model.
-        /// </summary>
-        /// <param name="model">The activity view model.</param>
-        /// <param name="entity">The entity.</param>
-        /// <returns>Task.</returns>
-        private void UpdateEntityFromViewModel(ActivityTaskViewModel model, ActivityTask entity)
-        {
-            var assignToId = model.AssignToId;
-            entity.AssignTo = assignToId != null ? this.repositoryUsers.FindById(assignToId.Value) : null;
+        ///// <summary>
+        ///// Updates the entity from view model.
+        ///// </summary>
+        ///// <param name="model">The activity view model.</param>
+        ///// <param name="entity">The entity.</param>
+        ///// <returns>Task.</returns>
+        //private void UpdateEntityFromViewModel(ActivityTaskViewModel model, ActivityTask entity)
+        //{
+        //    var assignToId = model.AssignToId;
+        //    entity.AssignTo = assignToId != null ? this.repositoryUsers.FindById(assignToId.Value) : null;
 
-            entity.Contacts =
-                model.ContactIds?.Select(
-                    contactId => new ActivityTaskContact()
-                    {
-                        Contact = this.repositoryContacts.FindById(contactId)
-                    }).ToList();
-            var createdById = model.CreatedById; //TODO: to be auto-filled
-            entity.CreatedBy = createdById != null ? this.repositoryUsers.FindById(createdById.Value) : null;
-            var goalId = model.GoalId;
-            entity.Goal = goalId != null ? this.repositoryGoals.FindById(goalId.Value) : null;
-            entity.ObserverUsers =
-                model.ObserverUserIds?.Select(
-                    contactId => new ActivityTaskObserverUser()
-                    {
-                        User = this.repositoryUsers.FindById(contactId)
-                    }).ToList();
-            entity.Subject = model.Subject;
-            entity.Description = model.Description;
-            entity.DateDeadline = model.DateDeadline;
-            entity.DateEnd = model.DateEnd;
-            entity.IsImportant = model.IsImportant;
+        //    entity.Contacts =
+        //        model.ContactIds?.Select(
+        //            contactId => new ActivityTaskContact()
+        //            {
+        //                Contact = this.repositoryContacts.FindById(contactId)
+        //            }).ToList();
+        //    var createdById = model.CreatedById; //TODO: to be auto-filled
+        //    entity.CreatedBy = createdById != null ? this.repositoryUsers.FindById(createdById.Value) : null;
+        //    var goalId = model.GoalId;
+        //    entity.Goal = goalId != null ? this.repositoryGoals.FindById(goalId.Value) : null;
+        //    entity.ObserverUsers =
+        //        model.ObserverUserIds?.Select(
+        //            contactId => new ActivityTaskObserverUser()
+        //            {
+        //                User = this.repositoryUsers.FindById(contactId)
+        //            }).ToList();
+        //    entity.Subject = model.Subject;
+        //    entity.Description = model.Description;
+        //    entity.DateDeadline = model.DateDeadline;
+        //    entity.DateEnd = model.DateEnd;
+        //    entity.IsImportant = model.IsImportant;
 
-            var statusId = model.StatusId;
-            entity.Status = statusId != null ? this.repositoryStatuses.FindById(statusId.Value) : null;
+        //    var statusId = model.StatusId;
+        //    entity.Status = statusId != null ? this.repositoryStatuses.FindById(statusId.Value) : null;
 
-            entity.SuccessFactor = model.SuccessFactor;
-        }
+        //    entity.SuccessFactor = model.SuccessFactor;
+        //}
     }
 }

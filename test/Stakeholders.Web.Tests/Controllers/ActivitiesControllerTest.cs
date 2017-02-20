@@ -12,8 +12,10 @@
 // <summary></summary>
 // ***********************************************************************
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -41,34 +43,14 @@ namespace Stakeholders.Web.Tests.Controllers
         private readonly Mock<IRepository<Activity>> repositoryMock;
 
         /// <summary>
-        /// The repository task mock
-        /// </summary>
-        private readonly Mock<IRepository<ActivityTask>> repositoryTaskMock;
-
-        /// <summary>
-        /// The repository company mock
-        /// </summary>
-        private readonly Mock<IRepository<Company>> repositoryCompanyMock;
-
-        /// <summary>
-        /// The repository user mock
-        /// </summary>
-        private readonly Mock<IRepository<ApplicationUser>> repositoryUserMock;
-
-        /// <summary>
-        /// The repository activity type mock
-        /// </summary>
-        private readonly Mock<IRepository<ActivityType>> repositoryActivityTypeMock;
-
-        /// <summary>
-        /// The repository activity type mock
-        /// </summary>
-        private readonly Mock<IRepository<Contact>> repositoryContactMock;
-
-        /// <summary>
         /// The target
         /// </summary>
         private readonly ActivitiesController target;
+
+        /// <summary>
+        /// The mapper mock
+        /// </summary>
+        private readonly Mock<IMapper> mapperMock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivitiesControllerTest" /> class.
@@ -77,19 +59,11 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             this.entitiesForTest = new EntitiesForTest();
             this.repositoryMock = new Mock<IRepository<Activity>>();
-            this.repositoryTaskMock = new Mock<IRepository<ActivityTask>>();
-            this.repositoryCompanyMock = new Mock<IRepository<Company>>();
-            this.repositoryUserMock = new Mock<IRepository<ApplicationUser>>();
-            this.repositoryActivityTypeMock = new Mock<IRepository<ActivityType>>();
-            this.repositoryContactMock = new Mock<IRepository<Contact>>();
+            this.mapperMock = new Mock<IMapper>();
 
             this.target = new ActivitiesController(
                 this.repositoryMock.Object,
-                this.repositoryTaskMock.Object,
-                this.repositoryCompanyMock.Object,
-                this.repositoryUserMock.Object,
-                this.repositoryActivityTypeMock.Object,
-                this.repositoryContactMock.Object);
+                this.mapperMock.Object);
         }
 
         #region GetActivities
@@ -102,13 +76,15 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateActivity);
-            var expectedResult = entities.Select(
-                activity =>
-                {
-                    var r= ActivitiesControllerTest.ToViewModel(activity);
-                    r.Id = activity.Id;
-                    return r;
-                }).ToArray();
+            var models = new List<ActivityViewModel>();
+            foreach (var entity in entities)
+            {
+                var model = this.entitiesForTest.CreateActivityViewModel();
+                this.mapperMock.Setup(it => it.Map<ActivityViewModel>(entity)).Returns(model);
+                models.Add(model);
+            }
+
+            var expectedResult = models.ToArray();
             var start = 2;
             var count = 3;
             this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
@@ -146,7 +122,7 @@ namespace Stakeholders.Web.Tests.Controllers
         #region GetActivity
 
         /// <summary>
-        /// Gets the organization type test invalid model.
+        /// Gets the activity test invalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -165,7 +141,7 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Gets the organization type test not found.
+        /// Gets the activity test not found.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -183,7 +159,7 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Gets the organization type test.
+        /// Gets the activity test.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -194,7 +170,9 @@ namespace Stakeholders.Web.Tests.Controllers
             var entity = this.entitiesForTest.CreateActivity();
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
-            var expectedResult = ActivitiesControllerTest.ToViewModel(entity);
+
+            var expectedResult = this.entitiesForTest.CreateActivityViewModel();
+            this.mapperMock.Setup(it => it.Map<ActivityViewModel>(entity)).Returns(expectedResult);
 
             // act
             var result = await this.target.GetActivity(id) as OkObjectResult;
@@ -206,10 +184,10 @@ namespace Stakeholders.Web.Tests.Controllers
 
         #endregion GetActivity
 
-        #region PutOrganizationType
+        #region PutActivity
 
         /// <summary>
-        /// Puts the organization type test invalid model.
+        /// Puts the activity test invalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -229,7 +207,7 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Puts the organization type test not found.
+        /// Puts the activity test not found.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -248,7 +226,7 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Puts the organization type test.
+        /// Puts the activity test.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -258,29 +236,6 @@ namespace Stakeholders.Web.Tests.Controllers
             var id = 3L;
             var entity = this.entitiesForTest.CreateActivity();
             var viewModel = this.entitiesForTest.CreateActivityViewModel();
-            var newContact = this.entitiesForTest.CreateContact();
-            viewModel.ContactId = newContact.Id;
-            var newCompany = this.entitiesForTest.CreateCompany();
-            viewModel.CompanyId = newCompany.Id;
-            var newUser = this.entitiesForTest.CreateApplicationUser();
-            viewModel.UserId = newUser.Id;
-            var newType = this.entitiesForTest.CreateActivityType();
-            viewModel.TypeId = newType.Id;
-            var newTask = this.entitiesForTest.CreateActivityTask();
-            viewModel.TaskId = newTask.Id;
-            var newObserverUser = this.entitiesForTest.CreateApplicationUser();
-            viewModel.ObserverUserIds = new[] {newObserverUser.Id};
-            var newObserverCompany = this.entitiesForTest.CreateCompany();
-            viewModel.ObserverCompanyIds = new[] {newObserverCompany.Id};
-            viewModel.DateCreated = entity.DateCreated;
-
-            this.repositoryContactMock.Setup(it => it.FindById(newContact.Id)).Returns(newContact);
-            this.repositoryCompanyMock.Setup(it => it.FindById(newCompany.Id)).Returns(newCompany);
-            this.repositoryCompanyMock.Setup(it => it.FindById(newObserverCompany.Id)).Returns(newObserverCompany);
-            this.repositoryUserMock.Setup(it => it.FindById(newUser.Id)).Returns(newUser);
-            this.repositoryUserMock.Setup(it => it.FindById(newObserverUser.Id)).Returns(newObserverUser);
-            this.repositoryActivityTypeMock.Setup(it => it.FindById(newType.Id)).Returns(newType);
-            this.repositoryTaskMock.Setup(it => it.FindById(newTask.Id)).Returns(newTask);
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
             // act
@@ -288,7 +243,7 @@ namespace Stakeholders.Web.Tests.Controllers
 
             // assert
             result.Should().NotBeNull();
-            ActivitiesControllerTest.ToViewModel(entity).ShouldBeEquivalentTo(viewModel, options=>options.Excluding(it=>it.Id));
+            this.mapperMock.Verify(it => it.Map(viewModel, entity));
             this.repositoryMock.Verify(it => it.UpdateAsync(entity));
         }
 
@@ -297,7 +252,7 @@ namespace Stakeholders.Web.Tests.Controllers
         #region PostActivity
 
         /// <summary>
-        /// Posts the organization type type test invalid model.
+        /// Posts the activitytype test invalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -316,56 +271,25 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Posts the organization type type test.
+        /// Posts the activitytype test.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
         public async Task PostActivityTest()
         {
             // arrange
-            var id = 3L;
-            var viewModel = this.entitiesForTest.CreateActivityViewModel();
-            var newContact = this.entitiesForTest.CreateContact();
-            viewModel.ContactId = newContact.Id;
-            var newCompany = this.entitiesForTest.CreateCompany();
-            viewModel.CompanyId = newCompany.Id;
-            var newUser = this.entitiesForTest.CreateApplicationUser();
-            viewModel.UserId = newUser.Id;
-            var newType = this.entitiesForTest.CreateActivityType();
-            viewModel.TypeId = newType.Id;
-            var newTask = this.entitiesForTest.CreateActivityTask();
-            viewModel.TaskId = newTask.Id;
-            var newObserverUser = this.entitiesForTest.CreateApplicationUser();
-            viewModel.ObserverUserIds = new[] { newObserverUser.Id };
-            var newObserverCompany = this.entitiesForTest.CreateCompany();
-            viewModel.ObserverCompanyIds = new[] { newObserverCompany.Id };
-
-            this.repositoryContactMock.Setup(it => it.FindById(newContact.Id)).Returns(newContact);
-            this.repositoryCompanyMock.Setup(it => it.FindById(newCompany.Id)).Returns(newCompany);
-            this.repositoryCompanyMock.Setup(it => it.FindById(newObserverCompany.Id)).Returns(newObserverCompany);
-            this.repositoryUserMock.Setup(it => it.FindById(newUser.Id)).Returns(newUser);
-            this.repositoryUserMock.Setup(it => it.FindById(newObserverUser.Id)).Returns(newObserverUser);
-            this.repositoryActivityTypeMock.Setup(it => it.FindById(newType.Id)).Returns(newType);
-            this.repositoryTaskMock.Setup(it => it.FindById(newTask.Id)).Returns(newTask);
-
-            this.repositoryMock.Setup(it => it.InsertAsync(It.IsAny<Activity>()))
-                .Returns<Activity>(
-                    entity =>
-                        Task.Run(
-                            () =>
-                            {
-                                entity.Id = id;
-                                ToViewModel(entity).ShouldBeEquivalentTo(viewModel,options=>options.Excluding(it=>it.Id).Excluding(it=>it.DateCreated));
-                            }));
+            var model = this.entitiesForTest.CreateActivityViewModel();
+            var entity = this.entitiesForTest.CreateActivity();
+            this.mapperMock.Setup(it => it.Map<Activity>(model)).Returns(entity);
 
             // act
-            var result = await this.target.PostActivity(viewModel) as CreatedAtActionResult;
+            var result = await this.target.PostActivity(model) as CreatedAtActionResult;
 
             // assert
             result.Should().NotBeNull();
             result.ActionName.Should().Be("GetActivity");
-            result.RouteValues["id"].Should().Be(id);
-            this.repositoryMock.Verify(it => it.InsertAsync(It.IsAny<Activity>()));
+            result.RouteValues["id"].Should().Be(entity.Id);
+            this.repositoryMock.Verify(it => it.InsertAsync(entity));
         }
 
         #endregion PostActivity
@@ -373,7 +297,7 @@ namespace Stakeholders.Web.Tests.Controllers
         #region DeleteActivity
 
         /// <summary>
-        /// Deletes the organization type invalid model.
+        /// Deletes the activityinvalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -392,7 +316,7 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Deletes the organization type test not found.
+        /// Deletes the activity test not found.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -410,7 +334,7 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Deletes the organization type test.
+        /// Deletes the activity test.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
@@ -419,8 +343,8 @@ namespace Stakeholders.Web.Tests.Controllers
             // arrange
             var id = 3L;
             var entity = this.entitiesForTest.CreateActivity();
-            var expectedResultViewModel = ActivitiesControllerTest.ToViewModel(entity);
-            ActivitiesControllerTest.UpdateViewModel(expectedResultViewModel, entity);
+            var model = this.entitiesForTest.CreateActivityViewModel();
+            this.mapperMock.Setup(it => it.Map<ActivityViewModel>(entity)).Returns(model);
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
             // act
@@ -428,44 +352,10 @@ namespace Stakeholders.Web.Tests.Controllers
 
             // assert
             result.Should().NotBeNull();
-            result.Value.ShouldBeEquivalentTo(expectedResultViewModel);
+            result.Value.ShouldBeEquivalentTo(model);
             this.repositoryMock.Verify(it => it.DeleteAsync(entity));
         }
 
         #endregion DeleteActivity
-
-        /// <summary>
-        /// To the view model.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <returns>ActivityViewModel.</returns>
-        private static ActivityViewModel ToViewModel(Activity entity)
-        {
-            var result = new ActivityViewModel();
-            ActivitiesControllerTest.UpdateViewModel(result, entity);
-            return result;
-        }
-
-        /// <summary>
-        /// Updates the view model.
-        /// </summary>
-        /// <param name="result">The result.</param>
-        /// <param name="entity">The entity.</param>
-        private static void UpdateViewModel(ActivityViewModel result, Activity entity)
-        {
-            result.TaskId = entity.Task?.Id;
-            result.CompanyId = entity.Company?.Id;
-            result.ContactId = entity.Contact?.Id;
-            result.DateActivity = entity.DateActivity;
-            result.DateCreated = entity.DateCreated.ToNullable();
-            result.Description = entity.Description;
-            result.ObserverCompanyIds =
-                entity.ObserverUsersCompanies?.Where(it => it.Company != null).Select(it => it.Company.Id).ToArray();
-            result.ObserverUserIds =
-                entity.ObserverUsersCompanies?.Where(it => it.User != null).Select(it => it.User.Id).ToArray();
-            result.Subject = entity.Subject;
-            result.TypeId = entity.Type?.Id;
-            result.UserId = entity.User?.Id;
-        }
     }
 }
