@@ -6,12 +6,14 @@
 // Last Modified By : George
 // Last Modified On : 02-20-2017
 // ***********************************************************************
-// <copyright file="ActivityTypesControllerTest.cs" company="">
+// <copyright file="CompaniesControllerTest.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentAssertions;
@@ -20,15 +22,15 @@ using Moq;
 using Stakeholders.Web.Controllers;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
-using Stakeholders.Web.Models.ActivityTypeViewModels;
+using Stakeholders.Web.Models.CompanyViewModels;
 using Xunit;
 
 namespace Stakeholders.Web.Tests.Controllers
 {
     /// <summary>
-    /// Class ActivityTypesControllerTest.
+    /// Class CompaniesControllerTest.
     /// </summary>
-    public class ActivityTypesControllerTest
+    public class CompaniesControllerTest
     {
         /// <summary>
         /// The entities for test
@@ -38,12 +40,12 @@ namespace Stakeholders.Web.Tests.Controllers
         /// <summary>
         /// The repository mock
         /// </summary>
-        private readonly Mock<IRepository<ActivityType>> repositoryMock;
+        private readonly Mock<IRepository<Company>> repositoryMock;
 
         /// <summary>
         /// The target
         /// </summary>
-        private readonly ActivityTypesController target;
+        private readonly CompaniesController target;
 
         /// <summary>
         /// The mapper mock
@@ -53,32 +55,32 @@ namespace Stakeholders.Web.Tests.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivitiesControllerTest" /> class.
         /// </summary>
-        public ActivityTypesControllerTest()
+        public CompaniesControllerTest()
         {
             this.entitiesForTest = new EntitiesForTest();
-            this.repositoryMock = new Mock<IRepository<ActivityType>>();
+            this.repositoryMock = new Mock<IRepository<Company>>();
             this.mapperMock = new Mock<IMapper>();
 
-            this.target = new ActivityTypesController(
+            this.target = new CompaniesController(
                 this.repositoryMock.Object,
                 this.mapperMock.Object);
         }
 
-        #region GetActivityTypes
+        #region GetCompanies
 
         /// <summary>
-        /// Gets the activity types.
+        /// Gets the companies.
         /// </summary>
         [Fact]
-        public void GetActivityTypesTest()
+        public void GetCompaniesTest()
         {
             // arrange
-            var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateActivityType);
-            var models = new List<ActivityTypeInfoViewModel>();
+            var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateCompany);
+            var models = new List<CompanyInfoViewModel>();
             foreach (var entity in entities)
             {
-                var model = this.entitiesForTest.CreateActivityTypeInfoViewModel();
-                this.mapperMock.Setup(it => it.Map<ActivityTypeInfoViewModel>(entity)).Returns(model);
+                var model = this.entitiesForTest.CreateCompanyInfoViewModel();
+                this.mapperMock.Setup(it => it.Map<CompanyInfoViewModel>(entity)).Returns(model);
                 models.Add(model);
             }
 
@@ -88,50 +90,50 @@ namespace Stakeholders.Web.Tests.Controllers
             this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
 
             // act 
-            var result = this.target.GetActivityTypes(start, count);
+            var result = this.target.GetCompanies(start, count);
 
             // assert
             result.ShouldBeEquivalentTo(expectedResult);
         }
 
-        #endregion GetActivityTypes
+        #endregion GetCompanies
 
-        #region GetActivityTypesCount
+        #region GetCompaniesCount
 
         /// <summary>
-        /// Gets the activity types count test.
+        /// Gets the companies count test.
         /// </summary>
         [Fact]
-        public void GetActivityTypesCountTest()
+        public void GetCompaniesCountTest()
         {
             // arrange
             var expectedResult = 42L;
             this.repositoryMock.Setup(it => it.Count()).Returns(expectedResult);
 
             // act 
-            var result = this.target.GetActivityTypesCount();
+            var result = this.target.GetCompaniesCount();
 
             // assert
             result.ShouldBeEquivalentTo(expectedResult);
         }
 
-        #endregion GetActivityTypesCount
+        #endregion GetCompaniesCount
 
-        #region GetActivityType
+        #region GetCompany
 
         /// <summary>
-        /// Gets the activity type test invalid model.
+        /// Gets the company test invalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task GetActivityTypeTestInvalidModel()
+        public async Task GetCompanyTestInvalidModel()
         {
             // arrange
             var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
 
             // act
-            var result = await this.target.GetActivityType(id) as BadRequestObjectResult;
+            var result = await this.target.GetCompany(id) as BadRequestObjectResult;
 
             // assert
             result.Should().NotBeNull();
@@ -139,63 +141,65 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Gets the activity type test not found.
+        /// Gets the company test not found.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task GetActivityTypeTestNotFound()
+        public async Task GetCompanyTestNotFound()
         {
             // arrange
             var id = 3L;
-            this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(ActivityType));
+            this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(Company));
 
             // act
-            var result = await this.target.GetActivityType(id) as NotFoundResult;
+            var result = await this.target.GetCompany(id) as NotFoundResult;
 
             // assert
             result.Should().NotBeNull();
         }
 
         /// <summary>
-        /// Gets the activity type test.
+        /// Gets the company test.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task GetActivityTypeTest()
+        public async Task GetCompanyTest()
         {
             // arrange
             var id = 3L;
-            var entity = this.entitiesForTest.CreateActivityType();
+            var entity = this.entitiesForTest.CreateCompany();
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
-            var expectedResult = this.entitiesForTest.CreateActivityTypeViewModel();
-            this.mapperMock.Setup(it => it.Map<ActivityTypeViewModel>(entity)).Returns(expectedResult);
+
+
+            var expectedResult = this.entitiesForTest.CreateCompanyViewModel();
+            this.mapperMock.Setup(it => it.Map<CompanyViewModel>(entity)).Returns(expectedResult);
 
             // act
-            var result = await this.target.GetActivityType(id) as OkObjectResult;
+            var result = await this.target.GetCompany(id) as OkObjectResult;
 
             // assert
             result.Should().NotBeNull();
             result.Value.ShouldBeEquivalentTo(expectedResult);
         }
 
-        #endregion GetActivityType
+        #endregion GetCompany
 
-        #region PutActivityType
+        #region PutCompany
 
         /// <summary>
-        /// Puts the activity type test invalid model.
+        /// Puts the company test invalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task PutActivityTypeTestInvalidModel()
+        public async Task PutCompanyTestInvalidModel()
         {
             // arrange
             var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
-            var viewModel = this.entitiesForTest.CreateActivityTypeViewModel();
+            var viewModel = this.entitiesForTest.CreateCompanyViewModel();
 
             // act
-            var result = await this.target.PutActivityType(id, viewModel) as BadRequestObjectResult;
+            var result = await this.target.PutCompany(id, viewModel) as BadRequestObjectResult;
 
             // assert
             result.Should().NotBeNull();
@@ -203,63 +207,63 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Puts the activity type test not found.
+        /// Puts the company test not found.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task PutActivityTypeTestNotFound()
+        public async Task PutCompanyTestNotFound()
         {
             // arrange
             var id = 3L;
-            var viewModel = this.entitiesForTest.CreateActivityTypeViewModel();
-            this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(ActivityType));
+            var viewModel = this.entitiesForTest.CreateCompanyViewModel();
+            this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(Company));
 
             // act
-            var result = await this.target.PutActivityType(id, viewModel) as NotFoundResult;
+            var result = await this.target.PutCompany(id, viewModel) as NotFoundResult;
 
             // assert
             result.Should().NotBeNull();
         }
 
         /// <summary>
-        /// Puts the activity type test.
+        /// Puts the company test.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task PutActivityTypeTest()
+        public async Task PutCompanyTest()
         {
             // arrange
             var id = 3L;
-            var entity = this.entitiesForTest.CreateActivityType();
-            var viewModel = this.entitiesForTest.CreateActivityTypeViewModel();
+            var entity = this.entitiesForTest.CreateCompany();
+            var viewModel = this.entitiesForTest.CreateCompanyViewModel();
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
             // act
-            var result = await this.target.PutActivityType(id, viewModel) as NoContentResult;
+            var result = await this.target.PutCompany(id, viewModel) as NoContentResult;
 
             // assert
             result.Should().NotBeNull();
-            this.mapperMock.Verify(it=>it.Map(viewModel, entity));
+            this.mapperMock.Verify(it => it.Map(viewModel, entity));
             this.repositoryMock.Verify(it => it.UpdateAsync(entity));
         }
 
-        #endregion PutActivityType
+        #endregion PutCompany
 
-        #region PostActivityType
+        #region PostCompany
 
         /// <summary>
-        /// Posts the activity type test invalid model.
+        /// Posts the company test invalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task PostActivityTypeTestInvalidModel()
+        public async Task PostCompanyTestInvalidModel()
         {
             // arrange
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
-            var viewModel = this.entitiesForTest.CreateActivityTypeViewModel();
+            var viewModel = this.entitiesForTest.CreateCompanyViewModel();
 
             // act
-            var result = await this.target.PostActivityType(viewModel) as BadRequestObjectResult;
+            var result = await this.target.PostCompany(viewModel) as BadRequestObjectResult;
 
             // assert
             result.Should().NotBeNull();
@@ -267,44 +271,44 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         /// <summary>
-        /// Posts the activity type test.
+        /// Posts the company test.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task PostActivityTypeTest()
+        public async Task PostCompanyTest()
         {
             // arrange
-            var viewModel = this.entitiesForTest.CreateActivityTypeViewModel();
-            var entity = this.entitiesForTest.CreateActivityType();
-            this.mapperMock.Setup(it => it.Map<ActivityType>(viewModel)).Returns(entity);
+            var model = this.entitiesForTest.CreateCompanyViewModel();
+            var entity = this.entitiesForTest.CreateCompany();
+            this.mapperMock.Setup(it => it.Map<Company>(model)).Returns(entity);
 
             // act
-            var result = await this.target.PostActivityType(viewModel) as CreatedAtActionResult;
+            var result = await this.target.PostCompany(model) as CreatedAtActionResult;
 
             // assert
             result.Should().NotBeNull();
-            result.ActionName.Should().Be("GetActivityType");
+            result.ActionName.Should().Be("GetCompany");
             result.RouteValues["id"].Should().Be(entity.Id);
             this.repositoryMock.Verify(it => it.InsertAsync(entity));
         }
 
-        #endregion PostActivityType
+        #endregion PostCompany
 
-        #region DeleteActivityType
+        #region DeleteCompany
 
         /// <summary>
         /// Deletes the organization type invalid model.
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task DeleteActivityTypeTestInvalidModel()
+        public async Task DeleteCompanyTestInvalidModel()
         {
             // arrange
             var id = 3L;
             this.target.ModelState.AddModelError("someerrorkey", "someerrormessage");
 
             // act
-            var result = await this.target.DeleteActivityType(id) as BadRequestObjectResult;
+            var result = await this.target.DeleteCompany(id) as BadRequestObjectResult;
 
             // assert
             result.Should().NotBeNull();
@@ -316,14 +320,14 @@ namespace Stakeholders.Web.Tests.Controllers
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task DeleteActivityTypeTestNotFound()
+        public async Task DeleteCompanyTestNotFound()
         {
             // arrange
             var id = 3L;
-            this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(ActivityType));
+            this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(default(Company));
 
             // act
-            var result = await this.target.DeleteActivityType(id) as NotFoundResult;
+            var result = await this.target.DeleteCompany(id) as NotFoundResult;
 
             // assert
             result.Should().NotBeNull();
@@ -334,24 +338,24 @@ namespace Stakeholders.Web.Tests.Controllers
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task DeleteActivityTypeTest()
+        public async Task DeleteCompanyTest()
         {
             // arrange
             var id = 3L;
-            var entity = this.entitiesForTest.CreateActivityType();
-            var expectedResultViewModel = this.entitiesForTest.CreateActivityTypeViewModel();
-            this.mapperMock.Setup(it => it.Map<ActivityTypeViewModel>(entity)).Returns(expectedResultViewModel);
+            var entity = this.entitiesForTest.CreateCompany();
+            var model = this.entitiesForTest.CreateCompanyViewModel();
+            this.mapperMock.Setup(it => it.Map<CompanyViewModel>(entity)).Returns(model);
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
             // act
-            var result = await this.target.DeleteActivityType(id) as OkObjectResult;
+            var result = await this.target.DeleteCompany(id) as OkObjectResult;
 
             // assert
             result.Should().NotBeNull();
-            result.Value.ShouldBeEquivalentTo(expectedResultViewModel);
+            result.Value.ShouldBeEquivalentTo(model);
             this.repositoryMock.Verify(it => it.DeleteAsync(entity));
         }
 
-        #endregion DeleteActivityType
+        #endregion DeleteCompany
     }
 }

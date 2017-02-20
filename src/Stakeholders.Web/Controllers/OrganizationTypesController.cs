@@ -15,6 +15,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
@@ -35,18 +36,32 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         private readonly IRepository<OrganizationType> repository;
 
+        private readonly IMapper mapper;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="OrganizationTypesController" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
-        public OrganizationTypesController(IRepository<OrganizationType> repository)
+        /// <param name="mapper">The mapper.</param>
+        /// <exception cref="ArgumentNullException">
+        /// repository
+        /// or
+        /// mapper
+        /// </exception>
+        public OrganizationTypesController(IRepository<OrganizationType> repository, IMapper mapper)
         {
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper));
+            }
+
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         // GET: api/OrganizationTypes
@@ -59,11 +74,7 @@ namespace Stakeholders.Web.Controllers
         public OrganizationTypeInfoViewModel[] GetOrganizationTypes(int start = 0, int count = 10)
         {
             return this.repository.GetAll(start, count).Select(
-                    it => new OrganizationTypeInfoViewModel()
-                    {
-                        Id = it.Id,
-                        Name = it.Type
-                    }).ToArray();
+                    it => this.mapper.Map<OrganizationTypeInfoViewModel>(it)).ToArray();
         }
 
         /// <summary>
@@ -95,10 +106,7 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            var result = new OrganizationTypeViewModel()
-            {
-                Name = entity.Type
-            };
+            var result = this.mapper.Map<OrganizationTypeViewModel>(entity);
 
             return this.Ok(result);
         }
@@ -112,7 +120,7 @@ namespace Stakeholders.Web.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrganizationType(
             [FromRoute] long id,
-            [FromBody] OrganizationTypeViewModel organizationType)
+            [FromBody] OrganizationTypeViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -125,8 +133,7 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            entity.Type = organizationType.Name;
-
+            this.mapper.Map(model, entity);
             await this.repository.UpdateAsync(entity);
 
             return this.NoContent();
@@ -136,19 +143,16 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// Posts the type of the organization.
         /// </summary>
-        /// <param name="organizationType">Type of the organization.</param>
+        /// <param name="model">The model.</param>
         [HttpPost]
-        public async Task<IActionResult> PostOrganizationType([FromBody] OrganizationTypeViewModel organizationType)
+        public async Task<IActionResult> PostOrganizationType([FromBody] OrganizationTypeViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            var entity = new OrganizationType()
-            {
-                Type = organizationType.Name
-            };
+            var entity = this.mapper.Map<OrganizationType>(model);
             await this.repository.InsertAsync(entity);
 
             return this.CreatedAtAction(
@@ -157,7 +161,7 @@ namespace Stakeholders.Web.Controllers
                 {
                     id = entity.Id
                 },
-                organizationType);
+                model);
         }
 
         // DELETE: api/OrganizationTypes/5
@@ -181,10 +185,7 @@ namespace Stakeholders.Web.Controllers
 
             await this.repository.DeleteAsync(entity);
 
-            var result = new OrganizationTypeViewModel()
-            {
-                Name = entity.Type
-            };
+            var result = this.mapper.Map<OrganizationTypeViewModel>(entity);
 
             return this.Ok(result);
         }

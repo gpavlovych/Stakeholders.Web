@@ -13,10 +13,12 @@
 // ***********************************************************************
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using AutoMapper.QueryableExtensions;
 using Microsoft.DotNet.Cli.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +29,12 @@ using Microsoft.IdentityModel.Tokens;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
 using Stakeholders.Web.Services;
+using AutoMapper;
+using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
+using Stakeholders.Web.Models.ActivityTypeViewModels;
+using Stakeholders.Web.Models.ActivityViewModels;
+using Stakeholders.Web.Models.CompanyViewModels;
+using Stakeholders.Web.Models.OrganizationTypeViewModels;
 
 namespace Stakeholders.Web
 {
@@ -80,7 +88,6 @@ namespace Stakeholders.Web
                         options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
             services.AddScoped<IDataSource<Activity>, ActivityDataSource>();
             services.AddScoped<IDataSource<ActivityTask>, ActivityTaskDataSource>();
             services.AddScoped<IDataSource<ActivityTaskStatus>, ActivityTaskStatusDataSource>();
@@ -103,6 +110,39 @@ namespace Stakeholders.Web
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddAutoMapper(
+                mapperConfigurationExpression =>
+                {
+                    mapperConfigurationExpression.CreateMap<ActivityTaskStatus, ActivityTaskStatusViewModel>();
+                    mapperConfigurationExpression.CreateMap<ActivityTaskStatusViewModel, ActivityTaskStatus>();
+                    mapperConfigurationExpression.CreateMap<ActivityTaskStatus, ActivityTaskStatusInfoViewModel>();
+
+                    mapperConfigurationExpression.CreateMap<ActivityType, ActivityTypeViewModel>();
+                    mapperConfigurationExpression.CreateMap<ActivityTypeViewModel, ActivityType>();
+                    mapperConfigurationExpression.CreateMap<ActivityType, ActivityTypeInfoViewModel>();
+
+                    mapperConfigurationExpression.CreateMap<OrganizationType, OrganizationTypeViewModel>();
+                    mapperConfigurationExpression.CreateMap<OrganizationTypeViewModel, OrganizationType>();
+                    mapperConfigurationExpression.CreateMap<OrganizationType, OrganizationTypeInfoViewModel>();
+
+                    mapperConfigurationExpression.CreateMap<Company, CompanyInfoViewModel>()
+                        .ForMember(it => it.ObserverActivityIds, c => c.ResolveUsing<ObserverActivitiesToViewModelResolver>());
+                    mapperConfigurationExpression.CreateMap<CompanyViewModel, Company>()
+                        .ForMember(it => it.ObserverActivities, c => c.ResolveUsing<ObserverActivitiesToEntityResolver>());
+                    mapperConfigurationExpression.CreateMap<Company, CompanyViewModel>()
+                        .ForMember(it => it.ObserverActivityIds, c => c.ResolveUsing<ObserverActivitiesToViewModelResolver>());
+
+                    //cfg.CreateMap<Activity, ActivityInfoViewModel>().ForMember(
+                    //      it => it.ObserverCompanyIds,
+                    //      c => c.ResolveUsing<ObserverCompanyIdsToViewModelResolver>());
+                    //cfg.CreateMap<ActivityViewModel, Activity>().ForMember(
+                    //        it => it.ObserverActivities,
+                    //        c => c.ResolveUsing<ObserverActivitiesToEntityResolver>());
+                    //cfg.CreateMap<Activity, ActivityViewModel>()
+                    //    .ForMember(
+                    //        it => it.ObserverCompanyIds,
+                    //        c => c.ResolveUsing<ObserverActivitiesToViewModelResolver>());
+                });
         }
 
         // The secret key every token will be signed with.
@@ -194,6 +234,47 @@ namespace Stakeholders.Web
                         name: "default",
                         template: "{controller=Home}/{action=Index}/{id?}");
                 });
+        }
+    }
+
+    public class ObserverCompanyIdsToViewModelResolver
+    {
+    }
+
+    public class ObserverActivitiesToEntityResolver
+        : IValueResolver<CompanyViewModel, Company, ICollection<ActivityObserverUserCompany>>
+    {
+        private readonly IRepository<Activity> repositoryActivities;
+
+        public ObserverActivitiesToEntityResolver(IRepository<Activity> repositoryActivities)
+        {
+            this.repositoryActivities = repositoryActivities;
+        }
+
+        public ICollection<ActivityObserverUserCompany> Resolve(
+            CompanyViewModel source,
+            Company destination,
+            ICollection<ActivityObserverUserCompany> destMember,
+            ResolutionContext context)
+        {
+            var result = source.ObserverActivityIds?.Select(
+                id => new ActivityObserverUserCompany()
+                {
+                    Activity = this.repositoryActivities.FindById(id)
+                }).ToList();
+            return result;
+        }
+    }
+
+    public class ObserverActivitiesToViewModelResolver : IValueResolver<Company, CompanyViewModel, long[]>
+    {
+        public long[] Resolve(
+            Company source,
+            CompanyViewModel destination,
+            long[] destMember,
+            ResolutionContext context)
+        {
+            return (source.ObserverActivities?.Select(it => it.Activity?.Id ?? 0) ?? Enumerable.Empty<long>()).ToArray();
         }
     }
 }

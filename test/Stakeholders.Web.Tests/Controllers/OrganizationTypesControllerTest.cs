@@ -12,10 +12,10 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -45,13 +45,19 @@ namespace Stakeholders.Web.Tests.Controllers
         private readonly OrganizationTypesController target;
 
         /// <summary>
+        /// The mapper mock
+        /// </summary>
+        private Mock<IMapper> mapperMock;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="OrganizationTypesControllerTest"/> class.
         /// </summary>
         public OrganizationTypesControllerTest()
         {
             this.entitiesForTest = new EntitiesForTest();
             this.repositoryMock = new Mock<IRepository<OrganizationType>>();
-            this.target = new OrganizationTypesController(this.repositoryMock.Object);
+            this.mapperMock = new Mock<IMapper>();
+            this.target = new OrganizationTypesController(this.repositoryMock.Object, this.mapperMock.Object);
         }
 
         #region GetOrganizationTypes
@@ -63,8 +69,16 @@ namespace Stakeholders.Web.Tests.Controllers
         public void GetOrganizationTypesTest()
         {
             // arrange
-            var entities = this.entitiesForTest.CreateCollection(2, this.entitiesForTest.CreateOrganizationType);
-            var expectedResult = entities.Select(OrganizationTypesControllerTest.ToInfoViewModel).ToArray();
+            var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateOrganizationType);
+            var models = new List<OrganizationTypeInfoViewModel>();
+            foreach (var entity in entities)
+            {
+                var model = this.entitiesForTest.CreateOrganizationTypeInfoViewModel();
+                this.mapperMock.Setup(it => it.Map<OrganizationTypeInfoViewModel>(entity)).Returns(model);
+                models.Add(model);
+            }
+
+            var expectedResult = models.ToArray();
 
             var start = 2;
             var count = 3;
@@ -150,11 +164,8 @@ namespace Stakeholders.Web.Tests.Controllers
             var id = 3L;
             var entity = this.entitiesForTest.CreateOrganizationType();
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
-
-            var expectedResult = new OrganizationTypeViewModel()
-            {
-                Name = entity.Type
-            };
+            var expectedResult = this.entitiesForTest.CreateOrganizationTypeViewModel();
+            this.mapperMock.Setup(it => it.Map<OrganizationTypeViewModel>(entity)).Returns(expectedResult);
 
             // act
             var result = await this.target.GetOrganizationType(id) as OkObjectResult;
@@ -225,7 +236,7 @@ namespace Stakeholders.Web.Tests.Controllers
 
             // assert
             result.Should().NotBeNull();
-            entity.Type.Should().Be(viewModel.Name);
+            this.mapperMock.Verify(it => it.Map(viewModel, entity));
             this.repositoryMock.Verify(it => it.UpdateAsync(entity));
         }
 
@@ -260,28 +271,18 @@ namespace Stakeholders.Web.Tests.Controllers
         public async Task PostOrganizationTypeTypeTest()
         {
             // arrange
-            var id = 3L;
-            var viewModel = this.entitiesForTest.CreateOrganizationTypeViewModel();
-            this.repositoryMock.Setup(it => it.InsertAsync(It.IsAny<OrganizationType>()))
-                .Returns<OrganizationType>(
-                    entity =>
-                        Task.Run(
-                            () =>
-                            {
-                                entity.Id = id;
-                            }));
+            var model = this.entitiesForTest.CreateOrganizationTypeViewModel();
+            var entity = this.entitiesForTest.CreateOrganizationType();
+            this.mapperMock.Setup(it => it.Map<OrganizationType>(model)).Returns(entity);
 
             // act
-            var result = await this.target.PostOrganizationType(viewModel) as CreatedAtActionResult;
+            var result = await this.target.PostOrganizationType(model) as CreatedAtActionResult;
 
             // assert
             result.Should().NotBeNull();
             result.ActionName.Should().Be("GetOrganizationType");
-            result.RouteValues["id"].Should().Be(id);
-            this.repositoryMock.Verify(
-                it =>
-                    it.InsertAsync(
-                        It.Is<OrganizationType>(orgType => orgType.Type == viewModel.Name)));
+            result.RouteValues["id"].Should().Be(entity.Id);
+            this.repositoryMock.Verify(it => it.InsertAsync(entity));
         }
 
         #endregion PostOrganizationType
@@ -335,7 +336,8 @@ namespace Stakeholders.Web.Tests.Controllers
             // arrange
             var id = 3L;
             var entity = this.entitiesForTest.CreateOrganizationType();
-            var expectedResultViewModel = ToViewModel(entity);
+            var model = this.entitiesForTest.CreateOrganizationTypeViewModel();
+            this.mapperMock.Setup(it => it.Map<OrganizationTypeViewModel>(entity)).Returns(model);
             this.repositoryMock.Setup(it => it.FindByIdAsync(id)).ReturnsAsync(entity);
 
             // act
@@ -343,32 +345,10 @@ namespace Stakeholders.Web.Tests.Controllers
 
             // assert
             result.Should().NotBeNull();
-            result.Value.ShouldBeEquivalentTo(expectedResultViewModel);
+            result.Value.ShouldBeEquivalentTo(model);
             this.repositoryMock.Verify(it => it.DeleteAsync(entity));
         }
 
         #endregion DeleteOrganizationType
-
-        private static OrganizationTypeInfoViewModel ToInfoViewModel(OrganizationType entity)
-        {
-            var result = new OrganizationTypeInfoViewModel()
-            {
-                Id = entity.Id
-            };
-            OrganizationTypesControllerTest.UpdateViewModel(result, entity);
-            return result;
-        }
-
-        private static OrganizationTypeViewModel ToViewModel(OrganizationType entity)
-        {
-            var result = new OrganizationTypeViewModel();
-            OrganizationTypesControllerTest.UpdateViewModel(result, entity);
-            return result;
-        }
-
-        private static void UpdateViewModel(OrganizationTypeViewModel target, OrganizationType entity)
-        {
-            target.Name = entity.Type;
-        }
     }
 }

@@ -368,7 +368,8 @@ namespace Stakeholders.Web.Data
         public IQueryable<Company> GetDataQueryable()
         {
             return this.context.Companies
-                .Include(it => it.ObserverActivities);
+                .Include(it => it.ObserverActivities)
+                    .ThenInclude(it => it.Activity);
         }
     }
 

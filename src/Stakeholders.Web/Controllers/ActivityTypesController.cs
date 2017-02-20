@@ -14,6 +14,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
@@ -35,12 +36,19 @@ namespace Stakeholders.Web.Controllers
         private readonly IRepository<ActivityType> repository;
 
         /// <summary>
+        /// The mapper
+        /// </summary>
+        private readonly IMapper mapper;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ActivityTypesController" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
+        /// <param name="mapper">The mapper.</param>
         /// <exception cref="ArgumentNullException">repository</exception>
         public ActivityTypesController(
-            IRepository<ActivityType> repository)
+            IRepository<ActivityType> repository,
+            IMapper mapper)
         {
             if (repository == null)
             {
@@ -48,6 +56,7 @@ namespace Stakeholders.Web.Controllers
             }
 
             this.repository = repository;
+            this.mapper = mapper;
         }
 
         // GET: api/ActivityTypes
@@ -60,17 +69,7 @@ namespace Stakeholders.Web.Controllers
         [HttpGet]
         public ActivityTypeInfoViewModel[] GetActivityTypes(int start = 0, int count = 10)
         {
-            return
-                this.repository.GetAll(start, count).Select(
-                    it =>
-                    {
-                        var result = new ActivityTypeInfoViewModel()
-                        {
-                            Id = it.Id
-                        };
-                        ActivityTypesController.UpdateViewModel(result, it);
-                        return result;
-                    }).ToArray();
+            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<ActivityTypeInfoViewModel>(it)).ToArray();
         }
 
         // GET: api/ActivityTypes/count
@@ -104,8 +103,7 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            var result = new ActivityTypeViewModel();
-            ActivityTypesController.UpdateViewModel(result, entity);
+            var result = this.mapper.Map<ActivityTypeViewModel>(entity);
 
             return this.Ok(result);
         }
@@ -133,7 +131,7 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            this.UpdateEntityFromViewModel(model, entity);
+            this.mapper.Map(model, entity);
 
             await this.repository.UpdateAsync(entity);
 
@@ -154,9 +152,7 @@ namespace Stakeholders.Web.Controllers
                 return this.BadRequest(this.ModelState);
             }
 
-            var entity = new ActivityType();
-
-            this.UpdateEntityFromViewModel(model, entity);
+            var entity = this.mapper.Map<ActivityType>(model);
 
             await this.repository.InsertAsync(entity);
 
@@ -191,31 +187,9 @@ namespace Stakeholders.Web.Controllers
 
             await this.repository.DeleteAsync(entity);
 
-            var result = new ActivityTypeViewModel();
-            ActivityTypesController.UpdateViewModel(result, entity);
+            var result = this.mapper.Map<ActivityTypeViewModel>(entity);
 
             return this.Ok(result);
-        }
-
-        /// <summary>
-        /// Updates the view model.
-        /// </summary>
-        /// <param name="model">The result.</param>
-        /// <param name="entity">The entity.</param>
-        private static void UpdateViewModel(ActivityTypeViewModel model, ActivityType entity)
-        {
-            model.Name = entity.Name;
-        }
-
-        /// <summary>
-        /// Updates the entity from view model.
-        /// </summary>
-        /// <param name="model">The activity view model.</param>
-        /// <param name="entity">The entity.</param>
-        /// <returns>Task.</returns>
-        private void UpdateEntityFromViewModel(ActivityTypeViewModel model, ActivityType entity)
-        {
-            entity.Name = model.Name;
         }
     }
 }

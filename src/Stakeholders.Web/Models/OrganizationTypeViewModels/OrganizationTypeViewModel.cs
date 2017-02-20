@@ -19,9 +19,9 @@ namespace Stakeholders.Web.Models.OrganizationTypeViewModels
     public class OrganizationTypeViewModel
     {
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the type.
         /// </summary>
-        /// <value>The name.</value>
-        public string Name { get; set; }
+        /// <value>The type.</value>
+        public string Type { get; set; }
     }
 }

@@ -19,6 +19,7 @@ using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityTypeViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
+using Stakeholders.Web.Models.CompanyViewModels;
 using Stakeholders.Web.Models.OrganizationTypeViewModels;
 
 namespace Stakeholders.Web.Tests
@@ -181,7 +182,7 @@ namespace Stakeholders.Web.Tests
         {
             return new OrganizationTypeViewModel()
             {
-                Name = this.CreateString()
+                Type = this.CreateString()
             };
         }
 
@@ -432,6 +433,20 @@ namespace Stakeholders.Web.Tests
         }
 
         /// <summary>
+        /// Creates the activity task status info view model.
+        /// </summary>
+        /// <returns>ActivityTaskStatusInfoViewModel.</returns>
+        public ActivityTaskStatusInfoViewModel CreateActivityTaskStatusInfoViewModel()
+        {
+            return new ActivityTaskStatusInfoViewModel()
+            {
+                Id = this.CreateInt(),
+                Name = this.CreateString(),
+                NameEn = this.CreateString()
+            };
+        }
+
+        /// <summary>
         /// Creates the activity type view model.
         /// </summary>
         /// <returns>ActivityTypeViewModel.</returns>
@@ -440,6 +455,59 @@ namespace Stakeholders.Web.Tests
             return new ActivityTypeViewModel()
             {
                 Name = this.CreateString()
+            };
+        }
+
+        public OrganizationTypeInfoViewModel CreateOrganizationTypeInfoViewModel()
+        {
+            return new OrganizationTypeInfoViewModel()
+            {
+                Id = this.CreateInt(),
+                Type = this.CreateString()
+            };
+        }
+
+        public ActivityTypeInfoViewModel CreateActivityTypeInfoViewModel()
+        {
+            return new ActivityTypeInfoViewModel()
+            {
+                Id = this.CreateInt(),
+                Name = this.CreateString()
+            };
+        }
+
+        public CompanyViewModel CreateCompanyViewModel()
+        {
+            return new CompanyViewModel()
+            {
+                Address = this.CreateString(),
+                City = this.CreateString(),
+                CompanyCode = this.CreateString(),
+                Email = this.CreateString(),
+                Name = this.CreateString(),
+                Influencing = this.CreateString(),
+                InfluencedBy = this.CreateString(),
+                Phone = this.CreateString(),
+                LogoUrl = this.CreateString(),
+                ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
+            };
+        }
+
+        public CompanyInfoViewModel CreateCompanyInfoViewModel()
+        {
+            return new CompanyInfoViewModel()
+            {
+                Address = this.CreateString(),
+                City = this.CreateString(),
+                CompanyCode = this.CreateString(),
+                Email = this.CreateString(),
+                Id = this.CreateInt(),
+                Name = this.CreateString(),
+                Influencing = this.CreateString(),
+                InfluencedBy = this.CreateString(),
+                Phone = this.CreateString(),
+                LogoUrl = this.CreateString(),
+                ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
             };
         }
     }

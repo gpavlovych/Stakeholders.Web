@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-Stakeholders.Web-9442aa4c-2220-46eb-8a90-39129c228be5",
 
   "dependencies": {
@@ -46,7 +46,9 @@
       "type": "build"
     },
     "System.IdentityModel.Tokens.Jwt": "5.1.2",
-    "Microsoft.AspNetCore.Authentication.JwtBearer": "1.1.0"
+    "Microsoft.AspNetCore.Authentication.JwtBearer": "1.1.0",
+    "AutoMapper": "5.1.1",
+    "AutoMapper.Extensions.Microsoft.DependencyInjection": "1.2.0"
   },
 
   "tools": {
