@@ -6,7 +6,7 @@
 // Last Modified By : George
 // Last Modified On : 02-20-2017
 // ***********************************************************************
-// <copyright file="CompaniesController.cs" company="">
+// <copyright file="OrganizationsController.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
@@ -18,22 +18,22 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
-using Stakeholders.Web.Models.CompanyViewModels;
+using Stakeholders.Web.Models.OrganizationViewModels;
 
 namespace Stakeholders.Web.Controllers
 {
     /// <summary>
-    /// Class CompaniesController.
+    /// Class OrganizationsController.
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
-    [Route("api/Companies")]
-    public class CompaniesController : Controller
+    [Route("api/Organizations")]
+    public class OrganizationsController : Controller
     {
         /// <summary>
         /// The context
         /// </summary>
-        private readonly IRepository<Company> repository;
+        private readonly IRepository<Organization> repository;
 
         /// <summary>
         /// The mapper
@@ -41,17 +41,18 @@ namespace Stakeholders.Web.Controllers
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompaniesController" /> class.
+        /// Initializes a new instance of the <see cref="OrganizationsController" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">
-        /// repository
+        /// <exception cref="System.ArgumentNullException">repository
         /// or
-        /// mapper
-        /// </exception>
-        public CompaniesController(
-            IRepository<Company> repository,
+        /// mapper</exception>
+        /// <exception cref="ArgumentNullException">repository
+        /// or
+        /// mapper</exception>
+        public OrganizationsController(
+            IRepository<Organization> repository,
             IMapper mapper)
         {
             if (repository == null)
@@ -68,38 +69,38 @@ namespace Stakeholders.Web.Controllers
             this.mapper = mapper;
         }
 
-        // GET: api/Companies
+        // GET: api/Organizations
         /// <summary>
-        /// Gets the Companies.
+        /// Gets the organizations.
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
-        /// <returns>CompanyInfoViewModel[].</returns>
+        /// <returns>OrganizationInfoViewModel[].</returns>
         [HttpGet]
-        public CompanyViewModel[] GetCompanies(int start = 0, int count = 10)
+        public OrganizationViewModel[] GetOrganizations(int start = 0, int count = 10)
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<CompanyViewModel>(it)).ToArray();
+            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<OrganizationViewModel>(it)).ToArray();
         }
 
-        // GET: api/Companies/count
+        // GET: api/Organizations/count
         /// <summary>
-        /// Gets the Companies count.
+        /// Gets the organizations count.
         /// </summary>
         /// <returns>System.Int64.</returns>
         [HttpGet("count")]
-        public long GetCompaniesCount()
+        public long GetOrganizationsCount()
         {
             return this.repository.Count();
         }
 
-        // GET: api/Companies/5
+        // GET: api/Organizations/5
         /// <summary>
-        /// Gets the Company.
+        /// Gets the organization.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCompany([FromRoute] long id)
+        public async Task<IActionResult> GetOrganization([FromRoute] long id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -112,22 +113,22 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            var result = this.mapper.Map<CompanyViewModel>(entity);
+            var result = this.mapper.Map<OrganizationViewModel>(entity);
 
             return this.Ok(result);
         }
 
-        // PUT: api/Companies/5
+        // PUT: api/Organizations/5
         /// <summary>
-        /// Puts the Company.
+        /// Puts the organization.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="model">The model.</param>
+        /// <param name="model">the organization.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompany(
+        public async Task<IActionResult> PutOrganization(
             [FromRoute] long id,
-            [FromBody] CompanyViewModel model)
+            [FromBody] OrganizationViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -147,26 +148,26 @@ namespace Stakeholders.Web.Controllers
             return this.NoContent();
         }
 
-        // POST: api/Companies
+        // POST: api/Organizations
         /// <summary>
-        /// Posts the Company.
+        /// Posts the organization.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">the organization.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpPost]
-        public async Task<IActionResult> PostCompany([FromBody] CompanyViewModel model)
+        public async Task<IActionResult> PostOrganization([FromBody] OrganizationViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            var entity = this.mapper.Map<Company>(model);
+            var entity = this.mapper.Map<Organization>(model);
 
             await this.repository.InsertAsync(entity);
 
             return this.CreatedAtAction(
-                "GetCompany",
+                "GetOrganization",
                 new
                 {
                     id = entity.Id
@@ -174,14 +175,14 @@ namespace Stakeholders.Web.Controllers
                 model);
         }
 
-        // DELETE: api/Companies/5
+        // DELETE: api/Organizations/5
         /// <summary>
-        /// Deletes the Company.
+        /// Deletes the organization.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCompany([FromRoute] long id)
+        public async Task<IActionResult> DeleteOrganization([FromRoute] long id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -196,7 +197,7 @@ namespace Stakeholders.Web.Controllers
 
             await this.repository.DeleteAsync(entity);
 
-            var result = this.mapper.Map<CompanyViewModel>(entity);
+            var result = this.mapper.Map<OrganizationViewModel>(entity);
 
             return this.Ok(result);
         }

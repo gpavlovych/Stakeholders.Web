@@ -33,8 +33,14 @@ using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityTypeViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
+using Stakeholders.Web.Models.ApplicationUserViewModels;
 using Stakeholders.Web.Models.CompanyViewModels;
+using Stakeholders.Web.Models.ContactViewModels;
+using Stakeholders.Web.Models.GoalViewModels;
+using Stakeholders.Web.Models.OrganizationCategoryViewModels;
 using Stakeholders.Web.Models.OrganizationTypeViewModels;
+using Stakeholders.Web.Models.OrganizationViewModels;
+using Stakeholders.Web.Models.RoleViewModels;
 
 namespace Stakeholders.Web
 {
@@ -101,7 +107,7 @@ namespace Stakeholders.Web
             services.AddScoped<IDataSource<OrganizationCategory>, OrganizationCategoryDataSource>();
             services.AddScoped<IDataSource<ApplicationUser>, ApplicationUserDataSource>();
             services.AddScoped<IDataSource<Role>, RoleDataSource>();
-            
+
             services.AddIdentity<ApplicationUser, Role>()
                 .AddEntityFrameworkStores<ApplicationDbContext, long>()
                 .AddDefaultTokenProviders();
@@ -119,38 +125,73 @@ namespace Stakeholders.Web
                     mapperConfigurationExpression
                         .CreateMap<ActivityTaskStatus, ActivityTaskStatusViewModel>()
                         .ReverseMap()
-                            .ForMember(it=>it.Id, resolve=>resolve.Ignore());
+                        .ForMember(it => it.Id, resolve => resolve.Ignore());
 
                     mapperConfigurationExpression
                         .CreateMap<ActivityType, ActivityTypeViewModel>()
                         .ReverseMap()
-                            .ForMember(it => it.Id, resolve => resolve.Ignore());
+                        .ForMember(it => it.Id, resolve => resolve.Ignore());
 
                     mapperConfigurationExpression
                         .CreateMap<OrganizationType, OrganizationTypeViewModel>()
                         .ReverseMap()
-                            .ForMember(it => it.Id, resolve => resolve.Ignore());
+                        .ForMember(it => it.Id, resolve => resolve.Ignore());
 
                     mapperConfigurationExpression
                         .CreateMap<Company, CompanyViewModel>()
-                            .AfterMap<EntityToViewModel>()
+                        .AfterMap<EntityToViewModel>()
                         .ReverseMap()
-                            .ForMember(it => it.Id, resolve => resolve.Ignore())
-                            .AfterMap<ViewModelToEntity>();
+                        .ForMember(it => it.Id, resolve => resolve.Ignore())
+                        .AfterMap<ViewModelToEntity>();
 
                     mapperConfigurationExpression
                         .CreateMap<Activity, ActivityViewModel>()
-                            .AfterMap<EntityToViewModel>()
+                        .AfterMap<EntityToViewModel>()
                         .ReverseMap()
-                            .ForMember(it => it.Id, resolve => resolve.Ignore())
-                            .AfterMap<ViewModelToEntity>();
+                        .ForMember(it => it.Id, resolve => resolve.Ignore())
+                        .AfterMap<ViewModelToEntity>();
 
                     mapperConfigurationExpression
                         .CreateMap<ActivityTask, ActivityTaskViewModel>()
-                            .AfterMap<EntityToViewModel>()
+                        .AfterMap<EntityToViewModel>()
                         .ReverseMap()
-                            .ForMember(it => it.Id, resolve => resolve.Ignore())
-                            .AfterMap<ViewModelToEntity>();
+                        .ForMember(it => it.Id, resolve => resolve.Ignore())
+                        .AfterMap<ViewModelToEntity>();
+
+                    mapperConfigurationExpression
+                        .CreateMap<ApplicationUser, ApplicationUserViewModel>()
+                        .AfterMap<EntityToViewModel>()
+                        .ReverseMap()
+                        .ForMember(it => it.Id, resolve => resolve.Ignore())
+                        .AfterMap<ViewModelToEntity>();
+
+                    mapperConfigurationExpression
+                        .CreateMap<Contact, ContactViewModel>()
+                        .ReverseMap()
+                        .ForMember(it => it.Id, resolve => resolve.Ignore())
+                        .AfterMap<ViewModelToEntity>();
+
+                    mapperConfigurationExpression
+                        .CreateMap<Goal, GoalViewModel>()
+                        .ReverseMap()
+                        .ForMember(it => it.Id, resolve => resolve.Ignore());
+
+                    mapperConfigurationExpression
+                        .CreateMap<OrganizationCategory, OrganizationCategoryViewModel>()
+                        .ReverseMap()
+                        .ForMember(it => it.Id, resolve => resolve.Ignore())
+                        .AfterMap<ViewModelToEntity>();
+
+                    mapperConfigurationExpression
+                        .CreateMap<Organization, OrganizationViewModel>()
+                        .ReverseMap()
+                        .ForMember(it => it.Id, resolve => resolve.Ignore())
+                        .AfterMap<ViewModelToEntity>();
+
+                    mapperConfigurationExpression
+                        .CreateMap<Role, RoleViewModel>()
+                        .ReverseMap()
+                        .ForMember(it => it.Id, resolve => resolve.Ignore());
                 });
         }
 

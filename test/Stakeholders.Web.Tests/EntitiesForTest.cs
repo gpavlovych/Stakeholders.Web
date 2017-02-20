@@ -19,8 +19,14 @@ using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityTypeViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
+using Stakeholders.Web.Models.ApplicationUserViewModels;
 using Stakeholders.Web.Models.CompanyViewModels;
+using Stakeholders.Web.Models.ContactViewModels;
+using Stakeholders.Web.Models.GoalViewModels;
+using Stakeholders.Web.Models.OrganizationCategoryViewModels;
 using Stakeholders.Web.Models.OrganizationTypeViewModels;
+using Stakeholders.Web.Models.OrganizationViewModels;
+using Stakeholders.Web.Models.RoleViewModels;
 
 namespace Stakeholders.Web.Tests
 {
@@ -459,6 +465,10 @@ namespace Stakeholders.Web.Tests
             };
         }
 
+        /// <summary>
+        /// Creates the company view model.
+        /// </summary>
+        /// <returns>CompanyViewModel.</returns>
         public CompanyViewModel CreateCompanyViewModel()
         {
             return new CompanyViewModel()
@@ -474,6 +484,109 @@ namespace Stakeholders.Web.Tests
                 Phone = this.CreateString(),
                 LogoUrl = this.CreateString(),
                 ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
+            };
+        }
+
+        /// <summary>
+        /// Creates the contact view model.
+        /// </summary>
+        /// <returns>ContactViewModel.</returns>
+        public ContactViewModel CreateContactViewModel()
+        {
+            return new ContactViewModel()
+            {
+                Id = this.CreateInt(),
+                Email = this.CreateString(),
+                NameL = this.CreateString(),
+                NameF = this.CreateString(),
+                Phone = this.CreateString(),
+                TaskIds = this.CreateCollection(3, this.CreateInt).ToArray(),
+                OrganizationId = this.CreateInt(),
+                CompanyId = this.CreateInt(),
+                UserId = this.CreateInt(),
+                Comments = this.CreateString(),
+                PhotoUrl = this.CreateString(),
+                Title = this.CreateString()
+            };
+        }
+
+        /// <summary>
+        /// Creates the goal view model.
+        /// </summary>
+        /// <returns>GoalViewModel.</returns>
+        public GoalViewModel CreateGoalViewModel()
+        {
+            return new GoalViewModel()
+            {
+                Id = this.CreateInt(),
+                Title = this.CreateString()
+            };
+        }
+
+        /// <summary>
+        /// Creates the organization view model.
+        /// </summary>
+        /// <returns>OrganizationViewModel.</returns>
+        public OrganizationViewModel CreateOrganizationViewModel()
+        {
+            return new OrganizationViewModel()
+            {
+                Id = this.CreateInt(),
+                Name = this.CreateString(),
+                TypeId = this.CreateInt(),
+                UserId = this.CreateInt(),
+                CompanyId = this.CreateInt(),
+                CategoryId = this.CreateInt(),
+                InfluencedBy = this.CreateString(),
+                Influencing = this.CreateString()
+            };
+        }
+
+        /// <summary>
+        /// Creates the organization category view model.
+        /// </summary>
+        /// <returns>OrganizationCategoryViewModel.</returns>
+        public OrganizationCategoryViewModel CreateOrganizationCategoryViewModel()
+        {
+            return new OrganizationCategoryViewModel()
+            {
+                Id = this.CreateInt(),
+                Name = this.CreateString(),
+                CompanyId = this.CreateInt(),
+                InfluencedBy = this.CreateString(),
+                Influencing = this.CreateString(),
+                IconUrl = this.CreateString()
+            };
+        }
+
+        /// <summary>
+        /// Creates the application user view model.
+        /// </summary>
+        /// <returns>ApplicationUserViewModel.</returns>
+        public ApplicationUserViewModel CreateApplicationUserViewModel()
+        {
+            return new ApplicationUserViewModel()
+            {
+                Id = this.CreateInt(),
+                Name = this.CreateString(),
+                CompanyId = this.CreateInt(),
+                RoleId = this.CreateInt(),
+                Title = this.CreateString(),
+                ObserverTaskIds = this.CreateCollection(3, this.CreateInt).ToArray(),
+                ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
+            };
+        }
+
+        /// <summary>
+        /// Creates the role view model.
+        /// </summary>
+        /// <returns>RoleViewModel.</returns>
+        public RoleViewModel CreateRoleViewModel()
+        {
+            return new RoleViewModel()
+            {
+                Id = this.CreateInt(),
+                NameEn = this.CreateString()
             };
         }
 

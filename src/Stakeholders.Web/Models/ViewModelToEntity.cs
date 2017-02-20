@@ -16,17 +16,33 @@ using AutoMapper;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
+using Stakeholders.Web.Models.ApplicationUserViewModels;
 using Stakeholders.Web.Models.CompanyViewModels;
+using Stakeholders.Web.Models.ContactViewModels;
+using Stakeholders.Web.Models.OrganizationCategoryViewModels;
+using Stakeholders.Web.Models.OrganizationViewModels;
 
 namespace Stakeholders.Web.Models
 {
     /// <summary>
     /// Class ViewModelToEntity.
     /// </summary>
+    /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ApplicationUserViewModels.ApplicationUserViewModel, Stakeholders.Web.Models.ApplicationUser}" />
+    /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ContactViewModels.ContactViewModel, Stakeholders.Web.Models.Contact}" />
+    /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.RoleViewModels.RoleViewModel, Stakeholders.Web.Models.Role}" />
+    /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.OrganizationViewModels.OrganizationViewModel, Stakeholders.Web.Models.Organization}" />
+    /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.OrganizationCategoryViewModels.OrganizationCategoryViewModel, Stakeholders.Web.Models.OrganizationCategory}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.CompanyViewModels.CompanyViewModel, Stakeholders.Web.Models.Company}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ActivityViewModels.ActivityViewModel, Stakeholders.Web.Models.Activity}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ActivityTaskViewModels.ActivityTaskViewModel, Stakeholders.Web.Models.ActivityTask}" />
-    public class ViewModelToEntity : IMappingAction<CompanyViewModel, Company>, IMappingAction<ActivityViewModel, Activity>, IMappingAction<ActivityTaskViewModel, ActivityTask>
+    public class ViewModelToEntity
+        : IMappingAction<CompanyViewModel, Company>,
+            IMappingAction<ActivityViewModel, Activity>,
+            IMappingAction<ActivityTaskViewModel, ActivityTask>,
+            IMappingAction<ApplicationUserViewModel, ApplicationUser>,
+            IMappingAction<ContactViewModel, Contact>,
+            IMappingAction<OrganizationViewModel, Organization>,
+            IMappingAction<OrganizationCategoryViewModel, OrganizationCategory>
     {
         /// <summary>
         /// The repository activities
@@ -37,10 +53,12 @@ namespace Stakeholders.Web.Models
         /// The repository users
         /// </summary>
         private readonly IRepository<ApplicationUser> repositoryUsers;
+
         /// <summary>
         /// The repository contacts
         /// </summary>
         private readonly IRepository<Contact> repositoryContacts;
+
         /// <summary>
         /// The repository goals
         /// </summary>
@@ -50,18 +68,41 @@ namespace Stakeholders.Web.Models
         /// The repository statuses
         /// </summary>
         private readonly IRepository<ActivityTaskStatus> repositoryStatuses;
+
         /// <summary>
         /// The repository tasks
         /// </summary>
         private readonly IRepository<ActivityTask> repositoryTasks;
+
         /// <summary>
         /// The repository companies
         /// </summary>
         private readonly IRepository<Company> repositoryCompanies;
+
         /// <summary>
         /// The repository activity types
         /// </summary>
         private readonly IRepository<ActivityType> repositoryActivityTypes;
+
+        /// <summary>
+        /// The repository organization types
+        /// </summary>
+        private readonly IRepository<OrganizationType> repositoryOrganizationTypes;
+
+        /// <summary>
+        /// The repository organization categories
+        /// </summary>
+        private readonly IRepository<OrganizationCategory> repositoryOrganizationCategories;
+
+        /// <summary>
+        /// The repository organizations
+        /// </summary>
+        private readonly IRepository<Organization> repositoryOrganizations;
+
+        /// <summary>
+        /// The repository roles
+        /// </summary>
+        private readonly IRepository<Role> repositoryRoles;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelToEntity" /> class.
@@ -74,6 +115,10 @@ namespace Stakeholders.Web.Models
         /// <param name="repositoryTasks">The repository tasks.</param>
         /// <param name="repositoryCompanies">The repository companies.</param>
         /// <param name="repositoryActivityTypes">The repository activity types.</param>
+        /// <param name="repositoryOrganizationTypes">The repository organization types.</param>
+        /// <param name="repositoryOrganizationCategories">The repository organization categories.</param>
+        /// <param name="repositoryOrganizations">The repository organizations.</param>
+        /// <param name="repositoryRoles">The repository roles.</param>
         public ViewModelToEntity(
             IRepository<Activity> repositoryActivities,
             IRepository<ApplicationUser> repositoryUsers,
@@ -82,7 +127,11 @@ namespace Stakeholders.Web.Models
             IRepository<ActivityTaskStatus> repositoryStatuses,
             IRepository<ActivityTask> repositoryTasks,
             IRepository<Company> repositoryCompanies,
-            IRepository<ActivityType> repositoryActivityTypes)
+            IRepository<ActivityType> repositoryActivityTypes,
+            IRepository<OrganizationType> repositoryOrganizationTypes,
+            IRepository<OrganizationCategory> repositoryOrganizationCategories,
+            IRepository<Organization> repositoryOrganizations,
+            IRepository<Role> repositoryRoles)
         {
             this.repositoryActivities = repositoryActivities;
             this.repositoryUsers = repositoryUsers;
@@ -92,6 +141,10 @@ namespace Stakeholders.Web.Models
             this.repositoryTasks = repositoryTasks;
             this.repositoryCompanies = repositoryCompanies;
             this.repositoryActivityTypes = repositoryActivityTypes;
+            this.repositoryOrganizationTypes = repositoryOrganizationTypes;
+            this.repositoryOrganizationCategories = repositoryOrganizationCategories;
+            this.repositoryOrganizations = repositoryOrganizations;
+            this.repositoryRoles = repositoryRoles;
         }
 
         /// <summary>
@@ -102,12 +155,13 @@ namespace Stakeholders.Web.Models
         public void Process(CompanyViewModel source, Company destination)
         {
             destination.ObserverActivities = source.ObserverActivityIds?
-                .Select(activityId =>
-                    new ActivityObserverUserCompany
-                    {
-                        Company = destination,
-                        Activity = this.repositoryActivities.FindById(activityId)
-                    })
+                .Select(
+                    activityId =>
+                        new ActivityObserverUserCompany
+                        {
+                            Company = destination,
+                            Activity = this.repositoryActivities.FindById(activityId)
+                        })
                 .ToList();
         }
 
@@ -125,19 +179,19 @@ namespace Stakeholders.Web.Models
             destination.Task = taskId != null ? this.repositoryTasks.FindById(taskId.Value) : null;
 
             var activityObserverCompanies = source.ObserverCompanyIds?
-                .Select(
-                    observerCompanyId => new ActivityObserverUserCompany()
-                    {
-                        Activity = destination,
-                        Company = this.repositoryCompanies.FindById(observerCompanyId)
-                    }) ?? Enumerable.Empty<ActivityObserverUserCompany>();
+                                                .Select(
+                                                    observerCompanyId => new ActivityObserverUserCompany()
+                                                    {
+                                                        Activity = destination,
+                                                        Company = this.repositoryCompanies.FindById(observerCompanyId)
+                                                    }) ?? Enumerable.Empty<ActivityObserverUserCompany>();
 
             var activityObserverUsers = source.ObserverUserIds?.Select(
-                observerUserId => new ActivityObserverUserCompany()
-                {
-                    Activity = destination,
-                    User = this.repositoryUsers.FindById(observerUserId)
-                }) ?? Enumerable.Empty<ActivityObserverUserCompany>();
+                                            observerUserId => new ActivityObserverUserCompany()
+                                            {
+                                                Activity = destination,
+                                                User = this.repositoryUsers.FindById(observerUserId)
+                                            }) ?? Enumerable.Empty<ActivityObserverUserCompany>();
 
             destination.ObserverUsersCompanies = activityObserverCompanies.Concat(activityObserverUsers).ToList();
 
@@ -181,10 +235,104 @@ namespace Stakeholders.Web.Models
                     {
                         User = this.repositoryUsers.FindById(contactId)
                     }).ToList();
-  
+
 
             var statusId = source.StatusId;
             destination.Status = statusId != null ? this.repositoryStatuses.FindById(statusId.Value) : null;
+        }
+
+        /// <summary>
+        /// Implementors can modify both the source and destination objects
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <param name="destination">Destination object</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void Process(ApplicationUserViewModel source, ApplicationUser destination)
+        {
+            destination.ObserverActivities =
+                source.ObserverActivityIds?.Select(
+                    activityId => new ActivityObserverUserCompany()
+                    {
+                        User = destination,
+                        Activity = this.repositoryActivities.FindById(activityId)
+                    }).ToList();
+
+            destination.ObserverTasks =
+                source.ObserverTaskIds?.Select(
+                    taskId => new ActivityTaskObserverUser()
+                    {
+                        User = destination,
+                        Task = this.repositoryTasks.FindById(taskId)
+                    }).ToList();
+
+            var companyId = source.CompanyId;
+            destination.Company = companyId != null ? this.repositoryCompanies.FindById(companyId.Value) : null;
+
+            var roleId = source.RoleId;
+            destination.Role = roleId != null ? this.repositoryRoles.FindById(roleId.Value) : null;
+        }
+
+        /// <summary>
+        /// Implementors can modify both the source and destination objects
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <param name="destination">Destination object</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void Process(ContactViewModel source, Contact destination)
+        {
+            var companyId = source.CompanyId;
+            destination.Company = companyId != null ? this.repositoryCompanies.FindById(companyId.Value) : null;
+
+            var organizationId = source.OrganizationId;
+            destination.Organization = organizationId != null
+                ? this.repositoryOrganizations.FindById(organizationId.Value)
+                : null;
+
+            var userId = source.UserId;
+            destination.User = userId != null ? this.repositoryUsers.FindById(userId.Value) : null;
+
+            destination.Tasks =
+                source.TaskIds?.Select(
+                    contactId => new ActivityTaskContact()
+                    {
+                        Contact = destination,
+                        Task = this.repositoryTasks.FindById(contactId)
+                    }).ToList();
+        }
+
+        /// <summary>
+        /// Implementors can modify both the source and destination objects
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <param name="destination">Destination object</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void Process(OrganizationViewModel source, Organization destination)
+        {
+            var companyId = source.CompanyId;
+            destination.Company = companyId != null ? this.repositoryCompanies.FindById(companyId.Value) : null;
+
+            var typeId = source.TypeId;
+            destination.Type = typeId != null ? this.repositoryOrganizationTypes.FindById(typeId.Value) : null;
+
+            var categoryId = source.CategoryId;
+            destination.Category = categoryId != null
+                ? this.repositoryOrganizationCategories.FindById(categoryId.Value)
+                : null;
+
+            var userId = source.UserId;
+            destination.User = userId != null ? this.repositoryUsers.FindById(userId.Value) : null;
+        }
+
+        /// <summary>
+        /// Implementors can modify both the source and destination objects
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <param name="destination">Destination object</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void Process(OrganizationCategoryViewModel source, OrganizationCategory destination)
+        {
+            var companyId = source.CompanyId;
+            destination.Company = companyId != null ? this.repositoryCompanies.FindById(companyId.Value) : null;
         }
     }
 }

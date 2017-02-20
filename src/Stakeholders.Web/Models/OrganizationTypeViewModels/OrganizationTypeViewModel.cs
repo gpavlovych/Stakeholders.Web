@@ -11,7 +11,6 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-
 using Stakeholders.Web.Models.Base;
 
 namespace Stakeholders.Web.Models.OrganizationTypeViewModels

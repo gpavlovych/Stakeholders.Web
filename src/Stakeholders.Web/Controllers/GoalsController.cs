@@ -6,7 +6,7 @@
 // Last Modified By : George
 // Last Modified On : 02-20-2017
 // ***********************************************************************
-// <copyright file="CompaniesController.cs" company="">
+// <copyright file="GoalsController.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
@@ -18,22 +18,22 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
-using Stakeholders.Web.Models.CompanyViewModels;
+using Stakeholders.Web.Models.GoalViewModels;
 
 namespace Stakeholders.Web.Controllers
 {
     /// <summary>
-    /// Class CompaniesController.
+    /// Class GoalsController.
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
-    [Route("api/Companies")]
-    public class CompaniesController : Controller
+    [Route("api/Goals")]
+    public class GoalsController : Controller
     {
         /// <summary>
         /// The context
         /// </summary>
-        private readonly IRepository<Company> repository;
+        private readonly IRepository<Goal> repository;
 
         /// <summary>
         /// The mapper
@@ -41,17 +41,18 @@ namespace Stakeholders.Web.Controllers
         private readonly IMapper mapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompaniesController" /> class.
+        /// Initializes a new instance of the <see cref="GoalsController" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">
-        /// repository
+        /// <exception cref="System.ArgumentNullException">repository
         /// or
-        /// mapper
-        /// </exception>
-        public CompaniesController(
-            IRepository<Company> repository,
+        /// mapper</exception>
+        /// <exception cref="ArgumentNullException">repository
+        /// or
+        /// mapper</exception>
+        public GoalsController(
+            IRepository<Goal> repository,
             IMapper mapper)
         {
             if (repository == null)
@@ -68,38 +69,38 @@ namespace Stakeholders.Web.Controllers
             this.mapper = mapper;
         }
 
-        // GET: api/Companies
+        // GET: api/Goals
         /// <summary>
-        /// Gets the Companies.
+        /// Gets the goals.
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
-        /// <returns>CompanyInfoViewModel[].</returns>
+        /// <returns>GoalInfoViewModel[].</returns>
         [HttpGet]
-        public CompanyViewModel[] GetCompanies(int start = 0, int count = 10)
+        public GoalViewModel[] GetGoals(int start = 0, int count = 10)
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<CompanyViewModel>(it)).ToArray();
+            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<GoalViewModel>(it)).ToArray();
         }
 
-        // GET: api/Companies/count
+        // GET: api/Goals/count
         /// <summary>
-        /// Gets the Companies count.
+        /// Gets the goals count.
         /// </summary>
         /// <returns>System.Int64.</returns>
         [HttpGet("count")]
-        public long GetCompaniesCount()
+        public long GetGoalsCount()
         {
             return this.repository.Count();
         }
 
-        // GET: api/Companies/5
+        // GET: api/Goals/5
         /// <summary>
-        /// Gets the Company.
+        /// Gets the goal.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCompany([FromRoute] long id)
+        public async Task<IActionResult> GetGoal([FromRoute] long id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -112,22 +113,22 @@ namespace Stakeholders.Web.Controllers
                 return this.NotFound();
             }
 
-            var result = this.mapper.Map<CompanyViewModel>(entity);
+            var result = this.mapper.Map<GoalViewModel>(entity);
 
             return this.Ok(result);
         }
 
-        // PUT: api/Companies/5
+        // PUT: api/Goals/5
         /// <summary>
-        /// Puts the Company.
+        /// Puts the goal.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="model">The model.</param>
+        /// <param name="model">the goal.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCompany(
+        public async Task<IActionResult> PutGoal(
             [FromRoute] long id,
-            [FromBody] CompanyViewModel model)
+            [FromBody] GoalViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -147,26 +148,26 @@ namespace Stakeholders.Web.Controllers
             return this.NoContent();
         }
 
-        // POST: api/Companies
+        // POST: api/Goals
         /// <summary>
-        /// Posts the Company.
+        /// Posts the goal.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">the goal.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpPost]
-        public async Task<IActionResult> PostCompany([FromBody] CompanyViewModel model)
+        public async Task<IActionResult> PostGoal([FromBody] GoalViewModel model)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.BadRequest(this.ModelState);
             }
 
-            var entity = this.mapper.Map<Company>(model);
+            var entity = this.mapper.Map<Goal>(model);
 
             await this.repository.InsertAsync(entity);
 
             return this.CreatedAtAction(
-                "GetCompany",
+                "GetGoal",
                 new
                 {
                     id = entity.Id
@@ -174,14 +175,14 @@ namespace Stakeholders.Web.Controllers
                 model);
         }
 
-        // DELETE: api/Companies/5
+        // DELETE: api/Goals/5
         /// <summary>
-        /// Deletes the Company.
+        /// Deletes the goal.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCompany([FromRoute] long id)
+        public async Task<IActionResult> DeleteGoal([FromRoute] long id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -196,7 +197,7 @@ namespace Stakeholders.Web.Controllers
 
             await this.repository.DeleteAsync(entity);
 
-            var result = this.mapper.Map<CompanyViewModel>(entity);
+            var result = this.mapper.Map<GoalViewModel>(entity);
 
             return this.Ok(result);
         }
