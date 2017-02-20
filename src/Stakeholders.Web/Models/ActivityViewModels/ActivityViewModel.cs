@@ -1,8 +1,9 @@
 using System;
+using Stakeholders.Web.Models.Base;
 
 namespace Stakeholders.Web.Models.ActivityViewModels
 {
-    public class ActivityViewModel
+    public class ActivityViewModel: ViewModelBase
     {
         public long? TaskId { get; set; }
         public long? CompanyId { get; set; }

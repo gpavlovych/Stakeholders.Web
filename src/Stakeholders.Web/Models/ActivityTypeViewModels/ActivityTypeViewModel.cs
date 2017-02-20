@@ -1,6 +1,8 @@
-﻿namespace Stakeholders.Web.Models.ActivityTypeViewModels
+﻿using Stakeholders.Web.Models.Base;
+
+namespace Stakeholders.Web.Models.ActivityTypeViewModels
 {
-    public class ActivityTypeViewModel
+    public class ActivityTypeViewModel: ViewModelBase
     {
         public string Name { get; set; }
     }

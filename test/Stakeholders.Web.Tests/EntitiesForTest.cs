@@ -42,6 +42,8 @@ namespace Stakeholders.Web.Tests
             this.random = new Random();
         }
 
+        #region Framework
+
         /// <summary>
         /// Creates the int.
         /// </summary>
@@ -59,6 +61,40 @@ namespace Stakeholders.Web.Tests
         {
             return $"some string {Guid.NewGuid():N}";
         }
+
+        /// <summary>
+        /// Creates the collection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="count">The count.</param>
+        /// <param name="factory">The factory.</param>
+        /// <returns>ICollection&lt;T&gt;.</returns>
+        public ICollection<T> CreateCollection<T>(int count, Func<T> factory)
+        {
+            return Enumerable.Repeat(0, count).Select(it => factory()).ToArray();
+        }
+
+        /// <summary>
+        /// Creates the date.
+        /// </summary>
+        /// <returns>DateTime.</returns>
+        public DateTime CreateDate()
+        {
+            return DateTime.Now;
+        }
+
+        /// <summary>
+        /// Creates the bool.
+        /// </summary>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        public bool CreateBool()
+        {
+            return this.CreateInt()%2 == 0;
+        }
+
+        #endregion
+
+        #region Entities
 
         /// <summary>
         /// Creates the type of the organization.
@@ -163,30 +199,6 @@ namespace Stakeholders.Web.Tests
         }
 
         /// <summary>
-        /// Creates the collection.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="count">The count.</param>
-        /// <param name="factory">The factory.</param>
-        /// <returns>ICollection&lt;T&gt;.</returns>
-        public ICollection<T> CreateCollection<T>(int count, Func<T> factory)
-        {
-            return Enumerable.Repeat(0, count).Select(it => factory()).ToArray();
-        }
-
-        /// <summary>
-        /// Creates the organization type view model.
-        /// </summary>
-        /// <returns>OrganizationTypeViewModel.</returns>
-        public OrganizationTypeViewModel CreateOrganizationTypeViewModel()
-        {
-            return new OrganizationTypeViewModel()
-            {
-                Type = this.CreateString()
-            };
-        }
-
-        /// <summary>
         /// Creates the activity.
         /// </summary>
         /// <returns>Activity.</returns>
@@ -210,15 +222,6 @@ namespace Stakeholders.Web.Tests
                         ? this.CreateActivityObserverUserCompany(user: this.CreateApplicationUser())
                         : this.CreateActivityObserverUserCompany(company: this.CreateCompany()))
             };
-        }
-
-        /// <summary>
-        /// Creates the date.
-        /// </summary>
-        /// <returns>DateTime.</returns>
-        public DateTime CreateDate()
-        {
-            return DateTime.Now;
         }
 
         /// <summary>
@@ -321,15 +324,6 @@ namespace Stakeholders.Web.Tests
         }
 
         /// <summary>
-        /// Creates the bool.
-        /// </summary>
-        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        public bool CreateBool()
-        {
-            return this.CreateInt()%2 == 0;
-        }
-
-        /// <summary>
         /// Creates the activity task observer user.
         /// </summary>
         /// <param name="task">The task.</param>
@@ -373,6 +367,23 @@ namespace Stakeholders.Web.Tests
             };
         }
 
+        #endregion
+
+        #region ViewModels
+
+        /// <summary>
+        /// Creates the organization type view model.
+        /// </summary>
+        /// <returns>OrganizationTypeViewModel.</returns>
+        public OrganizationTypeViewModel CreateOrganizationTypeViewModel()
+        {
+            return new OrganizationTypeViewModel()
+            {
+                Id = this.CreateInt(),
+                Type = this.CreateString()
+            };
+        }
+
         /// <summary>
         /// Creates the activity view model.
         /// </summary>
@@ -381,6 +392,7 @@ namespace Stakeholders.Web.Tests
         {
             return new ActivityViewModel()
             {
+                Id = this.CreateInt(),
                 CompanyId = this.CreateInt(),
                 ContactId = this.CreateInt(),
                 DateCreated = this.CreateDate(),
@@ -403,6 +415,7 @@ namespace Stakeholders.Web.Tests
         {
             return new ActivityTaskViewModel()
             {
+                Id = this.CreateInt(),
                 AssignToId = this.CreateInt(),
                 ContactIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
                 ObserverUserIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
@@ -427,19 +440,6 @@ namespace Stakeholders.Web.Tests
         {
             return new ActivityTaskStatusViewModel()
             {
-                Name = this.CreateString(),
-                NameEn = this.CreateString()
-            };
-        }
-
-        /// <summary>
-        /// Creates the activity task status info view model.
-        /// </summary>
-        /// <returns>ActivityTaskStatusInfoViewModel.</returns>
-        public ActivityTaskStatusInfoViewModel CreateActivityTaskStatusInfoViewModel()
-        {
-            return new ActivityTaskStatusInfoViewModel()
-            {
                 Id = this.CreateInt(),
                 Name = this.CreateString(),
                 NameEn = this.CreateString()
@@ -454,23 +454,6 @@ namespace Stakeholders.Web.Tests
         {
             return new ActivityTypeViewModel()
             {
-                Name = this.CreateString()
-            };
-        }
-
-        public OrganizationTypeInfoViewModel CreateOrganizationTypeInfoViewModel()
-        {
-            return new OrganizationTypeInfoViewModel()
-            {
-                Id = this.CreateInt(),
-                Type = this.CreateString()
-            };
-        }
-
-        public ActivityTypeInfoViewModel CreateActivityTypeInfoViewModel()
-        {
-            return new ActivityTypeInfoViewModel()
-            {
                 Id = this.CreateInt(),
                 Name = this.CreateString()
             };
@@ -480,6 +463,7 @@ namespace Stakeholders.Web.Tests
         {
             return new CompanyViewModel()
             {
+                Id = this.CreateInt(),
                 Address = this.CreateString(),
                 City = this.CreateString(),
                 CompanyCode = this.CreateString(),
@@ -493,22 +477,6 @@ namespace Stakeholders.Web.Tests
             };
         }
 
-        public CompanyInfoViewModel CreateCompanyInfoViewModel()
-        {
-            return new CompanyInfoViewModel()
-            {
-                Address = this.CreateString(),
-                City = this.CreateString(),
-                CompanyCode = this.CreateString(),
-                Email = this.CreateString(),
-                Id = this.CreateInt(),
-                Name = this.CreateString(),
-                Influencing = this.CreateString(),
-                InfluencedBy = this.CreateString(),
-                Phone = this.CreateString(),
-                LogoUrl = this.CreateString(),
-                ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
-            };
-        }
+        #endregion
     }
 }

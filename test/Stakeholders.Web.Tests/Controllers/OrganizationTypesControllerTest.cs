@@ -70,11 +70,11 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateOrganizationType);
-            var models = new List<OrganizationTypeInfoViewModel>();
+            var models = new List<OrganizationTypeViewModel>();
             foreach (var entity in entities)
             {
-                var model = this.entitiesForTest.CreateOrganizationTypeInfoViewModel();
-                this.mapperMock.Setup(it => it.Map<OrganizationTypeInfoViewModel>(entity)).Returns(model);
+                var model = this.entitiesForTest.CreateOrganizationTypeViewModel();
+                this.mapperMock.Setup(it => it.Map<OrganizationTypeViewModel>(entity)).Returns(model);
                 models.Add(model);
             }
 

@@ -76,11 +76,11 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateCompany);
-            var models = new List<CompanyInfoViewModel>();
+            var models = new List<CompanyViewModel>();
             foreach (var entity in entities)
             {
-                var model = this.entitiesForTest.CreateCompanyInfoViewModel();
-                this.mapperMock.Setup(it => it.Map<CompanyInfoViewModel>(entity)).Returns(model);
+                var model = this.entitiesForTest.CreateCompanyViewModel();
+                this.mapperMock.Setup(it => it.Map<CompanyViewModel>(entity)).Returns(model);
                 models.Add(model);
             }
 

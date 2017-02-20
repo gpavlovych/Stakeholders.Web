@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Stakeholders.Web.Models.Base;
 
 namespace Stakeholders.Web.Models.CompanyViewModels
 {
-    public class CompanyViewModel
+    public class CompanyViewModel: ViewModelBase
     {
         public string Address { get; set; }
         public string City { get; set; }

@@ -71,10 +71,10 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         [HttpGet]
-        public OrganizationTypeInfoViewModel[] GetOrganizationTypes(int start = 0, int count = 10)
+        public OrganizationTypeViewModel[] GetOrganizationTypes(int start = 0, int count = 10)
         {
             return this.repository.GetAll(start, count).Select(
-                    it => this.mapper.Map<OrganizationTypeInfoViewModel>(it)).ToArray();
+                    it => this.mapper.Map<OrganizationTypeViewModel>(it)).ToArray();
         }
 
         /// <summary>

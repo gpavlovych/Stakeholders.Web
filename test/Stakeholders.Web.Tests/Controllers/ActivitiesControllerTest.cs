@@ -102,7 +102,13 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateActivity);
-            var expectedResult = entities.Select(ActivitiesControllerTest.ToInfoViewModel).ToArray();
+            var expectedResult = entities.Select(
+                activity =>
+                {
+                    var r= ActivitiesControllerTest.ToViewModel(activity);
+                    r.Id = activity.Id;
+                    return r;
+                }).ToArray();
             var start = 2;
             var count = 3;
             this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
@@ -282,7 +288,7 @@ namespace Stakeholders.Web.Tests.Controllers
 
             // assert
             result.Should().NotBeNull();
-            ActivitiesControllerTest.ToViewModel(entity).ShouldBeEquivalentTo(viewModel);
+            ActivitiesControllerTest.ToViewModel(entity).ShouldBeEquivalentTo(viewModel, options=>options.Excluding(it=>it.Id));
             this.repositoryMock.Verify(it => it.UpdateAsync(entity));
         }
 
@@ -349,8 +355,7 @@ namespace Stakeholders.Web.Tests.Controllers
                             () =>
                             {
                                 entity.Id = id;
-                                entity.DateCreated = viewModel.DateCreated??DateTime.UtcNow;
-                                ToViewModel(entity).ShouldBeEquivalentTo(viewModel);
+                                ToViewModel(entity).ShouldBeEquivalentTo(viewModel,options=>options.Excluding(it=>it.Id).Excluding(it=>it.DateCreated));
                             }));
 
             // act
@@ -428,21 +433,6 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         #endregion DeleteActivity
-
-        /// <summary>
-        /// To the information view model.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <returns>ActivityInfoViewModel.</returns>
-        private static ActivityInfoViewModel ToInfoViewModel(Activity entity)
-        {
-            var result = new ActivityInfoViewModel()
-            {
-                Id = entity.Id
-            };
-            ActivitiesControllerTest.UpdateViewModel(result, entity);
-            return result;
-        }
 
         /// <summary>
         /// To the view model.

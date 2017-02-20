@@ -76,10 +76,10 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>ActivityTaskStatusInfoViewModel[].</returns>
         [HttpGet]
-        public ActivityTaskStatusInfoViewModel[] GetActivityTaskStatuses(int start = 0, int count = 10)
+        public ActivityTaskStatusViewModel[] GetActivityTaskStatuses(int start = 0, int count = 10)
         {
             return
-                this.repository.GetAll(start, count).Select(it => this.mapper.Map<ActivityTaskStatusInfoViewModel>(it)).ToArray();
+                this.repository.GetAll(start, count).Select(it => this.mapper.Map<ActivityTaskStatusViewModel>(it)).ToArray();
         }
 
         // GET: api/ActivityTaskStatuses/count

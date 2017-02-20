@@ -95,7 +95,13 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateActivityTask);
-            var expectedResult = entities.Select(ActivityTasksControllerTest.ToInfoViewModel).ToArray();
+            var expectedResult = entities.Select(
+                task =>
+                {
+                    var r = ActivityTasksControllerTest.ToViewModel(task);
+                    r.Id = task.Id;
+                    return r;
+                }).ToArray();
             var start = 2;
             var count = 3;
             this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
@@ -278,7 +284,7 @@ namespace Stakeholders.Web.Tests.Controllers
 
             // assert
             result.Should().NotBeNull();
-            ActivityTasksControllerTest.ToViewModel(entity).ShouldBeEquivalentTo(viewModel);
+            ActivityTasksControllerTest.ToViewModel(entity).ShouldBeEquivalentTo(viewModel, options=>options.Excluding(it=>it.Id));
             this.repositoryMock.Verify(it => it.UpdateAsync(entity));
         }
 
@@ -348,8 +354,10 @@ namespace Stakeholders.Web.Tests.Controllers
                             () =>
                             {
                                 entity.Id = id;
-                                entity.DateCreated = viewModel.DateCreated ?? DateTime.UtcNow;
-                                ToViewModel(entity).ShouldBeEquivalentTo(viewModel);
+                                ToViewModel(entity)
+                                    .ShouldBeEquivalentTo(
+                                        viewModel,
+                                        options => options.Excluding(it => it.Id).Excluding(it => it.DateCreated));
                             }));
 
             // act
@@ -427,21 +435,6 @@ namespace Stakeholders.Web.Tests.Controllers
         }
 
         #endregion DeleteActivityTask
-
-        /// <summary>
-        /// To the information view model.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <returns>ActivityTaskInfoViewModel.</returns>
-        private static ActivityTaskInfoViewModel ToInfoViewModel(ActivityTask entity)
-        {
-            var result = new ActivityTaskInfoViewModel()
-            {
-                Id = entity.Id
-            };
-            ActivityTasksControllerTest.UpdateViewModel(result, entity);
-            return result;
-        }
 
         /// <summary>
         /// To the view model.

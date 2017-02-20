@@ -74,11 +74,11 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateActivityType);
-            var models = new List<ActivityTypeInfoViewModel>();
+            var models = new List<ActivityTypeViewModel>();
             foreach (var entity in entities)
             {
-                var model = this.entitiesForTest.CreateActivityTypeInfoViewModel();
-                this.mapperMock.Setup(it => it.Map<ActivityTypeInfoViewModel>(entity)).Returns(model);
+                var model = this.entitiesForTest.CreateActivityTypeViewModel();
+                this.mapperMock.Setup(it => it.Map<ActivityTypeViewModel>(entity)).Returns(model);
                 models.Add(model);
             }
 

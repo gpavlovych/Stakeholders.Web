@@ -119,13 +119,13 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>ActivityInfoViewModel[].</returns>
         [HttpGet]
-        public ActivityInfoViewModel[] GetActivities(int start = 0, int count = 10)
+        public ActivityViewModel[] GetActivities(int start = 0, int count = 10)
         {
             return
                 this.repository.GetAll(start, count).Select(
                     it =>
                     {
-                        var result = new ActivityInfoViewModel()
+                        var result = new ActivityViewModel()
                         {
                             Id = it.Id
                         };

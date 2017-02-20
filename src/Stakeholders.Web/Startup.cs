@@ -115,18 +115,13 @@ namespace Stakeholders.Web
                 {
                     mapperConfigurationExpression.CreateMap<ActivityTaskStatus, ActivityTaskStatusViewModel>();
                     mapperConfigurationExpression.CreateMap<ActivityTaskStatusViewModel, ActivityTaskStatus>();
-                    mapperConfigurationExpression.CreateMap<ActivityTaskStatus, ActivityTaskStatusInfoViewModel>();
 
                     mapperConfigurationExpression.CreateMap<ActivityType, ActivityTypeViewModel>();
                     mapperConfigurationExpression.CreateMap<ActivityTypeViewModel, ActivityType>();
-                    mapperConfigurationExpression.CreateMap<ActivityType, ActivityTypeInfoViewModel>();
 
                     mapperConfigurationExpression.CreateMap<OrganizationType, OrganizationTypeViewModel>();
                     mapperConfigurationExpression.CreateMap<OrganizationTypeViewModel, OrganizationType>();
-                    mapperConfigurationExpression.CreateMap<OrganizationType, OrganizationTypeInfoViewModel>();
 
-                    mapperConfigurationExpression.CreateMap<Company, CompanyInfoViewModel>()
-                        .ForMember(it => it.ObserverActivityIds, c => c.ResolveUsing<ObserverActivitiesToViewModelResolver>());
                     mapperConfigurationExpression.CreateMap<CompanyViewModel, Company>()
                         .ForMember(it => it.ObserverActivities, c => c.ResolveUsing<ObserverActivitiesToEntityResolver>());
                     mapperConfigurationExpression.CreateMap<Company, CompanyViewModel>()

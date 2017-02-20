@@ -11,12 +11,15 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using Stakeholders.Web.Models.Base;
+
 namespace Stakeholders.Web.Models.OrganizationTypeViewModels
 {
     /// <summary>
     /// Class OrganizationTypeViewModel.
     /// </summary>
-    public class OrganizationTypeViewModel
+    public class OrganizationTypeViewModel: ViewModelBase
     {
         /// <summary>
         /// Gets or sets the type.
