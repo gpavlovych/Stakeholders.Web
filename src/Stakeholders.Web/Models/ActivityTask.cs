@@ -100,10 +100,4 @@ namespace Stakeholders.Web.Models
         /// <value>The contacts.</value>
         public ICollection<ActivityTaskObserverUser> ObserverUsers { get; set; }
     }
-
-    public class ActivityTaskObserverUser: BaseEntity
-    {
-        public ActivityTask Task { get; set; }
-        public ApplicationUser User { get; set; }
-    }
 }
