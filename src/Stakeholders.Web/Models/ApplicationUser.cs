@@ -13,7 +13,6 @@
 // ***********************************************************************
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Models
 {

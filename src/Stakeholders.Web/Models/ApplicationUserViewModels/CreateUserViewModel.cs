@@ -32,10 +32,10 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
         public string Title { get; set; }
 
         /// <summary>
-        /// Gets or sets the login.
+        /// Gets or sets the email.
         /// </summary>
-        /// <value>The login.</value>
-        public string Login { get; set; }
+        /// <value>The email.</value>
+        public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets the password.

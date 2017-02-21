@@ -4,7 +4,7 @@
 // Created          : 02-16-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-16-2017
+// Last Modified On : 02-19-2017
 // ***********************************************************************
 // <copyright file="AccountController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -59,7 +59,7 @@ namespace Stakeholders.Web.Controllers
         private readonly ILogger _logger;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountController"/> class.
+        /// Initializes a new instance of the <see cref="AccountController" /> class.
         /// </summary>
         /// <param name="userManager">The user manager.</param>
         /// <param name="signInManager">The sign in manager.</param>

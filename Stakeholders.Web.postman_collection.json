@@ -3,7 +3,7 @@
 	"info": {
 		"name": "Stakeholders.Web",
 		"_postman_id": "60942225-3a0c-cb75-6c6c-6f010541f823",
-		"description": "",
+		"description": "Here you can find samples how to use Stakeholders.Web REST API. \nImport this collection to Postman, replace the domain name (http://localhost:33346) if needed\nIf API call requires no authorization (no need for header \"Authorization: Bearer token\", register new user via POST http://localhost:33346/ApplicationUsers or login via POST http://localhost:33346/token), run.\nIf API call requires authorization (header \"Authorization: Bearer token\" is required), signup first (POST http://localhost:33346/ApplicationUsers), then login (POST http://localhost:33346/ApplicationUsers) and replace token in API call's header \"Authorization: Bearer token\" with the generated one, then run.\nReplace IDs in URI and edit JSON if needed.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -21,6 +21,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb21lZW1haWxAZXhhbXBsZS5jb20iLCJqdGkiOiIzZTNmOTA1YS1jM2RmLTQzMjktYTFlNS04ZmE4ZTQ0NWI1N2IiLCJpYXQiOjYzNjIzMjY2MDExMzEwMDYxMiwibmJmIjoxNDg3NjY5MjExLCJleHAiOjE0ODc2Njk1MTEsImlzcyI6IkV4YW1wbGVJc3N1ZXIiLCJhdWQiOiJFeGFtcGxlQXVkaWVuY2UifQ.0tZSGeHgv8lLSkIeWbhwbisnsQo2G-cFn-wqn8gJmCk",
+								"description": ""
 							}
 						],
 						"body": {
@@ -36,7 +41,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Activities/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb21lZW1haWxAZXhhbXBsZS5jb20iLCJqdGkiOiIzZTNmOTA1YS1jM2RmLTQzMjktYTFlNS04ZmE4ZTQ0NWI1N2IiLCJpYXQiOjYzNjIzMjY2MDExMzEwMDYxMiwibmJmIjoxNDg3NjY5MjExLCJleHAiOjE0ODc2Njk1MTEsImlzcyI6IkV4YW1wbGVJc3N1ZXIiLCJhdWQiOiJFeGFtcGxlQXVkaWVuY2UifQ.0tZSGeHgv8lLSkIeWbhwbisnsQo2G-cFn-wqn8gJmCk",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all activities"
 					},
@@ -47,7 +58,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Activities",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb21lZW1haWxAZXhhbXBsZS5jb20iLCJqdGkiOiIzZTNmOTA1YS1jM2RmLTQzMjktYTFlNS04ZmE4ZTQ0NWI1N2IiLCJpYXQiOjYzNjIzMjY2MDExMzEwMDYxMiwibmJmIjoxNDg3NjY5MjExLCJleHAiOjE0ODc2Njk1MTEsImlzcyI6IkV4YW1wbGVJc3N1ZXIiLCJhdWQiOiJFeGFtcGxlQXVkaWVuY2UifQ.0tZSGeHgv8lLSkIeWbhwbisnsQo2G-cFn-wqn8gJmCk",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activities with default start (0) and count (10) request query parameters"
 					},
@@ -58,7 +75,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Activities?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activities"
 					},
@@ -69,7 +92,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Activities/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting activity with id=3"
 					},
@@ -84,6 +113,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -100,7 +134,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Activities/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the activity with id=3"
 					},
@@ -122,6 +162,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -137,7 +182,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTaskStatuses/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all activities"
 					},
@@ -148,7 +199,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTaskStatuses",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activity task statuses with default start (0) and count (10) request query parameters"
 					},
@@ -159,7 +216,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTaskStatuses?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activity task statuses"
 					},
@@ -170,7 +233,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTaskStatuses/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting activity task status with id=3"
 					},
@@ -185,6 +254,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -201,7 +275,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTaskStatuses/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the activity task status with id=3"
 					},
@@ -223,6 +303,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -238,7 +323,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTasks/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all activity tasks"
 					},
@@ -249,7 +340,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTasks",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activity tasks with default start (0) and count (10) request query parameters"
 					},
@@ -260,7 +357,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTasks?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activity tasks"
 					},
@@ -271,7 +374,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTasks/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting activity task with id=3"
 					},
@@ -286,6 +395,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -302,7 +416,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTasks/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the activity task with id=3"
 					},
@@ -324,6 +444,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -339,7 +464,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTypes/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all activity types"
 					},
@@ -350,7 +481,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTypes",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activity types with default start (0) and count (10) request query parameters"
 					},
@@ -361,7 +498,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTypes?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all activity types"
 					},
@@ -372,7 +515,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTypes/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting activity type with id=3"
 					},
@@ -387,6 +536,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -403,7 +557,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ActivityTypes/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the activity type with id=3"
 					},
@@ -429,7 +589,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\n    \"name\": \"user322\",\n    \"title\": \"Mr.\",\n    \"login\": \"TEST\",\n    \"password\": \"TEST123\"\n  }"
+							"raw": " {\n    \"name\": \"user322\",\n    \"title\": \"Mr.\",\n    \"email\": \"someemail@example.com\",\n    \"password\": \"ABCabc123@\"\n  }"
 						},
 						"description": "Adding new ApplicationUser"
 					},
@@ -440,7 +600,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ApplicationUsers/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all application users"
 					},
@@ -451,7 +617,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ApplicationUsers",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all application users with default start (0) and count (10) request query parameters"
 					},
@@ -462,7 +634,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ApplicationUsers?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all application users"
 					},
@@ -473,7 +651,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ApplicationUsers/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting application user with id=3"
 					},
@@ -488,6 +672,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -504,7 +693,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/ApplicationUsers/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the application user with id=3"
 					},
@@ -526,6 +721,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -541,7 +741,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Companies/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all companies"
 					},
@@ -552,7 +758,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Companies",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all companies with default start (0) and count (10) request query parameters"
 					},
@@ -563,7 +775,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Companies?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all companies"
 					},
@@ -574,7 +792,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Companies/2",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting company with id=3"
 					},
@@ -589,6 +813,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -605,7 +834,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Companies/10002",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the company with id=3"
 					},
@@ -627,6 +862,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -642,7 +882,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Contacts/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all activities"
 					},
@@ -653,7 +899,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Contacts",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all contacts with default start (0) and count (10) request query parameters"
 					},
@@ -664,7 +916,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Contacts?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all contacts"
 					},
@@ -675,7 +933,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Contacts/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting contact with id=3"
 					},
@@ -691,6 +955,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -702,11 +971,17 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities/3",
+					"name": "http://localhost:33346/api/Contacts/3",
 					"request": {
-						"url": "http://localhost:33346/api/Activities/3",
+						"url": "http://localhost:33346/api/Contacts/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the contact with id=3"
 					},
@@ -728,6 +1003,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb21lZW1haWxAZXhhbXBsZS5jb20iLCJqdGkiOiIzZTNmOTA1YS1jM2RmLTQzMjktYTFlNS04ZmE4ZTQ0NWI1N2IiLCJpYXQiOjYzNjIzMjY2MDExMzEwMDYxMiwibmJmIjoxNDg3NjY5MjExLCJleHAiOjE0ODc2Njk1MTEsImlzcyI6IkV4YW1wbGVJc3N1ZXIiLCJhdWQiOiJFeGFtcGxlQXVkaWVuY2UifQ.0tZSGeHgv8lLSkIeWbhwbisnsQo2G-cFn-wqn8gJmCk",
+								"description": ""
 							}
 						],
 						"body": {
@@ -746,7 +1026,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzb21lZW1haWxAZXhhbXBsZS5jb20iLCJqdGkiOiJiNTllOWI0ZC03MmM0LTQ1ZWYtOWFjYy0yZWE0M2ViNGZjMDQiLCJpYXQiOjYzNjIzMjY2NDg4OTQwMzc2OCwibmJmIjoxNDg3NjY5Njg4LCJleHAiOjE0ODc2Njk5ODgsImlzcyI6IkV4YW1wbGVJc3N1ZXIiLCJhdWQiOiJFeGFtcGxlQXVkaWVuY2UifQ.W5-bJ9l5HMZJcODtb0W4Idil1fSYBiMaAlK07PMMPJQ",
 								"description": ""
 							}
 						],
@@ -763,7 +1043,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3MiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -864,6 +1144,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -879,7 +1164,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationCategories/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all organization categories"
 					},
@@ -890,7 +1181,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationCategories",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all organization categories with default start (0) and count (10) request query parameters"
 					},
@@ -901,7 +1198,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationCategories?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all organization categories"
 					},
@@ -912,7 +1215,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationCategories/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting organization category with id=3"
 					},
@@ -927,6 +1236,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -943,7 +1257,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationCategories/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the organization category with id=3"
 					},
@@ -965,6 +1285,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -980,7 +1305,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationTypes/4",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all organization types"
 					},
@@ -991,7 +1322,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationTypes",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all organization types with default start (0) and count (10) request query parameters"
 					},
@@ -1002,7 +1339,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationTypes?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all organization types"
 					},
@@ -1013,7 +1356,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationTypes/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets the organization type with id=4"
 					},
@@ -1028,6 +1377,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -1044,7 +1398,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/OrganizationTypes/9",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the organization type with id=3"
 					},
@@ -1066,6 +1426,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -1081,7 +1446,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Organizations/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all organizations"
 					},
@@ -1092,7 +1463,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Organizations",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all organizations with default start (0) and count (10) request query parameters"
 					},
@@ -1103,7 +1480,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Organizations?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all organizations"
 					},
@@ -1114,7 +1497,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Organizations/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting organization with id=3"
 					},
@@ -1129,6 +1518,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -1145,7 +1539,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Organizations/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the organization with id=3"
 					},
@@ -1167,6 +1567,11 @@
 								"key": "Content-Type",
 								"value": "application/json",
 								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
 							}
 						],
 						"body": {
@@ -1182,7 +1587,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Roles/count",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Gets total count of all roles"
 					},
@@ -1193,7 +1604,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Roles",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all roles with default start (0) and count (10) request query parameters"
 					},
@@ -1204,7 +1621,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Roles?start=0&count=10",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting all roles"
 					},
@@ -1215,7 +1638,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Roles/3",
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Getting role with id=3"
 					},
@@ -1230,6 +1659,11 @@
 							{
 								"key": "Content-Type",
 								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
 								"description": ""
 							}
 						],
@@ -1246,7 +1680,13 @@
 					"request": {
 						"url": "http://localhost:33346/api/Roles/3",
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dddeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJURVNUIiwianRpIjoiMmRkNDMyNTctMzNjZi00NTE0LWJmNzQtYjIxNjJmMzk1OThkIiwiaWF0Ijo2MzYyMzIyMzcyNDI4MjUwNzMsIm5iZiI6MTQ4NzYyNjkyNCwiZXhwIjoxNDg3NjI3MjI0LCJpc3dMiOiJFeGFtcGxlSXNzdWVyIiwiYXVkIjoiRXhhbXBsZUF1ZGllbmNlIn0.Z1rFRslGYVPYR0MyQL9fsCAlAWOT32YjfjhB9QPXMtc",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Deletes the role with id=3"
 					},
@@ -1264,14 +1704,14 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "username",
-							"value": "user322",
+							"key": "email",
+							"value": "someemail@example.com",
 							"type": "text",
 							"enabled": true
 						},
 						{
 							"key": "password",
-							"value": "TEST123",
+							"value": "ABCabc123@",
 							"type": "text",
 							"enabled": true
 						}

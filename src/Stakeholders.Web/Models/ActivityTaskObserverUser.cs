@@ -6,27 +6,29 @@
 // Last Modified By : George
 // Last Modified On : 02-21-2017
 // ***********************************************************************
-// <copyright file="IApplicationUserManager.cs" company="">
+// <copyright file="ActivityTaskObserverUser.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-using System.Threading.Tasks;
-using Stakeholders.Web.Models;
-
-namespace Stakeholders.Web
+namespace Stakeholders.Web.Models
 {
     /// <summary>
-    /// Interface IApplicationUserManager
+    /// Class ActivityTaskObserverUser.
     /// </summary>
-    public interface IApplicationUserManager
+    /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
+    public class ActivityTaskObserverUser : BaseEntity
     {
         /// <summary>
-        /// Creates the asynchronous.
+        /// Gets or sets the task.
         /// </summary>
-        /// <param name="user">The user.</param>
-        /// <param name="password">The password.</param>
-        /// <returns>Task.</returns>
-        Task CreateAsync(ApplicationUser user, string password);
+        /// <value>The task.</value>
+        public ActivityTask Task { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user.
+        /// </summary>
+        /// <value>The user.</value>
+        public ApplicationUser User { get; set; }
     }
 }

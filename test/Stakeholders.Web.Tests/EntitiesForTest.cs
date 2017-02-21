@@ -597,7 +597,7 @@ namespace Stakeholders.Web.Tests
             {
                 Name = this.CreateString(),
                 Title = this.CreateString(),
-                Login = this.CreateString(),
+                Email = this.CreateString(),
                 Password = this.CreateString()
             };
         }

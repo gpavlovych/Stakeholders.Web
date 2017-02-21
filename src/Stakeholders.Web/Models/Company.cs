@@ -12,7 +12,6 @@
 // <summary></summary>
 // ***********************************************************************
 using System.Collections.Generic;
-using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Models
 {

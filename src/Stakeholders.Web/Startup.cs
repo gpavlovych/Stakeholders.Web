@@ -13,12 +13,9 @@
 // ***********************************************************************
 
 using System;
-using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using AutoMapper.QueryableExtensions;
-using Microsoft.DotNet.Cli.Utils;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -90,7 +87,7 @@ namespace Stakeholders.Web
             services.AddApplicationInsightsTelemetry(this.Configuration);
 
             services.AddDbContext<ApplicationDbContext>(
-                options =>
+                options => 
                         options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -167,7 +164,7 @@ namespace Stakeholders.Web
 
                     mapperConfigurationExpression
                         .CreateMap<CreateUserViewModel, ApplicationUser>()
-                        .ForMember(it => it.UserName, resolver => resolver.MapFrom(src => src.Login));
+                        .ForMember(it => it.UserName, resolver => resolver.MapFrom(it => it.Email));
 
                     mapperConfigurationExpression
                         .CreateMap<Contact, ContactViewModel>()

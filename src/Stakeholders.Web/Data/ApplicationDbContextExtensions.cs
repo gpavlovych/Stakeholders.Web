@@ -1,15 +1,34 @@
-﻿using System;
+﻿// ***********************************************************************
+// Assembly         : 
+// Author           : George
+// Created          : 02-19-2017
+//
+// Last Modified By : George
+// Last Modified On : 02-21-2017
+// ***********************************************************************
+// <copyright file="ApplicationDbContextExtensions.cs" company="">
+//     Copyright (c) . All rights reserved.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
 
-namespace Stakeholders.Web
+namespace Stakeholders.Web.Data
 {
+    /// <summary>
+    /// Class ApplicationDbContextExtensions.
+    /// </summary>
     public static class ApplicationDbContextExtensions
     {
+        /// <summary>
+        /// Ensures the seed data.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public static void EnsureSeedData(this ApplicationDbContext context)
         {
             if (context.AllMigrationsApplied())
@@ -150,6 +169,11 @@ namespace Stakeholders.Web
             }
         }
 
+        /// <summary>
+        /// Alls the migrations applied.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool AllMigrationsApplied(this ApplicationDbContext context)
         {
             var applied = context.GetService<IHistoryRepository>()
@@ -163,6 +187,19 @@ namespace Stakeholders.Web
             return !total.Except(applied).Any();
         }
 
+        /// <summary>
+        /// Finds the activity by subject or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="subject">The subject.</param>
+        /// <param name="company">The company.</param>
+        /// <param name="task">The task.</param>
+        /// <param name="activityType">Type of the activity.</param>
+        /// <param name="contact">The contact.</param>
+        /// <param name="user">The user.</param>
+        /// <param name="activityObserverUsers">The activity observer users.</param>
+        /// <param name="activityObserverCompanies">The activity observer companies.</param>
+        /// <returns>Activity.</returns>
         private static Activity FindActivityBySubjectOrCreate(
             this ApplicationDbContext context,
             string subject,
@@ -205,6 +242,17 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the activity task by subject or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="subject">The subject.</param>
+        /// <param name="userAssignTo">The user assign to.</param>
+        /// <param name="userCreatedBy">The user created by.</param>
+        /// <param name="status">The status.</param>
+        /// <param name="goal">The goal.</param>
+        /// <param name="contacts">The contacts.</param>
+        /// <returns>ActivityTask.</returns>
         private static ActivityTask FindActivityTaskBySubjectOrCreate(
             this ApplicationDbContext context,
             string subject,
@@ -240,6 +288,12 @@ namespace Stakeholders.Web
             return task1;
         }
 
+        /// <summary>
+        /// Finds the goal by title or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="title">The title.</param>
+        /// <returns>Goal.</returns>
         private static Goal FindGoalByTitleOrCreate(
           this ApplicationDbContext context,
           string title)
@@ -258,6 +312,12 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the activity type by name or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>ActivityType.</returns>
         private static ActivityType FindActivityTypeByNameOrCreate(
             this ApplicationDbContext context,
             string name)
@@ -276,6 +336,12 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the activity task status by name or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>ActivityTaskStatus.</returns>
         private static ActivityTaskStatus FindActivityTaskStatusByNameOrCreate(
             this ApplicationDbContext context,
             string name)
@@ -295,6 +361,16 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the contact by name f and name l or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="nameF">The name f.</param>
+        /// <param name="nameL">The name l.</param>
+        /// <param name="user">The user.</param>
+        /// <param name="company">The company.</param>
+        /// <param name="organization">The organization.</param>
+        /// <returns>Contact.</returns>
         private static Contact FindContactByNameFAndNameLOrCreate(
             this ApplicationDbContext context,
             string nameF,
@@ -326,6 +402,16 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the organization by name or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="company">The company.</param>
+        /// <param name="category">The category.</param>
+        /// <param name="user">The user.</param>
+        /// <returns>Organization.</returns>
         private static Organization FindOrganizationByNameOrCreate(
             this ApplicationDbContext context,
             string name,
@@ -353,6 +439,12 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the organization type by type or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="type">The type.</param>
+        /// <returns>OrganizationType.</returns>
         private static OrganizationType FindOrganizationTypeByTypeOrCreate(
             this ApplicationDbContext context,
             string type)
@@ -370,6 +462,13 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the organization category by name or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="company">The company.</param>
+        /// <returns>OrganizationCategory.</returns>
         private static OrganizationCategory FindOrganizationCategoryByNameOrCreate(
             this ApplicationDbContext context,
             string name,
@@ -393,6 +492,14 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the application user by name or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="role">The role.</param>
+        /// <param name="company">The company.</param>
+        /// <returns>ApplicationUser.</returns>
         private static ApplicationUser FindApplicationUserByNameOrCreate(
             this ApplicationDbContext context,
             string name,
@@ -415,6 +522,12 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the company by name or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>Company.</returns>
         private static Company FindCompanyByNameOrCreate(this ApplicationDbContext context, string name)
         {
             var result = context.Companies.FirstOrDefault(it => it.Name == name);
@@ -440,6 +553,12 @@ namespace Stakeholders.Web
             return result;
         }
 
+        /// <summary>
+        /// Finds the role by name or create.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>Role.</returns>
         private static Role FindRoleByNameOrCreate(this ApplicationDbContext context, string name)
         {
             var result = context.Roles.FirstOrDefault(it => it.Name == name);
