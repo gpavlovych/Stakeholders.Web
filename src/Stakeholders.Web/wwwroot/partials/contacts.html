@@ -1,0 +1,198 @@
+<div class="dashboardContent contacts" ng-controller="contactsController" ng-cloak>
+      <h1>CONTACTS</h1>
+
+    <div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
+        <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
+            <md-fab-trigger>
+                <md-button aria-label="menu" class="md-fab add">
+                    <md-icon md-svg-src="{{pathImage}}add.svg"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+
+            <md-fab-actions>
+                  <span class="toggleActiv">
+                        <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
+                              <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
+                        </md-button>
+                        <span class="ng-tooltip-bt">New Activities</span>
+                  </span>
+                  <span class="toggleTask">
+                        <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
+                              <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
+                        </md-button>
+                        <span class="ng-tooltip-bt">New Task</span>
+                  </span>
+            </md-fab-actions>
+        </md-fab-speed-dial>
+    </div>
+    <div class="blockFilters">
+            <md-input-container class="table-gallery">
+                  <span>Gallery</span>
+                  <md-switch class="md-primary" name="switchView" aria-label="switchView" ng-model="switchView" required></md-switch>
+                  <span>Table</span>
+            </md-input-container>
+            <div class="categoryList" ng-controller="dropdownController">
+                  <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
+            </div>
+            <div class="categoryList" ng-controller="dropdownController">
+                  <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
+            </div>
+            <form class="formSearch">
+                  <div class="form-group">
+                        <div class="input-group">
+                              <input type="text" class="form-control" ng-model="search">
+                              <md-icon md-svg-src="{{pathImage}}magnify.svg"></md-icon>
+                        </div>
+                  </div>
+            </form>
+      </div>
+
+      <div ng-include src="'partials/formTarefa.html'"></div>
+      <div ng-include src="'partials/formAtividade.html'"></div>
+
+      <div class="editorPanel" ng-hide="toggleContEdit">
+          <span class="closeModal" id="toggleFilterContEdit" ng-click="toggleFilterContEdit()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+            <div class="colLeft">
+                  <div class="formEditor">
+                        <input type="text" placeholder="First Name" />
+                        <input type="text" placeholder="Family Name" />
+                        <input type="text" placeholder="Title" />
+                        <div class="statusList" ng-controller="dropdownController">
+                              <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
+                        </div>
+                        <input type="text" placeholder="Phone" />
+                        <input type="text" placeholder="Email" />
+                        <div class="photoContacts">
+                              <h3>Photo</h3>
+                              <div class="photo">
+                                    <img class="userImage" src="{{pathUser}}giselle-wide.png" />
+                                    <md-button class="md-fab footertrash" aria-label="Trash">
+                                          <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
+                                    </md-button>
+                                    <button class="btnDefault" type='button' ng-click='addphoto()'>Add photo</button>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+            <div class="colRight">
+                  <div class="statusList" ng-controller="dropdownController">
+                        <div dropdown-select="ddSelectOptionsOwner" dropdown-model="ddSelectSelectedOwner" dropdown-item-label="text"></div>
+                  </div>
+                  <textarea placeholder="Comment"></textarea>
+            </div>
+            <p class="saveBlock">
+                <button class="btnCancel" id="toggleFilterContEdit" ng-click="toggleFilterContEdit();" type='button'>CANCEL</button>
+                <button class="btnSave" type='button' ng-click="toggleFilterContEdit();showAlert($event);">SAVE</button>
+            </p>
+      </div>
+      <div class="contactsResult" ng-controller="contactsResult">
+            <div class="contentList" ng-scrollbars ng-scrollbars-config="config" ng-hide="switchView">
+                  <ul class="listResult" ng-repeat="contact in data.contacts">
+                        <li>
+                              <h3 class="title">
+                                    <img class="imageUser" src="{{pathUser}}{{ contact.userimage }}" />
+                                    <strong>{{ contact.firstname }} {{ contact.familyname }} </strong>
+                                    <span>{{ contact.title }}</span>
+                              </h3>
+                              <div class="contact">
+                                    <p><span>Organization</span><strong>{{ contact.organization }}</strong></p>
+                                    <p><span>Ownership</span><strong>{{ contact.ownership }}</strong></p>
+                                    <p><span>Phone</span><strong>{{ contact.phone }}</strong></p>
+                                    <p><span>Email</span><strong><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></strong></p>
+                              </div>
+                              <div class="statsResult">
+                                    <p><span class="color green"></span>Tasks Comp: <strong>{{ contact.taskcomp }}%</strong></p>
+                                    <p><span class="color blue"></span>Activities: <strong>{{ contact.activities }}</p>
+                              </div>
+                              <div class="bottomFooter">
+                                    <md-button class="md-fab footertrash" aria-label="Trash" ng-click="remover($event, $index);">
+                                          <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
+                                    </md-button>
+                                    <md-button id="toggleFilterEdit" ng-click="toggleFilterContEdit();" class="md-fab footerpen" aria-label="Pen">
+                                          <md-icon md-svg-src="{{pathImage}}pen.svg"></md-icon>
+                                    </md-button>
+                              </div>
+                        </li>
+                  </ul>
+            </div>
+            <div class="tableList" ng-show="switchView">
+                  <table class="table table-bordered table-striped">
+                        <thead>
+                              <tr>
+                                    <th>
+                                          <a class="tagcolor" href="#" ng-click="orderByField='nameField'; reverseSort = !reverseSort">
+                                                First name <span ng-show="orderByField == 'nameField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='categoryField'; reverseSort = !reverseSort">
+                                                Family name <span ng-show="orderByField == 'categoryField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='typeField'; reverseSort = !reverseSort">
+                                                Title <span ng-show="orderByField == 'typeField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                                Organization <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                                Ownership <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                                Phone <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                                Email <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                                Related Tasks <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                                Related Activities <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                          </a>
+                                    </th>
+                                    <th>
+                                          <a href="#">
+                                                Options
+                                          </a>
+                                    </th>
+                              </tr>
+                        </thead>
+                        <tbody ng-scrollbars ng-scrollbars-config="config">
+                              <tr ng-repeat="contact in data.contacts|orderBy:orderByField:reverseSort">
+                                    <td>{{ contact.firstname }}</td>
+                                    <td>{{ contact.familyname }}</td>
+                                    <td>{{ contact.title }}</td>
+                                    <td>{{ contact.organization }}</td>
+                                    <td>{{ contact.ownership }}</td>
+                                    <td>{{ contact.phone }}</td>
+                                    <td>{{ contact.email }}</td>
+                                    <td>{{ contact.taskcomp }}</td>
+                                    <td>{{ contact.activities }}</td>
+                                    <td>
+                                          <md-button class="md-fab footertrash" aria-label="Trash" ng-click="remover($event, $index);">
+                                                <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
+                                          </md-button>
+                                          <md-button id="toggleFilterContEdit" ng-click="toggleFilterContEdit();" class="md-fab footerpen" aria-label="Pen">
+                                                <md-icon md-svg-src="{{pathImage}}pen.svg"></md-icon>
+                                          </md-button>
+                                    </td>
+                              </tr>
+                        </tbody>
+                  </table>
+            </div>
+      </div>
+</div>

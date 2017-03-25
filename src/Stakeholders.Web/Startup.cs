@@ -24,7 +24,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
-using Stakeholders.Web.Services;
 using AutoMapper;
 using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
@@ -112,8 +111,6 @@ namespace Stakeholders.Web
             services.AddMvc();
 
             // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddScoped<EntityToViewModel>();
             services.AddScoped<ViewModelToEntity>();
             services.AddAutoMapper(

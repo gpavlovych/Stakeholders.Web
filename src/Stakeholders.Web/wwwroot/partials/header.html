@@ -1,0 +1,16 @@
+<div class="mainHeader" ng-controller="headerController">
+      <h1 class="logo">
+            <a href="home">
+                  <img src="{{pathImage}}logotype-porla.png" />
+            </a>
+      </h1>
+      <nav ng-include src="'partials/navigation.html'"></nav>
+      <div class="welcome" ng-repeat="user in users">
+            <a class="userButton" href="#">
+                  <i class="{{ user.status }}">{{ user.status }}</i>
+                  <img src="{{ user.image }}" alt="{{ user.name }}" />
+            </a>
+            <span>Welcome, {{ user.name }}</span>
+            <a class="logout" href="login.html"> <img src="{{ pathImage }}/logout.png" /><span>Log Out</span></a>
+      </div>
+</div>

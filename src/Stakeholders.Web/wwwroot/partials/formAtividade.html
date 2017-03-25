@@ -1,0 +1,72 @@
+<div class="editorPanelCreateActiv" ng-hide="toggleActvActiv()" ng-controller="modalFormAtividadeController">
+    <h2>NEW ACTIVITY</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+    <div class="colLeft">
+        <div class="formEditor">
+            <div class="statusList one" ng-controller="dropdownController">
+                <div dropdown-select="ddSelectOptionsActiv" dropdown-model="ddSelectSelectedActiv" dropdown-item-label="text"></div>
+            </div>
+            <h3>Related task</h3>
+            <p><a href="#">Lorem ipsum content link</a></p>
+            <button class="btnDefault" id="toggleChangePanelButton" type='button' ng-click='toggleChangePanelButton();'>Change</button>
+            <button class="btnDefault" id="toggleConnectPanelButton" type='button' ng-click='toggleConnectPanelButton();'>Connect to task</button>
+            <div class="editorPanelChange" ng-hide="toggleChangePanel">
+                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleChangePanelButton" ng-click="toggleChangePanelButton()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+                <a href="#">Lorem ipsum task 1 </a>
+                <a href="#">Lorem ipsum task 2 </a>
+                <a href="#">Lorem ipsum task 3 </a>
+                <a href="#">Lorem ipsum task 4 </a>
+                <a href="#">Lorem ipsum task 5 </a>
+            </div>
+            <div class="editorPanelConnect" ng-hide="toggleConnectPanel">
+                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleConnectPanelButton" ng-click="toggleConnectPanelButton()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+                <a href="#">Lorem ipsum task 1 </a>
+                <a href="#">Lorem ipsum task 2 </a>
+                <a href="#">Lorem ipsum task 3 </a>
+                <a href="#">Lorem ipsum task 4 </a>
+                <a href="#">Lorem ipsum task 5 </a>
+            </div>
+
+            <div class="statusList" ng-controller="dropdownController">
+                <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
+            </div>
+            <div class="statusList" ng-controller="dropdownController">
+                <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
+            </div>
+            <input type="text" placeholder="Subject" ng-model="activity.title"/>
+            <textarea placeholder="Description" ng-model="activity.content"></textarea>
+            <div class="statusList" ng-controller="dropdownController">
+                <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
+            </div>
+        </div>
+    </div>
+    <div class="colRight">
+        <div class="relatedContacts" ng-controller="chipsSelector">
+            <h3>Share with</h3>
+            <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
+        </div>
+        <div class="dateField" ng-controller="dateController">
+            <md-datepicker ng-model="activity.deadline" md-placeholder="Activity Date"></md-datepicker>
+        </div>
+        <div class="attached" ng-controller="fileControllerActiv">
+            <div class="fileinput" id="attachedActiv">
+                <h3>Attach document</h3>
+                <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple />
+                <label for="file">
+                    <span class="labelValTask"></span>
+                    <strong>Attach</strong>
+                </label>
+            </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+        </div>
+    </div>
+    <div class="saveBlock">
+        <span>Creation date: 02/02/2017</span>
+        <button class="btnCancel" id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv()" type='button'>CANCEL</button>
+        <button class="btnSave" type='button' ng-click="salvarAtividade($event)">SAVE</button>
+    </div>
+</div>
