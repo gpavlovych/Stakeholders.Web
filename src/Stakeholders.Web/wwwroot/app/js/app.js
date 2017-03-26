@@ -100,10 +100,10 @@ porlaDashboard.config(function($routeProvider, $locationProvider)
             controller : 'usersController'
       })
 
-      .when('/login', {
-            templateUrl : 'login.html',
-            controller : 'loginController'
-      })
+      //.when('/login', {
+      //      templateUrl : 'login.html',
+      //      controller : 'loginController'
+      //})
 
       .otherwise ({ redirectTo: '/' });
 

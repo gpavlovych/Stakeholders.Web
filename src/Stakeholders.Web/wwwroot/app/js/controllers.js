@@ -249,17 +249,21 @@ porlaDashboard.controller('formLogin', function ($scope, $http) {
     };
 });
 
-porlaDashboard.controller('headerController', function ($scope) {
-    $scope.users = [
-        {
-            name: 'Sara',
-            last: 'Forester',
-            occupation: 'Accountant',
-            contact: '866-878-7382',
-            image: '/app/user/sara.png',
-            status: 'on'
-        }
-    ];
+porlaDashboard.controller('headerController', function ($scope, $window) {
+    $scope.users = angular.fromJson($window.localStorage.getItem("poria_users"));
+    if ((!$scope.users) || ($scope.users.length == 0)) {
+        $window.location.assign("/app/login.html");
+    }
+    //    [
+    //    {
+    //        name: 'Sara',
+    //        last: 'Forester',
+    //        occupation: 'Accountant',
+    //        contact: '866-878-7382',
+    //        image: '/app/user/sara.png',
+    //        status: 'on'
+    //    }
+    //];
 });
 
 porlaDashboard.controller('filterController', function ($scope) {
