@@ -1,6 +1,6 @@
 
-porlaDashboard.factory('$tarefaService', function () {
-    var tarefas = [
+porlaDashboard.factory('$taskService', function () {
+    var tasks = [
         {
             id: 1,
             title: 'Lorem Ipsum Task',
@@ -179,14 +179,14 @@ porlaDashboard.factory('$tarefaService', function () {
         }
     ];
     return {
-        obterTarefas: function () {
-            return tarefas;
+        getTasks: function () {
+            return tasks;
         },
-        adicionarTarefa: function (obj) {
-            tarefas.push(obj);
+        addTask: function (obj) {
+            tasks.push(obj);
         },
-        removerTarefa: function (index) {
-            tarefas.splice(index, 1);
+        removeTask: function (index) {
+            tasks.splice(index, 1);
         },
     };
 });

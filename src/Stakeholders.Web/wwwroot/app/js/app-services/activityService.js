@@ -1,6 +1,6 @@
 
-porlaDashboard.factory('$atividadeService', function () {
-    var atividades = [
+porlaDashboard.factory('$activityService', function () {
+    var activities = [
         {
             title: 'Lorem Ipsum Task',
             content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
@@ -75,14 +75,14 @@ porlaDashboard.factory('$atividadeService', function () {
         }
     ];
     return {
-        obterAtividades: function () {
-            return atividades;
+        getActivities: function () {
+            return activities;
         },
-        adicionarAtividade: function (obj) {
-            atividades.push(obj);
+        addActivity: function (obj) {
+            activities.push(obj);
         },
-        removerAtividade: function (obj) {
-            atividades.pop();
+        removeActivity: function (obj) {
+            activities.pop();
         },
     };
 });

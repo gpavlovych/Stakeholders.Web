@@ -10,7 +10,7 @@ porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout)
       }
 });
 
-porlaDashboard.controller('appDashboard', function ($rootScope, $scope, $window, $mdDialog, $manipuladorFormTarefaService, $manipuladorFormAtividadeService) {
+porlaDashboard.controller('appDashboard', function ($rootScope, $scope, $window, $mdDialog, $editTaskFormService, $editActivityFormService) {
     $rootScope.title = 'PORIA DASHBOARD';
     $rootScope.pathImage = '/app/images/';
     $rootScope.pathUser = '/app/user/';
@@ -121,11 +121,11 @@ porlaDashboard.controller('appDashboard', function ($rootScope, $scope, $window,
     }
 
     // Config ACTIVITIES
-    $scope.toggleActvTask = $manipuladorFormTarefaService.obterStatusModal;
-    $scope.toggleFilterActvTask = $manipuladorFormTarefaService.toggleModal;
+    $scope.toggleActvTask = $editTaskFormService.getStatusModal;
+    $scope.toggleFilterActvTask = $editTaskFormService.toggleModal;
 
-    $scope.toggleActvActiv = $manipuladorFormAtividadeService.obterStatusModal;
-    $scope.toggleFilterActvActiv = $manipuladorFormAtividadeService.toggleModal;
+    $scope.toggleActvActiv = $editActivityFormService.getStatusModal;
+    $scope.toggleFilterActvActiv = $editActivityFormService.toggleModal;
 
     $scope.toggleCloseActvTask = true;
     $scope.toggleCloseActvTask = function () {
@@ -970,19 +970,19 @@ porlaDashboard.controller('tasksController', function ($rootScope, $scope, $loca
    });
 });
 
-porlaDashboard.controller('tasksResult', function ($rootScope, $scope, $tarefaService, $fabricaDialogoService) {
+porlaDashboard.controller('tasksResult', function ($rootScope, $scope, $taskService, $dialogServiceFactory) {
     $rootScope.scopeTaskResult = $scope;
-    $scope.tarefas = $tarefaService.obterTarefas();
+    $scope.tarefas = $taskService.obterTarefas();
     $scope.goRelated = false;
 
     $scope.atualizarListagem = function () {
-        $scope.tarefas = $tarefaService.obterTarefas();
+        $scope.tarefas = $taskService.obterTarefas();
     };
 
     $scope.removerTarefa = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event,
+        $dialogServiceFactory.showConfirmationDeleteDialog(event,
             function () {
-                $tarefaService.removerTarefa(index);
+                $taskService.removerTarefa(index);
                 $scope.atualizarListagem();
             }, null);
     };
@@ -997,14 +997,14 @@ porlaDashboard.controller('activitiesController', function ($rootScope, $scope, 
    });
 });
 
-porlaDashboard.controller('activitiesResult', function ($rootScope, $scope, $atividadeService, $fabricaDialogoService) {
-    $scope.activities = $atividadeService.obterAtividades();
+porlaDashboard.controller('activitiesResult', function ($rootScope, $scope, $activityService, $dialogServiceFactory) {
+    $scope.activities = $activityService.getActivities();
 
-    $scope.removerAtividade = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event,
+    $scope.removeActivity = function (event, index) {
+        $dialogServiceFactory.showConfirmationDeleteDialog(event,
             function () {
-                $atividadeService.removerAtividade(index);
-                $scope.activities = $atividadeService.obterAtividades();
+                $activityService.removeActivity(index);
+                $scope.activities = $activityService.getActivities();
             }, null);
     };
 });
@@ -1016,7 +1016,7 @@ porlaDashboard.controller('organizationsController', function ($rootScope, $scop
           $("footer").removeClass("visibleFooter");
    });
 });
-porlaDashboard.controller('organizationsResult', function ($scope, $fabricaDialogoService) {
+porlaDashboard.controller('organizationsResult', function ($scope, $dialogServiceFactory) {
     $scope.orderByField = 'ownerField';
     $scope.orderByField = 'categoryField';
     $scope.orderByField = 'typeField';
@@ -1100,7 +1100,7 @@ porlaDashboard.controller('organizationsResult', function ($scope, $fabricaDialo
     };
 
     $scope.remover = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event, function () { $scope.data.organizations.splice(index, 1); }, null);
+        $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.organizations.splice(index, 1); }, null);
     };
 });
 porlaDashboard.controller('contactsController', function ($rootScope, $scope, $location) {
@@ -1109,7 +1109,7 @@ porlaDashboard.controller('contactsController', function ($rootScope, $scope, $l
           $("footer").removeClass("visibleFooter");
    });
 });
-porlaDashboard.controller('contactsResult', function ($scope, $fabricaDialogoService) {
+porlaDashboard.controller('contactsResult', function ($scope, $dialogServiceFactory) {
     $scope.orderByField = 'ownerField';
     $scope.orderByField = 'categoryField';
     $scope.orderByField = 'typeField';
@@ -1277,7 +1277,7 @@ porlaDashboard.controller('contactsResult', function ($scope, $fabricaDialogoSer
     };
 
     $scope.remover = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event, function () { $scope.data.contacts.splice(index, 1); }, null);
+        $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.contacts.splice(index, 1); }, null);
     };
 });
 porlaDashboard.controller('companiesController', function ($rootScope, $scope, $location) {
@@ -1286,7 +1286,7 @@ porlaDashboard.controller('companiesController', function ($rootScope, $scope, $
           $("footer").removeClass("visibleFooter");
    });
 });
-porlaDashboard.controller('companiesResult', function ($scope, $fabricaDialogoService) {
+porlaDashboard.controller('companiesResult', function ($scope, $dialogServiceFactory) {
     $scope.companies = [
         { title: 'Apple', brandimage: 'apple' },
         { title: 'Adobe', brandimage: 'adobe' },
@@ -1303,7 +1303,7 @@ porlaDashboard.controller('companiesResult', function ($scope, $fabricaDialogoSe
     ];
 
     $scope.remover = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event, function () { $scope.companies.splice(index, 1); }, null);
+        $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.companies.splice(index, 1); }, null);
     };
 });
 porlaDashboard.controller('categoriesController', function ($rootScope, $scope, $location) {
@@ -1312,7 +1312,7 @@ porlaDashboard.controller('categoriesController', function ($rootScope, $scope, 
           $("footer").removeClass("visibleFooter");
    });
 });
-porlaDashboard.controller('categoriesResult', function ($scope, $location, $fabricaDialogoService) {
+porlaDashboard.controller('categoriesResult', function ($scope, $location, $dialogServiceFactory) {
     $scope.orderByField = 'categoryField';
     $scope.orderByField = 'companyField';
     $scope.orderByField = 'influencedField';
@@ -1433,7 +1433,7 @@ porlaDashboard.controller('categoriesResult', function ($scope, $location, $fabr
     };
 
     $scope.remover = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event, function () { $scope.data.categories.splice(index, 1); }, null);
+        $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.categories.splice(index, 1); }, null);
     };
 });
 porlaDashboard.controller('usersController', function ($rootScope, $scope, $location) {
@@ -1443,7 +1443,7 @@ porlaDashboard.controller('usersController', function ($rootScope, $scope, $loca
    });
 });
 
-porlaDashboard.controller('usersResult', function ($scope, $location, $fabricaDialogoService) {
+porlaDashboard.controller('usersResult', function ($scope, $location, $dialogServiceFactory) {
     $scope.orderByField = 'companyField';
     $scope.orderByField = 'roleField';
     $scope.orderByField = 'titleField';
@@ -1551,6 +1551,6 @@ porlaDashboard.controller('usersResult', function ($scope, $location, $fabricaDi
     };
 
     $scope.remover = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event, function () { $scope.data.users.splice(index, 1); }, null);
+        $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.users.splice(index, 1); }, null);
     };
 });

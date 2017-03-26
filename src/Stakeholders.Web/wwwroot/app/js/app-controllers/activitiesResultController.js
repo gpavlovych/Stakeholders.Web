@@ -1,13 +1,13 @@
 // JavaScript source code
 
-porlaDashboard.controller('activitiesResultController', function ($rootScope, $scope, $atividadeService, $fabricaDialogoService) {
-    $scope.activities = $atividadeService.obterAtividades();
+porlaDashboard.controller('activitiesResultController', function ($rootScope, $scope, $activityService, $dialogServiceFactory) {
+    $scope.activities = $activityService.getActivities();
 
-    $scope.removerAtividade = function (event, index) {
-        $fabricaDialogoService.mostrarDialogoParaExclusao(event,
+    $scope.removeActivity = function (event, index) {
+        $dialogServiceFactory.showConfirmationDeleteDialog(event,
             function () {
-                $atividadeService.removerAtividade(index);
-                $scope.activities = $atividadeService.obterAtividades();
+                $activityService.removeActivity(index);
+                $scope.activities = $activityService.getActivities();
             }, null);
     };
 });

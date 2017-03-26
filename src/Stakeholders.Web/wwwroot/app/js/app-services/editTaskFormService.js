@@ -1,14 +1,14 @@
 
 /* Serviço criado para manipular o modal do formulário de tarefas */
 /* *** Pensar posteriormente em incluir este serviço na controller responsável pelo formulário *** */
-porlaDashboard.factory('$manipuladorFormTarefaService', function () {
-    var boolModalAberto = true;
+porlaDashboard.factory('$editTaskFormService', function () {
+    var isOpen = true;
     return {
-        obterStatusModal: function () {
-            return boolModalAberto;
+        getStatusModal: function () {
+            return isOpen;
         },
         toggleModal: function () {
-            boolModalAberto = boolModalAberto === false ? true : false;
+            isOpen = isOpen === false ? true : false;
         }
     };
 });

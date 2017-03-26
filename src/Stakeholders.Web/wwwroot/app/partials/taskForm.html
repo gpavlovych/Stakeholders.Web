@@ -1,10 +1,10 @@
 
-<div class="editorPanelCreateTask" ng-hide="toggleActvTask()" ng-controller="modalFormTarefaController">
+<div class="editorPanelCreateTask" ng-hide="toggleActvTask()" ng-controller="modalFormTaskController">
     <h2>NEW TASK</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvTask" ng-click="toggleFilterActvTask();"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
     <div class="colLeft">
         <div class="formEditor">
-            <input type="text" placeholder="Subject" ng-model="tarefa.title" />
-            <textarea placeholder="Description" ng-model="tarefa.content"></textarea>
+            <input type="text" placeholder="Subject" ng-model="task.title" />
+            <textarea placeholder="Description" ng-model="task.content"></textarea>
             <div class="statusList" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsStatus" dropdown-model="ddSelectSelectedStatus" dropdown-item-label="text"></div>
             </div>
@@ -24,10 +24,10 @@
     <div class="colRight">
         <p class="highChk">
             High importance
-            <md-checkbox ng-model="tarefa.highimportant" aria-label="Checkbox 1"></md-checkbox>
+            <md-checkbox ng-model="task.highimportant" aria-label="Checkbox 1"></md-checkbox>
         </p>
         <div class="dateField" ng-controller="dateController">
-            <md-datepicker ng-model="tarefa.deadline" md-placeholder="Deadline"></md-datepicker>
+            <md-datepicker ng-model="task.deadline" md-placeholder="Deadline"></md-datepicker>
         </div>
         <div class="dateField" ng-controller="dateController">
             <md-datepicker ng-model="myComplete" md-placeholder="Complete date"></md-datepicker>
@@ -59,6 +59,6 @@
     <div class="saveBlock">
         <span>Creation date: 02/02/2017</span>
         <button class="btnCancel" id="toggleFilterActvTask" ng-click="toggleFilterActvTask()" type='button'>CANCEL</button>
-        <button class="btnSave" type='button' ng-click="salvarTarefa($event)">SAVE</button>
+        <button class="btnSave" type='button' ng-click="saveTask($event)">SAVE</button>
     </div>
 </div>

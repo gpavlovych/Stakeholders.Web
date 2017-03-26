@@ -47,8 +47,8 @@
         </div>
     </div>
 
-    <div ng-include src="'partials/formTarefa.html'"></div>
-    <div ng-include src="'partials/formAtividade.html'"></div>
+    <div ng-include src="'partials/taskForm.html'"></div>
+    <div ng-include src="'partials/activityForm.html'"></div>
 
     <div class="editorPanel" ng-hide="toggleActvEdit">
         <span class="closeModal" id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
@@ -128,7 +128,7 @@
                         <p><span>Date created</span><strong>{{ active.createdday }}/{{ active.createdmonth }}/{{ active.createdyear }}</strong></p>
                     </div>
                     <div class="bottomFooter">
-                        <md-button class="md-fab footertrash" aria-label="Trash" ng-click="showConfirm($event);removerAtividade($index)">
+                        <md-button class="md-fab footertrash" aria-label="Trash" ng-click="showConfirm($event);removeActivity($index)">
                             <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
                         </md-button>
                         <md-button id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()" class="md-fab footerpen" aria-label="Pen">

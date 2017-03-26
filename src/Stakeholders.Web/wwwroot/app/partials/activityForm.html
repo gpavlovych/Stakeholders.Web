@@ -1,4 +1,4 @@
-<div class="editorPanelCreateActiv" ng-hide="toggleActvActiv()" ng-controller="modalFormAtividadeController">
+<div class="editorPanelCreateActiv" ng-hide="toggleActvActiv()" ng-controller="modalFormActivityController">
     <h2>NEW ACTIVITY</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
     <div class="colLeft">
         <div class="formEditor">
@@ -67,6 +67,6 @@
     <div class="saveBlock">
         <span>Creation date: 02/02/2017</span>
         <button class="btnCancel" id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv()" type='button'>CANCEL</button>
-        <button class="btnSave" type='button' ng-click="salvarAtividade($event)">SAVE</button>
+        <button class="btnSave" type='button' ng-click="saveActivity($event)">SAVE</button>
     </div>
 </div>

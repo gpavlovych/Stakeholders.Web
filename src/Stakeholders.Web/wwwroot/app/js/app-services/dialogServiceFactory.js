@@ -1,24 +1,24 @@
 // JavaScript source code
-porlaDashboard.factory('$fabricaDialogoService', function ($mdDialog) {
+porlaDashboard.factory('$dialogServiceFactory', function ($mdDialog) {
     return {
-        mostrarDialogoParaExclusao: function (event, fnOk, fnCancel) {
+        showConfirmationDeleteDialog: function (event, fnOk, fnCancel) {
             var confirm = $mdDialog.confirm()
-                .title('Confirme Exclusion')
+                .title('Confirm Delete')
                 .textContent('Are you sure you want to delete the item?')
-                .ariaLabel('Confirme Exclusion')
+                .ariaLabel('Confirm Delete')
                 .targetEvent(event)
                 .ok('Yes')
                 .cancel('No');
             $mdDialog.show(confirm).then(fnOk, fnCancel);
         },
-        mostrarDialogoConfirmacao: function (event, fnOk) {
+        showConfirmationDialog: function (event, fnOk) {
             $mdDialog.show(
                 $mdDialog.alert()
                     .parent(angular.element(document.querySelector('#popupContainer')))
                     .clickOutsideToClose(true)
-                    .title('Confirme Saved')
+                    .title('Confirm Save')
                     .textContent('Content saved successfully!')
-                    .ariaLabel('Confirme Saved')
+                    .ariaLabel('Confirm Save')
                     .ok('Ok')
                     .targetEvent(event)
             ).then(fnOk);
