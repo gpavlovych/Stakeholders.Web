@@ -1,0 +1,96 @@
+<div class="dashboardContent companies" ng-controller="companiesController" ng-cloak>
+      <h1>COMPANIES</h1>
+
+      <div class="blockFilters">
+            <form class="formSearch">
+                  <div class="form-group">
+                        <div class="input-group">
+                              <input type="text" class="form-control" ng-model="search">
+                              <md-icon md-svg-src="{{pathImage}}magnify.svg"></md-icon>
+                        </div>
+                  </div>
+            </form>
+
+            <div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
+                <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
+                    <md-fab-trigger>
+                        <md-button aria-label="menu" class="md-fab add">
+                            <md-icon md-svg-src="{{pathImage}}add.svg"></md-icon>
+                        </md-button>
+                    </md-fab-trigger>
+
+                    <md-fab-actions>
+                          <span class="toggleActiv">
+                                <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
+                                      <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
+                                </md-button>
+                                <span class="ng-tooltip-bt">New Activities</span>
+                          </span>
+                          <span class="toggleTask">
+                                <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
+                                      <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
+                                </md-button>
+                                <span class="ng-tooltip-bt">New Task</span>
+                          </span>
+                    </md-fab-actions>
+                </md-fab-speed-dial>
+            </div>
+      </div>
+
+      <div ng-include src="'partials/formTarefa.html'"></div>
+      <div ng-include src="'partials/formAtividade.html'"></div>
+
+      <div class="editorPanel" ng-hide="toggleCompEdit">
+          <span class="closeModal" id="toggleFilterCompEdit" ng-click="toggleFilterCompEdit()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+            <div class="colLeft" style="height: 460px;">
+                  <div class="formEditor" ng-scrollbars ng-scrollbars-config="config" style="max-height:440px;">
+                        <input type="text" placeholder="Name" />
+                        <input type="text" placeholder="Company code" />
+                        <input type="text" placeholder="Address" />
+                        <input type="text" placeholder="City" />
+                        <input type="text" placeholder="Phone" />
+                        <input type="text" placeholder="Email" />
+                        <div class="photoBrands">
+                              <h3>Logo</h3>
+                              <div class="photo">
+                                    <span class="brandImage">
+                                          <img src="{{pathImage}}apple.png" alt="apple" />
+                                    </span>
+                                    <md-button class="md-fab footertrash" aria-label="Trash">
+                                          <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
+                                    </md-button>
+                                    <button class="btnDefault" type='button' ng-click='addphoto()'>Add Logo</button>
+                              </div>
+                        </div>
+                        <textarea placeholder="Influencing"></textarea>
+                        <textarea placeholder="Influenced by"></textarea>
+                  </div>
+            </div>
+            <p class="saveBlock">
+                <button class="btnCancel" id="toggleFilterCompEdit" ng-click="toggleFilterCompEdit()" type='button'>CANCEL</button>
+                <button class="btnSave" type='button' ng-click="toggleFilterCompEdit();showAlert($event);">SAVE</button>
+            </p>
+      </div>
+      <div class="companiesResult" ng-controller="companiesResult">
+            <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
+                  <ul class="listResult" ng-repeat="company in companies">
+                        <li>
+                              <h3 class="title">
+                                    {{ company.title }}
+                              </h3>
+                              <div class="contact">
+                                    <a href="#"><img src="{{pathImage}}{{ company.brandimage }}.png" alt="{{ company.title }}" /></a>
+                              </div>
+                              <div class="bottomFooter">
+                                    <md-button class="md-fab footertrash" aria-label="Trash" ng-click="remover($event, $index);">
+                                          <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
+                                    </md-button>
+                                  <md-button id="toggleFilterCompEdit" ng-click="toggleFilterCompEdit()" class="md-fab footerpen" aria-label="Pen">
+                                      <md-icon md-svg-src="{{pathImage}}pen.svg"></md-icon>
+                                  </md-button>
+                              </div>
+                        </li>
+                  </ul>
+            </div>
+      </div>
+</div>

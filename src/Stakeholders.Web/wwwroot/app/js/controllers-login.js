@@ -12,8 +12,8 @@ porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout)
 
 porlaDashboard.controller('appDashboard', function ($rootScope, $scope) {
       $rootScope.title = 'PORIA DASHBOARD';
-      $rootScope.pathImage = 'images/';
-      $rootScope.pathUser = 'user/';
+      $rootScope.pathImage = '/app/images/';
+      $rootScope.pathUser = '/app/user/';
 });
 
 porlaDashboard.controller('loginController',  function($rootScope, $scope, $location){

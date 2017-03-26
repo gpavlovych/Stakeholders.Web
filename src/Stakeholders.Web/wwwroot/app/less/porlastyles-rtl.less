@@ -12,8 +12,6 @@
 // Configuration LTR
 html[dir="rtl"] {
       * {direction:rtl;}
-      // .mCustomScrollBox {direction:rtl;left:auto;right:0;}
-      // .mCSB_container {direction:rtl;left:auto;right:0;}
 
       /* Function Font-face */
       @font-face { font-family: 'bold'; src: url('../fonts/gotham/gothamhtf-bold-webfont.woff2') format('woff2'), url('../fonts/gotham/gothamhtf-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -91,8 +89,8 @@ html[dir="rtl"] {
             span.selected { margin-right: 25px; }
       }
 
-      .fabButtonDial {float: left;margin-left: 20px;
-            .md-fab {width: 46px;height: 46px;.buttonFab();float: right;position: relative;top: 10px;right: 10px;.shadowbutton();
+      .fabButtonDial {float:left;margin-left: 20px;
+            .md-fab {width: 46px;height: 46px;.buttonFab();float:left;position: relative;top: 10px;left: 10px;.shadowbutton();
                   md-icon {height: 14px;width: 14px;min-height: 14px;min-width: 14px;}
             }
             md-fab-speed-dial {z-index: 20 !important;}
@@ -154,7 +152,7 @@ html[dir="rtl"] {
       }
 
       #nav-show { position: relative; top: 23px; width: 486px; height: 34px; left: 200px; float: left; border: 1px solid rgba(153, 153, 153, 0.32); .borderRadius(@radius:25px);
-            a { position: relative; z-index: 2; padding: 9px 22px; top: 10px; text-indent: 3px; font-family: @book; letter-spacing: 0.03em; }
+            a { color:@gray;position: relative; z-index: 2; padding: 9px 22px; top: 10px; text-indent: 3px; font-family: @book; letter-spacing: 0.03em; }
             a:hover {color: @white;}
             a.current_page_item {color: @white;}
             #magic-line { position: absolute; left: 0; width: 60px; height: 30px; padding: 2px 23px; background: #fb375c; z-index: 1; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px; color: #fff; margin-top: -14px; }
@@ -610,7 +608,7 @@ html[dir="rtl"] {
                               .fabButtonDial {float:left;position:relative;left: -550px;
                                     .md-fab { right: -20px; }
                               }
-                              .sidebarDashboard { min-width: 23%; float:right; background: #f7f7f7; padding-bottom: 12px;
+                              .sidebarDashboard {width: 24%; float:right; background: #f7f7f7; padding-bottom: 12px;
                                     .mCSB_inside > .mCSB_container {margin-left:20px;}
                                     h1 { width: 100%; clear: both; float: inherit;padding:0px 25px 0 0;margin:33px 0 33px 0px; }
                                     .latestActivities { clear: both; padding: 0 15px 0 10px; max-height: 478px; }
@@ -627,7 +625,7 @@ html[dir="rtl"] {
                                           }
                                     }
                               }
-                              .contentDashboard { float: right; display: inline-block; min-width: 74.5%;
+                              .contentDashboard { float:left; display:block; width: 75.5%;
                                     .filterPeriod { width: 560px; float: left; border: 1px solid #ccc; .borderRadius(); position: relative; left: 130px; top: 20px;
                                           li {
                                                 cursor: pointer;
@@ -804,7 +802,7 @@ html[dir="rtl"] {
                                                                   .leftEntity { width: 180px; float:right;position: relative;right: 15px;}
                                                             }
 
-                                                            .legend { clear: both; display: block; font-family: @book; font-size: 12px; padding-top: 15px;
+                                                            .legend { clear: both; display: block; font-family: @book; font-size: 12px; padding-top: 7px;height:35px;
                                                                   .ng-tooltip {
                                                                         background-color:@gray;
                                                                         color:#fff;
@@ -817,7 +815,7 @@ html[dir="rtl"] {
                                                                         margin: -20px 0 0 0;
                                                                         display:none;
                                                                   }
-                                                                  p { cursor: pointer; display: inline-block;margin-right: 30px;
+                                                                  p { cursor: pointer;display:block;float:left;margin-right: 20px;border:1px solid @transp;
                                                                         img { position: relative; top: 5px; }
                                                                   }
                                                                   p:hover .ng-tooltip {display:block;}
@@ -1354,7 +1352,14 @@ html[dir="rtl"] {
 
                               #nav-show {float:right;left: -270px;}
 
-                              .fabButtonDial { float: left;	left: -260px;}
+                              .fabButtonDial { float: left; margin-left: 20px;
+                                    .toggleActiv {
+                                          .ng-tooltip-bt {margin: -20px 0px 0 -35px;}
+                                    }
+                                    .toggleTask {
+                                          .ng-tooltip-bt {margin: -10px 0px 0 -35px;}
+                                    }
+                              }
 
                               .settings {
                                     .buttonFab();
@@ -1657,15 +1662,20 @@ html[dir="rtl"] {
                                           .ng-tooltip-bt {margin: -10px 0px 0 -35px;}
                                     }
                               }
+                              /* Safari 5+ ONLY */
+                              ::i-block-chrome, .fabButtonDial {
+                                    float: left; margin-left:0px;
+                                    .md-fab {float:left;}
+                              }
                               .blockFilters { width: 670px; float:left; position: relative; left:-50px;
                                     .table-gallery { width: 150px; height: 30px; display: inline-block; float:right; position: relative; top: 20px; margin-left: 15px;
-                                          span { font-family: @bold; font-size: 13px; display: block; float: left; padding: 5px 10px 0 0px; }
+                                          span { font-family: @bold; font-size: 13px; display: block; float: left; padding: 5px 0px 0 5px; }
                                           md-switch { display: block; float: left; margin: 0px; }
                                     }
                                     .categoryList { width: 178px; float:right; position: relative; top: 15px; font-family: @book; font-size: 12px;
-                                          .wrap-dd-select {	width: 113px;padding: 13px 33px 13px 22px;}
+                                          .wrap-dd-select {	width: 143px;padding: 13px 13px 13px 22px;}
                                     }
-                                    .formSearch { display: inline-block; position: relative; top: 15px; margin-right: 15px;float:left;
+                                    .formSearch { display: inline-block; position: relative; top: 13px; margin-right: 15px;float:left;
                                           .form-control { width: 215px; border: 1px solid rgba(0,0,0,0.15); .borderRadius(@radius:20px); padding: 13px 40px 13px 20px; font-family: @bold; font-size: 12px; background: @transp; color: @gray; }
                                           md-icon { position: relative; left: 40px; }
                                     }
@@ -1899,15 +1909,15 @@ html[dir="rtl"] {
                                           .ng-tooltip-bt {margin: -10px 0px 0 -35px;}
                                     }
                               }
-                              .blockFilters { width: 850px; float: left; position: relative; left:-50px;
+                              .blockFilters { width:870px; float: left; position: relative; left:-50px;
                                     .table-gallery { width: 150px; height: 30px; display: inline-block; float:right; position: relative; top: 20px; margin-left: 15px;
                                           span { font-family: @bold; font-size: 13px; display: block; float: left; padding: 5px 10px 0 0px; }
                                           md-switch { display: block; float: left; margin: 0px; }
                                     }
-                                    .categoryList { width: 178px; float:right; position: relative; top: 15px; font-family: @book; font-size: 12px;
-                                          .wrap-dd-select {	width: 113px;padding: 13px 33px 13px 22px;}
+                                    .categoryList { width: 178px; float:right; position: relative; top: 15px; font-family: @book; font-size: 12px;margin-right:10px;
+                                          .wrap-dd-select {	width: 143px;padding: 13px 10px 13px 22px;}
                                     }
-                                    .formSearch { display: inline-block; position: relative; top: 15px; margin-right: 15px;float:left;
+                                    .formSearch { display: inline-block; position: relative; top: 13px; margin-right: 15px;float:left;
                                           .form-control { width: 215px; border: 1px solid rgba(0,0,0,0.15); .borderRadius(@radius:20px); padding: 13px 40px 13px 20px; font-family: @bold; font-size: 12px; background: @transp; color: @gray; }
                                           md-icon { position: relative; left: 40px; }
                                     }
@@ -2239,7 +2249,7 @@ html[dir="rtl"] {
                                                       display: block;
                                                       font-family: @book;
 
-                                                      .title { width: 100%; display: block; font-size: 14px; font-family: @bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0;
+                                                      .title { width: 100%; display: block; font-size: 13px; font-family: @bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0;
                                                             .imageUser { float: right; margin-left: 10px; }
                                                             strong { display: block; }
                                                             span { display: block; font-family: @book; font-size: 12px; }
@@ -2499,7 +2509,7 @@ html[dir="rtl"] {
                                     .formSearch {
                                           display: inline-block;
                                           position: relative;
-                                          top: 15px;
+                                          top: 13px;
                                           left: 5px;
 
                                           .form-control {
@@ -2845,7 +2855,7 @@ html[dir="rtl"] {
                                     .formSearch {
                                           display: inline-block;
                                           position: relative;
-                                          top: 15px;
+                                          top: 13px;
                                           margin-left: 15px;
                                           left:-80px;
 
@@ -3016,7 +3026,7 @@ html[dir="rtl"] {
                                     .formSearch {
                                           display: inline-block;
                                           position: relative;
-                                          top: 15px;
+                                          top: 13px;
                                           left: -85px;
 
                                           .form-control {

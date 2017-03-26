@@ -12,8 +12,6 @@
 // Configuration LTR
 html[dir="ltr"] {
       * {direction:ltr;}
-      // .mCustomScrollBox {direction:ltr;left:0;right:auto;}
-      // .mCSB_container {direction:ltr;left:0;right:auto;}
 
       /* Function Font-face */
       @font-face { font-family: 'bold'; src: url('../fonts/gotham/gothamhtf-bold-webfont.woff2') format('woff2'), url('../fonts/gotham/gothamhtf-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -162,7 +160,7 @@ html[dir="ltr"] {
       }
 
       #nav-show { position: relative; top: 23px; width: 486px; height: 34px; left: 200px; float: left; border: 1px solid rgba(153, 153, 153, 0.32); .borderRadius(@radius:25px);
-            a { position: relative; z-index: 2; padding: 9px 22px; top: 10px; text-indent: 3px; font-family: @book; letter-spacing: 0.03em; }
+            a { color:@gray;position: relative; z-index: 2; padding: 9px 22px; top: 10px; text-indent: 3px; font-family: @book; letter-spacing: 0.03em; }
             a:hover {color: @white;}
             a.current_page_item {color: @white;}
             #magic-line { position: absolute; left: 0; width: 60px; height: 30px; padding: 2px 23px; background: #fb375c; z-index: 1; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px; color: #fff; margin-top: -14px; }
@@ -910,34 +908,11 @@ html[dir="ltr"] {
                                     .toggleActiv:hover .ng-tooltip-bt {display:block;}
                                     .toggleTask:hover .ng-tooltip-bt {display:block;}
                               }
-
-
-                              .sidebarDashboard {
-                                    min-width: 23%;
-                                    float: left;
-                                    background: #f7f7f7;
-                                    padding-bottom: 12px;
-
-                                    .mCSB_inside > .mCSB_container {
-                                          margin-right: 20px;
-                                    }
-
-                                    h1 {
-                                          width: 100%;
-                                          clear: both;
-                                          float: inherit;
-                                    }
-
-                                    .latestActivities {
-                                          clear: both;
-                                          padding: 0 4px 0 20px;
-                                          max-height: 478px;
-                                    }
-
-                                    .listActivities {
-                                          width: 100%;
-                                          display: block;
-
+                              .sidebarDashboard { width: 24%; float: left; background: #f7f7f7; padding-bottom: 12px;
+                                    .mCSB_inside > .mCSB_container { margin-right: 20px; }
+                                    h1 { width: 100%; clear: both; float: inherit; }
+                                    .latestActivities { clear: both; padding: 0 4px 0 20px; max-height: 478px; }
+                                    .listActivities { width: 100%; display: block;
                                           li.oneLevel {
                                                 background: @white;
                                                 display: block;
@@ -987,7 +962,7 @@ html[dir="ltr"] {
                               .contentDashboard {
                                     float: left;
                                     display: inline-block;
-                                    min-width: 74.5%;
+                                    width: 75.5%;
 
                                     .filterPeriod {
                                           width: 560px;
@@ -1324,7 +1299,7 @@ html[dir="ltr"] {
                                                                   }
                                                             }
 
-                                                            .legend { clear: both; display: block; font-family: @book; font-size: 12px; padding-top: 15px;
+                                                            .legend { clear: both; display: block; font-family: @book; font-size: 12px; padding-top: 7px;height:35px;
                                                                   .ng-tooltip {
                                                                         background-color:@gray;
                                                                         color:#fff;
@@ -1337,7 +1312,7 @@ html[dir="ltr"] {
                                                                         margin: -20px 0 0 0;
                                                                         display:none;
                                                                   }
-                                                                  p { cursor: pointer; display: inline-block;margin-right: 30px;
+                                                                  p { cursor: pointer; display:block;float:left;margin-right:20px;border:1px solid @transp;
                                                                         img { position: relative; top: 5px; }
                                                                   }
                                                                   p:hover .ng-tooltip {display:block;}

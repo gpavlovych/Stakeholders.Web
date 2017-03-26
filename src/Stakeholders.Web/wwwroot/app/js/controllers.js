@@ -12,8 +12,8 @@ porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout)
 
 porlaDashboard.controller('appDashboard', function ($rootScope, $scope, $window, $mdDialog, $manipuladorFormTarefaService, $manipuladorFormAtividadeService) {
     $rootScope.title = 'PORIA DASHBOARD';
-    $rootScope.pathImage = 'images/';
-    $rootScope.pathUser = 'user/';
+    $rootScope.pathImage = '/app/images/';
+    $rootScope.pathUser = '/app/user/';
 
     $scope.highChk = false;
     $scope.status = '';
@@ -256,7 +256,7 @@ porlaDashboard.controller('headerController', function ($scope) {
             last: 'Forester',
             occupation: 'Accountant',
             contact: '866-878-7382',
-            image: 'user/sara.png',
+            image: '/app/user/sara.png',
             status: 'on'
         }
     ];

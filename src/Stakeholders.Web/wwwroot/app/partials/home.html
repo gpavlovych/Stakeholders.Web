@@ -1,6 +1,6 @@
-<div class="dashboardContent home">
+<div class="dashboardContent home" ng-cloak>
     <h1>GOALS</h1>
-    <div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
+    <div class="fabButtonDial" ng-controller="dialController as dialPlus">
         <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
             <md-fab-trigger>
                 <md-button aria-label="menu" class="md-fab add">
@@ -9,21 +9,25 @@
             </md-fab-trigger>
 
             <md-fab-actions>
-                <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
-                    <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
-                    <md-tooltip>Create Activities</md-tooltip>
-                </md-button>
-                <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
-                    <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
-                    <md-tooltip>Icon Task</md-tooltip>
-                </md-button>
+                  <span class="toggleActiv">
+                        <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
+                              <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
+                        </md-button>
+                        <span class="ng-tooltip-bt">New Activities</span>
+                  </span>
+                  <span class="toggleTask">
+                        <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
+                              <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
+                        </md-button>
+                        <span class="ng-tooltip-bt">New Task</span>
+                  </span>
             </md-fab-actions>
         </md-fab-speed-dial>
     </div>
 
     <div ng-include src="'partials/formTarefa.html'"></div>
     <div ng-include src="'partials/formAtividade.html'"></div>
-
+    <div class="clearSeparate"></div>
     <div class="goalsResult" ng-controller="DoughnutCtrl">
         <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
             <ul class="listResult" ng-repeat="goal in datainfo">

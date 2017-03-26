@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html ng-app="porlaDashboard" ng-controller="dirDashboard" dir="{{msg}}" >
+      <head>
+            <meta charset="utf-8">
+            <base href="/app/">
+            <title>PORIA DASHBOARD</title>
+
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+            <link rel="stylesheet" href="css/angular-material.css">
+            <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" type="text/css"/>
+            <link rel="stylesheet" href="css/angular-dropdowns.css" type="text/css"/>
+            <link rel="stylesheet" href="css/md-chips-select.css" type="text/css"/>
+            <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+            <link rel="stylesheet" href="css/animate.css">
+            <link rel="stylesheet" href="css/angular-chart.css" />
+            <link rel="stylesheet" href="css/reset.css" >
+            <link rel="stylesheet" href="css/porlastyles-main.css" media="screen">
+            <link rel="stylesheet" href="css/porlastyles-rtl.css" media="screen">
+      </head>
+      <body ng-controller="appDashboard">
+            <div class="mainContainer">
+                  <div class="mainWrapper">
+                        <header ng-include src="'/app/partials/header.html'"></header>
+                        <div ng-view></div>
+                        <footer ng-include src="'/app/partials/footer.html'"></footer>
+                      <div style="visibility: hidden">
+                          <div class="md-dialog-container" id="myDialog">
+                              <md-dialog layout-padding>
+                                  <h2>Pre-Rendered Dialog</h2>
+                                  <p>
+                                      This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its
+                                      template on each opening.
+                                      <br /><br />
+                                      The Dialog Element is a static element in the DOM, which is just visually hidden.<br />
+                                      Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close
+                                      we restore the element back into its old DOM position.
+                                  </p>
+                              </md-dialog>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+
+            <script src="js/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+            <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script src="js/angular.js"></script>
+            <script src="js/angular-route.js"></script>
+            <script src="js/angular-filter.min.js"></script>
+            <script src="js/app.js"></script>
+            <script src="js/app-services/atividadeService.js"></script>
+            <script src="js/app-services/tarefaService.js"></script>
+            <script src="js/app-services/manipuladorFormTarefaService.js"></script>
+            <script src="js/app-services/manipuladorFormAtividadeService.js"></script>
+            <script src="js/app-services/fabricaDialogoService.js"></script>
+            <script src="js/controllers.js"></script>
+            <script src="js/app-controllers/modalFormTarefaController.js"></script>
+            <script src="js/app-controllers/modalFormAtividadeController.js"></script>
+            <script src="js/app-controllers/activitiesResultController.js"></script>
+
+            <!-- Angular Material Library -->
+            <script src="js/angular-aria.min.js"></script>
+            <script src="js/angular-messages.min.js"></script>
+            <script src="js/angular-animate.min.js"></script>
+            <script src="js/angular-sanitize.min.js"></script>
+            <script src="js/angular-material.min.js"></script>
+
+            <!-- Angular ChartJS Library -->
+            <script type="text/javascript" src="js/Chart.js"></script>
+            <script type="text/javascript" src="js/angular-chart.min.js"></script>
+
+            <!-- CustomScroller Library -->
+            <script src="js/scrollbars.min.js"></script>
+
+            <!-- Dropdown Library -->
+            <script src="js/angular-dropdowns.js"></script>
+
+            <!-- Chips Library -->
+            <script src="js/md-chips-select.js"></script>
+
+      </body>
+</html>
