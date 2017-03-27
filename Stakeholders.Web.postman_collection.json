@@ -1699,23 +1699,16 @@
 			"request": {
 				"url": "http://localhost:33346/token",
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
 				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "email",
-							"value": "someemail@example.com",
-							"type": "text",
-							"enabled": true
-						},
-						{
-							"key": "password",
-							"value": "ABCabc123@",
-							"type": "text",
-							"enabled": true
-						}
-					]
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\":\"someemail@example.com\",\r\n\t\"password\":\"ABCabc123@\"\r\n}"
 				},
 				"description": "Generating JWT for Stakeholders.Web"
 			},

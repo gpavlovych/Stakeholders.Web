@@ -16,23 +16,30 @@ porlaDashboard.controller('appDashboard', function ($rootScope, $scope) {
     $rootScope.pathUser = '/app/user/';
 });
 
-porlaDashboard.controller('loginController', function ($rootScope, $scope, $location, $window) {
+porlaDashboard.controller('loginController', function ($rootScope, $scope, $location, $window, $authenticationService) {
     $window.localStorage.setItem("poria_users",
           angular.toJson( [
            ]));
     $scope.login = function() {
-        $window.localStorage.setItem("poria_users",
-            angular.toJson([
-            {
-                name: 'Sara',
-                last: 'Forester',
-                occupation: 'Accountant',
-                contact: '866-878-7382',
-                image: '/app/user/sara.png',
-                status: 'on'
-            }
-        ]));
-        $window.location.assign("/app/index.html");
+        $authenticationService.login($scope.user.name,
+            $scope.user.password,
+            function(success) {
+                if (success) {
+                    $window.localStorage.setItem("poria_users",
+                         angular.toJson([
+                                {
+                                    name: 'Sara',
+                                    last: 'Forester',
+                                    occupation: 'Accountant',
+                                    contact: '866-878-7382',
+                                    image: '/app/user/sara.png',
+                                    status: 'on'
+                                }
+                            ]));
+                    $window.location.assign("/app/index.html");
+                }
+            });
+       
     };
     $rootScope.activetab = $location.path();
 

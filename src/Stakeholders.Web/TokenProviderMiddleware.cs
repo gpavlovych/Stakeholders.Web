@@ -13,6 +13,7 @@
 // ***********************************************************************
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Stakeholders.Web.Models;
+using Stakeholders.Web.Models.TokenViewModels;
 
 namespace Stakeholders.Web
 {
@@ -73,8 +75,7 @@ namespace Stakeholders.Web
             }
 
             // Request must be POST with Content-Type: application/x-www-form-urlencoded
-            if (!context.Request.Method.Equals("POST")
-                || !context.Request.HasFormContentType)
+            if (!context.Request.Method.Equals("POST"))
             {
                 context.Response.StatusCode = 400;
                 return context.Response.WriteAsync("Bad request.");
@@ -113,10 +114,15 @@ namespace Stakeholders.Web
         /// <returns>Task.</returns>
         private async Task GenerateToken(HttpContext context)
         {
-            var email = context.Request.Form["email"];
-            var password = context.Request.Form["password"];
+            string bodyStr;
+            using (var streamReader = new StreamReader(context.Request.Body))
+            {
+                bodyStr = streamReader.ReadToEnd();
+            }
 
-            var identity = await this.GetIdentity(email, password);
+            var tokenRequest = JsonConvert.DeserializeObject<TokenRequestViewModel>(bodyStr);
+          
+            var identity = await this.GetIdentity(tokenRequest.Email, tokenRequest.Password);
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
@@ -130,7 +136,7 @@ namespace Stakeholders.Web
             // You can add other claims here, if you want:
             var claims = new Claim[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, email),
+                new Claim(JwtRegisteredClaimNames.Sub, tokenRequest.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, now.Ticks.ToString(), ClaimValueTypes.Integer64)
             };
