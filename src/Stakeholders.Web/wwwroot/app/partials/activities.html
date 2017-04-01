@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="saveBlock">
-            <strong>{{'CREATION_DATE' | translate}}: <span>08/02/2017</span></strong>
+            <strong>{{'CREATION_DATE' | translate}}: <span>{{activity.dateCreated}}</span></strong>
             <button class="btnCancel" id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()" type='button'>{{'CANCEL' | translate}}</button>
             <button class="btnSave" type='button' ng-click="toggleFilterActvEdit();showAlert($event);">{{'SAVE' | translate}}</button>
         </div>
@@ -106,7 +106,7 @@
             <ul class="listResult" ng-repeat="activity in activities">
                 <li>
                     <h3 class="title">
-                        {{ activity.title }}
+                        {{ activity.subject }}
                     </h3>
                     <p class="subicons">
                         <md-button class="md-fab users" aria-label="Users">
@@ -120,7 +120,7 @@
                         </md-button>
                     </p>
                     <p class="content">
-                        {{ activity.content }}
+                        {{ activity.description }}
                     </p>
                     <div class="contact">
                         <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.user }}</strong></p>
