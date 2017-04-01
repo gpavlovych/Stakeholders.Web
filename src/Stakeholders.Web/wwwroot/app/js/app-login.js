@@ -1,4 +1,4 @@
-var porlaDashboard = angular.module('porlaDashboard',['ngRoute','ngMaterial','ngSanitize']);
+var porlaDashboard = angular.module('porlaDashboard', ['ngRoute', 'ngMaterial', 'ngSanitize', 'pascalprecht.translate']);
 
 porlaDashboard.config(function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({

@@ -1,5 +1,12 @@
 var porlaDashboard = angular.module('porlaDashboard', ['ngRoute', 'chart.js', 'ngMaterial', 'ngSanitize', 'ngScrollbars', 'ngAnimate', 'ngDropdowns', 'md.chips.select', 'pascalprecht.translate']);
 
+porlaDashboard.run(function ($window, $http) {
+    var currentUser = angular.fromJson($window.localStorage.currentUser);
+    if (currentUser) {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + currentUser.token;
+    }
+});
+
 porlaDashboard.config(function (ChartJsProvider) {
     // Configure all charts
     ChartJsProvider.setOptions({

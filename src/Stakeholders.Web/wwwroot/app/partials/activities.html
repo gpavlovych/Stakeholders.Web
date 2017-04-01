@@ -103,10 +103,10 @@
     </div>
     <div class="activitiesResult" ng-controller="activitiesResult">
         <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
-            <ul class="listResult" ng-repeat="active in activities">
+            <ul class="listResult" ng-repeat="activity in activities">
                 <li>
                     <h3 class="title">
-                        {{ active.title }}
+                        {{ activity.title }}
                     </h3>
                     <p class="subicons">
                         <md-button class="md-fab users" aria-label="Users">
@@ -120,12 +120,12 @@
                         </md-button>
                     </p>
                     <p class="content">
-                        {{ active.content }}
+                        {{ activity.content }}
                     </p>
                     <div class="contact">
-                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ active.user }}</strong></p>
-                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ active.relatedtogoal }}</strong></p>
-                        <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ active.createdday }}/{{ active.createdmonth }}/{{ active.createdyear }}</strong></p>
+                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.user }}</strong></p>
+                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ activity.relatedtogoal }}</strong></p>
+                        <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ activity.createdday }}/{{ activity.createdmonth }}/{{ activity.createdyear }}</strong></p>
                     </div>
                     <div class="bottomFooter">
                         <md-button class="md-fab footertrash" aria-label="Trash" ng-click="showConfirm($event);removeActivity($index)">

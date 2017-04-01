@@ -1,24 +1,25 @@
 ﻿<!DOCTYPE html>
 <html ng-app="porlaDashboard" ng-controller="dirDashboard" dir="{{msg}}" >
-      <head>
-            <meta charset="utf-8">
-            <base href="/app/">
-            <title>{{'PORIA_DASHBOARD' | translate}}</title>
+    <head>
+        <meta charset="utf-8">
+        <base href="/app/">
+        <title>{{'PORIA_DASHBOARD' | translate}}</title>
 
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-            <link rel="stylesheet" href="css/angular-material.css">
-            <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" type="text/css"/>
-            <link rel="stylesheet" href="css/angular-dropdowns.css" type="text/css"/>
-            <link rel="stylesheet" href="css/md-chips-select.css" type="text/css"/>
-            <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link rel="stylesheet" href="css/animate.css">
-            <link rel="stylesheet" href="css/angular-chart.css" />
-            <link rel="stylesheet" href="css/reset.css" >
-            <link rel="stylesheet" href="css/porlastyles-main.css" media="screen">
-            <link rel="stylesheet" href="css/porlastyles-rtl.css" media="screen">
-      </head>
+        <link rel="stylesheet" href="/lib/angular-material/angular-material.css">
+        <link rel="stylesheet" href="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/lib/md-chips-select/md-chips-select.css" type="text/css"/>
+        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/lib/animate.css/animate.css">
+        <link rel="stylesheet" href="/lib/angular-dropdowns/angular-dropdowns.css">
+
+        <link rel="stylesheet" href="css/angular-chart.css" />
+        <link rel="stylesheet" href="css/reset.css" >
+        <link rel="stylesheet" href="css/porlastyles-main.css" media="screen">
+        <link rel="stylesheet" href="css/porlastyles-rtl.css" media="screen">
+    </head>
 <body ng-controller="appDashboard">
     <div class="mainContainer">
         <div class="mainWrapper">
@@ -43,37 +44,37 @@
         </div>
     </div>
     <!-- Jquery -->
-    <script src="js/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="/lib/jquery/dist/jquery.min.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
     <!-- Angular -->
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/angular.js"></script>
-    <script src="js/angular-route.js"></script>
-    <script src="js/angular-filter.min.js"></script>
+    <script src="/lib/angular/angular.min.js"></script>
+    <script src="/lib/angular-route/angular-route.min.js"></script>
+    <script src="/lib/angular-filter/dist/angular-filter.min.js"></script>
 
     <!-- Angular Translate Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.1/angular-translate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.15.1/angular-translate-loader-static-files.min.js"></script>
+    <script src="/lib/angular-translate/angular-translate.min.js"></script>
+    <script src="/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 
     <!-- Angular Material Library -->
-    <script src="js/angular-aria.min.js"></script>
-    <script src="js/angular-messages.min.js"></script>
-    <script src="js/angular-animate.min.js"></script>
-    <script src="js/angular-sanitize.min.js"></script>
-    <script src="js/angular-material.min.js"></script>
+    <script src="/lib/angular-aria/angular-aria.min.js"></script>
+    <script src="/lib/angular-messages/angular-messages.min.js"></script>
+    <script src="/lib/angular-animate/angular-animate.min.js"></script>
+    <script src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/lib/angular-material/angular-material.min.js"></script>
 
     <!-- Angular ChartJS Library -->
-    <script type="text/javascript" src="js/Chart.js"></script>
-    <script type="text/javascript" src="js/angular-chart.min.js"></script>
+    <script type="text/javascript" src="/lib/chart.js/dist/chart.min.js"></script>
+    <script type="text/javascript" src="/lib/angular-chart.js/dist/angular-chart.min.js"></script>
 
     <!-- CustomScroller Library -->
-    <script src="js/scrollbars.min.js"></script>
+    <script src="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/lib/ng-scrollbars/dist/scrollbars.min.js"></script>
 
     <!-- Dropdown Library -->
-    <script src="js/angular-dropdowns.js"></script>
+    <script src="/lib/angular-dropdowns/dist/angular-dropdowns.min.js"></script>
 
     <!-- Chips Library -->
-    <script src="js/md-chips-select.js"></script>
+    <script src="/lib/md-chips-select/dist/md-chips-select.min.js"></script>
 
     <!-- Our code-->
     <script src="js/app.js"></script>
