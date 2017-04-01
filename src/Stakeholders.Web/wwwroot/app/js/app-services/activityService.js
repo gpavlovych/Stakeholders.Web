@@ -1,5 +1,5 @@
 
-porlaDashboard.factory('$activityService', function ($http) {
+porlaDashboard.factory('$activityService', ['$http', function ($http) {
    
     $http.get("/api/Activities")
    .then(function (response) {
@@ -90,4 +90,4 @@ porlaDashboard.factory('$activityService', function ($http) {
             activities.pop();
         },
     };
-});
+}]);

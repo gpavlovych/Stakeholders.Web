@@ -1,5 +1,5 @@
 // JavaScript source code
-porlaDashboard.controller('modalFormTaskController', function ($scope, $taskService, $editTaskFormService, $dialogServiceFactory) {
+porlaDashboard.controller('modalFormTaskController', ['$scope', '$taskService', '$editTaskFormService', '$dialogServiceFactory', function ($scope, $taskService, $editTaskFormService, $dialogServiceFactory) {
     // Objeto a ser manipulado no formulário, modal.
     $scope.task = {};
 
@@ -10,4 +10,4 @@ porlaDashboard.controller('modalFormTaskController', function ($scope, $taskServ
             $editTaskFormService.toggleModal();
         });
     };
-});
+}]);

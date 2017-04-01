@@ -1,6 +1,6 @@
 var porlaDashboard = angular.module('porlaDashboard', ['ngRoute', 'ngMaterial', 'ngSanitize', 'pascalprecht.translate']);
 
-porlaDashboard.config(function ($translateProvider) {
+porlaDashboard.config(['$translateProvider', function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
         prefix: 'i18n/',
         suffix: '.json'
@@ -15,9 +15,9 @@ porlaDashboard.config(function ($translateProvider) {
     $translateProvider.uniformLanguageTag('bcp47');
     $translateProvider.fallbackLanguage('en');
 
-});
+}]);
 
-porlaDashboard.config(function ($routeProvider, $locationProvider)
+porlaDashboard.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider)
 {
       $routeProvider
       .when('/', {
@@ -80,4 +80,4 @@ porlaDashboard.config(function ($routeProvider, $locationProvider)
 
       // use the HTML5 History API
       $locationProvider.html5Mode(true);
-});
+}]);

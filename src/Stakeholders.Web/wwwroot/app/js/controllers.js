@@ -1,4 +1,4 @@
-porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout, $translate) {
+porlaDashboard.controller('dirDashboard', ['$scope', '$location', '$timeout', '$translate', function ($scope, $location, $timeout, $translate) {
     $scope.msg = 'rtl';
     $translate.use("he");
     $scope.changeRTL = function () {
@@ -11,9 +11,9 @@ porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout,
         $translate.use("en");
         $scope.urlPage = $location.absUrl();
     }
-});
+}]);
 
-porlaDashboard.controller('appDashboard', function ($rootScope, $scope, $window, $mdDialog, $editTaskFormService, $editActivityFormService) {
+porlaDashboard.controller('appDashboard', ['$rootScope', '$scope', '$window', '$mdDialog', '$editTaskFormService', '$editActivityFormService', function ($rootScope, $scope, $window, $mdDialog, $editTaskFormService, $editActivityFormService) {
     $rootScope.title = 'PORIA DASHBOARD';
     $rootScope.pathImage = '/app/images/';
     $rootScope.pathUser = '/app/user/';
@@ -240,9 +240,9 @@ porlaDashboard.controller('appDashboard', function ($rootScope, $scope, $window,
     $scope.toggleFilterCatEdit = function () {
         $scope.toggleCatEdit = $scope.toggleCatEdit === false ? true : false;
     }
-});
+}]);
 
-porlaDashboard.controller('formLogin', function ($scope, $http) {
+porlaDashboard.controller('formLogin', ['$scope', function ($scope) {
     $scope.master = {};
     $scope.user = {};
     $scope.update = function (user) {
@@ -250,26 +250,16 @@ porlaDashboard.controller('formLogin', function ($scope, $http) {
         $scope.user = {};
         console.log(user);
     };
-});
+}]);
 
-porlaDashboard.controller('headerController', function ($scope, $window) {
+porlaDashboard.controller('headerController', ['$scope', '$window', function ($scope, $window) {
     $scope.users = angular.fromJson($window.localStorage.getItem("poria_users"));
     if ((!$scope.users) || ($scope.users.length == 0)) {
         $window.location.assign("/app/login.html");
     }
-    //    [
-    //    {
-    //        name: 'Sara',
-    //        last: 'Forester',
-    //        occupation: 'Accountant',
-    //        contact: '866-878-7382',
-    //        image: '/app/user/sara.png',
-    //        status: 'on'
-    //    }
-    //];
-});
+}]);
 
-porlaDashboard.controller('filterController', function ($scope) {
+porlaDashboard.controller('filterController', [function () {
     $(function () {
         $('.filterTabOne').on('click', function () {
             $('.filterTabTwo, .filterTabThree, .filterTabFour').removeClass('current_page_item');
@@ -292,9 +282,9 @@ porlaDashboard.controller('filterController', function ($scope) {
             $('#magic-line').animate({ left: '367px', width: '73px' });
         });
     });
-});
+}]);
 
-porlaDashboard.controller('dialController', function ($mdDialog, $scope, $timeout) {
+porlaDashboard.controller('dialController', [function () {
       this.topDirections = ['left', 'up'];
       this.bottomDirections = ['down', 'right'];
       this.isOpen = false;
@@ -307,9 +297,9 @@ porlaDashboard.controller('dialController', function ($mdDialog, $scope, $timeou
       $('.add').on('click', function () {
           $('.settings').toggleClass('opacitySet');
       });
-});
+}]);
 
-porlaDashboard.controller('chipsSelector', ["$scope", function ($scope) {
+porlaDashboard.controller('chipsSelector', ['$scope', function ($scope) {
     $scope.selectedOrganizations = [];
     $scope.organizationsList = [
         { organization: "Apple", id: 0 },
@@ -326,14 +316,13 @@ porlaDashboard.controller('chipsSelector', ["$scope", function ($scope) {
     ];
 }]);
 
-porlaDashboard.controller('dateController', function ($scope) {
+porlaDashboard.controller('dateController', ['$scope', function ($scope) {
     $scope.myDeadline = new Date();
     $scope.myComplete = new Date();
     $scope.isOpen = false;
-});
+}]);
 
-porlaDashboard.controller('dropdownController',
-    function($rootScope, $scope, $location) {
+porlaDashboard.controller('dropdownController', ['$rootScope', '$scope', function($rootScope, $scope) {
     $scope.ddSelectOptionsType = [
         { text: 'In Progress', value: 'inprogress' },
         { text: 'Done', value: 'done' },
@@ -456,9 +445,9 @@ porlaDashboard.controller('dropdownController',
     $scope.ddSelectSelectedCompany = {
         text: "Company"
     };
-});
+}]);
 
-porlaDashboard.controller("DoughnutCtrl", function ($scope) {
+porlaDashboard.controller('DoughnutCtrl', ['$scope', function ($scope) {
     $scope.labels = ["Task in progress", "Tasks Completed", "Tasks ready to start"];
     $scope.data = [50, 30, 20];
     $scope.datainfo = [
@@ -517,9 +506,9 @@ porlaDashboard.controller("DoughnutCtrl", function ($scope) {
             percentReady: 20
         }
     ];
-});
+}]);
 
-porlaDashboard.controller('fileControllerEditor', function ($rootScope, $scope) {
+porlaDashboard.controller('fileControllerEditor', [function () {
     var inputseditor = document.querySelectorAll('.inputfile');
     Array.prototype.forEach.call(inputseditor, function (input) {
         var label = input.nextElementSibling,
@@ -537,9 +526,9 @@ porlaDashboard.controller('fileControllerEditor', function ($rootScope, $scope) 
                 label.innerHTML = labelValEditor;
         });
     });
-});
+}]);
 
-porlaDashboard.controller('fileController', function ($rootScope, $scope) {
+porlaDashboard.controller('fileController', [function () {
     var inputs = document.querySelectorAll('.inputfile');
     Array.prototype.forEach.call(inputs, function (input) {
         var label = input.nextElementSibling,
@@ -557,9 +546,9 @@ porlaDashboard.controller('fileController', function ($rootScope, $scope) {
                 label.innerHTML = labelVal;
         });
     });
-});
+}]);
 
-porlaDashboard.controller('fileControllerTask', function ($rootScope, $scope) {
+porlaDashboard.controller('fileControllerTask', [function () {
     var inputstask = document.querySelectorAll("#attachedTask > .inputfile");
 
     Array.prototype.forEach.call(inputstask, function (input) {
@@ -578,9 +567,9 @@ porlaDashboard.controller('fileControllerTask', function ($rootScope, $scope) {
                 label.innerHTML = labelValTask;
         });
     });
-});
+}]);
 
-porlaDashboard.controller('fileControllerActiv', function ($rootScope, $scope) {
+porlaDashboard.controller('fileControllerActiv', [function () {
     var inputsactiv = document.querySelectorAll("#attachedActiv > .inputfile");
 
     Array.prototype.forEach.call(inputsactiv, function (input) {
@@ -599,23 +588,23 @@ porlaDashboard.controller('fileControllerActiv', function ($rootScope, $scope) {
                 label.innerHTML = labelValAtiv;
         });
     });
-});
+}]);
 
-porlaDashboard.controller('homeController', function ($rootScope, $scope, $location) {
+porlaDashboard.controller('homeController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
+}]);
 
-porlaDashboard.controller('ceoController', function ($rootScope, $scope, $location) {
+porlaDashboard.controller('ceoController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
+}]);
 
-porlaDashboard.controller('sidebarCeo', function ($scope) {
+porlaDashboard.controller('sidebarCeo', ['$scope', function ($scope) {
     $scope.activities = [
         {
             listingIcon: 'people',
@@ -648,8 +637,9 @@ porlaDashboard.controller('sidebarCeo', function ($scope) {
             listingThree: 'Lorem Ipsum content'
         }
     ];
-});
-porlaDashboard.controller('usersActivities', function ($scope) {
+}]);
+
+porlaDashboard.controller('usersActivities', ['$scope', function ($scope) {
     $scope.users = [
         {
             title: 'John Appleseed',
@@ -764,14 +754,16 @@ porlaDashboard.controller('usersActivities', function ($scope) {
             activities: '25'
         }
     ];
-});
-porlaDashboard.controller('managersController', function ($rootScope, $scope, $location) {
+}]);
+
+porlaDashboard.controller('managersController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
-porlaDashboard.controller('sidebarManager', function ($scope) {
+}]);
+
+porlaDashboard.controller('sidebarManager', ['$scope', function ($scope) {
     $scope.deadline = [
         {
             taskid: '1',
@@ -838,8 +830,9 @@ porlaDashboard.controller('sidebarManager', function ($scope) {
             deadlinestatus: 'green'
         }
     ];
-});
-porlaDashboard.controller('categoriesOrganizations', function ($scope) {
+}]);
+
+porlaDashboard.controller('categoriesOrganizations', ['$scope', function ($scope) {
     $scope.organizations = [
         {
             categorie: 'Governmental',
@@ -968,17 +961,17 @@ porlaDashboard.controller('categoriesOrganizations', function ($scope) {
             activities: 25
         }
     ];
-});
+}]);
 
-porlaDashboard.controller('tasksController', function ($rootScope, $scope, $location) {
+porlaDashboard.controller('tasksController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $scope.checked = [];
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
+}]);
 
-porlaDashboard.controller('tasksResult', function ($rootScope, $scope, $taskService, $dialogServiceFactory) {
+porlaDashboard.controller('tasksResult', ['$rootScope', '$scope', '$taskService', '$dialogServiceFactory', function ($rootScope, $scope, $taskService, $dialogServiceFactory) {
     $rootScope.scopeTaskResult = $scope;
     $scope.tasks = $taskService.getTasks();
     $scope.goRelated = false;
@@ -994,18 +987,16 @@ porlaDashboard.controller('tasksResult', function ($rootScope, $scope, $taskServ
                 $scope.refreshList();
             }, null);
     };
+}]);
 
-
-});
-
-porlaDashboard.controller('activitiesController', function ($rootScope, $scope, $location) {
+porlaDashboard.controller('activitiesController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
+}]);
 
-porlaDashboard.controller('activitiesResult', function ($rootScope, $scope, $activityService, $dialogServiceFactory) {
+porlaDashboard.controller('activitiesResult', ['$rootScope', '$scope', '$activityService', '$dialogServiceFactory', function ($rootScope, $scope, $activityService, $dialogServiceFactory) {
     $scope.activities = $activityService.getActivities();
 
     $scope.removeActivity = function (event, index) {
@@ -1015,16 +1006,16 @@ porlaDashboard.controller('activitiesResult', function ($rootScope, $scope, $act
                 $scope.activities = $activityService.getActivities();
             }, null);
     };
-});
+}]);
 
-
-porlaDashboard.controller('organizationsController', function ($rootScope, $scope, $location) {
+porlaDashboard.controller('organizationsController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
-porlaDashboard.controller('organizationsResult', function ($scope, $dialogServiceFactory) {
+}]);
+
+porlaDashboard.controller('organizationsResult', ['$scope', '$dialogServiceFactory', function ($scope, $dialogServiceFactory) {
     $scope.orderByField = 'ownerField';
     $scope.orderByField = 'categoryField';
     $scope.orderByField = 'typeField';
@@ -1110,14 +1101,16 @@ porlaDashboard.controller('organizationsResult', function ($scope, $dialogServic
     $scope.remover = function (event, index) {
         $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.organizations.splice(index, 1); }, null);
     };
-});
-porlaDashboard.controller('contactsController', function ($rootScope, $scope, $location) {
+}]);
+
+porlaDashboard.controller('contactsController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
-porlaDashboard.controller('contactsResult', function ($scope, $dialogServiceFactory) {
+}]);
+
+porlaDashboard.controller('contactsResult', ['$scope', '$dialogServiceFactory', function ($scope, $dialogServiceFactory) {
     $scope.orderByField = 'ownerField';
     $scope.orderByField = 'categoryField';
     $scope.orderByField = 'typeField';
@@ -1287,14 +1280,16 @@ porlaDashboard.controller('contactsResult', function ($scope, $dialogServiceFact
     $scope.remover = function (event, index) {
         $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.contacts.splice(index, 1); }, null);
     };
-});
-porlaDashboard.controller('companiesController', function ($rootScope, $scope, $location) {
+}]);
+
+porlaDashboard.controller('companiesController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
-porlaDashboard.controller('companiesResult', function ($scope, $dialogServiceFactory) {
+}]);
+
+porlaDashboard.controller('companiesResult', ['$scope', '$dialogServiceFactory', function ($scope, $dialogServiceFactory) {
     $scope.companies = [
         { title: 'Apple', brandimage: 'apple' },
         { title: 'Adobe', brandimage: 'adobe' },
@@ -1313,14 +1308,16 @@ porlaDashboard.controller('companiesResult', function ($scope, $dialogServiceFac
     $scope.remover = function (event, index) {
         $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.companies.splice(index, 1); }, null);
     };
-});
-porlaDashboard.controller('categoriesController', function ($rootScope, $scope, $location) {
+}]);
+
+porlaDashboard.controller('categoriesController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
-porlaDashboard.controller('categoriesResult', function ($scope, $location, $dialogServiceFactory) {
+}]);
+
+porlaDashboard.controller('categoriesResult', ['$scope', '$location', '$dialogServiceFactory', function ($scope, $location, $dialogServiceFactory) {
     $scope.orderByField = 'categoryField';
     $scope.orderByField = 'companyField';
     $scope.orderByField = 'influencedField';
@@ -1443,15 +1440,16 @@ porlaDashboard.controller('categoriesResult', function ($scope, $location, $dial
     $scope.remover = function (event, index) {
         $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.categories.splice(index, 1); }, null);
     };
-});
-porlaDashboard.controller('usersController', function ($rootScope, $scope, $location) {
+}]);
+
+porlaDashboard.controller('usersController', ['$rootScope', '$scope', '$location', function ($rootScope, $scope, $location) {
     $rootScope.activetab = $location.path();
     $(".dashboardContent").ready(function(){
           $("footer").removeClass("visibleFooter");
    });
-});
+}]);
 
-porlaDashboard.controller('usersResult', function ($scope, $location, $dialogServiceFactory) {
+porlaDashboard.controller('usersResult', ['$scope', '$location', '$dialogServiceFactory', function ($scope, $location, $dialogServiceFactory) {
     $scope.orderByField = 'companyField';
     $scope.orderByField = 'roleField';
     $scope.orderByField = 'titleField';
@@ -1561,4 +1559,4 @@ porlaDashboard.controller('usersResult', function ($scope, $location, $dialogSer
     $scope.remover = function (event, index) {
         $dialogServiceFactory.showConfirmationDeleteDialog(event, function () { $scope.data.users.splice(index, 1); }, null);
     };
-});
+}]);

@@ -1,5 +1,5 @@
 // Controller responsável pela modal para cadastro de atividades 
-porlaDashboard.controller('modalFormActivityController', function ($scope, $activityService, $editActivityFormService, $dialogServiceFactory) {
+porlaDashboard.controller('modalFormActivityController', ['$scope', '$activityService', '$editActivityFormService', '$dialogServiceFactory', function ($scope, $activityService, $editActivityFormService, $dialogServiceFactory) {
     $scope.activity = {};
 
     $scope.saveActivity = function (event) {
@@ -9,4 +9,4 @@ porlaDashboard.controller('modalFormActivityController', function ($scope, $acti
             $editActivityFormService.toggleModal();
         });
     };
-});
+}]);

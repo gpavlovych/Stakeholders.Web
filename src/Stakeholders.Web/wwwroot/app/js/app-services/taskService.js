@@ -1,5 +1,5 @@
 
-porlaDashboard.factory('$taskService', function () {
+porlaDashboard.factory('$taskService', [function () {
     var tasks = [
         {
             id: 1,
@@ -189,4 +189,4 @@ porlaDashboard.factory('$taskService', function () {
             tasks.splice(index, 1);
         },
     };
-});
+}]);

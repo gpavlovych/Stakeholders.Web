@@ -1,13 +1,13 @@
 var porlaDashboard = angular.module('porlaDashboard', ['ngRoute', 'chart.js', 'ngMaterial', 'ngSanitize', 'ngScrollbars', 'ngAnimate', 'ngDropdowns', 'md.chips.select', 'pascalprecht.translate']);
 
-porlaDashboard.run(function ($window, $http) {
+porlaDashboard.run(['$window', '$http', function ($window, $http) {
     var currentUser = angular.fromJson($window.localStorage.currentUser);
     if (currentUser) {
         $http.defaults.headers.common.Authorization = 'Bearer ' + currentUser.token;
     }
-});
+}]);
 
-porlaDashboard.config(function (ChartJsProvider) {
+porlaDashboard.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
     ChartJsProvider.setOptions({
         colors: ["#1cc327", "#fb375c", "#0e84fc", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"]
@@ -18,9 +18,9 @@ porlaDashboard.config(function (ChartJsProvider) {
         cutoutPercentage: 80,
         tooltips: { enabled: false }
     });
-});
+}]);
 
-porlaDashboard.config(function($translateProvider) {
+porlaDashboard.config(['$translateProvider', function ($translateProvider) {
     $translateProvider.useStaticFilesLoader({
         prefix: 'i18n/',
         suffix: '.json'
@@ -35,9 +35,9 @@ porlaDashboard.config(function($translateProvider) {
     $translateProvider.uniformLanguageTag('bcp47');
     $translateProvider.fallbackLanguage('en');
 
-});
+}]);
 
-porlaDashboard.config(function (ScrollBarsProvider) {
+porlaDashboard.config(['ScrollBarsProvider', function (ScrollBarsProvider) {
       ScrollBarsProvider.defaults = {
             scrollButtons: {
                   scrollAmount: 'auto',
@@ -62,16 +62,16 @@ porlaDashboard.config(function (ScrollBarsProvider) {
       // function removeClassCallback(el,id){
       //       $("footer").removeClass("visibleFooter");
       // }
-});
+}]);
 
-porlaDashboard.decorator('$mdAria', function mdAriaDecorator($delegate) {
+porlaDashboard.decorator('$mdAria', ['$delegate', function mdAriaDecorator($delegate) {
     $delegate.expect = angular.noop;
     $delegate.expectAsync = angular.noop;
     $delegate.expectWithText = angular.noop;
     return $delegate;
-});
+}]);
 
-porlaDashboard.config(function($routeProvider, $locationProvider)
+porlaDashboard.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider)
 {
       $routeProvider
       .when('/', {
@@ -133,4 +133,4 @@ porlaDashboard.config(function($routeProvider, $locationProvider)
       .otherwise ({ redirectTo: '/' });
 
       $locationProvider.html5Mode(true);
-});
+}]);

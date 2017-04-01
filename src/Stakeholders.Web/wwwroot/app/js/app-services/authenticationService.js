@@ -1,5 +1,5 @@
 ﻿porlaDashboard.factory('$authenticationService',
-    function ($http, $window) {
+    ['$http', '$window', function ($http, $window) {
         return {
             login: function (username, password, callback) {
                 $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
@@ -41,4 +41,4 @@
                 $http.defaults.headers.common.Authorization = '';
             }
         };
-    });
+    }]);

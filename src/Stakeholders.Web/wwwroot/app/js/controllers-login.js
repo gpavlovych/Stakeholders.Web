@@ -1,4 +1,4 @@
-porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout, $translate) {
+porlaDashboard.controller('dirDashboard', ['$scope', '$location', '$timeout', '$translate', function ($scope, $location, $timeout, $translate) {
     $scope.msg = 'ltr';
     $translate.use("en");
     $scope.changeRTL = function () {
@@ -11,15 +11,15 @@ porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout,
         $translate.use("en");
         $scope.urlPage = $location.absUrl();
     }
-});
+}]);
 
-porlaDashboard.controller('appDashboard', function ($rootScope, $scope) {
+porlaDashboard.controller('appDashboard', ['$rootScope', function ($rootScope) {
     $rootScope.title = 'PORIA DASHBOARD';
     $rootScope.pathImage = '/app/images/';
     $rootScope.pathUser = '/app/user/';
-});
+}]);
 
-porlaDashboard.controller('loginController', function ($rootScope, $scope, $location, $window, $authenticationService) {
+porlaDashboard.controller('loginController', ['$rootScope', '$scope', '$location', '$window', '$authenticationService', function ($rootScope, $scope, $location, $window, $authenticationService) {
     $window.localStorage.setItem("poria_users",
           angular.toJson( [
            ]));
@@ -46,4 +46,4 @@ porlaDashboard.controller('loginController', function ($rootScope, $scope, $loca
     };
     $rootScope.activetab = $location.path();
 
-});
+}]);

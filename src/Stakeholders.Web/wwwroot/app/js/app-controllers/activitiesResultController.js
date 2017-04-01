@@ -1,6 +1,6 @@
 // JavaScript source code
 
-porlaDashboard.controller('activitiesResultController', function ($rootScope, $scope, $activityService, $dialogServiceFactory) {
+porlaDashboard.controller('activitiesResultController', ['$rootScope', '$scope', '$activityService', '$dialogServiceFactory', function ($rootScope, $scope, $activityService, $dialogServiceFactory) {
     $scope.activities = $activityService.getActivities();
 
     $scope.removeActivity = function (event, index) {
@@ -10,4 +10,4 @@ porlaDashboard.controller('activitiesResultController', function ($rootScope, $s
                 $scope.activities = $activityService.getActivities();
             }, null);
     };
-});
+}]);

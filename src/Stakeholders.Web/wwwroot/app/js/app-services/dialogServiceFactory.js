@@ -1,5 +1,5 @@
 // JavaScript source code
-porlaDashboard.factory('$dialogServiceFactory', function ($mdDialog) {
+porlaDashboard.factory('$dialogServiceFactory', ['$mdDialog', function ($mdDialog) {
     return {
         showConfirmationDeleteDialog: function (event, fnOk, fnCancel) {
             var confirm = $mdDialog.confirm()
@@ -24,4 +24,4 @@ porlaDashboard.factory('$dialogServiceFactory', function ($mdDialog) {
             ).then(fnOk);
         },
     };
-});
+}]);
