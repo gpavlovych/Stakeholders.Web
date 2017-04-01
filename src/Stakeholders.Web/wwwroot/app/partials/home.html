@@ -1,5 +1,5 @@
 <div class="dashboardContent home" ng-cloak>
-    <h1>GOALS</h1>
+    <h1>{{'GOALS' | translate}}</h1>
     <div class="fabButtonDial" ng-controller="dialController as dialPlus">
         <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
             <md-fab-trigger>
@@ -10,16 +10,16 @@
 
             <md-fab-actions>
                   <span class="toggleActiv">
-                        <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
+                        <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES' | translate}}" class="md-fab md-raised md-mini green">
                               <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
                         </md-button>
-                        <span class="ng-tooltip-bt">New Activities</span>
+                        <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES' | translate}}</span>
                   </span>
                   <span class="toggleTask">
-                        <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
+                        <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK' | translate}}" class="md-fab md-raised md-mini cyan">
                               <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
                         </md-button>
-                        <span class="ng-tooltip-bt">New Task</span>
+                        <span class="ng-tooltip-bt">{{'NEW_TASK' | translate}}</span>
                   </span>
             </md-fab-actions>
         </md-fab-speed-dial>
@@ -37,20 +37,20 @@
                         <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" chart-options="options" width="166" height="166"></canvas>
                         <div class="numberTasks">
                             <h2>{{ goal.valueProcess + goal.valueCompleted + goal.valueReady }}</h2>
-                            <span>TASKS</span>
+                            <span>{{'TASKS' | translate}}</span>
                         </div>
                     </div>
                     <div class="valuesResult">
                         <div class="process">
-                            <p><span class="color"></span>Tasks in process</p>
+                            <p><span class="color"></span>{{'TASKS_IN_PROCESS' | translate}}</p>
                             <h3>{{ goal.valueProcess }} - {{ goal.percentProcess }}%</h3>
                         </div>
                         <div class="tasks">
-                            <p><span class="color"></span>Tasks Completed</p>
+                            <p><span class="color"></span>{{'TASKS_COMPLETED' | translate}}</p>
                             <h3>{{ goal.valueCompleted }} - {{ goal.percentCompleted }}%</h3>
                         </div>
                         <div class="ready">
-                            <p><span class="color"></span>Tasks ready to start</p>
+                            <p><span class="color"></span>{{'TASKS_READY_TO_START' | translate}}</p>
                             <h3>{{ goal.valueReady }} - {{ goal.percentReady }}%</h3>
                         </div>
                     </div>

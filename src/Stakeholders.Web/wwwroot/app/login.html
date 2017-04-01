@@ -1,56 +1,64 @@
 ﻿<!DOCTYPE html>
 <html ng-app="porlaDashboard" ng-controller="dirDashboard" dir="{{msg}}" >
-      <head>
-            <meta charset="utf-8">
-            <base href="/app/">
-            <title>PORIA DASHBOARD</title>
+    <head>
+        <meta charset="utf-8">
+        <base href="/app/">
+        <title>{{'PORIA_DASHBOARD' | translate}}</title>
 
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link rel="stylesheet" href="css/angular-material.css">
-            <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link rel="stylesheet" href="css/animate.css">
-            <link rel="stylesheet" href="css/reset.css" >
-            <link rel="stylesheet" href="css/porlastyles-main.css" media="screen">
-            <link rel="stylesheet" href="css/porlastyles-rtl.css" media="screen">
-      </head>
-      <body ng-controller="appDashboard">
-            <div class="mainContainer">
-                  <div class="mainWrapper">
-                        <div class="loginBox" ng-cloak>
-                              <div class="loginForm" layout="column" ng-controller="loginController">
-                                    <md-content layout-gt-sm="column" layout-padding>
-                                          <h2>LOGIN</h2>
-                                          <form class="formAccess">
-                                                <md-input-container class="md-block">
-                                                      <input ng-model="user.name" type="text" placeholder="User Name" >
-                                                </md-input-container>
-                                                <md-input-container class="md-block">
-                                                      <input type="password" ng-model="user.password" placeholder="Password" />
-                                                </md-input-container>
-                                                <md-button class="md-fab login" ng-click="login();" aria-label="Login">
-                                                      <span>LOGIN</span>
-                                                </md-button>
-                                          </form>
-                                    </md-content>
-                              </div>
-                        </div>
-                  </div>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/angular-material.css">
+        <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/reset.css" >
+        <link rel="stylesheet" href="css/porlastyles-main.css" media="screen">
+        <link rel="stylesheet" href="css/porlastyles-rtl.css" media="screen">
+    </head>
+    <body ng-controller="appDashboard">
+        <div class="mainContainer">
+            <div class="mainWrapper">
+                <div class="loginBox" ng-cloak>
+                    <div class="loginForm" layout="column" ng-controller="loginController">
+                        <md-content layout-gt-sm="column" layout-padding>
+                            <h2>LOGIN</h2>
+                            <form class="formAccess">
+                                <md-input-container class="md-block">
+                                    <input ng-model="user.name" type="text" placeholder="{{'USER_NAME' | translate}}">
+                                </md-input-container>
+                                <md-input-container class="md-block">
+                                    <input type="password" ng-model="user.password" placeholder="{{'PASSWORD' | translate}}" />
+                                </md-input-container>
+                                <md-button class="md-fab login" ng-click="login();" aria-label="{{'LOGIN_LOW' | translate}}">
+                                    <span>{{'LOGIN' | translate}}</span>
+                                </md-button>
+                            </form>
+                        </md-content>
+                    </div>
+                </div>
             </div>
+        </div>
+        
+        <!--Jquery-->
+        <script src="js/jquery-2.2.4.js"></script>
 
-            <script src="js/jquery-2.2.4.js"></script>
-            <script src="js/angular.js"></script>
-            <script src="js/angular-route.js"></script>
-            <script src="js/app-login.js"></script>
-            <script src="js/controllers-login.js"></script>
-            <script src="js/app-services/authenticationService.js"></script>
+        <!--Angular-->
+        <script src="js/angular.js"></script>
+        <script src="js/angular-route.js"></script>
 
-            <!-- Angular Material Library -->
-            <script src="js/angular-aria.min.js"></script>
-            <script src="js/angular-messages.min.js"></script>
-            <script src="js/angular-animate.min.js"></script>
-            <script src="js/angular-sanitize.min.js"></script>
-            <script src="js/angular-material.min.js"></script>
+        <!-- Angular Translate Library -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.15.1/angular-translate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.15.1/angular-translate-loader-static-files.min.js"></script>
 
-      </body>
+        <!-- Angular Material Library -->
+        <script src="js/angular-aria.min.js"></script>
+        <script src="js/angular-messages.min.js"></script>
+        <script src="js/angular-animate.min.js"></script>
+        <script src="js/angular-sanitize.min.js"></script>
+        <script src="js/angular-material.min.js"></script>
+
+        <!-- Our code -->
+        <script src="js/app-login.js"></script>
+        <script src="js/controllers-login.js"></script>
+        <script src="js/app-services/authenticationService.js"></script>
+    </body>
 </html>

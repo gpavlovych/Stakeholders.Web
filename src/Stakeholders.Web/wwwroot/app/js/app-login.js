@@ -1,5 +1,23 @@
 var porlaDashboard = angular.module('porlaDashboard',['ngRoute','ngMaterial','ngSanitize']);
-porlaDashboard.config(function($routeProvider, $locationProvider)
+
+porlaDashboard.config(function ($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'i18n/',
+        suffix: '.json'
+    });
+
+    $translateProvider.registerAvailableLanguageKeys(['en', 'he'], {
+        'en-US': 'en',
+        'en-UK': 'en',
+        'he-IL': 'he'
+    });
+
+    $translateProvider.uniformLanguageTag('bcp47');
+    $translateProvider.fallbackLanguage('en');
+
+});
+
+porlaDashboard.config(function ($routeProvider, $locationProvider)
 {
       $routeProvider
       .when('/', {

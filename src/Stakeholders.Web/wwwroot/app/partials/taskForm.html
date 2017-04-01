@@ -1,20 +1,20 @@
 
 <div class="editorPanelCreateTask" ng-hide="toggleActvTask()" ng-controller="modalFormTaskController">
-    <h2>NEW TASK</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvTask" ng-click="toggleFilterActvTask();"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+    <h2>{{'NEW_TASK' | translate}}</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvTask" ng-click="toggleFilterActvTask();"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
     <div class="colLeft">
         <div class="formEditor">
-            <input type="text" placeholder="Subject" ng-model="task.title" />
-            <textarea placeholder="Description" ng-model="task.content"></textarea>
+            <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="task.title" />
+            <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="task.content"></textarea>
             <div class="statusList" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsStatus" dropdown-model="ddSelectSelectedStatus" dropdown-item-label="text"></div>
             </div>
         </div>
         <div class="relatedOrganizations" ng-controller="chipsSelector">
-            <h3>Related Organizations</h3>
+            <h3>{{'RELATED_ORGANIZATIONS' | translate}}</h3>
             <md-chips-select ng-model="selectedOrganizations" select-items="organizationsList" main-title="organization"></md-chips-select>
         </div>
         <div class="relatedContacts" ng-controller="chipsSelector">
-            <h3>Related Contacts</h3>
+            <h3>{{'RELATED_CONTACTS' | translate}}</h3>
             <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
         </div>
         <div class="statusList" ng-controller="dropdownController">
@@ -23,17 +23,17 @@
     </div>
     <div class="colRight">
         <p class="highChk">
-            High importance
+            {{'HIGH_IMPORTANCE' | translate}}
             <md-checkbox ng-model="task.highimportant" aria-label="Checkbox 1"></md-checkbox>
         </p>
         <div class="dateField" ng-controller="dateController">
-            <md-datepicker ng-model="task.deadline" md-placeholder="Deadline"></md-datepicker>
+            <md-datepicker ng-model="task.deadline" md-placeholder="{{'DEADLINE' | translate}}"></md-datepicker>
         </div>
         <div class="dateField" ng-controller="dateController">
-            <md-datepicker ng-model="myComplete" md-placeholder="Complete date"></md-datepicker>
+            <md-datepicker ng-model="myComplete" md-placeholder="{{'COMPLETE_DATE' | translate}}"></md-datepicker>
         </div>
         <div class="relatedContacts" ng-controller="chipsSelector">
-            <h3>Involved</h3>
+            <h3>{{'TODO' | translate}}Involved</h3>
             <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
         </div>
         <div class="statusList" ng-controller="dropdownController">
@@ -41,11 +41,11 @@
         </div>
         <div class="attached" ng-controller="fileControllerTask">
             <div class="fileinput" id="attachedTask">
-                <h3>Attach document</h3>
+                <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
                 <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple />
                 <label for="file">
                     <span class="labelValTask"></span>
-                    <strong>Attach</strong>
+                    <strong>{{'ATTACH' | translate}}</strong>
                 </label>
             </div>
             <div class="itemAttached">
@@ -57,8 +57,8 @@
         </div>
     </div>
     <div class="saveBlock">
-        <span>Creation date: 02/02/2017</span>
-        <button class="btnCancel" id="toggleFilterActvTask" ng-click="toggleFilterActvTask()" type='button'>CANCEL</button>
-        <button class="btnSave" type='button' ng-click="saveTask($event)">SAVE</button>
+        <span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>
+        <button class="btnCancel" id="toggleFilterActvTask" ng-click="toggleFilterActvTask()" type='button'>{{'CANCEL' | translate}}</button>
+        <button class="btnSave" type='button' ng-click="saveTask($event)">{{'SAVE' | translate}}</button>
     </div>
 </div>

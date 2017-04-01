@@ -1,5 +1,5 @@
 <div class="dashboardContent categories" ng-controller="categoriesController" ng-cloak>
-      <h1>CATEGORIES</h1>
+      <h1>{{'CATEGORIES' | translate}}</h1>
       <div class="blockFilters">
             <form class="formSearch">
                   <div class="form-group">
@@ -19,16 +19,16 @@
 
                     <md-fab-actions>
                           <span class="toggleActiv">
-                                <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
+                                <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES' | translate}}" class="md-fab md-raised md-mini green">
                                       <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
                                 </md-button>
-                                <span class="ng-tooltip-bt">New Activities</span>
+                                <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES' | translate}}</span>
                           </span>
                           <span class="toggleTask">
-                                <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
+                                <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK' | translate}}" class="md-fab md-raised md-mini cyan">
                                       <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
                                 </md-button>
-                                <span class="ng-tooltip-bt">New Task</span>
+                                <span class="ng-tooltip-bt">{{'NEW_TASK' | translate}}</span>
                           </span>
                     </md-fab-actions>
                 </md-fab-speed-dial>
@@ -42,10 +42,10 @@
           <span class="closeModal" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit();"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
             <div class="colLeft" style="height: 470px;">
                   <div class="formEditor" ng-scrollbars ng-scrollbars-config="config">
-                        <input type="text" placeholder="Name" />
-                        <input type="text" placeholder="Company" />
+                        <input type="text" placeholder="{{'NAME' | translate}}" />
+                        <input type="text" placeholder="{{'COMPANY' | translate}}" />
                         <div class="photoBrands">
-                              <h3>Logo</h3>
+                              <h3>{{'LOGO' | translate}}</h3>
                               <div class="photo">
                                     <span class="brandImage">
                                           <img src="{{pathImage}}governmental.png" alt="apple" />
@@ -53,16 +53,16 @@
                                     <md-button class="md-fab footertrash" aria-label="Trash">
                                           <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
                                     </md-button>
-                                    <button class="btnDefault" type='button' ng-click='addphoto()'>Add Icon</button>
+                                    <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_ICON' | translate}}</button>
                               </div>
                         </div>
-                        <textarea placeholder="Influencing"></textarea>
-                        <textarea placeholder="Influenced by"></textarea>
+                        <textarea placeholder="{{'INFLUENCING' | translate}}"></textarea>
+                        <textarea placeholder="{{'INFLUENCED_BY' | translate}}"></textarea>
                   </div>
             </div>
             <p class="saveBlock">
-                <button class="btnCancel" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit()" type='button'>CANCEL</button>
-                <button class="btnSave" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit();showAlert($event);" type='button'>SAVE</button>
+                <button class="btnCancel" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit()" type='button'>{{'CANCEL' | translate}}</button>
+                <button class="btnSave" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit();showAlert($event);" type='button'>{{'SAVE' | translate}}</button>
             </p>
       </div>
       <div class="categoriesResult" ng-controller="categoriesResult">
@@ -72,32 +72,32 @@
                               <tr>
                                     <th>
                                           <a class="tagcolor" href="#" ng-click="orderByField='nameField'; reverseSort = !reverseSort">
-                                                Name <span ng-show="orderByField == 'nameField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                                {{'NAME' | translate}} <span ng-show="orderByField == 'nameField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
                                           </a>
                                     </th>
                                     <th>
                                           <a href="#" ng-click="orderByField='influencingField'; reverseSort = !reverseSort">
-                                                Influencing <span ng-show="orderByField == 'influencingField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                                {{'INFLUENCING' | translate}} <span ng-show="orderByField == 'influencingField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
                                           </a>
                                     </th>
                                     <th>
                                           <a href="#" ng-click="orderByField='influencedField'; reverseSort = !reverseSort">
-                                                Influenced by <span ng-show="orderByField == 'influencedField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                                {{'INFLUENCED_BY' | translate}} <span ng-show="orderByField == 'influencedField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
                                           </a>
                                     </th>
                                     <th>
                                           <a href="#" ng-click="orderByField='companyField'; reverseSort = !reverseSort">
-                                                Company <span ng-show="orderByField == 'companyField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                                {{'COMPANY' | translate}} <span ng-show="orderByField == 'companyField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
                                           </a>
                                     </th>
                                     <th>
                                           <a href="#" ng-click="orderByField='categoryField'; reverseSort = !reverseSort">
-                                                Category <span ng-show="orderByField == 'categoryField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
+                                                {{'CATEGORY' | translate}} <span ng-show="orderByField == 'categoryField'"><span ng-show="reverseSort"><md-icon md-svg-src="{{pathImage}}up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="{{pathImage}}arrow-down-filled-triangle.svg"></md-icon></span></span>
                                           </a>
                                     </th>
                                     <th>
                                           <a href="#">
-                                                Options
+                                               {{'OPTIONS' | translate}} 
                                           </a>
                                     </th>
                               </tr>

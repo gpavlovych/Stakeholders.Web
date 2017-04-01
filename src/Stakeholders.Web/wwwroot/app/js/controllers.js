@@ -332,7 +332,8 @@ porlaDashboard.controller('dateController', function ($scope) {
     $scope.isOpen = false;
 });
 
-porlaDashboard.controller('dropdownController', function ($rootScope, $scope, $location) {
+porlaDashboard.controller('dropdownController',
+    function($rootScope, $scope, $location) {
     $scope.ddSelectOptionsType = [
         { text: 'In Progress', value: 'inprogress' },
         { text: 'Done', value: 'done' },

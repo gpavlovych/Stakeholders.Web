@@ -1,11 +1,14 @@
-porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout) {
+porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout, $translate) {
     $scope.msg = 'ltr';
+    $translate.use("en");
     $scope.changeRTL = function () {
         $scope.msg = 'rtl';
+        $translate.use("he");
         $scope.urlPage = $location.absUrl();
     }
     $scope.changeLTR = function () {
         $scope.msg = 'ltr';
+        $translate.use("en");
         $scope.urlPage = $location.absUrl();
     }
 });

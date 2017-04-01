@@ -1,6 +1,6 @@
 <div class="dashboardContent manager" ng-controller="managersController" ng-cloak>
     <div class="sidebarDashboard" ng-controller="sidebarManager">
-        <h1>APPROACHING DEADLINE TASKS</h1>
+        <h1>{{'APPROACHING_DEADLINE_TASKS' | translate}}</h1>
         <div class="latestActivities" ng-scrollbars ng-scrollbars-config="config">
             <ul class="listActivities" ng-repeat="task in deadline">
                 <li class="oneLevel {{ task.deadlinestatus }}">
@@ -20,12 +20,12 @@
         </div>
     </div>
     <div class="contentDashboard">
-        <h1>CATEGORIES OF ORGANIZATIONS OLD</h1>
+        <h1>{{'CATEGORIES_OF_ORGANIZATIONS' | translate}}</h1>
         <div id="nav-show" ng-controller="filterController">
-            <a class="filterTabOne current_page_item" href="">this year</a>
-            <a class="filterTabTwo" href="#">this quarter</a>
-            <a class="filterTabThree" href="#">this month</a>
-            <a class="filterTabFour" href="#">this week</a>
+            <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
+            <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
+            <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
+            <a class="filterTabFour" href="#">{{'THIS_WEEK' | translate}}</a>
             <div id="magic-line"></div>
         </div>
 
@@ -39,16 +39,16 @@
 
                 <md-fab-actions>
                       <span class="toggleActiv">
-                           <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
+                           <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES' | translate}}" class="md-fab md-raised md-mini green">
                                  <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
                            </md-button>
-                           <span class="ng-tooltip-bt">New Activities</span>
+                           <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES' | translate}}</span>
                      </span>
                      <span class="toggleTask">
-                           <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
+                           <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK' | translate}}" class="md-fab md-raised md-mini cyan">
                                  <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
                            </md-button>
-                           <span class="ng-tooltip-bt">New Task</span>
+                           <span class="ng-tooltip-bt">{{'NEW_TASK' | translate}}</span>
                      </span>
                 </md-fab-actions>
             </md-fab-speed-dial>
@@ -70,14 +70,14 @@
                                 <img src="{{pathImage}}{{ entities.categoryimage }}.png" />
                             </div>
                             <div class="leftEntity">
-                                <p><span class="color red"></span>Tasks Comp: <strong>{{ entities.taskcomp }}%</strong></p>
-                                <p><span class="color green"></span>Activities: <strong>{{ entities.activities }}</strong></p>
-                                <p><span class="color blue"></span>Tasks Comp: <strong>{{ entities.taskcomp }}%</strong></p>
+                                <p><span class="color red"></span>{{'TASKS_COMP' | translate}}: <strong>{{ entities.taskcomp }}%</strong></p>
+                                <p><span class="color green"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ entities.activities }}</strong></p>
+                                <p><span class="color blue"></span>{{'TASKS_COMP' | translate}}: <strong>{{ entities.taskcomp }}%</strong></p>
                             </div>
                         </div>
                         <div class="legend">
-                            <p><span class="ng-tooltip">Lorem Ipsum</span><img src="{{pathImage}}influency.png" /> Influencing</p>
-                            <p><span class="ng-tooltip">Lorem Ipsum</span><img src="{{pathImage}}influencyby.png" /> Influencing by</p>
+                            <p><span class="ng-tooltip">Lorem Ipsum</span><img src="{{pathImage}}influency.png" /> {{'INFLUENCING' | translate}}</p>
+                            <p><span class="ng-tooltip">Lorem Ipsum</span><img src="{{pathImage}}influencyby.png" /> {{'INFLUENCED_BY' | translate}}</p>
                         </div>
                     </li>
                 </ul>
