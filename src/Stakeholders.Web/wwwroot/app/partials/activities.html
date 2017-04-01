@@ -123,12 +123,12 @@
                         {{ activity.description }}
                     </p>
                     <div class="contact">
-                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.user }}</strong></p>
-                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ activity.relatedtogoal }}</strong></p>
-                        <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ activity.createdday }}/{{ activity.createdmonth }}/{{ activity.createdyear }}</strong></p>
+                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.userId }}</strong></p>
+                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ activity.relatedToGoal }}</strong></p>
+                        <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ activity.dateCreated }}</strong></p>
                     </div>
                     <div class="bottomFooter">
-                        <md-button class="md-fab footertrash" aria-label="Trash" ng-click="showConfirm($event);removeActivity($index)">
+                        <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeActivity($event, activity.id)">
                             <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
                         </md-button>
                         <md-button id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()" class="md-fab footerpen" aria-label="Pen">

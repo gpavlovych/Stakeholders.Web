@@ -24,7 +24,7 @@ porlaDashboard.factory('ActivityService', ['$http', function ($http) {
         },
         remove: function(id) {
             var url = "/api/Activities/" + id;
-            return $http.delete(url, activity).then(handleSuccess, handleError('Error deleting activity'));
+            return $http.delete(url).then(handleSuccess, handleError('Error deleting activity'));
         }
     };
 
