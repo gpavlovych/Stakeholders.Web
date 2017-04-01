@@ -1,13 +1,16 @@
-porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout) {
-      $scope.msg = 'rtl';
-      $scope.changeRTL = function () {
-            $scope.msg = 'rtl';
-            $scope.urlPage = $location.absUrl();
-      }
-      $scope.changeLTR = function () {
-            $scope.msg = 'ltr';
-            $scope.urlPage = $location.absUrl();
-      }
+porlaDashboard.controller('dirDashboard', function ($scope, $location, $timeout, $translate) {
+    $scope.msg = 'rtl';
+    $translate.use("he");
+    $scope.changeRTL = function () {
+        $scope.msg = 'rtl';
+        $translate.use("he");
+        $scope.urlPage = $location.absUrl();
+    }
+    $scope.changeLTR = function () {
+        $scope.msg = 'ltr';
+        $translate.use("en");
+        $scope.urlPage = $location.absUrl();
+    }
 });
 
 porlaDashboard.controller('appDashboard', function ($rootScope, $scope, $window, $mdDialog, $editTaskFormService, $editActivityFormService) {
@@ -976,18 +979,18 @@ porlaDashboard.controller('tasksController', function ($rootScope, $scope, $loca
 
 porlaDashboard.controller('tasksResult', function ($rootScope, $scope, $taskService, $dialogServiceFactory) {
     $rootScope.scopeTaskResult = $scope;
-    $scope.tarefas = $taskService.obterTarefas();
+    $scope.tasks = $taskService.getTasks();
     $scope.goRelated = false;
 
-    $scope.atualizarListagem = function () {
-        $scope.tarefas = $taskService.obterTarefas();
+    $scope.refreshList = function () {
+        $scope.tasks = $taskService.getTasks();
     };
 
-    $scope.removerTarefa = function (event, index) {
+    $scope.removeTask = function (event, index) {
         $dialogServiceFactory.showConfirmationDeleteDialog(event,
             function () {
-                $taskService.removerTarefa(index);
-                $scope.atualizarListagem();
+                $taskService.removeTask(index);
+                $scope.refreshList();
             }, null);
     };
 

@@ -1,15 +1,33 @@
-var porlaDashboard = angular.module('porlaDashboard', ['ngRoute', 'chart.js', 'ngMaterial', 'ngSanitize', 'ngScrollbars','ngAnimate','ngDropdowns','md.chips.select']);
+var porlaDashboard = angular.module('porlaDashboard', ['ngRoute', 'chart.js', 'ngMaterial', 'ngSanitize', 'ngScrollbars', 'ngAnimate', 'ngDropdowns', 'md.chips.select', 'pascalprecht.translate']);
 
 porlaDashboard.config(function (ChartJsProvider) {
-      // Configure all charts
-      ChartJsProvider.setOptions({
-            colors: ["#1cc327","#fb375c","#0e84fc","#46BFBD","#FDB45C","#949FB1","#4D5360"]
-      });
-      // Configure all doughnut charts
-      ChartJsProvider.setOptions('doughnut', {
-            cutoutPercentage: 80,
-            tooltips: { enabled: false }
-      });
+    // Configure all charts
+    ChartJsProvider.setOptions({
+        colors: ["#1cc327", "#fb375c", "#0e84fc", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"]
+    });
+    // Configure all doughnut charts
+    ChartJsProvider.setOptions('doughnut',
+    {
+        cutoutPercentage: 80,
+        tooltips: { enabled: false }
+    });
+});
+
+porlaDashboard.config(function($translateProvider) {
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'i18n/',
+        suffix: '.json'
+    });
+
+    $translateProvider.registerAvailableLanguageKeys(['en', 'he'], {
+        'en-US': 'en',
+        'en-UK': 'en',
+        'he-IL': 'he'
+    });
+
+    $translateProvider.uniformLanguageTag('bcp47');
+    $translateProvider.fallbackLanguage('en');
+
 });
 
 porlaDashboard.config(function (ScrollBarsProvider) {

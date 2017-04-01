@@ -1,10 +1,10 @@
 <div class="dashboardContent activities" ng-controller="activitiesResultController" ng-cloak>
-    <h1>ACTIVITIES</h1>
+    <h1>{{'ACTIVITIES' | translate}}</h1>
     <div id="nav-show" ng-controller="filterController">
-        <a class="filterTabOne current_page_item" href="">this year</a>
-        <a class="filterTabTwo" href="#">this quarter</a>
-        <a class="filterTabThree" href="#">this month</a>
-        <a class="filterTabFour" href="#">this week</a>
+        <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
+        <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
+        <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
+        <a class="filterTabFour" href="#">{{'THIS_WEEK' | translate}}</a>
         <div id="magic-line"></div>
     </div>
     <div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
@@ -20,13 +20,13 @@
                         <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="Create Activities" class="md-fab md-raised md-mini green">
                              <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
                         </md-button>
-                        <span class="ng-tooltip-bt">New Activities</span>
+                        <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES'|translate}}</span>
                   </span>
                   <span class="toggleTask">
                         <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="Create Task" class="md-fab md-raised md-mini cyan">
                              <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
                         </md-button>
-                        <span class="ng-tooltip-bt">New Task</span>
+                        <span class="ng-tooltip-bt">{{'NEW_TASK'|translate}}</span>
                   </span>
             </md-fab-actions>
         </md-fab-speed-dial>
@@ -57,10 +57,10 @@
                 <div class="statusList one" ng-controller="dropdownController">
                     <div dropdown-select="ddSelectOptionsType" dropdown-model="ddSelectSelectedType" dropdown-item-label="text"></div>
                 </div>
-                <h3>Related task</h3>
+                <h3>{{'RELATED_TASK' | translate}}</h3>
                 <p><a href="#">Lorem ipsum content link</a></p>
-                <button class="btnDefault" type='button' ng-click='change()'>Change</button>
-                <button class="btnDefault" type='button' ng-click='connect()'>Connect to task</button>
+                <button class="btnDefault" type='button' ng-click='change()'>{{'CHANGE' | translate}}</button>
+                <button class="btnDefault" type='button' ng-click='connect()'>{{'CONNECT_TO_TASK' | translate}}</button>
 
                 <div class="statusList" ng-controller="dropdownController">
                     <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
@@ -74,7 +74,7 @@
         </div>
         <div class="colRight">
             <div class="relatedContacts" ng-controller="chipsSelector">
-                <h3>Share with</h3>
+                <h3>{{'SHARE_WITH' | translate}}</h3>
                 <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
             </div>
             <div class="dateField" ng-controller="dateController">
@@ -82,10 +82,10 @@
             </div>
             <div class="attached">
                 <div class="fileinput">
-                    <h3>Attach document</h3>
-                    <label for="upload-photo">Browse...</label>
+                    <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
+                    <label for="upload-photo">{{'BROWSE' | translate}}</label>
                     <input id="upload-photo" type='file' file-model='fileModel'>
-                    <button class="btnFilepicker" type='button' ng-click='upload()'>Attach</button>
+                    <button class="btnFilepicker" type='button' ng-click='upload()'>{{'ATTACH' | translate}}</button>
                 </div>
                 <div class="itemAttached">
                     <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
@@ -96,9 +96,9 @@
             </div>
         </div>
         <div class="saveBlock">
-            <strong>Creation date: <span>08/02/2017</span></strong>
-            <button class="btnCancel" id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()" type='button'>CANCEL</button>
-            <button class="btnSave" type='button' ng-click="toggleFilterActvEdit();showAlert($event);">SAVE</button>
+            <strong>{{'CREATION_DATE' | translate}}: <span>08/02/2017</span></strong>
+            <button class="btnCancel" id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()" type='button'>{{'CANCEL' | translate}}</button>
+            <button class="btnSave" type='button' ng-click="toggleFilterActvEdit();showAlert($event);">{{'SAVE' | translate}}</button>
         </div>
     </div>
     <div class="activitiesResult" ng-controller="activitiesResult">
@@ -123,9 +123,9 @@
                         {{ active.content }}
                     </p>
                     <div class="contact">
-                        <p><span>Contact</span><strong>{{ active.user }}</strong></p>
-                        <p><span>Related to goal</span><strong>{{ active.relatedtogoal }}</strong></p>
-                        <p><span>Date created</span><strong>{{ active.createdday }}/{{ active.createdmonth }}/{{ active.createdyear }}</strong></p>
+                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ active.user }}</strong></p>
+                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ active.relatedtogoal }}</strong></p>
+                        <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ active.createdday }}/{{ active.createdmonth }}/{{ active.createdyear }}</strong></p>
                     </div>
                     <div class="bottomFooter">
                         <md-button class="md-fab footertrash" aria-label="Trash" ng-click="showConfirm($event);removeActivity($index)">
