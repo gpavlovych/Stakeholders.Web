@@ -16,6 +16,11 @@ angular
     [
         '$scope',
         function ($scope) {
-            //TODO
+            activityService.get(0, 10)
+                     .then(function (result) {
+                         if (result.success) {
+                             $scope.companies = result.data;
+                         }
+                     });
         }
     ]);

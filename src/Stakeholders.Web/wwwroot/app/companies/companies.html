@@ -1,7 +1,7 @@
-<div class="dashboardContent companies" ng-controller="companiesController" ng-cloak>
+<div class="dashboardContent companies" ng-cloak>
       <h1>{{'COMPANIES' | translate}}</h1>
 
-      <div class="blockFilters">
+      <!--<div class="blockFilters">
             <form class="formSearch">
                   <div class="form-group">
                         <div class="input-group">
@@ -38,26 +38,26 @@
       </div>
 
       <div ng-include src="'partials/taskForm.html'"></div>
-      <div ng-include src="'partials/activityForm.html'"></div>
+      <div ng-include src="'partials/activityForm.html'"></div>-->
 
-      <div class="editorPanel" ng-hide="toggleCompEdit">
-          <span class="closeModal" id="toggleFilterCompEdit" ng-click="toggleFilterCompEdit()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+      <div class="editorPanel" ng-show="editedCompany != null">
+          <span class="closeModal" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
             <div class="colLeft" style="height: 460px;">
                   <div class="formEditor" ng-scrollbars ng-scrollbars-config="config" style="max-height:440px;">
-                        <input type="text" placeholder="{{'NAME' | translate}}" />
-                        <input type="text" placeholder="{{'COMPANY_CODE' | translate}}" />
-                        <input type="text" placeholder="{{'ADDRESS' | translate}}" />
-                        <input type="text" placeholder="{{'CITY' | translate}}" />
-                        <input type="text" placeholder="{{'PHONE' | translate}}" />
-                        <input type="text" placeholder="{{'EMAIL' | translate}}" />
+                        <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedCompany.name"/>
+                        <input type="text" placeholder="{{'COMPANY_CODE' | translate}}" ng-model="editedCompany.companyCode"/>
+                        <input type="text" placeholder="{{'ADDRESS' | translate}}" ng-model="editedCompany.address"/>
+                        <input type="text" placeholder="{{'CITY' | translate}}" ng-model="editedCompany.city"/>
+                        <input type="text" placeholder="{{'PHONE' | translate}}" ng-model="editedCompany.phone"/>
+                        <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedCompany.email"/>
                         <div class="photoBrands">
                               <h3>{{'LOGO' | translate}}</h3>
                               <div class="photo">
                                     <span class="brandImage">
-                                          <img src="{{pathImage}}apple.png" alt="apple" />
+                                          <img src="/images/apple.png" alt="apple" />
                                     </span>
                                     <md-button class="md-fab footertrash" aria-label="Trash">
-                                          <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
+                                          <md-icon md-svg-src="/images/trash.svg"></md-icon>
                                     </md-button>
                                     <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_LOGO' | translate}}</button>
                               </div>
@@ -67,26 +67,26 @@
                   </div>
             </div>
             <p class="saveBlock">
-                <button class="btnCancel" id="toggleFilterCompEdit" ng-click="toggleFilterCompEdit()" type='button'>{{'CANCEL' | translate}}</button>
-                <button class="btnSave" type='button' ng-click="toggleFilterCompEdit();showAlert($event);">{{'SAVE' | translate}}</button>
+                <button class="btnCancel" id="toggleFilterCompEdit" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
+                <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
             </p>
       </div>
-      <div class="companiesResult" ng-controller="companiesResult">
+      <div class="companiesResult">
             <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
                   <ul class="listResult" ng-repeat="company in companies">
                         <li>
                               <h3 class="title">
-                                    {{ company.title }}
+                                    {{ company.name }}
                               </h3>
                               <div class="contact">
-                                    <a href="#"><img src="{{pathImage}}{{ company.brandimage }}.png" alt="{{ company.title }}" /></a>
+                                    <a href="#"><img src="{{ company.logoUrl }}" alt="{{ company.name }}" /></a>
                               </div>
                               <div class="bottomFooter">
-                                    <md-button class="md-fab footertrash" aria-label="Trash" ng-click="remover($event, $index);">
-                                          <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
+                                    <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeCompany($event, company.id);">
+                                          <md-icon md-svg-src="/images/trash.svg"></md-icon>
                                     </md-button>
-                                  <md-button id="toggleFilterCompEdit" ng-click="toggleFilterCompEdit()" class="md-fab footerpen" aria-label="Pen">
-                                      <md-icon md-svg-src="{{pathImage}}pen.svg"></md-icon>
+                                  <md-button id="toggleFilterCompEdit" ng-click="editCompany(company.id)" class="md-fab footerpen" aria-label="Pen">
+                                      <md-icon md-svg-src="/images/pen.svg"></md-icon>
                                   </md-button>
                               </div>
                         </li>

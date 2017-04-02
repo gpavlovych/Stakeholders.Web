@@ -33,6 +33,7 @@
                         <nav ng-if="user!=null">
                             <ul class="navMenu">
                                 <li ng-class="{active: $route.current.activetab=='home'}"><a class="home" href="home">{{'HOME' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='companies'}"><a class="companies" href="companies">{{'COMPANIES' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='ceo-dashboard'}"><a href="ceo-dashboard">{{'CEO_DASHBOARD' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='managers-dashboard'}"><a href="managers-dashboard">{{'MANAGERS_DASHBOARD' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='tasks'}"><a href="tasks">{{'TASKS' | translate}}</a></li>

@@ -3,7 +3,9 @@
 angular
     .module('porlaDashboard.activities', ['ngRoute'])
 
-    .config(['$routeProvider', function($routeProvider) {
+    .config([
+        '$routeProvider',
+        function ($routeProvider) {
             $routeProvider.when('/activities',
             {
                 templateUrl: 'activities/activities.html',
@@ -13,28 +15,30 @@ angular
         }
     ])
 
-    .service('activityService', ['$http', function($http) {
-            this.get = function(start, count) {
+    .service('activityService', [
+        '$http',
+        function ($http) {
+            this.get = function (start, count) {
                 var url = "/api/Activities?start=" + start + "&count=" + count;
                 return $http.get(url).then(handleSuccess, handleError('Error getting activities'));
             };
 
-            this.getById = function(id) {
+            this.getById = function (id) {
                 var url = "/api/Activities/" + id;
                 return $http.get(url).then(handleSuccess, handleError('Error getting activities by id'));
             };
 
-            this.count = function() {
+            this.count = function () {
                 var url = "/api/Activities/count";
                 return $http.get(url).then(handleSuccess, handleError('Error getting activities count'));
             };
 
-            this.create = function(activity) {
+            this.create = function (activity) {
                 var url = "/api/Activities";
                 return $http.post(url, activity).then(handleSuccess, handleError('Error creating activity'));
             };
 
-            this.update = function(activity, id) {
+            this.update = function (activity, id) {
                 var url = "/api/Activities/" + id;
                 return $http.put(url, activity).then(handleSuccess, handleError('Error updating activity'));
             };
@@ -56,10 +60,14 @@ angular
         }
     ])
 
-    .controller('activitiesController', ['$scope', 'activityService', 'dialogService', function ($scope, activityService, dialogService) {
+    .controller('activitiesController', [
+        '$scope',
+        'activityService',
+        'dialogService',
+        function ($scope, activityService, dialogService) {
             function refresh() {
                 activityService.get(0, 10)
-                    .then(function(result) {
+                    .then(function (result) {
                         if (result.success) {
                             $scope.activities = result.data;
                         }
@@ -68,24 +76,24 @@ angular
 
             refresh();
 
-            $scope.editActivity = function(id) {
+            $scope.editActivity = function (id) {
                 activityService.getById(id)
-                    .then(function(result) {
+                    .then(function (result) {
                         if (result.success) {
                             $scope.editedActivity = result.data;
                         }
                     });
             };
 
-            $scope.closeEditor = function() {
+            $scope.closeEditor = function () {
                 $scope.editedActivity = null;
             };
 
             $scope.saveEditor = function (event) {
                 dialogService.showConfirmationSaveDialog(event,
-                    function() {
+                    function () {
                         activityService.update($scope.editedActivity, $scope.editedActivity.id)
-                            .then(function(result) {
+                            .then(function (result) {
                                 if (result.success) {
                                     dialogService.showMessageSavedDialog(event, null);
                                     refresh();
@@ -96,11 +104,11 @@ angular
                     null);
             };
 
-            $scope.removeActivity = function(event, id) {
+            $scope.removeActivity = function (event, id) {
                 dialogService.showConfirmationDeleteDialog(event,
-                    function() {
+                    function () {
                         activityService.remove(id)
-                            .then(function(result) {
+                            .then(function (result) {
                                 if (result.success) {
                                     refresh();
                                 }
