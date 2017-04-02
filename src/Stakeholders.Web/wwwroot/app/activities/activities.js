@@ -62,8 +62,6 @@ angular
                     .then(function(result) {
                         if (result.success) {
                             $scope.activities = result.data;
-                        } else {
-                            $window.location.href = '/app/login.html';
                         }
                     });
             }
@@ -75,8 +73,6 @@ angular
                     .then(function(result) {
                         if (result.success) {
                             $scope.editedActivity = result.data;
-                        } else {
-                            $window.location.href = '/app/login.html';
                         }
                     });
             };
@@ -93,8 +89,6 @@ angular
                                 if (result.success) {
                                     dialogService.showMessageSavedDialog(event, null);
                                     refresh();
-                                } else {
-                                    $window.location.href = '/app/login.html';
                                 }
                             });
                         $scope.closeEditor();
@@ -109,8 +103,6 @@ angular
                             .then(function(result) {
                                 if (result.success) {
                                     refresh();
-                                } else {
-                                    $window.location.href = '/app/login.html';
                                 }
                             });
                     },
