@@ -11,7 +11,17 @@ porlaDashboard.factory('$dialogServiceFactory', ['$mdDialog', function ($mdDialo
                 .cancel('No');
             $mdDialog.show(confirm).then(fnOk, fnCancel);
         },
-        showConfirmationDialog: function (event, fnOk) {
+        showConfirmationSaveDialog: function (event, fnOk, fnCancel) {
+            var confirm = $mdDialog.confirm()
+                .title('Confirm Save')
+                .textContent('Are you sure you want to save the item?')
+                .ariaLabel('Confirm Save')
+                .targetEvent(event)
+                .ok('Yes')
+                .cancel('No');
+            $mdDialog.show(confirm).then(fnOk, fnCancel);
+        },
+        showMessageSavedDialog: function (event, fnOk) {
             $mdDialog.show(
                 $mdDialog.alert()
                     .parent(angular.element(document.querySelector('#popupContainer')))

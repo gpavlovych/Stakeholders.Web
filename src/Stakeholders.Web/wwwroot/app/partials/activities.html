@@ -50,8 +50,8 @@
     <div ng-include src="'partials/taskForm.html'"></div>
     <div ng-include src="'partials/activityForm.html'"></div>
 
-    <div class="editorPanel" ng-hide="toggleActvEdit">
-        <span class="closeModal" id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+    <div class="editorPanel" ng-show="editedActivity != null">
+        <span class="closeModal" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
         <div class="colLeft">
             <div class="formEditor">
                 <div class="statusList one" ng-controller="dropdownController">
@@ -68,8 +68,8 @@
                 <div class="statusList" ng-controller="dropdownController">
                     <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
                 </div>
-                <input type="text" placeholder="{{'SUBJECT' | translate}}" />
-                <textarea placeholder="{{'DESCRIPTION' | translate}}"></textarea>
+                <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="editedActivity.subject"/>
+                <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedActivity.description"></textarea>
             </div>
         </div>
         <div class="colRight">
@@ -78,7 +78,7 @@
                 <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
             </div>
             <div class="dateField" ng-controller="dateController">
-                <md-datepicker ng-model="myDeadline" md-placeholder="{{'ACTIVITY_DATE' | translate}}"></md-datepicker>
+                <md-datepicker ng-model="editedActivity.dateActivity" md-placeholder="{{'ACTIVITY_DATE' | translate}}"></md-datepicker>
             </div>
             <div class="attached">
                 <div class="fileinput">
@@ -97,11 +97,11 @@
         </div>
         <div class="saveBlock">
             <strong>{{'CREATION_DATE' | translate}}: <span>{{activity.dateCreated}}</span></strong>
-            <button class="btnCancel" id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()" type='button'>{{'CANCEL' | translate}}</button>
-            <button class="btnSave" type='button' ng-click="toggleFilterActvEdit();showAlert($event);">{{'SAVE' | translate}}</button>
+            <button class="btnCancel" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
+            <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
         </div>
     </div>
-    <div class="activitiesResult" ng-controller="activitiesResult">
+    <div class="activitiesResult">
         <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
             <ul class="listResult" ng-repeat="activity in activities">
                 <li>
@@ -131,7 +131,7 @@
                         <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeActivity($event, activity.id)">
                             <md-icon md-svg-src="{{pathImage}}trash.svg"></md-icon>
                         </md-button>
-                        <md-button id="toggleFilterActvEdit" ng-click="toggleFilterActvEdit()" class="md-fab footerpen" aria-label="Pen">
+                        <md-button id="toggleFilterActvEdit" ng-click="editActivity(activity.id)" class="md-fab footerpen" aria-label="Pen">
                             <md-icon md-svg-src="{{pathImage}}pen.svg"></md-icon>
                         </md-button>
                     </div>
