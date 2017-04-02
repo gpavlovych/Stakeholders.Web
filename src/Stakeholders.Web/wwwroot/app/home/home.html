@@ -1,6 +1,6 @@
 <div class="dashboardContent home" ng-cloak>
     <h1>{{'GOALS' | translate}}</h1>
-    <div class="fabButtonDial" ng-controller="dialController as dialPlus">
+    <!--<div class="fabButtonDial" ng-controller="dialController as dialPlus">
         <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
             <md-fab-trigger>
                 <md-button aria-label="menu" class="md-fab add">
@@ -26,11 +26,11 @@
     </div>
 
     <div ng-include src="'partials/taskForm.html'"></div>
-    <div ng-include src="'partials/activityForm.html'"></div>
+    <div ng-include src="'partials/activityForm.html'"></div>-->
     <div class="clearSeparate"></div>
-    <div class="goalsResult" ng-controller="DoughnutCtrl">
+    <div class="goalsResult">
         <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
-            <ul class="listResult" ng-repeat="goal in datainfo">
+            <ul class="listResult" ng-repeat="goal in goals">
                 <li>
                     <h3 class="title">{{ goal.title }}</h3>
                     <div class="graphResult">

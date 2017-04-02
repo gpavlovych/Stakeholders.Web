@@ -1,6 +1,6 @@
-<div class="dashboardContent activities" ng-controller="activitiesResultController" ng-cloak>
+﻿<div class="dashboardContent activities" ng-cloak>
     <h1>{{'ACTIVITIES' | translate}}</h1>
-    <div id="nav-show" ng-controller="filterController">
+    <!--<div id="nav-show" ng-controller="filterController">
         <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
         <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
         <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
@@ -16,18 +16,18 @@
             </md-fab-trigger>
 
             <md-fab-actions>
-                  <span class="toggleActiv">
-                        <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES'| translate}}" class="md-fab md-raised md-mini green">
-                             <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
-                        </md-button>
-                        <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES'|translate}}</span>
-                  </span>
-                  <span class="toggleTask">
-                        <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK'| translate}}" class="md-fab md-raised md-mini cyan">
-                             <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
-                        </md-button>
-                        <span class="ng-tooltip-bt">{{'NEW_TASK'|translate}}</span>
-                  </span>
+                <span class="toggleActiv">
+                    <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES'| translate}}" class="md-fab md-raised md-mini green">
+                        <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
+                    </md-button>
+                    <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES'|translate}}</span>
+                </span>
+                <span class="toggleTask">
+                    <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK'| translate}}" class="md-fab md-raised md-mini cyan">
+                        <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
+                    </md-button>
+                    <span class="ng-tooltip-bt">{{'NEW_TASK'|translate}}</span>
+                </span>
             </md-fab-actions>
         </md-fab-speed-dial>
 
@@ -48,7 +48,7 @@
     </div>
 
     <div ng-include src="'partials/taskForm.html'"></div>
-    <div ng-include src="'partials/activityForm.html'"></div>
+    <div ng-include src="'partials/activityForm.html'"></div>-->
 
     <div class="editorPanel" ng-show="editedActivity != null">
         <span class="closeModal" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
@@ -68,7 +68,7 @@
                 <div class="statusList" ng-controller="dropdownController">
                     <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
                 </div>
-                <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="editedActivity.subject"/>
+                <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="editedActivity.subject" />
                 <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedActivity.description"></textarea>
             </div>
         </div>

@@ -243,3 +243,6 @@ ModelManifest.xml
 
 # Bower
 **/wwwroot/lib
+
+# Less
+**/wwwroot/css

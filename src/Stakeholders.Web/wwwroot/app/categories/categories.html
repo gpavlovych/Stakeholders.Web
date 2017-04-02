@@ -1,6 +1,6 @@
-<div class="dashboardContent categories" ng-controller="categoriesController" ng-cloak>
+<div class="dashboardContent categories" ng-cloak>
       <h1>{{'CATEGORIES' | translate}}</h1>
-      <div class="blockFilters">
+      <!--<div class="blockFilters">
             <form class="formSearch">
                   <div class="form-group">
                         <div class="input-group">
@@ -36,7 +36,7 @@
       </div>
 
       <div ng-include src="'partials/taskForm.html'"></div>
-      <div ng-include src="'partials/activityForm.html'"></div>
+      <div ng-include src="'partials/activityForm.html'"></div>-->
 
       <div class="editorPanel" ng-hide="toggleCatEdit">
           <span class="closeModal" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit();"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
@@ -65,7 +65,7 @@
                 <button class="btnSave" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit();showAlert($event);" type='button'>{{'SAVE' | translate}}</button>
             </p>
       </div>
-      <div class="categoriesResult" ng-controller="categoriesResult">
+      <div class="categoriesResult">
             <div class="tableList">
                   <table class="table table-bordered table-striped">
                         <thead>

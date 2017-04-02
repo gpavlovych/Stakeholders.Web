@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html ng-app="porlaDashboard" ng-controller="dirDashboard" dir="{{msg}}">
+<head>
+    <meta charset="utf-8">
+    <base href="/app/">
+    <title>{{'PORIA_DASHBOARD' | translate}}</title>
+
+<div class="loginBox" ng-cloak>
+    <div class="loginForm" layout="column" ng-controller="loginController">
+        <md-content layout-gt-sm="column" layout-padding>
+            <h2>LOGIN</h2>
+            <form class="formAccess">
+                <md-input-container class="md-block">
+                    <input ng-model="user.name" type="text" placeholder="{{'USER_NAME' | translate}}">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input type="password" ng-model="user.password" placeholder="{{'PASSWORD' | translate}}" />
+                </md-input-container>
+                <md-button class="md-fab login" ng-click="login();" aria-label="{{'LOGIN_LOW' | translate}}">
+                    <span>{{'LOGIN' | translate}}</span>
+                </md-button>
+            </form>
+        </md-content>
+    </div>
+</div>

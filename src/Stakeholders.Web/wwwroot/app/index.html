@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html ng-app="porlaDashboard" ng-controller="dirDashboard" dir="{{msg}}" >
+<html ng-app="porlaDashboard" dir="{{msg}}" >
     <head>
         <meta charset="utf-8">
         <base href="/app/">
@@ -15,77 +15,114 @@
         <link rel="stylesheet" href="/lib/animate.css/animate.css">
         <link rel="stylesheet" href="/lib/angular-dropdowns/angular-dropdowns.css">
 
-        <link rel="stylesheet" href="css/angular-chart.css" />
-        <link rel="stylesheet" href="css/reset.css" >
-        <link rel="stylesheet" href="css/porlastyles-main.css" media="screen">
-        <link rel="stylesheet" href="css/porlastyles-rtl.css" media="screen">
+        <link rel="stylesheet" href="/css/angular-chart.css" />
+        <link rel="stylesheet" href="/css/reset.css" >
+        <link rel="stylesheet" href="/css/porlastyles-main.css" media="screen">
+        <link rel="stylesheet" href="/css/porlastyles-rtl.css" media="screen">
     </head>
-<body ng-controller="appDashboard">
-    <div class="mainContainer">
-        <div class="mainWrapper">
-            <header ng-include src="'/app/partials/header.html'"></header>
-            <div ng-view></div>
-            <footer ng-include src="'/app/partials/footer.html'"></footer>
-            <div style="visibility: hidden">
-                <div class="md-dialog-container" id="myDialog">
-                    <md-dialog layout-padding>
-                        <h2>Pre-Rendered Dialog</h2>
-                        <p>
-                            This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its
-                            template on each opening.
-                            <br /><br />
-                            The Dialog Element is a static element in the DOM, which is just visually hidden.<br />
-                            Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close
-                            we restore the element back into its old DOM position.
-                        </p>
-                    </md-dialog>
+    <body>
+        <div class="mainContainer">
+            <div class="mainWrapper">
+                <header>
+                    <div class="mainHeader">
+                        <h1 class="logo">
+                            <a href="home">
+                                <img src="/images/logotype-porla.png" />
+                            </a>
+                        </h1>
+                        <nav ng-if="user!=null">
+                            <ul class="navMenu">
+                                <li ng-class="{active: $route.current.activetab=='home'}"><a class="home" href="home">{{'HOME' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='ceo-dashboard'}"><a href="ceo-dashboard">{{'CEO_DASHBOARD' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='managers-dashboard'}"><a href="managers-dashboard">{{'MANAGERS_DASHBOARD' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='tasks'}"><a href="tasks">{{'TASKS' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='activities'}"><a href="activities">{{'ACTIVITIES' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='organizations'}"><a href="organizations">{{'ORGANIZATIONS' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='contacts'}"><a href="contacts">{{'CONTACTS' | translate}}</a></li>
+                            </ul>
+                        </nav>
+                        <div class="welcome" ng-if="user!=null">
+                            <a class="userButton" href="#">
+                                <i class="{{ user.status }}">{{ user.status }}</i>
+                                <img src="{{ user.image }}" alt="{{ user.name }}" />
+                            </a>
+                            <span>Welcome, {{ user.name }}</span>
+                            <a class="logout" href="login"> <img src="/images/logout.png" /><span>{{'LOG_OUT' | translate}}</span></a>
+                        </div>
+                    </div>
+                </header>
+                <div ng-view></div>
+                <footer>
+                    <div class="mainFooter" style="white-space: nowrap">
+                        <img src="/images/logo-footer.png"/><span>{{'COPYRIGHT' | translate}}</span>
+                        <a href="#" ng-click="setLanguage('he', 'rtl')" id='rtl'><img src="/images/he-il.png"/></a>
+                        <a href="#" ng-click="setLanguage('en', 'ltr')" id='ltr'><img src="/images/en-us.png"/></a>
+                    </div>
+                </footer>
+                <div style="visibility: hidden">
+                    <div class="md-dialog-container" id="myDialog">
+                        <md-dialog layout-padding>
+                            <h2>Pre-Rendered Dialog</h2>
+                            <p>
+                                This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its
+                                template on each opening.
+                                <br /><br />
+                                The Dialog Element is a static element in the DOM, which is just visually hidden.<br />
+                                Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close
+                                we restore the element back into its old DOM position.
+                            </p>
+                        </md-dialog>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Jquery -->
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <!-- Jquery -->
+        <script src="/lib/jquery/dist/jquery.min.js"></script>
 
-    <!-- Angular -->
-    <script src="/lib/angular/angular.min.js"></script>
-    <script src="/lib/angular-route/angular-route.min.js"></script>
-    <script src="/lib/angular-filter/dist/angular-filter.min.js"></script>
+        <!-- Angular -->
+        <script src="/lib/angular/angular.min.js"></script>
+        <script src="/lib/angular-route/angular-route.min.js"></script>
+        <script src="/lib/angular-filter/dist/angular-filter.min.js"></script>
+        <script src="/lib/angular-jwt/dist/angular-jwt.min.js"></script>
+        <script src="/lib/ngstorage/ngStorage.min.js"></script>
 
-    <!-- Angular Translate Library -->
-    <script src="/lib/angular-translate/angular-translate.min.js"></script>
-    <script src="/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+        <!-- Angular Translate Library -->
+        <script src="/lib/angular-translate/angular-translate.min.js"></script>
+        <script src="/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 
-    <!-- Angular Material Library -->
-    <script src="/lib/angular-aria/angular-aria.min.js"></script>
-    <script src="/lib/angular-messages/angular-messages.min.js"></script>
-    <script src="/lib/angular-animate/angular-animate.min.js"></script>
-    <script src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="/lib/angular-material/angular-material.min.js"></script>
+        <!-- Angular Material Library -->
+        <script src="/lib/angular-aria/angular-aria.min.js"></script>
+        <script src="/lib/angular-messages/angular-messages.min.js"></script>
+        <script src="/lib/angular-animate/angular-animate.min.js"></script>
+        <script src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="/lib/angular-material/angular-material.min.js"></script>
 
-    <!-- Angular ChartJS Library -->
-    <script type="text/javascript" src="/lib/chart.js/dist/chart.min.js"></script>
-    <script type="text/javascript" src="/lib/angular-chart.js/dist/angular-chart.min.js"></script>
+        <!-- Angular ChartJS Library -->
+        <script type="text/javascript" src="/lib/chart.js/dist/chart.min.js"></script>
+        <script type="text/javascript" src="/lib/angular-chart.js/dist/angular-chart.min.js"></script>
 
-    <!-- CustomScroller Library -->
-    <script src="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/lib/ng-scrollbars/dist/scrollbars.min.js"></script>
+        <!-- CustomScroller Library -->
+        <script src="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/lib/ng-scrollbars/dist/scrollbars.min.js"></script>
 
-    <!-- Dropdown Library -->
-    <script src="/lib/angular-dropdowns/dist/angular-dropdowns.min.js"></script>
+        <!-- Dropdown Library -->
+        <script src="/lib/angular-dropdowns/dist/angular-dropdowns.min.js"></script>
 
-    <!-- Chips Library -->
-    <script src="/lib/md-chips-select/dist/md-chips-select.min.js"></script>
+        <!-- Chips Library -->
+        <script src="/lib/md-chips-select/dist/md-chips-select.min.js"></script>
 
-    <!-- Our code-->
-    <script src="js/app.js"></script>
-    <script src="js/app-services/activityService.js"></script>
-    <script src="js/app-services/taskService.js"></script>
-    <script src="js/app-services/editTaskFormService.js"></script>
-    <script src="js/app-services/editActivityFormService.js"></script>
-    <script src="js/app-services/dialogServiceFactory.js"></script>
-    <script src="js/controllers.js"></script>
-    <script src="js/app-controllers/modalFormTaskController.js"></script>
-    <script src="js/app-controllers/modalFormActivityController.js"></script>
-    <script src="js/app-controllers/activitiesResultController.js"></script>
-</body>
+        <!-- Our code-->
+        <script src="/app/app.js"></script>
+        <script src="/app/activities/activities.js"></script>
+        <script src="/app/categories/categories.js"></script>
+        <script src="/app/ceo-dashboard/ceo-dashboard.js"></script>
+        <script src="/app/companies/companies.js"></script>
+        <script src="/app/contacts/contacts.js"></script>
+        <script src="/app/home/home.js"></script>
+        <script src="/app/login/login.js"></script>
+        <script src="/app/managers-dashboard/managers-dashboard.js"></script>
+        <script src="/app/organizations/organizations.js"></script>
+        <script src="/app/tasks/tasks.js"></script>
+        <script src="/app/users/users.js"></script>
+    </body>
 </html>
