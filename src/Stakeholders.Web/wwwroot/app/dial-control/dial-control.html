@@ -1,0 +1,28 @@
+﻿<div class="fabButtonDial" ng-cloak>
+    <md-fab-speed-dial md-direction="left" class="md-scale" md-open="false">
+        <md-fab-trigger>
+            <md-button aria-label="menu" class="md-fab add">
+                <md-icon md-svg-src="/images/add.svg"></md-icon>
+            </md-button>
+        </md-fab-trigger>
+
+        <md-fab-actions>
+            <span class="toggleActiv">
+                <md-button ng-click="$ctrl.newActivity();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES'| translate}}" class="md-fab md-raised md-mini green">
+                    <md-icon md-svg-src="/images/edit-document.svg" aria-label="Icon Activities"></md-icon>
+                </md-button>
+                <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES'|translate}}</span>
+            </span>
+            <span class="toggleTask">
+                <md-button ng-click="$ctrl.newTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK'| translate}}" class="md-fab md-raised md-mini cyan">
+                    <md-icon md-svg-src="/images/create-task.svg" aria-label="Icon Task"></md-icon>
+                </md-button>
+                <span class="ng-tooltip-bt">{{'NEW_TASK'|translate}}</span>
+            </span>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+
+    <md-button ng-click="$ctrl.openFilter()" class="md-fab settings" aria-label="Add">
+        <md-icon md-svg-src="/images/levels-adjusment.svg"></md-icon>
+    </md-button>
+</div>

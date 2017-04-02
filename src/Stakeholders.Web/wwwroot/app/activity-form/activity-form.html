@@ -1,8 +1,8 @@
-<div class="editorPanelCreateActiv" ng-hide="toggleActvActiv()" ng-controller="modalFormActivityController">
-    <h2>{{'NEW_ACTIVITY' | translate}}</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+<div class="editorPanelCreateActiv" ng-show="$ctrl.activity != null" >
+    <h2>{{'NEW_ACTIVITY' | translate}}</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvActiv" ng-click="$ctrl.close()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
     <div class="colLeft">
         <div class="formEditor">
-            <div class="statusList one" ng-controller="dropdownController">
+            <!--<div class="statusList one" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsActiv" dropdown-model="ddSelectSelectedActiv" dropdown-item-label="text"></div>
             </div>
             <h3>{{'RELATED_TASK' | translate}}</h3>
@@ -10,7 +10,7 @@
             <button class="btnDefault" id="toggleChangePanelButton" type='button' ng-click='toggleChangePanelButton();'>{{'CHANGE' | translate}}</button>
             <button class="btnDefault" id="toggleConnectPanelButton" type='button' ng-click='toggleConnectPanelButton();'>{{'CONNECT_TO_TASK' | translate}}</button>
             <div class="editorPanelChange" ng-hide="toggleChangePanel">
-                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleChangePanelButton" ng-click="toggleChangePanelButton()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleChangePanelButton" ng-click="toggleChangePanelButton()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
                 <a href="#">Lorem ipsum task 1 </a>
                 <a href="#">Lorem ipsum task 2 </a>
                 <a href="#">Lorem ipsum task 3 </a>
@@ -18,7 +18,7 @@
                 <a href="#">Lorem ipsum task 5 </a>
             </div>
             <div class="editorPanelConnect" ng-hide="toggleConnectPanel">
-                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleConnectPanelButton" ng-click="toggleConnectPanelButton()"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
+                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleConnectPanelButton" ng-click="toggleConnectPanelButton()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
                 <a href="#">Lorem ipsum task 1 </a>
                 <a href="#">Lorem ipsum task 2 </a>
                 <a href="#">Lorem ipsum task 3 </a>
@@ -31,16 +31,16 @@
             </div>
             <div class="statusList" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
-            </div>
-            <input type="text" placeholder="Subject" ng-model="activity.title"/>
-            <textarea placeholder="Description" ng-model="activity.content"></textarea>
-            <div class="statusList" ng-controller="dropdownController">
+            </div>-->
+            <input type="text" placeholder="Subject" ng-model="$ctrl.activity.title"/>
+            <textarea placeholder="Description" ng-model="$ctrl.activity.content"></textarea>
+            <!--<div class="statusList" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
-            </div>
+            </div>-->
         </div>
     </div>
     <div class="colRight">
-        <div class="relatedContacts" ng-controller="chipsSelector">
+        <!--<div class="relatedContacts" ng-controller="chipsSelector">
             <h3>{{'SHARE_WITH' | translate}}</h3>
             <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
         </div>
@@ -62,11 +62,11 @@
             <div class="itemAttached">
                 <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
             </div>
-        </div>
+        </div>-->
     </div>
     <div class="saveBlock">
-        <span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>
-        <button class="btnCancel" id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv()" type='button'>{{'CANCEL' | translate}}</button>
-        <button class="btnSave" type='button' ng-click="saveActivity($event)">{{'SAVE' | translate}}</button>
+        <!--<span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>-->
+        <button class="btnCancel" id="toggleFilterActvActiv" ng-click="$ctrl.close()" type='button'>{{'CANCEL' | translate}}</button>
+        <button class="btnSave" type='button' ng-click="$ctrl.save())">{{'SAVE' | translate}}</button>
     </div>
 </div>

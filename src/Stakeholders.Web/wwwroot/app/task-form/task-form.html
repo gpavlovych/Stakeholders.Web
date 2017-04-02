@@ -1,15 +1,14 @@
-
-<div class="editorPanelCreateTask" ng-hide="toggleActvTask()" ng-controller="modalFormTaskController">
+<div class="editorPanelCreateTask" ng-show="$ctrl.task != null">
     <h2>{{'NEW_TASK' | translate}}</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvTask" ng-click="toggleFilterActvTask();"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
     <div class="colLeft">
         <div class="formEditor">
             <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="task.title" />
             <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="task.content"></textarea>
-            <div class="statusList" ng-controller="dropdownController">
+            <!--<div class="statusList" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsStatus" dropdown-model="ddSelectSelectedStatus" dropdown-item-label="text"></div>
-            </div>
+            </div>-->
         </div>
-        <div class="relatedOrganizations" ng-controller="chipsSelector">
+        <!--<div class="relatedOrganizations" ng-controller="chipsSelector">
             <h3>{{'RELATED_ORGANIZATIONS' | translate}}</h3>
             <md-chips-select ng-model="selectedOrganizations" select-items="organizationsList" main-title="organization"></md-chips-select>
         </div>
@@ -19,10 +18,10 @@
         </div>
         <div class="statusList" ng-controller="dropdownController">
             <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
-        </div>
+        </div>-->
     </div>
     <div class="colRight">
-        <p class="highChk">
+        <!--<p class="highChk">
             {{'HIGH_IMPORTANCE' | translate}}
             <md-checkbox ng-model="task.highimportant" aria-label="Checkbox 1"></md-checkbox>
         </p>
@@ -54,11 +53,11 @@
             <div class="itemAttached">
                 <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
             </div>
-        </div>
+        </div>-->
     </div>
     <div class="saveBlock">
-        <span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>
-        <button class="btnCancel" id="toggleFilterActvTask" ng-click="toggleFilterActvTask()" type='button'>{{'CANCEL' | translate}}</button>
-        <button class="btnSave" type='button' ng-click="saveTask($event)">{{'SAVE' | translate}}</button>
+        <!--<span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>-->
+        <button class="btnCancel" id="toggleFilterActvTask" ng-click="$ctrl.close()" type='button'>{{'CANCEL' | translate}}</button>
+        <button class="btnSave" type='button' ng-click="$ctrl.save()">{{'SAVE' | translate}}</button>
     </div>
 </div>

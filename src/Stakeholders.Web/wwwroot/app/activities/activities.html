@@ -6,8 +6,9 @@
         <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
         <a class="filterTabFour" href="#">{{'THIS_WEEK' | translate}}</a>
         <div id="magic-line"></div>
-    </div>
-    <div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
+    </div>-->
+    <dial-control></dial-control>
+    <!--<div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
         <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
             <md-fab-trigger>
                 <md-button aria-label="menu" class="md-fab add">
@@ -34,8 +35,8 @@
         <md-button id="toggleActvFilterSet" ng-click="toggleActvFilterSet()" class="md-fab settings" aria-label="Add">
             <md-icon md-svg-src="{{pathImage}}levels-adjusment.svg"></md-icon>
         </md-button>
-    </div>
-    <div class="editorPanelFilters" ng-hide="toggleActvFilter">
+    </div>-->
+    <!--<div class="editorPanelFilters" ng-hide="toggleActvFilter">
         <div class="statusList one" ng-controller="dropdownController">
             <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
         </div>
@@ -49,7 +50,8 @@
 
     <div ng-include src="'partials/taskForm.html'"></div>
     <div ng-include src="'partials/activityForm.html'"></div>-->
-
+    <activity-form></activity-form>
+    <task-form></task-form>
     <div class="editorPanel" ng-show="editedActivity != null">
         <span class="closeModal" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
         <div class="colLeft">
