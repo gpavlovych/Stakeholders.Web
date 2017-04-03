@@ -78,9 +78,22 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>CompanyInfoViewModel[].</returns>
         [HttpGet]
-        public CompanyViewModel[] GetCompanies(int start = 0, int count = 10)
+        public CompanyViewModel[] GetCompanies(int start = 0, int count = 10, string search = "")
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<CompanyViewModel>(it)).ToArray();
+            if (string.IsNullOrEmpty(search))
+            {
+                return
+                    this.repository.GetAll(start, count)
+                        .Select(it => this.mapper.Map<CompanyViewModel>(it))
+                        .ToArray();
+            }
+            else
+            {
+                return
+                    this.repository.GetAll(start, count, it => it.Name.Contains(search))
+                        .Select(it => this.mapper.Map<CompanyViewModel>(it))
+                        .ToArray();
+            }
         }
 
         // GET: api/Companies/count

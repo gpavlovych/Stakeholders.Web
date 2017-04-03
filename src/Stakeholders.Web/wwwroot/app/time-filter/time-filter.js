@@ -1,14 +1,14 @@
 ﻿angular
-    .module('porlaDashboard.dialControl',
+    .module('porlaDashboard.timeFilter',
     [])
-.component('dialControl',
+.component('timeFilter',
     {
         transclude: true,
         controller: ['$rootScope', function ($rootScope) {
             this.newActivity = function () {
                 $rootScope.$emit('newActivity', {
                     someData: 'myData'
-                }); 
+                });
             };
 
             this.newTask = function () {
@@ -17,11 +17,9 @@
                 });
             };
 
-            this.openFilter = function() {
-                $rootScope.$emit('openFilter', {
-                    someData: 'myData'
-                });
+            this.openFilter = function () {
+                alert('TODO open filter!');
             };
         }],
-        templateUrl: 'dial-control/dial-control.html'
+        templateUrl: 'time-filter/time-filter.html'
     })

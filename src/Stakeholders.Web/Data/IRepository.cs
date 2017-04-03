@@ -11,6 +11,8 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Stakeholders.Web.Models;
@@ -28,8 +30,9 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
+        /// <param name="predicate">The predicate (optional).</param>
         /// <returns>The entities</returns>
-        IEnumerable<T> GetAll(int start, int count);
+        IEnumerable<T> GetAll(int start, int count, Func<T, bool> predicate = null);
 
         /// <summary>
         /// Gets all entities asynchronously.

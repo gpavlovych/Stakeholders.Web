@@ -15,6 +15,7 @@ angular
         'md.chips.select',
         'pascalprecht.translate',
         'porlaDashboard.activityForm',
+        'porlaDashboard.filter',
         'porlaDashboard.taskForm',
         'porlaDashboard.dialControl',
         'porlaDashboard.activities',

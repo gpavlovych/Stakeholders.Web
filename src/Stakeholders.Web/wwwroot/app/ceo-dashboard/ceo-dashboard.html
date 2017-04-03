@@ -2,7 +2,7 @@
     <div class="sidebarDashboard" ng-controller="sidebarCeo">
         <h1>{{'LATEST_ACTIVITIES' | translate}}</h1>
         <div class="latestActivities" ng-scrollbars ng-scrollbars-config="config">
-            <ul class="listActivities" ng-repeat="activ in activities">
+            <ul class="listActivities" ng-repeat="activity in activities">
                 <li class="oneLevel">
                     <div class="icon-activities">
                         <img src="{{pathImage}}icon-{{ activ.listingIcon }}.png" />

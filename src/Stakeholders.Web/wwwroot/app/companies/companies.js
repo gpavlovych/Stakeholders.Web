@@ -18,8 +18,8 @@ angular
     [
         '$http',
         function($http) {
-            this.get = function (start, count) {
-                var url = "/api/Companies?start=" + start + "&count=" + count;
+            this.get = function (start, count, search) {
+                var url = "/api/Companies?start=" + start + "&count=" + count + '&search=' + search;
                 return $http.get(url).then(handleSuccess, handleError('Error getting companies'));
             };
 
@@ -65,8 +65,9 @@ angular
         'companyService',
         'dialogService',
         function ($scope, companyService, dialogService) {
+            $scope.search = "";
             function refresh() {
-                companyService.get(0, 10)
+                companyService.get(0, 10, $scope.search)
                     .then(function (result) {
                         if (result.success) {
                             $scope.companies = result.data;
@@ -75,6 +76,9 @@ angular
             }
 
             refresh();
+            $scope.filter = function() {
+                refresh();
+            };
 
             $scope.editCompany = function (id) {
                 companyService.getById(id)

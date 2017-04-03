@@ -81,7 +81,7 @@
     "compile": {
       "exclude": [ 
         "node_modules",
-        "wwwroot/lib" ]
+        "wwwroot/lib/**/*.*" ]
     }
   },
 

@@ -61,10 +61,16 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
+        /// <param name="predicate">The predicate (optional).</param>
         /// <returns>The entities</returns>
-        public IEnumerable<T> GetAll(int start, int count)
+        public IEnumerable<T> GetAll(int start, int count, Func<T, bool> predicate = null)
         {
-            return this.dataSource.GetDataQueryable().Skip(start).Take(count).ToList();
+            var queryable = this.dataSource.GetDataQueryable();
+            if (predicate != null)
+            {
+                return queryable.Where(predicate).Skip(start).Take(count).ToList();
+            }
+            return queryable.Skip(start).Take(count).ToList();
         }
 
         /// <summary>

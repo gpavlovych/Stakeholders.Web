@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -68,10 +69,10 @@ namespace Stakeholders.Web.Tests.Controllers
         #region GetCompanies
 
         /// <summary>
-        /// Gets the companies.
+        /// Gets the companies with no search criteria.
         /// </summary>
         [Fact]
-        public void GetCompaniesTest()
+        public void GetCompaniesTestSearchEmpty()
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateCompany);
@@ -86,10 +87,41 @@ namespace Stakeholders.Web.Tests.Controllers
             var expectedResult = models.ToArray();
             var start = 2;
             var count = 3;
-            this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
+            this.repositoryMock.Setup(it => it.GetAll(start, count, null))
+                .Returns(entities);
 
             // act 
-            var result = this.target.GetCompanies(start, count);
+            var result = this.target.GetCompanies(start, count, "");
+
+            // assert
+            result.ShouldBeEquivalentTo(expectedResult);
+        }
+
+        /// <summary>
+        /// Gets the companies.
+        /// </summary>
+        [Fact]
+        public void GetCompaniesTest()
+        {
+            // arrange
+            var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateCompany);
+            var entities2 = this.entitiesForTest.CreateCollection(2, this.entitiesForTest.CreateCompany);
+            var models = new List<CompanyViewModel>();
+            foreach (var entity in entities)
+            {
+                var model = this.entitiesForTest.CreateCompanyViewModel();
+                this.mapperMock.Setup(it => it.Map<CompanyViewModel>(entity)).Returns(model);
+                models.Add(model);
+            }
+
+            var expectedResult = models.ToArray();
+            var start = 2;
+            var count = 3;
+            this.repositoryMock.Setup(it => it.GetAll(start, count, It.Is<Func<Company, bool>>(func => func != null)))
+                .Returns(entities);
+
+            // act 
+            var result = this.target.GetCompanies(start, count, "somesearch");
 
             // assert
             result.ShouldBeEquivalentTo(expectedResult);

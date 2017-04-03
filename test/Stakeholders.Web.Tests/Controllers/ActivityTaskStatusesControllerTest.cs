@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -86,7 +87,7 @@ namespace Stakeholders.Web.Tests.Controllers
             var expectedResult = models.ToArray();
             var start = 2;
             var count = 3;
-            this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
+            this.repositoryMock.Setup(it => it.GetAll(start, count, It.IsAny<Func<ActivityTaskStatus, bool>>())).Returns(entities);
 
             // act 
             var result = this.target.GetActivityTaskStatuses(start, count);

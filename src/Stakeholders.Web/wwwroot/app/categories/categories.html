@@ -1,43 +1,18 @@
 <div class="dashboardContent categories" ng-cloak>
-      <h1>{{'CATEGORIES' | translate}}</h1>
-      <!--<div class="blockFilters">
-            <form class="formSearch">
-                  <div class="form-group">
-                        <div class="input-group">
-                              <input type="text" class="form-control" ng-model="search">
-                              <md-icon md-svg-src="{{pathImage}}magnify.svg"></md-icon>
-                        </div>
-                  </div>
-            </form>
-            <div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
-                <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
-                    <md-fab-trigger>
-                        <md-button aria-label="menu" class="md-fab add">
-                            <md-icon md-svg-src="{{pathImage}}add.svg"></md-icon>
-                        </md-button>
-                    </md-fab-trigger>
-
-                    <md-fab-actions>
-                          <span class="toggleActiv">
-                                <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES' | translate}}" class="md-fab md-raised md-mini green">
-                                      <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
-                                </md-button>
-                                <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES' | translate}}</span>
-                          </span>
-                          <span class="toggleTask">
-                                <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK' | translate}}" class="md-fab md-raised md-mini cyan">
-                                      <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
-                                </md-button>
-                                <span class="ng-tooltip-bt">{{'NEW_TASK' | translate}}</span>
-                          </span>
-                    </md-fab-actions>
-                </md-fab-speed-dial>
+    <h1>{{'CATEGORIES' | translate}}</h1>
+    <div class="blockFilters">
+        <form class="formSearch">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="search">
+                    <md-icon md-svg-src="{{pathImage}}magnify.svg"></md-icon>
+                </div>
             </div>
-      </div>
-
-      <div ng-include src="'partials/taskForm.html'"></div>
-      <div ng-include src="'partials/activityForm.html'"></div>-->
-
+        </form>
+        <dial-control/>
+    </div>
+    <activity-form></activity-form>
+    <task-form></task-form>
       <div class="editorPanel" ng-hide="toggleCatEdit">
           <span class="closeModal" id="toggleFilterCatEdit" ng-click="toggleFilterCatEdit();"><md-icon class="closeIcon" md-svg-src="{{pathImage}}close.svg"></md-icon></span>
             <div class="colLeft" style="height: 470px;">

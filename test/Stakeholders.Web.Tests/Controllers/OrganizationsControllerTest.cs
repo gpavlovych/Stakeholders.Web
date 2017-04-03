@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -71,7 +72,7 @@ namespace Stakeholders.Web.Tests.Controllers
         /// Gets the organization types test.
         /// </summary>
         [Fact]
-        public void GetOrganizationTypesTest()
+        public void GetOrganizationsTest()
         {
             // arrange
             var entities = this.entitiesForTest.CreateCollection(4, this.entitiesForTest.CreateOrganization);
@@ -86,7 +87,7 @@ namespace Stakeholders.Web.Tests.Controllers
             var expectedResult = models.ToArray();
             var start = 2;
             var count = 3;
-            this.repositoryMock.Setup(it => it.GetAll(start, count)).Returns(entities);
+            this.repositoryMock.Setup(it => it.GetAll(start, count, It.IsAny<Func<Organization, bool>>())).Returns(entities);
 
             // act 
             var result = this.target.GetOrganizations(start, count);
