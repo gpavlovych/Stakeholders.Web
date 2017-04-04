@@ -2,7 +2,7 @@
     <h2>{{'NEW_ACTIVITY' | translate}}</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvActiv" ng-click="$ctrl.close()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
     <div class="colLeft">
         <div class="formEditor">
-            <!--<div class="statusList one" ng-controller="dropdownController">
+            <div class="statusList one">
                 <div dropdown-select="ddSelectOptionsActiv" dropdown-model="ddSelectSelectedActiv" dropdown-item-label="text"></div>
             </div>
             <h3>{{'RELATED_TASK' | translate}}</h3>
@@ -26,17 +26,17 @@
                 <a href="#">Lorem ipsum task 5 </a>
             </div>
 
-            <div class="statusList" ng-controller="dropdownController">
+            <div class="statusList">
                 <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
             </div>
-            <div class="statusList" ng-controller="dropdownController">
+            <div class="statusList">
                 <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
             </div>-->
             <input type="text" placeholder="Subject" ng-model="$ctrl.activity.subject"/>
             <textarea placeholder="Description" ng-model="$ctrl.activity.description"></textarea>
-            <!--<div class="statusList" ng-controller="dropdownController">
+            <div class="statusList">
                 <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
-            </div>-->
+            </div>
         </div>
     </div>
     <div class="colRight">

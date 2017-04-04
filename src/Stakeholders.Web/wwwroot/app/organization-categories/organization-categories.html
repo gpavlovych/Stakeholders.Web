@@ -17,8 +17,8 @@
           <span class="closeModal" id="toggleFilterCatEdit" ng-click="closeEditor();"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
             <div class="colLeft" style="height: 470px;">
                   <div class="formEditor" ng-scrollbars ng-scrollbars-config="config">
-                        <input type="text" placeholder="{{'NAME' | translate}}" />
-                        <input type="text" placeholder="{{'COMPANY' | translate}}" />
+                        <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedOrganizationCategory.name"/>
+                        <input type="text" placeholder="{{'COMPANY' | translate}}" ng-model="editedOrganizationCategory.companyId"/>
                         <div class="photoBrands">
                               <h3>{{'LOGO' | translate}}</h3>
                               <div class="photo">
@@ -31,8 +31,8 @@
                                     <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_ICON' | translate}}</button>
                               </div>
                         </div>
-                        <textarea placeholder="{{'INFLUENCING' | translate}}"></textarea>
-                        <textarea placeholder="{{'INFLUENCED_BY' | translate}}"></textarea>
+                        <textarea placeholder="{{'INFLUENCING' | translate}}" ng-model="editedOrganizationCategory.influencing"></textarea>
+                        <textarea placeholder="{{'INFLUENCED_BY' | translate}}" ng-model="editedOrganizationCategory.influencedBy"></textarea>
                   </div>
             </div>
             <p class="saveBlock">
@@ -78,7 +78,7 @@
                               </tr>
                         </thead>
                         <tbody ng-scrollbars ng-scrollbars-config="config">
-                              <tr ng-repeat="organizationCategory in data.organizationCategory|orderBy:orderByField:reverseSort">
+                              <tr ng-repeat="organizationCategory in organizationCategories|orderBy:orderByField:reverseSort">
                                     <td>{{ organizationCategory.name }}</td>
                                     <td>{{ organizationCategory.influencing }}</td>
                                     <td>{{ organizationCategory.influencedBy }}</td>

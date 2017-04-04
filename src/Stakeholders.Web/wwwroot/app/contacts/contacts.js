@@ -11,7 +11,8 @@ angular
                 activetab: 'contacts'
             });
         }
-    ]).factory('Contact', ['$resource',
+    ])
+    .factory('Contact', ['$resource',
     function ($resource) {
         return $resource(
             '/api/Contacts/:id',

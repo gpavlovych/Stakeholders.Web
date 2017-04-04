@@ -1,5 +1,5 @@
-<div class="dashboardContent ceo" ng-controller="ceoController" ng-cloak>
-    <div class="sidebarDashboard" ng-controller="sidebarCeo">
+<div class="dashboardContent ceo" ng-cloak>
+    <div class="sidebarDashboard">
         <h1>{{'LATEST_ACTIVITIES' | translate}}</h1>
         <div class="latestActivities" ng-scrollbars ng-scrollbars-config="config">
             <ul class="listActivities" ng-repeat="activity in activities">
@@ -22,7 +22,7 @@
     <div class="contentDashboard">
         <h1>{{'USERS' | translate}}</h1>
 
-        <div id="nav-show" ng-controller="filterController">
+        <div id="nav-show">
             <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
             <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
             <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
@@ -30,36 +30,13 @@
             <div id="magic-line"></div>
         </div>
 
-        <div class="fabButtonDial" ng-controller="dialController as dialPlus" ng-cloak>
-            <md-fab-speed-dial md-open="dialPlus.isOpen" md-direction="{{dialPlus.selectedDirection}}" ng-class="dialPlus.selectedMode">
-                <md-fab-trigger>
-                    <md-button aria-label="menu" class="md-fab add">
-                        <md-icon md-svg-src="{{pathImage}}add.svg"></md-icon>
-                    </md-button>
-                </md-fab-trigger>
+        <dial-control/>
 
-                <md-fab-actions>
-                      <span class="toggleActiv">
-                           <md-button id="toggleFilterActvActiv" ng-click="toggleFilterActvActiv();$event.stopPropagation();" aria-label="{{'CREATE_ACTIVITIES' | translate}}" class="md-fab md-raised md-mini green">
-                                 <md-icon md-svg-src="{{pathImage}}edit-document.svg" aria-label="Icon Activities"></md-icon>
-                           </md-button>
-                           <span class="ng-tooltip-bt">{{'NEW_ACTIVITIES' | translate}}</span>
-                     </span>
-                     <span class="toggleTask">
-                           <md-button id="toggleFilterActvTask" ng-click="toggleFilterActvTask();$event.stopPropagation();" aria-label="{{'CREATE_TASK' | translate}}" class="md-fab md-raised md-mini cyan">
-                                 <md-icon md-svg-src="{{pathImage}}create-task.svg" aria-label="Icon Task"></md-icon>
-                           </md-button>
-                           <span class="ng-tooltip-bt">{{'NEW_TASK' | translate}}</span>
-                     </span>
-                </md-fab-actions>
-            </md-fab-speed-dial>
-        </div>
-
-        <div ng-include src="'partials/taskForm.html'"></div>
-        <div ng-include src="'partials/activityForm.html'"></div>
+        <activity-form></activity-form>
+        <task-form></task-form>
 
         <div class="clearSeparate"></div>
-        <div class="activitiesResult" ng-controller="usersActivities">
+        <div class="activitiesResult">
             <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
                 <ul class="listResult" ng-repeat="user in users">
                     <li>
