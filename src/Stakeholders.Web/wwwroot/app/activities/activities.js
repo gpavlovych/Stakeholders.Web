@@ -30,9 +30,10 @@ angular
     ])
     .controller('activitiesController', [
         '$scope',
+        '$rootScope',
         'activityService',
         'dialogService',
-        function ($scope, activityService, dialogService) {
+        function ($scope, $rootScope, activityService, dialogService) {
             function refresh() {
                 activityService.query()
                     .$promise
@@ -42,7 +43,9 @@ angular
             }
 
             refresh();
-
+            $rootScope.$on("refreshActivities", function() {
+                refresh();
+            });
             $scope.editActivity = function (id) {
                 activityService.get({ id: id })
                     .$promise

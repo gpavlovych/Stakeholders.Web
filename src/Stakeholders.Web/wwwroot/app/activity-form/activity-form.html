@@ -32,8 +32,8 @@
             <div class="statusList" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
             </div>-->
-            <input type="text" placeholder="Subject" ng-model="$ctrl.activity.title"/>
-            <textarea placeholder="Description" ng-model="$ctrl.activity.content"></textarea>
+            <input type="text" placeholder="Subject" ng-model="$ctrl.activity.subject"/>
+            <textarea placeholder="Description" ng-model="$ctrl.activity.description"></textarea>
             <!--<div class="statusList" ng-controller="dropdownController">
                 <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
             </div>-->
@@ -67,6 +67,6 @@
     <div class="saveBlock">
         <!--<span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>-->
         <button class="btnCancel" id="toggleFilterActvActiv" ng-click="$ctrl.close()" type='button'>{{'CANCEL' | translate}}</button>
-        <button class="btnSave" type='button' ng-click="$ctrl.save())">{{'SAVE' | translate}}</button>
+        <button class="btnSave" type='button' ng-click="$ctrl.save()">{{'SAVE' | translate}}</button>
     </div>
 </div>

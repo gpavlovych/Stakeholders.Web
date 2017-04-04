@@ -7,24 +7,36 @@
         //    activityFormController: '^activityForm',
         //    taskFormController: '^taskForm'
         //},
-        controller: ['$rootScope', function ($rootScope) {
-            var vm = this;
-            this.activity = null;
-            $rootScope.$on('newActivity', function (event, data) {
-                vm.open();
-            });
-            this.open = function () {
-               
-                this.activity = { subject: "subj", description: "descr" };
-            }
-            this.close = function () {
-                //todo
+        controller: [
+            '$rootScope', '$resource', 'dialogService', function($rootScope, $resource, dialogService) {
+
+                var Activity = $resource(
+                    '/api/Activities/:id',
+                    null,
+                    {
+                        'update': { method: 'PUT' }
+                    });
+
+                var vm = this;
                 this.activity = null;
+                $rootScope.$on('newActivity',
+                    function() {
+                        vm.open();
+                    });
+                this.open = function() {
+                    vm.activity = new Activity();
+                }
+                this.close = function() {
+                    vm.activity = null;
+                }
+                this.save = function() {
+                    vm.activity.$save(function() {
+                        dialogService.showMessageSavedDialog(event, null);
+                        $rootScope.$emit("refreshActivities", vm.activity);
+                    });
+                    vm.activity = null;
+                }
             }
-            this.save = function () {
-                //todo
-                this.activity = null;
-            }
-        }],
+        ],
         templateUrl: 'activity-form/activity-form.html'
     })
