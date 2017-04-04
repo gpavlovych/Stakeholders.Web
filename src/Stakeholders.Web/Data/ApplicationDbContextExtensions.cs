@@ -224,17 +224,17 @@ namespace Stakeholders.Web.Data
                     DateActivity = DateTime.UtcNow,
                     Contact = contact,
                     User = user,
-                    ObserverUsersCompanies = activityObserverUsers.Select(
-                        it => new ActivityObserverUserCompany()
+                    ObserverUsers = activityObserverUsers.Select(
+                        it => new ActivityObserverUser()
                         {
                             User = it
-                        }).Concat(
+                        }).ToList(),
+                ObserverCompanies=
                         activityObserverCompanies.Select(
-                            it => new ActivityObserverUserCompany()
+                            it => new ActivityObserverCompany()
                             {
                                 Company = it
-                            })
-                    ).ToList()
+                            }).ToList()
                 };
                 context.Activities.Add(result);
                 context.SaveChanges();
@@ -513,6 +513,7 @@ namespace Stakeholders.Web.Data
                 {
                     Role = role,
                     Name = name,
+                    Email = name+"@example.com",
                     Title = "Mr.",
                     Company = company
                 };

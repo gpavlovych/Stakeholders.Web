@@ -11,6 +11,8 @@ angular
         'ngScrollbars',
         'ngAnimate',
         'ngDropdowns',
+        'ngResource',
+        'hateoas',
         'angular-jwt',
         'md.chips.select',
         'pascalprecht.translate',
@@ -45,6 +47,9 @@ angular
             });
         }
     ])
+    .config(['HateoasInterceptorProvider', function (HateoasInterceptorProvider) {
+        HateoasInterceptorProvider.transformAllResponses();
+    }])
     .config([
         '$translateProvider',
         function($translateProvider) {

@@ -279,9 +279,10 @@ namespace Stakeholders.Web.Data
             return this.context.Activities
                 .Include(it => it.Company)
                 .Include(it => it.Contact)
-                .Include(it => it.ObserverUsersCompanies)
-                .ThenInclude(it => it.User)
-                .ThenInclude(it => it.Company)
+                .Include(it => it.ObserverUsers)
+                    .ThenInclude(it => it.User)
+                .Include(it => it.ObserverCompanies)
+                    .ThenInclude(it => it.Company)
                 .Include(it => it.Type)
                 .Include(it => it.User)
                 .Include(it => it.Task);

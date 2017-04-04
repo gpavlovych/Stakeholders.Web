@@ -114,12 +114,14 @@ namespace Stakeholders.Web.Data
 
             var activityEntityBuilder = builder.Entity<Activity>();
             activityEntityBuilder.HasKey(it => it.Id);
-            activityEntityBuilder.HasMany(it => it.ObserverUsersCompanies).WithOne(it => it.Activity);
+            activityEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Activity);
+            activityEntityBuilder.HasMany(it => it.ObserverCompanies).WithOne(it => it.Activity);
             activityEntityBuilder.HasOne(it => it.User);
             activityEntityBuilder.HasOne(it => it.Company);
             activityEntityBuilder.HasOne(it => it.Contact);
             activityEntityBuilder.HasOne(it => it.Task);
             activityEntityBuilder.HasOne(it => it.Type);
+
             var activityDateCreatedPropertyBuilder = activityEntityBuilder.Property(it => it.DateCreated);
             activityDateCreatedPropertyBuilder.HasDefaultValueSql("GETUTCDATE()");
             activityDateCreatedPropertyBuilder.ValueGeneratedOnAdd();
@@ -167,11 +169,49 @@ namespace Stakeholders.Web.Data
             var activityTaskStatusEntityBuilder = builder.Entity<ActivityTaskStatus>();
             activityTaskStatusEntityBuilder.HasKey(it => it.Id);
 
-            var observerActivityUserEntityBuilder = builder.Entity<ActivityObserverUserCompany>();
-            observerActivityUserEntityBuilder.HasKey(it => it.Id);
+            var observerActivityUserEntityBuilder = builder.Entity<ActivityObserverUser>();
+            observerActivityUserEntityBuilder.HasKey(it => new {it.ActivityId, it.UserId});
+            observerActivityUserEntityBuilder
+                .HasOne(bc => bc.Activity)
+                .WithMany(b => b.ObserverUsers)
+                .HasForeignKey(bc => bc.ActivityId);
+            observerActivityUserEntityBuilder
+                .HasOne(bc => bc.User)
+                .WithMany(b => b.ObserverActivities)
+                .HasForeignKey(bc => bc.UserId);
+
+            var observerActivityCompanyEntityBuilder = builder.Entity<ActivityObserverCompany>();
+            observerActivityCompanyEntityBuilder.HasKey(it => new { it.ActivityId, it.CompanyId });
+            observerActivityCompanyEntityBuilder
+                .HasOne(bc => bc.Activity)
+                .WithMany(b => b.ObserverCompanies)
+                .HasForeignKey(bc => bc.ActivityId);
+            observerActivityCompanyEntityBuilder
+                .HasOne(bc => bc.Company)
+                .WithMany(b => b.ObserverActivities)
+                .HasForeignKey(bc => bc.CompanyId);
+
+            var activityTaskObserverUserEntityBuilder = builder.Entity<ActivityTaskObserverUser>();
+            activityTaskObserverUserEntityBuilder.HasKey(it => new {it.UserId, it.TaskId});
+            activityTaskObserverUserEntityBuilder
+               .HasOne(bc => bc.Task)
+               .WithMany(b => b.ObserverUsers)
+               .HasForeignKey(bc => bc.TaskId);
+            activityTaskObserverUserEntityBuilder
+                .HasOne(bc => bc.User)
+                .WithMany(b => b.ObserverTasks)
+                .HasForeignKey(bc => bc.UserId);
 
             var activityTaskContactEntityBuilder = builder.Entity<ActivityTaskContact>();
-            activityTaskContactEntityBuilder.HasKey(it => it.Id);
+            activityTaskContactEntityBuilder.HasKey(it => new { it.ContactId, it.TaskId });
+            activityTaskContactEntityBuilder
+               .HasOne(bc => bc.Task)
+               .WithMany(b => b.Contacts)
+               .HasForeignKey(bc => bc.TaskId);
+            activityTaskContactEntityBuilder
+                .HasOne(bc => bc.Contact)
+                .WithMany(b => b.Tasks)
+                .HasForeignKey(bc => bc.ContactId);
         }
     }
 }

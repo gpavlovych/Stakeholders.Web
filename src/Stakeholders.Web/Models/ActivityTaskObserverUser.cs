@@ -17,13 +17,25 @@ namespace Stakeholders.Web.Models
     /// Class ActivityTaskObserverUser.
     /// </summary>
     /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
-    public class ActivityTaskObserverUser : BaseEntity
+    public class ActivityTaskObserverUser
     {
+        /// <summary>
+        /// Gets or sets the task identifier.
+        /// </summary>
+        /// <value>The task identifier.</value>
+        public long TaskId { get; set; }
+
         /// <summary>
         /// Gets or sets the task.
         /// </summary>
         /// <value>The task.</value>
         public ActivityTask Task { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user identifier.
+        /// </summary>
+        /// <value>The user identifier.</value>
+        public long UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the user.

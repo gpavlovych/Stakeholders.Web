@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Migrations
@@ -138,26 +139,34 @@ namespace Stakeholders.Web.Migrations
                     b.ToTable("Activities");
                 });
 
-            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUserCompany", b =>
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverCompany", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<long>("ActivityId");
 
-                    b.Property<long?>("ActivityId");
+                    b.Property<long>("CompanyId");
 
-                    b.Property<long?>("CompanyId");
-
-                    b.Property<long?>("UserId");
-
-                    b.HasKey("Id");
+                    b.HasKey("ActivityId", "CompanyId");
 
                     b.HasIndex("ActivityId");
 
                     b.HasIndex("CompanyId");
 
+                    b.ToTable("ActivityObserverCompany");
+                });
+
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUser", b =>
+                {
+                    b.Property<long>("ActivityId");
+
+                    b.Property<long>("UserId");
+
+                    b.HasKey("ActivityId", "UserId");
+
+                    b.HasIndex("ActivityId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("ActivityObserverUserCompany");
+                    b.ToTable("ActivityObserverUser");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTask", b =>
@@ -204,14 +213,11 @@ namespace Stakeholders.Web.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskContact", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<long>("ContactId");
 
-                    b.Property<long?>("ContactId");
+                    b.Property<long>("TaskId");
 
-                    b.Property<long?>("TaskId");
-
-                    b.HasKey("Id");
+                    b.HasKey("ContactId", "TaskId");
 
                     b.HasIndex("ContactId");
 
@@ -222,14 +228,11 @@ namespace Stakeholders.Web.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskObserverUser", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<long>("UserId");
 
-                    b.Property<long?>("TaskId");
+                    b.Property<long>("TaskId");
 
-                    b.Property<long?>("UserId");
-
-                    b.HasKey("Id");
+                    b.HasKey("UserId", "TaskId");
 
                     b.HasIndex("TaskId");
 
@@ -552,19 +555,30 @@ namespace Stakeholders.Web.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUserCompany", b =>
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverCompany", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.Activity", "Activity")
-                        .WithMany("ObserverUsersCompanies")
-                        .HasForeignKey("ActivityId");
+                        .WithMany("ObserverCompanies")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Stakeholders.Web.Models.Company", "Company")
                         .WithMany("ObserverActivities")
-                        .HasForeignKey("CompanyId");
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUser", b =>
+                {
+                    b.HasOne("Stakeholders.Web.Models.Activity", "Activity")
+                        .WithMany("ObserverUsers")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
                         .WithMany("ObserverActivities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTask", b =>
@@ -590,22 +604,26 @@ namespace Stakeholders.Web.Migrations
                 {
                     b.HasOne("Stakeholders.Web.Models.Contact", "Contact")
                         .WithMany("Tasks")
-                        .HasForeignKey("ContactId");
+                        .HasForeignKey("ContactId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Stakeholders.Web.Models.ActivityTask", "Task")
                         .WithMany("Contacts")
-                        .HasForeignKey("TaskId");
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskObserverUser", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.ActivityTask", "Task")
                         .WithMany("ObserverUsers")
-                        .HasForeignKey("TaskId");
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
                         .WithMany("ObserverTasks")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ApplicationUser", b =>

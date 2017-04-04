@@ -1,7 +1,11 @@
 ﻿'use strict';
 
 angular
-    .module('porlaDashboard.activities', ['ngRoute'])
+    .module('porlaDashboard.activities',
+    [
+        'ngRoute',
+        'hateoas'
+    ])
 
     .config([
         '$routeProvider',
@@ -14,74 +18,36 @@ angular
             });
         }
     ])
-
-    .service('activityService', [
-        '$http',
-        function ($http) {
-            this.get = function (start, count) {
-                var url = "/api/Activities?start=" + start + "&count=" + count;
-                return $http.get(url).then(handleSuccess, handleError('Error getting activities'));
-            };
-
-            this.getById = function (id) {
-                var url = "/api/Activities/" + id;
-                return $http.get(url).then(handleSuccess, handleError('Error getting activities by id'));
-            };
-
-            this.count = function () {
-                var url = "/api/Activities/count";
-                return $http.get(url).then(handleSuccess, handleError('Error getting activities count'));
-            };
-
-            this.create = function (activity) {
-                var url = "/api/Activities";
-                return $http.post(url, activity).then(handleSuccess, handleError('Error creating activity'));
-            };
-
-            this.update = function (activity, id) {
-                var url = "/api/Activities/" + id;
-                return $http.put(url, activity).then(handleSuccess, handleError('Error updating activity'));
-            };
-
-            this.remove = function (id) {
-                var url = "/api/Activities/" + id;
-                return $http.delete(url).then(handleSuccess, handleError('Error deleting activity'));
-            };
-
-            function handleSuccess(res) {
-                return { success: true, data: res.data };
-            }
-
-            function handleError(error) {
-                return function () {
-                    return { success: false, message: error };
-                };
-            }
+    .factory('activityService', ['$resource',
+        function ($resource) {
+            return $resource(
+                '/api/Activities/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
         }
     ])
-
     .controller('activitiesController', [
         '$scope',
         'activityService',
         'dialogService',
         function ($scope, activityService, dialogService) {
             function refresh() {
-                activityService.get(0, 10)
-                    .then(function (result) {
-                        if (result.success) {
-                            $scope.activities = result.data;
-                        }
+                activityService.query()
+                    .$promise
+                    .then(function(activities) {
+                        $scope.activities = activities;
                     });
             }
 
             refresh();
 
             $scope.editActivity = function (id) {
-                activityService.getById(id)
-                    .then(function (result) {
-                        if (result.success) {
-                            $scope.editedActivity = result.data;
-                        }
+                activityService.get({ id: id })
+                    .$promise
+                    .then(function(activity) {
+                        $scope.editedActivity = activity;
                     });
             };
 
@@ -92,12 +58,11 @@ angular
             $scope.saveEditor = function (event) {
                 dialogService.showConfirmationSaveDialog(event,
                     function () {
-                        activityService.update($scope.editedActivity, $scope.editedActivity.id)
-                            .then(function (result) {
-                                if (result.success) {
-                                    dialogService.showMessageSavedDialog(event, null);
-                                    refresh();
-                                }
+                        activityService.update({ id: $scope.editedActivity.id }, $scope.editedActivity)
+                            .$promise
+                            .then(function () {
+                                dialogService.showMessageSavedDialog(event, null);
+                                refresh();
                             });
                         $scope.closeEditor();
                     },
@@ -107,11 +72,10 @@ angular
             $scope.removeActivity = function (event, id) {
                 dialogService.showConfirmationDeleteDialog(event,
                     function () {
-                        activityService.remove(id)
-                            .then(function (result) {
-                                if (result.success) {
-                                    refresh();
-                                }
+                        activityService.$delete({ id: id })
+                            .$promise
+                            .then(function () {
+                                refresh();
                             });
                     },
                     null);

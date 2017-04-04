@@ -80,6 +80,12 @@ namespace Stakeholders.Web.Models
         /// Gets or sets the observer users.
         /// </summary>
         /// <value>The observer users.</value>
-        public ICollection<ActivityObserverUserCompany> ObserverUsersCompanies { get; set; }
+        public ICollection<ActivityObserverUser> ObserverUsers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the observer companies.
+        /// </summary>
+        /// <value>The observer companies.</value>
+        public ICollection<ActivityObserverCompany> ObserverCompanies { get; set; }
     }
 }

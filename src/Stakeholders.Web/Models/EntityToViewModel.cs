@@ -44,10 +44,10 @@ namespace Stakeholders.Web.Models
         public void Process(Activity source, ActivityViewModel destination)
         {
             destination.ObserverCompanyIds =
-            (source.ObserverUsersCompanies?.Where(it => it.Company != null).Select(it => it.Company.Id) ??
+            (source.ObserverCompanies?.Where(it => it.Company != null).Select(it => it.Company.Id) ??
              Enumerable.Empty<long>()).ToArray();
             destination.ObserverUserIds =
-            (source.ObserverUsersCompanies?.Where(it => it.User != null).Select(it => it.User.Id) ??
+            (source.ObserverUsers?.Where(it => it.User != null).Select(it => it.User.Id) ??
              Enumerable.Empty<long>()).ToArray();
         }
 

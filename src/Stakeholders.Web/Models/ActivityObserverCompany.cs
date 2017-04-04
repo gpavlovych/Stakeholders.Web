@@ -1,12 +1,12 @@
 ﻿// ***********************************************************************
 // Assembly         : Stakeholders.Web
 // Author           : George
-// Created          : 02-19-2017
+// Created          : 04-04-2017
 //
 // Last Modified By : George
 // Last Modified On : 04-04-2017
 // ***********************************************************************
-// <copyright file="ActivityObserverUserCompany.cs" company="">
+// <copyright file="ActivityObserverCompany.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
@@ -14,9 +14,9 @@
 namespace Stakeholders.Web.Models
 {
     /// <summary>
-    /// Class ActivityObserverUserCompany.
+    /// Class ActivityObserverCompany.
     /// </summary>
-    public class ActivityObserverUser
+    public class ActivityObserverCompany
     {
         /// <summary>
         /// Gets or sets the activity identifier.
@@ -31,15 +31,15 @@ namespace Stakeholders.Web.Models
         public Activity Activity { get; set; }
 
         /// <summary>
-        /// Gets or sets the user identifier.
+        /// Gets or sets the observer company identifier.
         /// </summary>
-        /// <value>The user identifier.</value>
-        public long UserId { get; set; }
+        /// <value>The observer company identifier.</value>
+        public long CompanyId { get; set; }
 
         /// <summary>
-        /// Gets or sets the user.
+        /// Gets or sets the observer company.
         /// </summary>
-        /// <value>The user.</value>
-        public ApplicationUser User { get; set; }
+        /// <value>The observer company.</value>
+        public Company Company { get; set; }
     }
 }

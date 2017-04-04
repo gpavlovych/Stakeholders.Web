@@ -200,16 +200,33 @@ namespace Stakeholders.Web.Tests
         /// <param name="user">The user.</param>
         /// <param name="company">The company.</param>
         /// <returns>ActivityObserverUserCompany.</returns>
-        public ActivityObserverUserCompany CreateActivityObserverUserCompany(
+        public ActivityObserverCompany CreateActivityObserverCompany(
             Activity activity = null,
             ApplicationUser user = null,
             Company company = null)
         {
-            return new ActivityObserverUserCompany()
+            return new ActivityObserverCompany()
             {
                 Activity = activity,
-                Company = company,
-                Id = this.CreateInt(),
+                Company = company
+            };
+        }
+
+        /// <summary>
+        /// Creates the activity observer user company.
+        /// </summary>
+        /// <param name="activity">The activity.</param>
+        /// <param name="user">The user.</param>
+        /// <param name="company">The company.</param>
+        /// <returns>ActivityObserverUserCompany.</returns>
+        public ActivityObserverUser CreateActivityObserverUser(
+            Activity activity = null,
+            ApplicationUser user = null,
+            Company company = null)
+        {
+            return new ActivityObserverUser()
+            {
+                Activity = activity,
                 User = user
             };
         }
@@ -232,11 +249,12 @@ namespace Stakeholders.Web.Tests
                 Task = this.CreateActivityTask(),
                 User = this.CreateApplicationUser(),
                 Type = this.CreateActivityType(),
-                ObserverUsersCompanies = this.CreateCollection(
+                ObserverUsers = this.CreateCollection(
                     3,
-                    () => this.CreateBool()
-                        ? this.CreateActivityObserverUserCompany(user: this.CreateApplicationUser())
-                        : this.CreateActivityObserverUserCompany(company: this.CreateCompany()))
+                    () => this.CreateActivityObserverUser(user: this.CreateApplicationUser())),
+                ObserverCompanies = this.CreateCollection(
+                    3,
+                    () => this.CreateActivityObserverCompany(company: this.CreateCompany()))
             };
         }
 
@@ -319,7 +337,6 @@ namespace Stakeholders.Web.Tests
         {
             return new ActivityTaskContact()
             {
-                Id = this.CreateInt(),
                 Contact = contact,
                 Task = task
             };
@@ -351,7 +368,6 @@ namespace Stakeholders.Web.Tests
         {
             return new ActivityTaskObserverUser()
             {
-                Id = this.CreateInt(),
                 Task = task,
                 User = user
             };

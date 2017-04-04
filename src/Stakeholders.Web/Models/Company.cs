@@ -79,6 +79,6 @@ namespace Stakeholders.Web.Models
         /// Gets or sets the observer activities.
         /// </summary>
         /// <value>The observer activities.</value>
-        public ICollection<ActivityObserverUserCompany> ObserverActivities { get; set; }
+        public ICollection<ActivityObserverCompany> ObserverActivities { get; set; }
     }
 }

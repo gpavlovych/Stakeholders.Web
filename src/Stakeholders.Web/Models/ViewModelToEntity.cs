@@ -157,7 +157,7 @@ namespace Stakeholders.Web.Models
             destination.ObserverActivities = source.ObserverActivityIds?
                 .Select(
                     activityId =>
-                        new ActivityObserverUserCompany
+                        new ActivityObserverCompany
                         {
                             Company = destination,
                             Activity = this.repositoryActivities.FindById(activityId)
@@ -180,20 +180,21 @@ namespace Stakeholders.Web.Models
 
             var activityObserverCompanies = source.ObserverCompanyIds?
                                                 .Select(
-                                                    observerCompanyId => new ActivityObserverUserCompany()
+                                                    observerCompanyId => new ActivityObserverCompany()
                                                     {
                                                         Activity = destination,
                                                         Company = this.repositoryCompanies.FindById(observerCompanyId)
-                                                    }) ?? Enumerable.Empty<ActivityObserverUserCompany>();
+                                                    }) ?? Enumerable.Empty<ActivityObserverCompany>();
 
             var activityObserverUsers = source.ObserverUserIds?.Select(
-                                            observerUserId => new ActivityObserverUserCompany()
+                                            observerUserId => new ActivityObserverUser()
                                             {
                                                 Activity = destination,
                                                 User = this.repositoryUsers.FindById(observerUserId)
-                                            }) ?? Enumerable.Empty<ActivityObserverUserCompany>();
+                                            }) ?? Enumerable.Empty<ActivityObserverUser>();
 
-            destination.ObserverUsersCompanies = activityObserverCompanies.Concat(activityObserverUsers).ToList();
+            destination.ObserverCompanies = activityObserverCompanies.ToList();
+            destination.ObserverUsers = activityObserverUsers.ToList();
 
             var typeId = source.TypeId;
             destination.Type = typeId != null ? this.repositoryActivityTypes.FindById(typeId.Value) : null;
@@ -252,7 +253,7 @@ namespace Stakeholders.Web.Models
         {
             destination.ObserverActivities =
                 source.ObserverActivityIds?.Select(
-                    activityId => new ActivityObserverUserCompany()
+                    activityId => new ActivityObserverUser()
                     {
                         User = destination,
                         Activity = this.repositoryActivities.FindById(activityId)

@@ -18,13 +18,25 @@ namespace Stakeholders.Web.Models
     /// Class ActivityTaskContact.
     /// </summary>
     /// <seealso cref="Stakeholders.Web.Models.BaseEntity" />
-    public class ActivityTaskContact : BaseEntity
+    public class ActivityTaskContact
     {
+        /// <summary>
+        /// Gets or sets the task identifier.
+        /// </summary>
+        /// <value>The task identifier.</value>
+        public long TaskId { get; set; }
+
         /// <summary>
         /// Gets or sets the task.
         /// </summary>
         /// <value>The task.</value>
         public ActivityTask Task { get; set; }
+
+        /// <summary>
+        /// Gets or sets the contact identifier.
+        /// </summary>
+        /// <value>The contact identifier.</value>
+        public long ContactId { get; set; }
 
         /// <summary>
         /// Gets or sets the contact.
