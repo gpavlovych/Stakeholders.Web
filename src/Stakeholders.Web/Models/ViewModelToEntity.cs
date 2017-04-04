@@ -105,6 +105,11 @@ namespace Stakeholders.Web.Models
         private readonly IRepository<Role> repositoryRoles;
 
         /// <summary>
+        /// The context
+        /// </summary>
+        private readonly ApplicationDbContext context;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ViewModelToEntity" /> class.
         /// </summary>
         /// <param name="repositoryActivities">The repository activities.</param>
@@ -131,7 +136,8 @@ namespace Stakeholders.Web.Models
             IRepository<OrganizationType> repositoryOrganizationTypes,
             IRepository<OrganizationCategory> repositoryOrganizationCategories,
             IRepository<Organization> repositoryOrganizations,
-            IRepository<Role> repositoryRoles)
+            IRepository<Role> repositoryRoles,
+            ApplicationDbContext context)
         {
             this.repositoryActivities = repositoryActivities;
             this.repositoryUsers = repositoryUsers;
@@ -145,6 +151,7 @@ namespace Stakeholders.Web.Models
             this.repositoryOrganizationCategories = repositoryOrganizationCategories;
             this.repositoryOrganizations = repositoryOrganizations;
             this.repositoryRoles = repositoryRoles;
+            this.context = context;
         }
 
         /// <summary>
@@ -157,9 +164,15 @@ namespace Stakeholders.Web.Models
             destination.ObserverActivities = source.ObserverActivityIds?
                 .Select(
                     activityId =>
+                        this.context.ActivityObserverCompanies.FirstOrDefault(
+                            it =>
+                                (it.CompanyId == destination.Id) &&
+                                (it.ActivityId == activityId)) ??
                         new ActivityObserverCompany
                         {
+                            CompanyId = destination.Id,
                             Company = destination,
+                            ActivityId = activityId,
                             Activity = this.repositoryActivities.FindById(activityId)
                         })
                 .ToList();
@@ -180,18 +193,34 @@ namespace Stakeholders.Web.Models
 
             var activityObserverCompanies = source.ObserverCompanyIds?
                                                 .Select(
-                                                    observerCompanyId => new ActivityObserverCompany()
-                                                    {
-                                                        Activity = destination,
-                                                        Company = this.repositoryCompanies.FindById(observerCompanyId)
-                                                    }) ?? Enumerable.Empty<ActivityObserverCompany>();
+                                                    observerCompanyId =>
+                                                        this.context.ActivityObserverCompanies.FirstOrDefault(
+                                                            it =>
+                                                                (it.CompanyId == observerCompanyId) &&
+                                                                (it.ActivityId == destination.Id)) ??
+                                                        new ActivityObserverCompany()
+                                                        {
+                                                            ActivityId = destination.Id,
+                                                            Activity = destination,
+                                                            CompanyId = observerCompanyId,
+                                                            Company =
+                                                                this.repositoryCompanies.FindById(observerCompanyId)
+                                                        }) ?? Enumerable.Empty<ActivityObserverCompany>();
 
-            var activityObserverUsers = source.ObserverUserIds?.Select(
-                                            observerUserId => new ActivityObserverUser()
-                                            {
-                                                Activity = destination,
-                                                User = this.repositoryUsers.FindById(observerUserId)
-                                            }) ?? Enumerable.Empty<ActivityObserverUser>();
+            var activityObserverUsers = source.ObserverUserIds?
+                                            .Select(
+                                                observerUserId => this.context.ActivityObserverUsers.FirstOrDefault(
+                                                                      it =>
+                                                                          (it.UserId == observerUserId) &&
+                                                                          (it.ActivityId == destination.Id)) ??
+                                                                  new ActivityObserverUser()
+                                                                  {
+                                                                      ActivityId = destination.Id,
+                                                                      Activity = destination,
+                                                                      UserId = observerUserId,
+                                                                      User =
+                                                                          this.repositoryUsers.FindById(observerUserId)
+                                                                  }) ?? Enumerable.Empty<ActivityObserverUser>();
 
             destination.ObserverCompanies = activityObserverCompanies.ToList();
             destination.ObserverUsers = activityObserverUsers.ToList();
@@ -218,11 +247,18 @@ namespace Stakeholders.Web.Models
 
             destination.Contacts =
                 source.ContactIds?.Select(
-                    contactId => new ActivityTaskContact()
-                    {
-                        Task = destination,
-                        Contact = this.repositoryContacts.FindById(contactId)
-                    }).ToList();
+                    contactId =>
+                        this.context.ActivityTaskContacts.FirstOrDefault(
+                            it =>
+                                (it.ContactId == contactId) &&
+                                (it.TaskId == destination.Id)) ??
+                        new ActivityTaskContact()
+                        {
+                            TaskId = destination.Id,
+                            Task = destination,
+                            ContactId = contactId,
+                            Contact = this.repositoryContacts.FindById(contactId)
+                        }).ToList();
 
             var createdById = source.CreatedById; //TODO: to be auto-filled
             destination.CreatedBy = createdById != null ? this.repositoryUsers.FindById(createdById.Value) : null;
@@ -232,12 +268,18 @@ namespace Stakeholders.Web.Models
 
             destination.ObserverUsers =
                 source.ObserverUserIds?.Select(
-                    contactId => new ActivityTaskObserverUser()
-                    {
-                        Task = destination,
-                        User = this.repositoryUsers.FindById(contactId)
-                    }).ToList();
-
+                    userId =>
+                        this.context.ActivityTaskObserverUsers.FirstOrDefault(
+                            it =>
+                                (it.UserId == userId) &&
+                                (it.TaskId == destination.Id)) ??
+                        new ActivityTaskObserverUser()
+                        {
+                            TaskId = destination.Id,
+                            Task = destination,
+                            UserId = userId,
+                            User = this.repositoryUsers.FindById(userId)
+                        }).ToList();
 
             var statusId = source.StatusId;
             destination.Status = statusId != null ? this.repositoryStatuses.FindById(statusId.Value) : null;
@@ -253,19 +295,33 @@ namespace Stakeholders.Web.Models
         {
             destination.ObserverActivities =
                 source.ObserverActivityIds?.Select(
-                    activityId => new ActivityObserverUser()
-                    {
-                        User = destination,
-                        Activity = this.repositoryActivities.FindById(activityId)
-                    }).ToList();
+                    activityId =>
+                        this.context.ActivityObserverUsers.FirstOrDefault(
+                            it =>
+                                (it.UserId == destination.Id) &&
+                                (it.ActivityId == activityId)) ??
+                        new ActivityObserverUser()
+                        {
+                            UserId = destination.Id,
+                            User = destination,
+                            ActivityId = activityId,
+                            Activity = this.repositoryActivities.FindById(activityId)
+                        }).ToList();
 
             destination.ObserverTasks =
                 source.ObserverTaskIds?.Select(
-                    taskId => new ActivityTaskObserverUser()
-                    {
-                        User = destination,
-                        Task = this.repositoryTasks.FindById(taskId)
-                    }).ToList();
+                    taskId =>
+                        this.context.ActivityTaskObserverUsers.FirstOrDefault(
+                            it =>
+                                (it.UserId == destination.Id) &&
+                                (it.TaskId == taskId)) ??
+                        new ActivityTaskObserverUser()
+                        {
+                            UserId = destination.Id,
+                            User = destination,
+                            TaskId = taskId,
+                            Task = this.repositoryTasks.FindById(taskId)
+                        }).ToList();
 
             var companyId = source.CompanyId;
             destination.Company = companyId != null ? this.repositoryCompanies.FindById(companyId.Value) : null;
@@ -295,11 +351,18 @@ namespace Stakeholders.Web.Models
 
             destination.Tasks =
                 source.TaskIds?.Select(
-                    contactId => new ActivityTaskContact()
-                    {
-                        Contact = destination,
-                        Task = this.repositoryTasks.FindById(contactId)
-                    }).ToList();
+                    taskId =>
+                        this.context.ActivityTaskContacts.FirstOrDefault(
+                            it =>
+                                (it.ContactId == destination.Id) &&
+                                (it.TaskId == taskId)) ??
+                        new ActivityTaskContact()
+                        {
+                            ContactId = destination.Id,
+                            Contact = destination,
+                            TaskId = taskId,
+                            Task = this.repositoryTasks.FindById(taskId)
+                        }).ToList();
         }
 
         /// <summary>

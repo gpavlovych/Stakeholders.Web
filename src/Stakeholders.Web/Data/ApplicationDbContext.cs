@@ -21,6 +21,7 @@ namespace Stakeholders.Web.Data
     /// <summary>
     /// The application database context
     /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{Stakeholders.Web.Models.ApplicationUser, Stakeholders.Web.Models.Role, System.Int64}" />
     /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext{ApplicationUser, Role, string}" />
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, long>
     {
@@ -92,6 +93,30 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <value>The organization categories.</value>
         public DbSet<OrganizationCategory> OrganizationCategories { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activity task contacts.
+        /// </summary>
+        /// <value>The activity task contacts.</value>
+        public DbSet<ActivityTaskContact> ActivityTaskContacts { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activity task observer users.
+        /// </summary>
+        /// <value>The activity task observer users.</value>
+        public DbSet<ActivityTaskObserverUser> ActivityTaskObserverUsers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activity observer companies.
+        /// </summary>
+        /// <value>The activity observer companies.</value>
+        public DbSet<ActivityObserverCompany> ActivityObserverCompanies { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activity observer users.
+        /// </summary>
+        /// <value>The activity observer users.</value>
+        public DbSet<ActivityObserverUser> ActivityObserverUsers { get; set; }
 
         /// <summary>
         /// Configures the schema needed for the identity framework.

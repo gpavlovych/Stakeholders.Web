@@ -8,7 +8,7 @@ using Stakeholders.Web.Data;
 namespace Stakeholders.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170404103056_Initial")]
+    [Migration("20170404112615_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -152,7 +152,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("ActivityObserverCompany");
+                    b.ToTable("ActivityObserverCompanies");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUser", b =>
@@ -167,7 +167,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ActivityObserverUser");
+                    b.ToTable("ActivityObserverUsers");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTask", b =>
@@ -224,7 +224,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("ActivityTaskContact");
+                    b.ToTable("ActivityTaskContacts");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskObserverUser", b =>
@@ -239,7 +239,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ActivityTaskObserverUser");
+                    b.ToTable("ActivityTaskObserverUsers");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskStatus", b =>

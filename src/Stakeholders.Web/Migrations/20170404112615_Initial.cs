@@ -355,7 +355,7 @@ namespace Stakeholders.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActivityTaskObserverUser",
+                name: "ActivityTaskObserverUsers",
                 columns: table => new
                 {
                     UserId = table.Column<long>(nullable: false),
@@ -363,15 +363,15 @@ namespace Stakeholders.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityTaskObserverUser", x => new { x.UserId, x.TaskId });
+                    table.PrimaryKey("PK_ActivityTaskObserverUsers", x => new { x.UserId, x.TaskId });
                     table.ForeignKey(
-                        name: "FK_ActivityTaskObserverUser_ActivityTasks_TaskId",
+                        name: "FK_ActivityTaskObserverUsers_ActivityTasks_TaskId",
                         column: x => x.TaskId,
                         principalTable: "ActivityTasks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivityTaskObserverUser_AspNetUsers_UserId",
+                        name: "FK_ActivityTaskObserverUsers_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -470,7 +470,7 @@ namespace Stakeholders.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActivityTaskContact",
+                name: "ActivityTaskContacts",
                 columns: table => new
                 {
                     ContactId = table.Column<long>(nullable: false),
@@ -478,15 +478,15 @@ namespace Stakeholders.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityTaskContact", x => new { x.ContactId, x.TaskId });
+                    table.PrimaryKey("PK_ActivityTaskContacts", x => new { x.ContactId, x.TaskId });
                     table.ForeignKey(
-                        name: "FK_ActivityTaskContact_Contacts_ContactId",
+                        name: "FK_ActivityTaskContacts_Contacts_ContactId",
                         column: x => x.ContactId,
                         principalTable: "Contacts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivityTaskContact_ActivityTasks_TaskId",
+                        name: "FK_ActivityTaskContacts_ActivityTasks_TaskId",
                         column: x => x.TaskId,
                         principalTable: "ActivityTasks",
                         principalColumn: "Id",
@@ -494,7 +494,7 @@ namespace Stakeholders.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActivityObserverCompany",
+                name: "ActivityObserverCompanies",
                 columns: table => new
                 {
                     ActivityId = table.Column<long>(nullable: false),
@@ -502,15 +502,15 @@ namespace Stakeholders.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityObserverCompany", x => new { x.ActivityId, x.CompanyId });
+                    table.PrimaryKey("PK_ActivityObserverCompanies", x => new { x.ActivityId, x.CompanyId });
                     table.ForeignKey(
-                        name: "FK_ActivityObserverCompany_Activities_ActivityId",
+                        name: "FK_ActivityObserverCompanies_Activities_ActivityId",
                         column: x => x.ActivityId,
                         principalTable: "Activities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivityObserverCompany_Companies_CompanyId",
+                        name: "FK_ActivityObserverCompanies_Companies_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "Companies",
                         principalColumn: "Id",
@@ -518,7 +518,7 @@ namespace Stakeholders.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ActivityObserverUser",
+                name: "ActivityObserverUsers",
                 columns: table => new
                 {
                     ActivityId = table.Column<long>(nullable: false),
@@ -526,15 +526,15 @@ namespace Stakeholders.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityObserverUser", x => new { x.ActivityId, x.UserId });
+                    table.PrimaryKey("PK_ActivityObserverUsers", x => new { x.ActivityId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_ActivityObserverUser_Activities_ActivityId",
+                        name: "FK_ActivityObserverUsers_Activities_ActivityId",
                         column: x => x.ActivityId,
                         principalTable: "Activities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivityObserverUser_AspNetUsers_UserId",
+                        name: "FK_ActivityObserverUsers_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -592,23 +592,23 @@ namespace Stakeholders.Web.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityObserverCompany_ActivityId",
-                table: "ActivityObserverCompany",
+                name: "IX_ActivityObserverCompanies_ActivityId",
+                table: "ActivityObserverCompanies",
                 column: "ActivityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityObserverCompany_CompanyId",
-                table: "ActivityObserverCompany",
+                name: "IX_ActivityObserverCompanies_CompanyId",
+                table: "ActivityObserverCompanies",
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityObserverUser_ActivityId",
-                table: "ActivityObserverUser",
+                name: "IX_ActivityObserverUsers_ActivityId",
+                table: "ActivityObserverUsers",
                 column: "ActivityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityObserverUser_UserId",
-                table: "ActivityObserverUser",
+                name: "IX_ActivityObserverUsers_UserId",
+                table: "ActivityObserverUsers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -632,23 +632,23 @@ namespace Stakeholders.Web.Migrations
                 column: "StatusId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityTaskContact_ContactId",
-                table: "ActivityTaskContact",
+                name: "IX_ActivityTaskContacts_ContactId",
+                table: "ActivityTaskContacts",
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityTaskContact_TaskId",
-                table: "ActivityTaskContact",
+                name: "IX_ActivityTaskContacts_TaskId",
+                table: "ActivityTaskContacts",
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityTaskObserverUser_TaskId",
-                table: "ActivityTaskObserverUser",
+                name: "IX_ActivityTaskObserverUsers_TaskId",
+                table: "ActivityTaskObserverUsers",
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityTaskObserverUser_UserId",
-                table: "ActivityTaskObserverUser",
+                name: "IX_ActivityTaskObserverUsers_UserId",
+                table: "ActivityTaskObserverUsers",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -736,16 +736,16 @@ namespace Stakeholders.Web.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "ActivityObserverCompany");
+                name: "ActivityObserverCompanies");
 
             migrationBuilder.DropTable(
-                name: "ActivityObserverUser");
+                name: "ActivityObserverUsers");
 
             migrationBuilder.DropTable(
-                name: "ActivityTaskContact");
+                name: "ActivityTaskContacts");
 
             migrationBuilder.DropTable(
-                name: "ActivityTaskObserverUser");
+                name: "ActivityTaskObserverUsers");
 
             migrationBuilder.DropTable(
                 name: "Activities");

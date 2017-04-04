@@ -151,7 +151,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("ActivityObserverCompany");
+                    b.ToTable("ActivityObserverCompanies");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUser", b =>
@@ -166,7 +166,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ActivityObserverUser");
+                    b.ToTable("ActivityObserverUsers");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTask", b =>
@@ -223,7 +223,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("TaskId");
 
-                    b.ToTable("ActivityTaskContact");
+                    b.ToTable("ActivityTaskContacts");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskObserverUser", b =>
@@ -238,7 +238,7 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ActivityTaskObserverUser");
+                    b.ToTable("ActivityTaskObserverUsers");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTaskStatus", b =>
