@@ -14,64 +14,27 @@ angular
             });
         }
     ])
-    .service('companyService',
-    [
-        '$http',
-        function($http) {
-            this.get = function (start, count, search) {
-                var url = "/api/Companies?start=" + start + "&count=" + count + '&search=' + search;
-                return $http.get(url).then(handleSuccess, handleError('Error getting companies'));
-            };
-
-            this.getById = function (id) {
-                var url = "/api/Companies/" + id;
-                return $http.get(url).then(handleSuccess, handleError('Error getting company by id'));
-            };
-
-            this.count = function () {
-                var url = "/api/Companies/count";
-                return $http.get(url).then(handleSuccess, handleError('Error getting companies count'));
-            };
-
-            this.create = function (activity) {
-                var url = "/api/Companies";
-                return $http.post(url, activity).then(handleSuccess, handleError('Error creating company'));
-            };
-
-            this.update = function (activity, id) {
-                var url = "/api/Companies/" + id;
-                return $http.put(url, activity).then(handleSuccess, handleError('Error updating company'));
-            };
-
-            this.remove = function (id) {
-                var url = "/api/Companies/" + id;
-                return $http.delete(url).then(handleSuccess, handleError('Error deleting company'));
-            };
-
-            function handleSuccess(res) {
-                return { success: true, data: res.data };
-            }
-
-            function handleError(error) {
-                return function () {
-                    return { success: false, message: error };
-                };
-            }
-        }
-    ])
+    .factory('Company', ['$resource',
+    function ($resource) {
+        return $resource(
+            '/api/Companies/:id',
+            null,
+            {
+                'update': { method: 'PUT' }
+            });
+    }])
     .controller('companiesController',
     [
         '$scope',
-        'companyService',
+        'Company',
         'dialogService',
-        function ($scope, companyService, dialogService) {
+        function($scope, Company, dialogService) {
             $scope.search = "";
+
             function refresh() {
-                companyService.get(0, 10, $scope.search)
-                    .then(function (result) {
-                        if (result.success) {
-                            $scope.companies = result.data;
-                        }
+                Company.query({ start: 0, count: 10, search: $scope.search },
+                    function(companies) {
+                        $scope.companies = companies;
                     });
             }
 
@@ -80,42 +43,33 @@ angular
                 refresh();
             };
 
-            $scope.editCompany = function (id) {
-                companyService.getById(id)
-                    .then(function (result) {
-                        if (result.success) {
-                            $scope.editedCompany = result.data;
-                        }
-                    });
+            $scope.editCompany = function(id) {
+                $scope.editedCompany = Company.get({ id: id });
             };
 
-            $scope.closeEditor = function () {
+            $scope.closeEditor = function() {
                 $scope.editedCompany = null;
             };
 
-            $scope.saveEditor = function (event) {
+            $scope.saveEditor = function(event) {
                 dialogService.showConfirmationSaveDialog(event,
-                    function () {
-                        companyService.update($scope.editedCompany, $scope.editedCompany.id)
-                            .then(function (result) {
-                                if (result.success) {
-                                    dialogService.showMessageSavedDialog(event, null);
-                                    refresh();
-                                }
+                    function() {
+                        $scope.editedCompany.$update({ id: $scope.editedCompany.id },
+                            function() {
+                                dialogService.showMessageSavedDialog(event, null);
+                                refresh();
                             });
                         $scope.editedCompany = null;
                     },
                     null);
             };
 
-            $scope.removeCompany = function (event, id) {
+            $scope.removeCompany = function(event, id) {
                 dialogService.showConfirmationDeleteDialog(event,
-                    function () {
-                        companyService.remove(id)
-                            .then(function (result) {
-                                if (result.success) {
-                                    refresh();
-                                }
+                    function() {
+                        $scope.editedCompany.$remove({ id: id },
+                            function() {
+                                refresh();
                             });
                     },
                     null);
