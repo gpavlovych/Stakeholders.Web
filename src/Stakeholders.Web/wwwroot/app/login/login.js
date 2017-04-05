@@ -71,7 +71,7 @@ angular
             };
 
             this.logout = function() {
-                delete $localStorage.currentUser;
+                delete $localStorage.loggedIn;
                 delete $rootScope.user;
                 $http.defaults.headers.common.Authorization = '';
             };

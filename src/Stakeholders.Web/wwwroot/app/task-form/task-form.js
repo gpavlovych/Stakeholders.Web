@@ -8,9 +8,14 @@
         //    taskFormController: '^taskForm'
         //},
         controller: [
-            '$rootScope', '$resource', 'dialogService', function($rootScope, $resource, dialogService) {
+            '$rootScope', '$resource', 'dialogService', '$http', function ($rootScope, $resource, dialogService, $http) {
                 var ActivityTask = $resource(
                     '/api/ActivityTasks/:id',
+                    null,
+                    {
+                        'update': { method: 'PUT' }
+                    });
+                var ActivityTaskStatus = $resource('/api/ActivityTaskStatuses/:id',
                     null,
                     {
                         'update': { method: 'PUT' }
@@ -34,6 +39,9 @@
                     });
                     vm.task = null;
                 }
+                this.statuses = ActivityTaskStatus.query(function(result) {
+                    vm.statuses = result;
+                });
             }
         ],
         templateUrl: 'task-form/task-form.html'

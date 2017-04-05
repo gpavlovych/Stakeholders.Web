@@ -177,9 +177,19 @@ angular
                         //    '/register'
                     ];
                     var restrictedPage = publicPages.indexOf($location.path()) === -1;
-                    if (restrictedPage && ((!$rootScope.user) || (!$localStorage.loggedIn) || (!$localStorage.loggedIn.token) || (jwtHelper.isTokenExpired($localStorage.loggedIn.token)))) {
-                        $location.path('/login');
+                    if (restrictedPage) {
+                        if ((!$localStorage.loggedIn) ||
+                            (!$localStorage.loggedIn.user) ||
+                            (!$localStorage.loggedIn.token) ||
+                            (jwtHelper.isTokenExpired($localStorage.loggedIn.token))) {
+                            $location.path('/login');
+                        }
+                        else {
+                            $rootScope.user = $localStorage.loggedIn.user;
+                            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.loggedIn.token;
+                        }
                     }
+
                 });
         }
     ]);
