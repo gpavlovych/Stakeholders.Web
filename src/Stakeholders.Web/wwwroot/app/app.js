@@ -157,8 +157,9 @@ angular
         '$route',
         '$location',
         '$localStorage',
+        '$http',
         'jwtHelper',
-        function ($rootScope, $translate, $route, $location, $localStorage, jwtHelper) {
+        function ($rootScope, $translate, $route, $location, $localStorage, $http, jwtHelper) {
             $rootScope.$route = $route;
 
             $rootScope.setLanguage = function (language, direction) {

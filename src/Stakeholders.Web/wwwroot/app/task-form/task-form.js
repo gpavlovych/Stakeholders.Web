@@ -8,7 +8,7 @@
         //    taskFormController: '^taskForm'
         //},
         controller: [
-            '$rootScope', '$resource', 'dialogService', '$http', function ($rootScope, $resource, dialogService, $http) {
+            '$rootScope', '$resource', 'dialogService', '$http', function($rootScope, $resource, dialogService, $http) {
                 var ActivityTask = $resource(
                     '/api/ActivityTasks/:id',
                     null,
@@ -20,27 +20,85 @@
                     {
                         'update': { method: 'PUT' }
                     });
+                var User = $resource('/api/ApplicationUsers/:id',
+                    null,
+                    {
+                        'update': { method: 'PUT' }
+                    });
+                var Contact = $resource('/api/Contacts/:id',
+                    null,
+                    {
+                        'update': { method: 'PUT' }
+                    });
+                var Organization = $resource('/api/Organizations/:id',
+                    null,
+                    {
+                        'update': { method: 'PUT' }
+                    });
+                var Goal = $resource('/api/Goals/:id',
+                    null,
+                    {
+                        'update': { method: 'PUT' }
+                    });
                 var vm = this;
+                this.dateCreated = new Date();
                 this.task = null;
                 $rootScope.$on('newTask',
                     function() {
                         vm.open();
                     });
-                this.open = function () {
+                this.open = function() {
                     vm.task = new ActivityTask();
-                }
-                this.close = function () {
+                };
+
+                this.close = function() {
                     vm.task = null;
-                }
+                };
+
                 this.save = function () {
+                    vm.task.statusId = vm.selectedStatus != null ? vm.selectedStatus.id : null;
+                    vm.task.goalId = vm.selectedGoal != null ? vm.selectedGoal.id : null;
+                    vm.task.assignToId = vm.owner != null ? vm.owner.id : null;
+
+                    var organizationIds = [];
+                    for (var selectedOrganization in vm.selectedOrganizations) {
+                        organizationIds.push(selectedOrganization.id);
+                    }
+                    //TODO vm.task.organizationIds = organizationIds;
+
+                    var contactIds = [];
+                    for (var selectedContact in vm.selectedContacts) {
+                        contactIds.push(selectedContact.id);
+                    }
+                    vm.task.contactIds = contactIds;
+
                     vm.task.$save(function () {
                         dialogService.showMessageSavedDialog(event, null);
                         $rootScope.$emit("refreshActivityTasks", vm.task);
                     });
                     vm.task = null;
-                }
+                };
+
                 this.statuses = ActivityTaskStatus.query(function(result) {
                     vm.statuses = result;
+                });
+
+                this.users = User.query(function(result) {
+                    vm.users = result;
+                });
+
+                this.selectedContacts = [];
+                this.contacts = Contact.query(function(result) {
+                    vm.contacts = result;
+                });
+
+                this.selectedOrganizations = [];
+                this.organizations = Organization.query(function(result) {
+                    vm.organizations = result;
+                });
+
+                this.goals = Goal.query(function(result) {
+                    vm.goals = result;
                 });
             }
         ],

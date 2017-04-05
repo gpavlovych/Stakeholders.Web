@@ -5,76 +5,58 @@
             <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="$ctrl.task.subject" />
             <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="$ctrl.task.description" />
             <div class="statusList">
+                <h3>{{'STATUS' | translate}}</h3>
                 <div dropdown-select="$ctrl.statuses" dropdown-model="$ctrl.selectedStatus" dropdown-item-label="name"></div>
             </div>
-            
-
-
+            <div class="statusList">
+                <h3>{{'GOAL' | translate}}</h3>
+                <div dropdown-select="$ctrl.goals" dropdown-model="$ctrl.selectedGoal" dropdown-item-label="title"></div>
+            </div>
             <div class="relatedOrganizations">
                 <h3>{{'RELATED_ORGANIZATIONS' | translate}}</h3>
-                <!--  md-selected-item-change="selectedItemChange(movie)"
-                                    <md-chips ng-model="selectedUsers" md-autocomplete-snap
-                          md-transform-chip="transformChip($chip)" class="chipsDiv">
-                    <md-autocomplete md-selected-item="selectedItem"
-                                     md-search-text="searchText"
-                                     md-items="user in querySearch(searchText)"
-                                     md-item-text="user.name"
-                                     placeholder="Search for a user">
-                        <span md-highlight-text="searchText">{{user.place}}</span>
-                    </md-autocomplete>
-                    <md-chip-template>
-                        <span>
-                            <strong>{{$chip}}</strong>
-                        </span>
-                    </md-chip-template>
-                </md-chips>-->
+                <md-chips-select ng-model="$ctrl.selectedOrganizations" select-items="$ctrl.organizations" main-title="name"></md-chips-select>
             </div>
-            <!-- <div class="relatedContacts" ng-controller="chipsSelector">
-                 <h3>{{'RELATED_CONTACTS' | translate}}</h3>
-                 <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
-             </div>
-             <div class="statusList">
-                 <md-autocomplete></md-autocomplete>
-             </div>-->
-        </div>
-        <div class="colRight">
-            <!--<p class="highChk">
-                {{'HIGH_IMPORTANCE' | translate}}
-                <md-checkbox ng-model="task.highimportant" aria-label="Checkbox 1"></md-checkbox>
-            </p>
-            <div class="dateField" ng-controller="dateController">
-                <md-datepicker ng-model="task.deadline" md-placeholder="{{'DEADLINE' | translate}}"></md-datepicker>
+            <div class="relatedContacts">
+                <h3>{{'RELATED_CONTACTS' | translate}}</h3>
+                <md-chips-select ng-model="$ctrl.selectedContacts" select-items="$ctrl.contacts" main-title="nameF nameL"></md-chips-select>
             </div>
-            <div class="dateField" ng-controller="dateController">
-                <md-datepicker ng-model="myComplete" md-placeholder="{{'COMPLETE_DATE' | translate}}"></md-datepicker>
-            </div>
-            <div class="relatedContacts" ng-controller="chipsSelector">
-                <h3>{{'TODO' | translate}}Involved</h3>
-                <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
-            </div>
-            <div class="statusList" ng-controller="dropdownController">
-                <div dropdown-select="ddSelectOptionsAssign" dropdown-model="ddSelectSelectedAssign" dropdown-item-label="text"></div>
-            </div>
-            <div class="attached" ng-controller="fileControllerTask">
-                <div class="fileinput" id="attachedTask">
-                    <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
-                    <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple />
-                    <label for="file">
-                        <span class="labelValTask"></span>
-                        <strong>{{'ATTACH' | translate}}</strong>
-                    </label>
-                </div>
-                <div class="itemAttached">
-                    <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
-                </div>
-                <div class="itemAttached">
-                    <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
-                </div>
-            </div>-->
-        </div>
-        <div class="saveBlock">
-            <!--<span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>-->
-            <button class="btnCancel" id="toggleFilterActvTask" ng-click="$ctrl.close()" type='button'>{{'CANCEL' | translate}}</button>
-            <button class="btnSave" type='button' ng-click="$ctrl.save()">{{'SAVE' | translate}}</button>
         </div>
     </div>
+    <div class="colRight">
+        <p class="highChk">
+            {{'HIGH_IMPORTANCE' | translate}}
+            <md-checkbox ng-model="$ctrl.task.isImportant" aria-label="Checkbox 1"></md-checkbox>
+        </p>
+        <div class="dateField">
+            <md-datepicker ng-model="$ctrl.task.dateDeadline" md-placeholder="{{'DEADLINE' | translate}}"></md-datepicker>
+        </div>
+        <div class="dateField">
+            <md-datepicker ng-model="$ctrl.task.dateEnd" md-placeholder="{{'COMPLETE_DATE' | translate}}"></md-datepicker>
+        </div>
+        <div class="statusList">
+            {{'OWNER' | translate}}
+            <div dropdown-select="$ctrl.users" dropdown-model="$ctrl.owner" dropdown-item-label="name"></div>
+        </div>
+        <!--<div class="attached" ng-controller="fileControllerTask">
+            <div class="fileinput" id="attachedTask">
+                <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
+                <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple />
+                <label for="file">
+                    <span class="labelValTask"></span>
+                    <strong>{{'ATTACH' | translate}}</strong>
+                </label>
+            </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+        </div>-->
+    </div>
+    <div class="saveBlock">
+        <span>{{'CREATION_DATE' | translate}}: {{$ctrl.dateCreated}}</span>
+        <button class="btnCancel" id="toggleFilterActvTask" ng-click="$ctrl.close()" type='button'>{{'CANCEL' | translate}}</button>
+        <button class="btnSave" type='button' ng-click="$ctrl.save()">{{'SAVE' | translate}}</button>
+    </div>
+</div>
