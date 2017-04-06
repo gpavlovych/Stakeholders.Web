@@ -17,6 +17,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Stakeholders.Web.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Stakeholders.Web.Data
 {
@@ -506,6 +507,9 @@ namespace Stakeholders.Web.Data
             Role role,
             Company company)
         {
+            var passwordHash = new PasswordHasher<ApplicationUser>();
+
+            var email = name + "@example.com";
             var result = context.Users.FirstOrDefault(it => it.Name == name);
             if (result == null)
             {
@@ -513,11 +517,24 @@ namespace Stakeholders.Web.Data
                 {
                     Role = role,
                     Name = name,
-                    Email = name+"@example.com",
+                    Email = email,
+                    NormalizedEmail = email,
+                    NormalizedUserName = email,
+                    UserName = email,
                     Title = "Mr.",
                     Company = company
                 };
+                result.PasswordHash = passwordHash.HashPassword(result, "Password@123");
                 context.Users.Add(result);
+                context.SaveChanges();
+            }
+            else
+            {
+                result.Email = email;
+                result.NormalizedUserName = email;
+                result.NormalizedEmail = email;
+                result.UserName = email; 
+                result.PasswordHash = passwordHash.HashPassword(result, "Password@123");
                 context.SaveChanges();
             }
             return result;
