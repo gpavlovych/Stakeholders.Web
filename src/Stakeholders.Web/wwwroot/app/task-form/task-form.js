@@ -61,19 +61,21 @@
                     vm.task.assignToId = vm.owner != null ? vm.owner.id : null;
 
                     var organizationIds = [];
-                    for (var selectedOrganization in vm.selectedOrganizations) {
+                    for (var index = 0; index < vm.selectedOrganizations.length; index++) {
+                        var selectedOrganization = vm.selectedOrganizations[index];
                         organizationIds.push(selectedOrganization.id);
                     }
                     //TODO vm.task.organizationIds = organizationIds;
 
                     var contactIds = [];
-                    for (var selectedContact in vm.selectedContacts) {
+                    for (var index = 0; index < vm.selectedContacts.length; index++) {
+                        var selectedContact = vm.selectedContacts[index];
                         contactIds.push(selectedContact.id);
                     }
                     vm.task.contactIds = contactIds;
 
                     vm.task.$save(function () {
-                        dialogService.showMessageSavedDialog(event, null);
+                        dialogService.showMessageSavedDialog();
                         $rootScope.$emit("refreshActivityTasks", vm.task);
                     });
                     vm.task = null;

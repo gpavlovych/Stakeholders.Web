@@ -12,61 +12,124 @@ angular
             });
         }
     ])
-  .factory('ActivityTask', ['$resource',
-    function ($resource) {
-        return $resource(
-            '/api/ActivityTask/:id',
-            null,
-            {
-                'update': { method: 'PUT' }
-            });
-    }])
-  .controller('tasksController',
-    [[
-        '$scope',
-        'ActivityTask',
-        'dialogService',
-        function ($scope, ActivityTask, dialogService) {
+    .factory('ActivityTask', ['$resource',
+        function ($resource) {
+            return $resource(
+                '/api/ActivityTasks/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }])
+    .factory('ActivityTaskStatus', ['$resource',
+        function ($resource) {
+            return $resource('/api/ActivityTaskStatuses/:id',
+                        null,
+                        {
+                            'update': { method: 'PUT' }
+                        });
+        }])
+    .factory('User', ['$resource',
+        function ($resource) {
+            return $resource('/api/ApplicationUsers/:id',
+                        null,
+                        {
+                            'update': { method: 'PUT' }
+                        });
+        }])
+    .factory('Contact', ['$resource',
+        function ($resource) {
+            return $resource('/api/Contacts/:id',
+                        null,
+                        {
+                            'update': { method: 'PUT' }
+                        });
+        }])
+    .factory('Organization', ['$resource',
+        function ($resource) {
+            return  $resource('/api/Organizations/:id',
+                        null,
+                        {
+                            'update': { method: 'PUT' }
+                        });
+        }])
+    .factory('Goal', ['$resource',
+        function ($resource) {
+            return $resource('/api/Goals/:id',
+                        null,
+                        {
+                            'update': { method: 'PUT' }
+                        });
+        }])
+    .controller('tasksController', [
+            '$scope',
+            '$rootScope',
+            'ActivityTask',
+            'ActivityTaskStatus', 
+            'User', 
+            'Contact', 
+            'Organization',
+            'Goal', 
+            'dialogService',
+        function (
+            $scope, 
+            $rootScope, 
+            ActivityTask, 
+            ActivityTaskStatus, 
+            User, 
+            Contact, 
+            Organization, 
+            Goal, 
+            dialogService) {
+            
             $scope.search = "";
             $scope.switchView = false;
 
             function refresh() {
                 ActivityTask.query({ start: 0, count: 10, search: $scope.search },
-                    function (organizations) {
-                        $scope.organizations = organizations;
+                    function (tasks) {
+                        for (var index = 0; index < tasks.length; index++) {
+                            var task = tasks[index];
+                            task.goal = Goal.get({ id: task.goalId });
+                            task.status = ActivityTaskStatus.get({ id: task.statusId });
+                        }
+                        $scope.tasks = tasks;
                     });
             }
 
             refresh();
+            $rootScope.$on("refreshActivityTasks", function () {
+                refresh();
+            });
             $scope.filter = function () {
                 refresh();
             };
 
-            $scope.editOrganization = function (id) {
-                $scope.editedOrganization = Organization.get({ id: id });
+            $scope.editTask = function (id) {
+                $scope.editedTask = ActivityTask.get({ id: id });
             };
 
             $scope.closeEditor = function () {
-                $scope.editedOrganization = null;
+                $scope.editedTask = null;
             };
 
             $scope.saveEditor = function (event) {
                 dialogService.showConfirmationSaveDialog(event,
                     function () {
-                        $scope.editedOrganization.$update({ id: $scope.editedOrganization.id },
+                        $scope.editedTask.$update({ id: $scope.editedTask.id },
                             function () {
                                 dialogService.showMessageSavedDialog(event, null);
                                 refresh();
                             });
-                        $scope.editedOrganization = null;
+                        $scope.editedTask = null;
                     },
                     null);
             };
 
-            $scope.removeOrganization = function (event, id) {
-                dialogService.showConfirmationDeleteDialog(event,
+            $scope.removeTask = function (id) {
+                dialogService.showConfirmationDeleteDialog(null,
                     function () {
-                        $scope.editedOrganization.$remove({ id: id },
+                        $scope.editedTask.$remove({ id: id },
                             function () {
                                 refresh();
                             });
@@ -74,5 +137,4 @@ angular
                     null);
             };
         }
-    ]
     ]);

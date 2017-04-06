@@ -1,45 +1,43 @@
-<div class="editorPanelCreateActiv" ng-show="$ctrl.activity != null" >
+<div class="editorPanelCreateActiv" ng-if="$ctrl.activity != null">
     <h2>{{'NEW_ACTIVITY' | translate}}</h2><span style="top:-30px;" class="closeModal" id="toggleFilterActvActiv" ng-click="$ctrl.close()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
     <div class="colLeft">
         <div class="formEditor">
-            <div class="statusList one">
-                <div dropdown-select="ddSelectOptionsActiv" dropdown-model="ddSelectSelectedActiv" dropdown-item-label="text"></div>
-            </div>
-            <h3>{{'RELATED_TASK' | translate}}</h3>
-            <p><a href="#">Lorem ipsum content link</a></p>
-            <button class="btnDefault" id="toggleChangePanelButton" type='button' ng-click='toggleChangePanelButton();'>{{'CHANGE' | translate}}</button>
-            <button class="btnDefault" id="toggleConnectPanelButton" type='button' ng-click='toggleConnectPanelButton();'>{{'CONNECT_TO_TASK' | translate}}</button>
-            <div class="editorPanelChange" ng-hide="toggleChangePanel">
-                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleChangePanelButton" ng-click="toggleChangePanelButton()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
-                <a href="#">Lorem ipsum task 1 </a>
-                <a href="#">Lorem ipsum task 2 </a>
-                <a href="#">Lorem ipsum task 3 </a>
-                <a href="#">Lorem ipsum task 4 </a>
-                <a href="#">Lorem ipsum task 5 </a>
-            </div>
-            <div class="editorPanelConnect" ng-hide="toggleConnectPanel">
-                <span class="closeModal" style="margin-top:21px;margin-left:5px;" id="toggleConnectPanelButton" ng-click="toggleConnectPanelButton()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
-                <a href="#">Lorem ipsum task 1 </a>
-                <a href="#">Lorem ipsum task 2 </a>
-                <a href="#">Lorem ipsum task 3 </a>
-                <a href="#">Lorem ipsum task 4 </a>
-                <a href="#">Lorem ipsum task 5 </a>
-            </div>
-
+            <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="$ctrl.activity.subject" />
+            <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="$ctrl.activity.description" />
             <div class="statusList">
-                <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
+                <h3>{{'TYPE' | translate}}</h3>
+                <div dropdown-select="$ctrl.types" dropdown-model="$ctrl.selectedType" dropdown-item-label="name"></div>
             </div>
             <div class="statusList">
-                <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
-            </div>-->
-            <input type="text" placeholder="Subject" ng-model="$ctrl.activity.subject"/>
-            <textarea placeholder="Description" ng-model="$ctrl.activity.description"></textarea>
+                <h3>{{'RELATED_TASK' | translate}}</h3>
+                <div dropdown-select="$ctrl.tasks" dropdown-model="$ctrl.selectedTask" dropdown-item-label="subject"></div>
+            </div>
             <div class="statusList">
-                <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
+                <h3>{{'RELATED_USER' | translate}}</h3>
+                <div dropdown-select="$ctrl.users" dropdown-model="$ctrl.selectedUser" dropdown-item-label="name"></div>
             </div>
         </div>
     </div>
     <div class="colRight">
+        <div class="statusList">
+            <h3>{{'RELATED_COMPANY' | translate}}</h3>
+            <div dropdown-select="$ctrl.companies" dropdown-model="$ctrl.selectedCompany" dropdown-item-label="name"></div>
+        </div>
+        <div class="statusList">
+            <h3>{{'RELATED_CONTACT' | translate}}</h3>
+            <div dropdown-select="$ctrl.contacts" dropdown-model="$ctrl.selectedContact" dropdown-item-label="name"></div>
+        </div>
+        <div class="relatedOrganizations">
+            <h3>{{'OBSERVER_COMPANIES' | translate}}</h3>
+            <md-chips-select ng-model="$ctrl.selectedObserverCompanies" select-items="$ctrl.companies" main-title="name"></md-chips-select>
+        </div>
+        <div class="relatedContacts">
+            <h3>{{'OBSERVER_USERS' | translate}}</h3>
+            <md-chips-select ng-model="$ctrl.selectedObserverUsers" select-items="$ctrl.users" main-title="title name"></md-chips-select>
+        </div>
+        <div class="dateField">
+            <md-datepicker ng-model="$ctrl.activity.dateActivity" md-placeholder="{{'ACTIVITY_DATE' | translate}}"></md-datepicker>
+        </div>
         <!--<div class="relatedContacts" ng-controller="chipsSelector">
             <h3>{{'SHARE_WITH' | translate}}</h3>
             <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
@@ -50,7 +48,7 @@
         <div class="attached" ng-controller="fileControllerActiv">
             <div class="fileinput" id="attachedActiv">
                 <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
-                <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple />
+                <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple/>
                 <label for="file">
                     <span class="labelValTask"></span>
                     <strong>{{'ATTACH' | translate}}Attach</strong>
@@ -65,7 +63,7 @@
         </div>-->
     </div>
     <div class="saveBlock">
-        <!--<span>{{'CREATION_DATE' | translate}}: 02/02/2017</span>-->
+        <span>{{'CREATION_DATE' | translate}}: {{$ctrl.dateCreated}}</span>
         <button class="btnCancel" id="toggleFilterActvActiv" ng-click="$ctrl.close()" type='button'>{{'CANCEL' | translate}}</button>
         <button class="btnSave" type='button' ng-click="$ctrl.save()">{{'SAVE' | translate}}</button>
     </div>

@@ -1,16 +1,9 @@
 <div class="dashboardContent tasks" ng-cloak>
     <h1>{{'TASKS' | translate}}</h1>
-    <div id="nav-show">
-        <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
-        <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
-        <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
-        <a class="filterTabFour" href="#">{{'THIS_WEEK' | translate}}</a>
-        <div id="magic-line"></div>
-    </div>
-
+    <time-filter></time-filter>
     <dial-control></dial-control>
 
-    <div class="editorPanelFilters" ng-hide="toggleTsDropdownFilter">
+    <filter>
         <div class="statusList one">
             <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
         </div>
@@ -20,7 +13,7 @@
         <div class="statusList one">
             <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
         </div>
-    </div>
+    </filter>
 
     <activity-form></activity-form>
     <task-form></task-form>
@@ -30,18 +23,23 @@
         <div class="colLeft">
             <div class="formEditor">
                 <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="editedTask.subject" />
-                <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedTask.description" ></textarea>
+                <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedTask.description" />
                 <div class="statusList">
-                    <div dropdown-select="ddSelectOptionsStatus" dropdown-model="ddSelectSelectedStatus" dropdown-item-label="text"></div>
+                    <h3>{{'STATUS' | translate}}</h3>
+                    <div dropdown-select="editedTaskStatuses" dropdown-model="editedTaskSelectedStatus" dropdown-item-label="name"></div>
                 </div>
-            </div>
-            <div class="relatedOrganizations">
-                <h3>{{'RELATED_ORGANIZATIONS' | translate}}</h3>
-                <md-chips-select ng-model="selectedOrganizations" select-items="organizationsList" main-title="organization"></md-chips-select>
-            </div>
-            <div class="relatedContacts">
-                <h3>{{'RELATED_CONTACTS' | translate}}</h3>
-                <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
+                <div class="statusList">
+                    <h3>{{'GOAL' | translate}}</h3>
+                    <div dropdown-select="editedTaskGoals" dropdown-model="editedTaskSelectedGoal" dropdown-item-label="title"></div>
+                </div>
+                <div class="relatedOrganizations">
+                    <h3>{{'RELATED_ORGANIZATIONS' | translate}}</h3>
+                    <md-chips-select ng-model="editedTaskSelectedOrganizations" select-items="editedTaskOrganizations" main-title="name"></md-chips-select>
+                </div>
+                <div class="relatedContacts">
+                    <h3>{{'RELATED_CONTACTS' | translate}}</h3>
+                    <md-chips-select ng-model="editedTaskSelectedContacts" select-items="editedTaskContacts" main-title="nameF nameL"></md-chips-select>
+                </div>
             </div>
         </div>
         <div class="colRight">
@@ -55,40 +53,37 @@
             <div class="dateField">
                 <md-datepicker ng-model="editedTask.dateEnd" md-placeholder="{{'COMPLETE_DATE' | translate}}"></md-datepicker>
             </div>
-            <div class="relatedContacts">
-                <h3>{{'INVOLVED' | translate}}</h3>
-                <md-chips-select ng-model="contactIds" select-items="contactsList" main-title="contact"></md-chips-select>
-            </div>
             <div class="statusList">
-                <div dropdown-select="ddSelectOptionsAssign" dropdown-model="ddSelectSelectedAssign" dropdown-item-label="text"></div>
+                {{'OWNER' | translate}}
+                <div dropdown-select="users" dropdown-model="editedTaskOwner" dropdown-item-label="name"></div>
             </div>
-            <div class="attached">
-                <div class="fileinput" id="attachedTask">
-                    <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
-                    <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple />
-                    <label for="file">
-                        <span class="labelValTask"></span>
-                        <strong>{{'ATTACH' | translate}}</strong>
-                    </label>
-                </div>
-                <div class="itemAttached">
-                    <md-icon class="clip" md-svg-src="/images/clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="/images/close.svg"></md-icon></a>
-                </div>
-                <div class="itemAttached">
-                    <md-icon class="clip" md-svg-src="/images/clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="/images/close.svg"></md-icon></a>
-                </div>
+            <!--<div class="attached" ng-controller="fileControllerTask">
+            <div class="fileinput" id="attachedTask">
+                <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
+                <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple />
+                <label for="file">
+                    <span class="labelValTask"></span>
+                    <strong>{{'ATTACH' | translate}}</strong>
+                </label>
             </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+        </div>-->
         </div>
         <div class="saveBlock">
-            <strong>{{'CREATION_DATE' | translate}}: <span>08/02/2017</span></strong>
-            <button class="btnCancel" id="toggleFilterTasksEdit" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
+            <span>{{'CREATION_DATE' | translate}}: {{editedTask.dateCreated}}</span>
+            <button class="btnCancel" id="toggleFilterActvTask" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
             <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
         </div>
     </div>
 
     <div class="tasksResult">
         <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
-            <ul class="listResult" ng-repeat="task in tasks" id="task{{task.id}}">
+            <ul class="listResult" ng-repeat="task in tasks">
                 <li>
                     <h3 class="title">
                         {{ task.subject }}
@@ -97,10 +92,10 @@
                         {{ task.description }}
                     </p>
                     <p class="related">
-                        <span>{{'RELATED_TO_GOAL' | translate}}: </span><strong>{{ task.goalId }}</strong>
+                        <span>{{'RELATED_TO_GOAL' | translate}}: </span><strong>{{ task.goal.title }}</strong>
                     </p>
-                    <md-button class="{{ task.statusId }}" aria-label="Status" ng-disabled="true">
-                        {{ task.statusId }}
+                    <md-button class="{{ task.status.name }}" aria-label="Status" ng-disabled="true">
+                        {{ task.status.name }}
                     </md-button>
                     <div class="showRelated">
                         <div class="deadlinedate">
