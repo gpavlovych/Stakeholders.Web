@@ -19,50 +19,69 @@
         <span class="closeModal" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
         <div class="colLeft">
             <div class="formEditor">
-                <div class="statusList one">
-                    <div dropdown-select="ddSelectOptionsType" dropdown-model="ddSelectSelectedType" dropdown-item-label="text"></div>
-                </div>
-                <h3>{{'RELATED_TASK' | translate}}</h3>
-                <p><a href="#">Lorem ipsum content link</a></p>
-                <button class="btnDefault" type='button' ng-click='change()'>{{'CHANGE' | translate}}</button>
-                <button class="btnDefault" type='button' ng-click='connect()'>{{'CONNECT_TO_TASK' | translate}}</button>
-
-                <div class="statusList">
-                    <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
-                </div>
-                <div class="statusList">
-                    <div dropdown-select="ddSelectOptionsDone" dropdown-model="ddSelectSelectedDone" dropdown-item-label="text"></div>
-                </div>
                 <input type="text" placeholder="{{'SUBJECT' | translate}}" ng-model="editedActivity.subject" />
-                <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedActivity.description"></textarea>
+                <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedActivity.description" />
+                <div class="statusList">
+                    <h3>{{'TYPE' | translate}}</h3>
+                    <div dropdown-select="editedActivityTypes" dropdown-model="editedActivity.type" dropdown-item-label="name"></div>
+                </div>
+                <div class="statusList">
+                    <h3>{{'RELATED_TASK' | translate}}</h3>
+                    <div dropdown-select="editedActivityTasks" dropdown-model="editedActivity.task" dropdown-item-label="subject"></div>
+                </div>
+                <div class="statusList">
+                    <h3>{{'RELATED_USER' | translate}}</h3>
+                    <div dropdown-select="editedActivityUsers" dropdown-model="editedActivity.user" dropdown-item-label="name"></div>
+                </div>
             </div>
         </div>
         <div class="colRight">
-            <div class="relatedContacts"+>
-                <h3>{{'SHARE_WITH' | translate}}</h3>
-                <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
+            <div class="statusList">
+                <h3>{{'RELATED_COMPANY' | translate}}</h3>
+                <div dropdown-select="editedActivityCompanies" dropdown-model="editedActivity.company" dropdown-item-label="name"></div>
+            </div>
+            <div class="statusList">
+                <h3>{{'RELATED_CONTACT' | translate}}</h3>
+                <div dropdown-select="editedActivityContacts" dropdown-model="editedActivity.contact" dropdown-item-label="name"></div>
+            </div>
+            <div class="relatedOrganizations">
+                <h3>{{'OBSERVER_COMPANIES' | translate}}</h3>
+                <md-chips-select ng-model="selectedObserverCompanies" select-items="editedActivityCompanies" main-title="name"></md-chips-select>
+            </div>
+            <div class="relatedContacts">
+                <h3>{{'OBSERVER_USERS' | translate}}</h3>
+                <md-chips-select ng-model="selectedObserverUsers" select-items="editedActivityUsers" main-title="title name"></md-chips-select>
             </div>
             <div class="dateField">
-                <md-datepicker ng-model="editedActivity.dateActivity" md-placeholder="{{'ACTIVITY_DATE' | translate}}"></md-datepicker>
-            </div>-->
-            <div class="attached">
-                <div class="fileinput">
-                    <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
-                    <label for="upload-photo">{{'BROWSE' | translate}}</label>
-                    <input id="upload-photo" type='file' file-model='fileModel'>
-                    <button class="btnFilepicker" type='button' ng-click='upload()'>{{'ATTACH' | translate}}</button>
-                </div>
-                <div class="itemAttached">
-                    <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
-                </div>
-                <div class="itemAttached">
-                    <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
-                </div>
+                <md-datepicker ng-model="editedActivity.dateActivityDate" md-placeholder="{{'ACTIVITY_DATE' | translate}}"></md-datepicker>
             </div>
+            <!--<div class="relatedContacts" ng-controller="chipsSelector">
+            <h3>{{'SHARE_WITH' | translate}}</h3>
+            <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
+        </div>
+        <div class="dateField" ng-controller="dateController">
+            <md-datepicker ng-model="activity.deadline" md-placeholder="Activity Date"></md-datepicker>
+        </div>
+        <div class="attached" ng-controller="fileControllerActiv">
+            <div class="fileinput" id="attachedActiv">
+                <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
+                <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple/>
+                <label for="file">
+                    <span class="labelValTask"></span>
+                    <strong>{{'ATTACH' | translate}}Attach</strong>
+                </label>
+            </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+            <div class="itemAttached">
+                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            </div>
+        </div>-->
         </div>
         <div class="saveBlock">
-            <strong>{{'CREATION_DATE' | translate}}: <span>{{activity.dateCreated}}</span></strong>
-            <button class="btnCancel" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
+            <span>{{'CREATION_DATE' | translate}}: {{editedActivity.dateCreated}}</span>
+            <button class="btnCancel" id="toggleFilterActvActiv" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
             <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
         </div>
     </div>
@@ -88,8 +107,8 @@
                         {{ activity.description }}
                     </p>
                     <div class="contact">
-                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.userId }}</strong></p>
-                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ activity.relatedToGoal }}</strong></p>
+                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.user.title }} {{ activity.user.name }}</strong></p>
+                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ activity.relatedToGoal.title }}</strong></p>
                         <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ activity.dateCreated }}</strong></p>
                     </div>
                     <div class="bottomFooter">

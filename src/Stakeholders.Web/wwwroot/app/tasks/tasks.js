@@ -169,8 +169,8 @@ angular
             $scope.saveEditor = function (event) {
                 dialogService.showConfirmationSaveDialog(event,
                     function () {
-                        $scope.editedTask.dateEnd = $scope.editedTask.dateEndDate;
-                        $scope.editedTask.dateDeadline = $scope.editedTask.dateDeadlineDate;
+                        $scope.editedTask.dateEnd = $scope.editedTask.dateEndDate.toISOString();
+                        $scope.editedTask.dateDeadline = $scope.editedTask.dateDeadlineDate.toISOString();
                         $scope.editedTask.statusId =
                                                   $scope.editedTask.status != null
                                                  ? $scope.editedTask.status.id
@@ -203,7 +203,7 @@ angular
                         }
                         $scope.editedTask.$update({ id: $scope.editedTask.id },
                             function () {
-                                dialogService.showMessageSavedDialog(event, null);
+                                dialogService.showMessageSavedDialog(null, null);
                                 refresh();
                             });
                         $scope.editedTask = null;
