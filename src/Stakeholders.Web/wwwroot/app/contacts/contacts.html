@@ -1,175 +1,184 @@
 <div class="dashboardContent contacts" ng-cloak>
-      <h1>{{'CONTACTS' | translate}}</h1>
+    <h1>{{'CONTACTS' | translate}}</h1>
 
     <dial-control />
     <div class="blockFilters">
-            <md-input-container class="table-gallery">
-                  <span>{{'GALLERY' | translate}}</span>
-                  <md-switch class="md-primary" name="switchView" aria-label="switchView" ng-model="switchView" required></md-switch>
-                  <span>{{'TABLE' | translate}}</span>
-            </md-input-container>
-            <div class="categoryList">
-                  <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
+        <md-input-container class="table-gallery">
+            <span>{{'GALLERY' | translate}}</span>
+            <md-switch class="md-primary" name="switchView" aria-label="switchView" ng-model="switchView" required></md-switch>
+            <span>{{'TABLE' | translate}}</span>
+        </md-input-container>
+        <div class="categoryList">
+            <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
+        </div>
+        <div class="categoryList">
+            <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
+        </div>
+        <form class="formSearch">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="search">
+                    <md-icon md-svg-src="/images/magnify.svg"></md-icon>
+                </div>
             </div>
-            <div class="categoryList">
-                  <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
-            </div>
-            <form class="formSearch">
-                  <div class="form-group">
-                        <div class="input-group">
-                              <input type="text" class="form-control" ng-model="search">
-                              <md-icon md-svg-src="/images/magnify.svg"></md-icon>
-                        </div>
-                  </div>
-            </form>
+        </form>
     </div>
 
     <activity-form></activity-form>
     <task-form></task-form>
 
-      <div class="editorPanel" ng-show="editedContact!= null">
-          <span class="closeModal" id="toggleFilterContEdit" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
-            <div class="colLeft">
-                  <div class="formEditor">
-                        <input type="text" placeholder="{{'FIRST_NAME' | translate}}" ng-model="editedContact.nameF" />
-                        <input type="text" placeholder="{{'FAMILY_NAME' | translate}}" ng-model="editedContact.nameL" />
-                        <input type="text" placeholder="{{'TITLE' | translate}}"  ng-model="editedContact.title" />
-                        <div class="statusList">
-                              <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
-                        </div>
-                        <input type="text" placeholder="{{'PHONE' | translate}}" ng-model="editedContact.phone" />
-                        <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedContact.email" />
-                        <div class="photoContacts">
-                              <h3>{{'PHOTO' | translate}}</h3>
-                              <div class="photo">
-                                    <img class="userImage" src="/images/user/giselle-wide.png" />
-                                    <md-button class="md-fab footertrash" aria-label="Trash">
-                                          <md-icon md-svg-src="/images/trash.svg"></md-icon>
-                                    </md-button>
-                                    <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_PHOTO' | translate}}</button>
-                              </div>
-                        </div>
-                  </div>
+    <div class="editorPanel" ng-show="editedContact!= null">
+        <span class="closeModal" id="toggleFilterContEdit" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
+        <div class="colLeft">
+            <div class="formEditor">
+                <input type="text" placeholder="{{'FIRST_NAME' | translate}}" ng-model="editedContact.nameF" />
+                <input type="text" placeholder="{{'FAMILY_NAME' | translate}}" ng-model="editedContact.nameL" />
+                <input type="text" placeholder="{{'TITLE' | translate}}" ng-model="editedContact.title" />
+                <div class="statusList">
+                    <h3>{{'ORGANIZATION' | translate}}</h3>
+                    <div dropdown-select="editedContactOrganizations" dropdown-model="editedContact.organization" dropdown-item-label="name"></div>
+                </div>
+                <div class="statusList">
+                    <h3>{{'OWNER' | translate}}</h3>
+                    <div dropdown-select="editedContactUsers" dropdown-model="editedContact.user" dropdown-item-label="name"></div>
+                </div>
+                <div class="statusList">
+                    <h3>{{'COMPANY' | translate}}</h3>
+                    <div dropdown-select="editedContactCompanies" dropdown-model="editedContact.company" dropdown-item-label="name"></div>
+                </div>
+                <input type="text" placeholder="{{'PHONE' | translate}}" ng-model="editedContact.phone" />
+                <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedContact.email" />
+                <div class="photoContacts">
+                    <h3>{{'PHOTO' | translate}}</h3>
+                    <div class="photo">
+                        <img class="userImage" src="/images/user/giselle-wide.png" />
+                        <md-button class="md-fab footertrash" aria-label="Trash">
+                            <md-icon md-svg-src="/images/trash.svg"></md-icon>
+                        </md-button>
+                        <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_PHOTO' | translate}}</button>
+                    </div>
+                </div>
             </div>
-            <div class="colRight">
-                  <div class="statusList">
-                        <div dropdown-select="ddSelectOptionsOwner" dropdown-model="ddSelectSelectedOwner" dropdown-item-label="text"></div>
-                  </div>
-                  <textarea placeholder="{{'COMMENT' | translate}}" ng-model="editedContact.comments" ></textarea>
+        </div>
+        <div class="colRight">
+            <div class="statusList">
+                <div dropdown-select="ddSelectOptionsOwner" dropdown-model="ddSelectSelectedOwner" dropdown-item-label="text"></div>
             </div>
-            <p class="saveBlock">
-                <button class="btnCancel" id="toggleFilterContEdit" ng-click="closeEditor();" type='button'>{{'CANCEL' | translate}}</button>
-                <button class="btnSave" type='button' ng-click="saveEditor();">{{'SAVE' | translate}}</button>
-            </p>
-      </div>
-      <div class="contactsResult">
-            <div class="contentList" ng-scrollbars ng-scrollbars-config="config" ng-hide="switchView">
-                  <ul class="listResult" ng-repeat="contact in contacts">
-                        <li>
-                              <h3 class="title">
-                                    <img class="imageUser" src="{{pathUser}}{{ contact.userimage }}" />
-                                    <strong>{{ contact.nameF }} {{ contact.nameL }} </strong>
-                                    <span>{{ contact.title }}</span>
-                              </h3>
-                              <div class="contact">
-                                    <p><span>{{'ORGANIZATION' | translate}}</span><strong>{{ contact.organizationId }}</strong></p>
-                                    <p><span>{{'OWNERSHIP' | translate}}</span><strong>{{ contact.userId }}</strong></p>
-                                    <p><span>{{'PHONE' | translate}}</span><strong>{{ contact.phone }}</strong></p>
-                                    <p><span>{{'EMAIL' | translate}}</span><strong><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></strong></p>
-                              </div>
-                              <div class="statsResult">
-                                    <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ contact.taskIds }}%</strong></p>
-                                    <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>TODO{{ contact.activities }}</p>
-                              </div>
-                              <div class="bottomFooter">
-                                    <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeContact(contact.id);">
-                                          <md-icon md-svg-src="/images/trash.svg"></md-icon>
-                                    </md-button>
-                                    <md-button id="toggleFilterEdit" ng-click="editContact(contact.id);" class="md-fab footerpen" aria-label="Pen">
-                                          <md-icon md-svg-src="/images/pen.svg"></md-icon>
-                                    </md-button>
-                              </div>
-                        </li>
-                  </ul>
-            </div>
-            <div class="tableList" ng-show="switchView">
-                  <table class="table table-bordered table-striped">
-                        <thead>
-                              <tr>
-                                    <th>
-                                          <a class="tagcolor" href="#" ng-click="orderByField='nameField'; reverseSort = !reverseSort">
-                                                {{'FIRST_NAME' | translate}} <span ng-show="orderByField == 'nameField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='categoryField'; reverseSort = !reverseSort">
-                                                {{'FAMILY_NAME' | translate}} <span ng-show="orderByField == 'categoryField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='typeField'; reverseSort = !reverseSort">
-                                                {{'TITLE' | translate}} <span ng-show="orderByField == 'typeField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
-                                                {{'ORGANIZATION' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
-                                                {{'OWNERSHIP' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
-                                                {{'PHONE' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
-                                                {{'EMAIL' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
-                                                {{'RELATED_TASKS' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
-                                                {{'RELATED_ACTIVITIES' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#">
-                                                {{'OPTIONS' | translate}}
-                                          </a>
-                                    </th>
-                              </tr>
-                        </thead>
-                        <tbody ng-scrollbars ng-scrollbars-config="config">
-                              <tr ng-repeat="contact in contacts|orderBy:orderByField:reverseSort">
-                                    <td>{{ contact.nameF }}</td>
-                                    <td>{{ contact.nameL }}</td>
-                                    <td>{{ contact.title }}</td>
-                                    <td>{{ contact.organizationId }}</td>
-                                    <td>{{ contact.userId }}</td>
-                                    <td>{{ contact.phone }}</td>
-                                    <td>{{ contact.email }}</td>
-                                    <td>{{ contact.taskIds }}</td>
-                                    <td>{{ contact.activities }}</td>
-                                  <td>
-                                      <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeContact(contact.id);">
-                                          <md-icon md-svg-src="/images/trash.svg"></md-icon>
-                                      </md-button>
-                                      <md-button id="toggleFilterContEdit" ng-click="editContact(contact.id);" class="md-fab footerpen" aria-label="Pen">
-                                          <md-icon md-svg-src="/images/pen.svg"></md-icon>
-                                      </md-button>
-                                  </td>
-                              </tr>
-                        </tbody>
-                  </table>
-            </div>
-      </div>
+            <textarea placeholder="{{'COMMENT' | translate}}" ng-model="editedContact.comments"></textarea>
+        </div>
+        <p class="saveBlock">
+            <button class="btnCancel" id="toggleFilterContEdit" ng-click="closeEditor();" type='button'>{{'CANCEL' | translate}}</button>
+            <button class="btnSave" type='button' ng-click="saveEditor();">{{'SAVE' | translate}}</button>
+        </p>
+    </div>
+    <div class="contactsResult">
+        <div class="contentList" ng-scrollbars ng-scrollbars-config="config" ng-hide="switchView">
+            <ul class="listResult" ng-repeat="contact in contacts">
+                <li>
+                    <h3 class="title">
+                        <img class="imageUser" src="{{pathUser}}{{ contact.userimage }}" />
+                        <strong>{{ contact.nameF }} {{ contact.nameL }} </strong>
+                        <span>{{ contact.title }}</span>
+                    </h3>
+                    <div class="contact">
+                        <p><span>{{'ORGANIZATION' | translate}}</span><strong>{{ contact.organization.name }}</strong></p>
+                        <p><span>{{'OWNERSHIP' | translate}}</span><strong>{{ contact.user.title }} {{ contact.user.name }}</strong></p>
+                        <p><span>{{'PHONE' | translate}}</span><strong>{{ contact.phone }}</strong></p>
+                        <p><span>{{'EMAIL' | translate}}</span><strong><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></strong></p>
+                    </div>
+                    <div class="statsResult">
+                        <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ contact.tasksCompleted }}%</strong></p>
+                        <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>TODO{{ contact.activities }}</strong></p>
+                    </div>
+                    <div class="bottomFooter">
+                        <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeContact(contact.id);">
+                            <md-icon md-svg-src="/images/trash.svg"></md-icon>
+                        </md-button>
+                        <md-button id="toggleFilterEdit" ng-click="editContact(contact.id);" class="md-fab footerpen" aria-label="Pen">
+                            <md-icon md-svg-src="/images/pen.svg"></md-icon>
+                        </md-button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="tableList" ng-show="switchView">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <a class="tagcolor" href="#" ng-click="orderByField='nameField'; reverseSort = !reverseSort">
+                                {{'FIRST_NAME' | translate}} <span ng-show="orderByField == 'nameField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='categoryField'; reverseSort = !reverseSort">
+                                {{'FAMILY_NAME' | translate}} <span ng-show="orderByField == 'categoryField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='typeField'; reverseSort = !reverseSort">
+                                {{'TITLE' | translate}} <span ng-show="orderByField == 'typeField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                {{'ORGANIZATION' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                {{'OWNERSHIP' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                {{'PHONE' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                {{'EMAIL' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                {{'RELATED_TASKS' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='ownerField'; reverseSort = !reverseSort">
+                                {{'RELATED_ACTIVITIES' | translate}} <span ng-show="orderByField == 'ownerField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#">
+                                {{'OPTIONS' | translate}}
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-scrollbars ng-scrollbars-config="config">
+                    <tr ng-repeat="contact in contacts|orderBy:orderByField:reverseSort">
+                        <td>{{ contact.nameF }}</td>
+                        <td>{{ contact.nameL }}</td>
+                        <td>{{ contact.title }}</td>
+                        <td>{{ contact.organization.name }}</td>
+                        <td>{{ contact.user.title }} {{ contact.user.name }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.tasksCompleted }}</td>
+                        <td>{{ contact.activities }}</td>
+                        <td>
+                            <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeContact(contact.id);">
+                                <md-icon md-svg-src="/images/trash.svg"></md-icon>
+                            </md-button>
+                            <md-button id="toggleFilterContEdit" ng-click="editContact(contact.id);" class="md-fab footerpen" aria-label="Pen">
+                                <md-icon md-svg-src="/images/pen.svg"></md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
