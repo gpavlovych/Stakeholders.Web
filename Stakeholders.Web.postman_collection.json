@@ -3,7 +3,7 @@
 	"info": {
 		"name": "Stakeholders.Web",
 		"_postman_id": "60942225-3a0c-cb75-6c6c-6f010541f823",
-		"description": "Here you can find samples how to use Stakeholders.Web REST API. \nImport this collection to Postman, replace the domain name (http://localhost:33346) if needed\nIf API call requires no authorization (no need for header \"Authorization: Bearer token\", register new user via POST http://localhost:33346/ApplicationUsers or login via POST http://localhost:33346/token), run.\nIf API call requires authorization (header \"Authorization: Bearer token\" is required), signup first (POST http://localhost:33346/ApplicationUsers), then login (POST http://localhost:33346/ApplicationUsers) and replace token in API call's header \"Authorization: Bearer token\" with the generated one, then run.\nReplace IDs in URI and edit JSON if needed.",
+		"description": "Here you can find samples how to use Stakeholders.Web REST API. \nImport this collection to Postman, replace the domain name (http://localhost:33347) if needed\nIf API call requires no authorization (no need for header \"Authorization: Bearer token\", register new user via POST http://localhost:33347/ApplicationUsers or login via POST http://localhost:33347/token), run.\nIf API call requires authorization (header \"Authorization: Bearer token\" is required), signup first (POST http://localhost:33347/ApplicationUsers), then login (POST http://localhost:33347/ApplicationUsers) and replace token in API call's header \"Authorization: Bearer token\" with the generated one, then run.\nReplace IDs in URI and edit JSON if needed.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -12,9 +12,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/Activities",
+					"name": "http://localhost:33347/api/Activities",
 					"request": {
-						"url": "http://localhost:33346/api/Activities",
+						"url": "http://localhost:33347/api/Activities",
 						"method": "POST",
 						"header": [
 							{
@@ -37,9 +37,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities/count",
+					"name": "http://localhost:33347/api/Activities/count",
 					"request": {
-						"url": "http://localhost:33346/api/Activities/count",
+						"url": "http://localhost:33347/api/Activities/count",
 						"method": "GET",
 						"header": [
 							{
@@ -54,9 +54,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities",
+					"name": "http://localhost:33347/api/Activities",
 					"request": {
-						"url": "http://localhost:33346/api/Activities",
+						"url": "http://localhost:33347/api/Activities",
 						"method": "GET",
 						"header": [
 							{
@@ -71,9 +71,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities?start=0&count=10",
+					"name": "http://localhost:33347/api/Activities?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/Activities?start=0&count=10",
+						"url": "http://localhost:33347/api/Activities?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -88,9 +88,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities/3",
+					"name": "http://localhost:33347/api/Activities/3",
 					"request": {
-						"url": "http://localhost:33346/api/Activities/3",
+						"url": "http://localhost:33347/api/Activities/3",
 						"method": "GET",
 						"header": [
 							{
@@ -105,9 +105,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities/1",
+					"name": "http://localhost:33347/api/Activities/1",
 					"request": {
-						"url": "http://localhost:33346/api/Activities/1",
+						"url": "http://localhost:33347/api/Activities/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -130,9 +130,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Activities/3",
+					"name": "http://localhost:33347/api/Activities/3",
 					"request": {
-						"url": "http://localhost:33346/api/Activities/3",
+						"url": "http://localhost:33347/api/Activities/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -153,9 +153,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/ActivityTaskStatuses",
+					"name": "http://localhost:33347/api/ActivityTaskStatuses",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTaskStatuses",
+						"url": "http://localhost:33347/api/ActivityTaskStatuses",
 						"method": "POST",
 						"header": [
 							{
@@ -178,9 +178,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTaskStatuses/count",
+					"name": "http://localhost:33347/api/ActivityTaskStatuses/count",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTaskStatuses/count",
+						"url": "http://localhost:33347/api/ActivityTaskStatuses/count",
 						"method": "GET",
 						"header": [
 							{
@@ -195,9 +195,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTaskStatuses",
+					"name": "http://localhost:33347/api/ActivityTaskStatuses",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTaskStatuses",
+						"url": "http://localhost:33347/api/ActivityTaskStatuses",
 						"method": "GET",
 						"header": [
 							{
@@ -212,9 +212,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTaskStatuses?start=0&count=10",
+					"name": "http://localhost:33347/api/ActivityTaskStatuses?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTaskStatuses?start=0&count=10",
+						"url": "http://localhost:33347/api/ActivityTaskStatuses?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -229,9 +229,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTaskStatuses/3",
+					"name": "http://localhost:33347/api/ActivityTaskStatuses/3",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTaskStatuses/3",
+						"url": "http://localhost:33347/api/ActivityTaskStatuses/3",
 						"method": "GET",
 						"header": [
 							{
@@ -246,9 +246,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTaskStatuses/1",
+					"name": "http://localhost:33347/api/ActivityTaskStatuses/1",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTaskStatuses/1",
+						"url": "http://localhost:33347/api/ActivityTaskStatuses/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -271,9 +271,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTaskStatuses/3",
+					"name": "http://localhost:33347/api/ActivityTaskStatuses/3",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTaskStatuses/3",
+						"url": "http://localhost:33347/api/ActivityTaskStatuses/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -294,9 +294,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/ActivityTasks",
+					"name": "http://localhost:33347/api/ActivityTasks",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks",
+						"url": "http://localhost:33347/api/ActivityTasks",
 						"method": "POST",
 						"header": [
 							{
@@ -319,9 +319,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTasks/count",
+					"name": "http://localhost:33347/api/ActivityTasks/count",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks/count",
+						"url": "http://localhost:33347/api/ActivityTasks/count",
 						"method": "GET",
 						"header": [
 							{
@@ -336,9 +336,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTasks",
+					"name": "http://localhost:33347/api/ActivityTasks",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks",
+						"url": "http://localhost:33347/api/ActivityTasks",
 						"method": "GET",
 						"header": [
 							{
@@ -353,9 +353,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTasks?start=0&count=10",
+					"name": "http://localhost:33347/api/ActivityTasks?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks?start=0&count=10",
+						"url": "http://localhost:33347/api/ActivityTasks?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -370,9 +370,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTasks/3",
+					"name": "http://localhost:33347/api/ActivityTasks/3",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks/3",
+						"url": "http://localhost:33347/api/ActivityTasks/3",
 						"method": "GET",
 						"header": [
 							{
@@ -387,9 +387,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTasks/1",
+					"name": "http://localhost:33347/api/ActivityTasks/1",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks/1",
+						"url": "http://localhost:33347/api/ActivityTasks/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -412,9 +412,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTasks/3",
+					"name": "http://localhost:33347/api/ActivityTasks/3",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTasks/3",
+						"url": "http://localhost:33347/api/ActivityTasks/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -435,9 +435,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/ActivityTypes",
+					"name": "http://localhost:33347/api/ActivityTypes",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTypes",
+						"url": "http://localhost:33347/api/ActivityTypes",
 						"method": "POST",
 						"header": [
 							{
@@ -460,9 +460,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTypes/count",
+					"name": "http://localhost:33347/api/ActivityTypes/count",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTypes/count",
+						"url": "http://localhost:33347/api/ActivityTypes/count",
 						"method": "GET",
 						"header": [
 							{
@@ -477,9 +477,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTypes",
+					"name": "http://localhost:33347/api/ActivityTypes",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTypes",
+						"url": "http://localhost:33347/api/ActivityTypes",
 						"method": "GET",
 						"header": [
 							{
@@ -494,9 +494,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTypes?start=0&count=10",
+					"name": "http://localhost:33347/api/ActivityTypes?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTypes?start=0&count=10",
+						"url": "http://localhost:33347/api/ActivityTypes?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -511,9 +511,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTypes/3",
+					"name": "http://localhost:33347/api/ActivityTypes/3",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTypes/3",
+						"url": "http://localhost:33347/api/ActivityTypes/3",
 						"method": "GET",
 						"header": [
 							{
@@ -528,9 +528,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTypes/1",
+					"name": "http://localhost:33347/api/ActivityTypes/1",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTypes/1",
+						"url": "http://localhost:33347/api/ActivityTypes/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -553,9 +553,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ActivityTypes/3",
+					"name": "http://localhost:33347/api/ActivityTypes/3",
 					"request": {
-						"url": "http://localhost:33346/api/ActivityTypes/3",
+						"url": "http://localhost:33347/api/ActivityTypes/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -576,9 +576,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/ApplicationUsers",
+					"name": "http://localhost:33347/api/ApplicationUsers",
 					"request": {
-						"url": "http://localhost:33346/api/ApplicationUsers",
+						"url": "http://localhost:33347/api/ApplicationUsers",
 						"method": "POST",
 						"header": [
 							{
@@ -596,9 +596,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ApplicationUsers/count",
+					"name": "http://localhost:33347/api/ApplicationUsers/count",
 					"request": {
-						"url": "http://localhost:33346/api/ApplicationUsers/count",
+						"url": "http://localhost:33347/api/ApplicationUsers/count",
 						"method": "GET",
 						"header": [
 							{
@@ -613,9 +613,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ApplicationUsers",
+					"name": "http://localhost:33347/api/ApplicationUsers",
 					"request": {
-						"url": "http://localhost:33346/api/ApplicationUsers",
+						"url": "http://localhost:33347/api/ApplicationUsers",
 						"method": "GET",
 						"header": [
 							{
@@ -630,9 +630,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ApplicationUsers?start=0&count=10",
+					"name": "http://localhost:33347/api/ApplicationUsers?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/ApplicationUsers?start=0&count=10",
+						"url": "http://localhost:33347/api/ApplicationUsers?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -647,9 +647,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ApplicationUsers/3",
+					"name": "http://localhost:33347/api/ApplicationUsers/3",
 					"request": {
-						"url": "http://localhost:33346/api/ApplicationUsers/3",
+						"url": "http://localhost:33347/api/ApplicationUsers/3",
 						"method": "GET",
 						"header": [
 							{
@@ -664,9 +664,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ApplicationUsers/3",
+					"name": "http://localhost:33347/api/ApplicationUsers/3",
 					"request": {
-						"url": "http://localhost:33346/api/ApplicationUsers/3",
+						"url": "http://localhost:33347/api/ApplicationUsers/3",
 						"method": "PUT",
 						"header": [
 							{
@@ -689,9 +689,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/ApplicationUsers/3",
+					"name": "http://localhost:33347/api/ApplicationUsers/3",
 					"request": {
-						"url": "http://localhost:33346/api/ApplicationUsers/3",
+						"url": "http://localhost:33347/api/ApplicationUsers/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -712,9 +712,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/Companies",
+					"name": "http://localhost:33347/api/Companies",
 					"request": {
-						"url": "http://localhost:33346/api/Companies",
+						"url": "http://localhost:33347/api/Companies",
 						"method": "POST",
 						"header": [
 							{
@@ -737,9 +737,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Companies/count",
+					"name": "http://localhost:33347/api/Companies/count",
 					"request": {
-						"url": "http://localhost:33346/api/Companies/count",
+						"url": "http://localhost:33347/api/Companies/count",
 						"method": "GET",
 						"header": [
 							{
@@ -754,9 +754,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Companies",
+					"name": "http://localhost:33347/api/Companies",
 					"request": {
-						"url": "http://localhost:33346/api/Companies",
+						"url": "http://localhost:33347/api/Companies",
 						"method": "GET",
 						"header": [
 							{
@@ -771,9 +771,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Companies?start=0&count=10",
+					"name": "http://localhost:33347/api/Companies?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/Companies?start=0&count=10",
+						"url": "http://localhost:33347/api/Companies?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -788,9 +788,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Companies/10003",
+					"name": "http://localhost:33347/api/Companies/10003",
 					"request": {
-						"url": "http://localhost:33346/api/Companies/2",
+						"url": "http://localhost:33347/api/Companies/2",
 						"method": "GET",
 						"header": [
 							{
@@ -805,9 +805,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Companies/2",
+					"name": "http://localhost:33347/api/Companies/2",
 					"request": {
-						"url": "http://localhost:33346/api/Companies/2",
+						"url": "http://localhost:33347/api/Companies/2",
 						"method": "PUT",
 						"header": [
 							{
@@ -830,9 +830,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Companies/10002",
+					"name": "http://localhost:33347/api/Companies/10002",
 					"request": {
-						"url": "http://localhost:33346/api/Companies/10002",
+						"url": "http://localhost:33347/api/Companies/10002",
 						"method": "DELETE",
 						"header": [
 							{
@@ -853,9 +853,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/Contacts",
+					"name": "http://localhost:33347/api/Contacts",
 					"request": {
-						"url": "http://localhost:33346/api/Contacts",
+						"url": "http://localhost:33347/api/Contacts",
 						"method": "POST",
 						"header": [
 							{
@@ -878,9 +878,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Contacts/count",
+					"name": "http://localhost:33347/api/Contacts/count",
 					"request": {
-						"url": "http://localhost:33346/api/Contacts/count",
+						"url": "http://localhost:33347/api/Contacts/count",
 						"method": "GET",
 						"header": [
 							{
@@ -895,9 +895,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Contacts",
+					"name": "http://localhost:33347/api/Contacts",
 					"request": {
-						"url": "http://localhost:33346/api/Contacts",
+						"url": "http://localhost:33347/api/Contacts",
 						"method": "GET",
 						"header": [
 							{
@@ -912,9 +912,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Contacts?start=0&count=10",
+					"name": "http://localhost:33347/api/Contacts?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/Contacts?start=0&count=10",
+						"url": "http://localhost:33347/api/Contacts?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -929,9 +929,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Contacts/3",
+					"name": "http://localhost:33347/api/Contacts/3",
 					"request": {
-						"url": "http://localhost:33346/api/Contacts/3",
+						"url": "http://localhost:33347/api/Contacts/3",
 						"method": "GET",
 						"header": [
 							{
@@ -946,9 +946,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Contacts/3",
+					"name": "http://localhost:33347/api/Contacts/3",
 					"request": {
-						"url": "http://localhost:33346/api/Contacts/3",
+						"url": "http://localhost:33347/api/Contacts/3",
 						"method": "PUT",
 						"header": [
 							{
@@ -971,9 +971,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Contacts/3",
+					"name": "http://localhost:33347/api/Contacts/3",
 					"request": {
-						"url": "http://localhost:33346/api/Contacts/3",
+						"url": "http://localhost:33347/api/Contacts/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -994,9 +994,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/Goals",
+					"name": "http://localhost:33347/api/Goals",
 					"request": {
-						"url": "http://localhost:33346/api/Goals",
+						"url": "http://localhost:33347/api/Goals",
 						"method": "POST",
 						"header": [
 							{
@@ -1019,9 +1019,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Goals/count",
+					"name": "http://localhost:33347/api/Goals/count",
 					"request": {
-						"url": "http://localhost:33346/api/Goals/count",
+						"url": "http://localhost:33347/api/Goals/count",
 						"method": "GET",
 						"header": [
 							{
@@ -1036,9 +1036,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Goals",
+					"name": "http://localhost:33347/api/Goals",
 					"request": {
-						"url": "http://localhost:33346/api/Goals",
+						"url": "http://localhost:33347/api/Goals",
 						"method": "GET",
 						"header": [
 							{
@@ -1053,9 +1053,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Goals?start=0&count=10",
+					"name": "http://localhost:33347/api/Goals?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/Goals?start=0&count=10",
+						"url": "http://localhost:33347/api/Goals?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -1070,9 +1070,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Goals/3",
+					"name": "http://localhost:33347/api/Goals/3",
 					"request": {
-						"url": "http://localhost:33346/api/Goals/3",
+						"url": "http://localhost:33347/api/Goals/3",
 						"method": "GET",
 						"header": [
 							{
@@ -1087,9 +1087,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Goals/3",
+					"name": "http://localhost:33347/api/Goals/3",
 					"request": {
-						"url": "http://localhost:33346/api/Goals/3",
+						"url": "http://localhost:33347/api/Goals/3",
 						"method": "PUT",
 						"header": [
 							{
@@ -1112,9 +1112,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Goals/3",
+					"name": "http://localhost:33347/api/Goals/3",
 					"request": {
-						"url": "http://localhost:33346/api/Goals/3",
+						"url": "http://localhost:33347/api/Goals/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -1135,9 +1135,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/OrganizationCategories",
+					"name": "http://localhost:33347/api/OrganizationCategories",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationCategories",
+						"url": "http://localhost:33347/api/OrganizationCategories",
 						"method": "POST",
 						"header": [
 							{
@@ -1160,9 +1160,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationCategories/count",
+					"name": "http://localhost:33347/api/OrganizationCategories/count",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationCategories/count",
+						"url": "http://localhost:33347/api/OrganizationCategories/count",
 						"method": "GET",
 						"header": [
 							{
@@ -1177,9 +1177,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationCategories",
+					"name": "http://localhost:33347/api/OrganizationCategories",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationCategories",
+						"url": "http://localhost:33347/api/OrganizationCategories",
 						"method": "GET",
 						"header": [
 							{
@@ -1194,9 +1194,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationCategories?start=0&count=10",
+					"name": "http://localhost:33347/api/OrganizationCategories?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationCategories?start=0&count=10",
+						"url": "http://localhost:33347/api/OrganizationCategories?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -1211,9 +1211,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationCategories/3",
+					"name": "http://localhost:33347/api/OrganizationCategories/3",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationCategories/3",
+						"url": "http://localhost:33347/api/OrganizationCategories/3",
 						"method": "GET",
 						"header": [
 							{
@@ -1228,9 +1228,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationCategories/3",
+					"name": "http://localhost:33347/api/OrganizationCategories/3",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationCategories/3",
+						"url": "http://localhost:33347/api/OrganizationCategories/3",
 						"method": "PUT",
 						"header": [
 							{
@@ -1253,9 +1253,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationCategories/3",
+					"name": "http://localhost:33347/api/OrganizationCategories/3",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationCategories/3",
+						"url": "http://localhost:33347/api/OrganizationCategories/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -1276,9 +1276,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes",
+					"name": "http://localhost:33347/api/OrganizationTypes",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes",
+						"url": "http://localhost:33347/api/OrganizationTypes",
 						"method": "POST",
 						"header": [
 							{
@@ -1301,9 +1301,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes/count",
+					"name": "http://localhost:33347/api/OrganizationTypes/count",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes/4",
+						"url": "http://localhost:33347/api/OrganizationTypes/4",
 						"method": "GET",
 						"header": [
 							{
@@ -1318,9 +1318,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes",
+					"name": "http://localhost:33347/api/OrganizationTypes",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes",
+						"url": "http://localhost:33347/api/OrganizationTypes",
 						"method": "GET",
 						"header": [
 							{
@@ -1335,9 +1335,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes?start=0&count=10",
+					"name": "http://localhost:33347/api/OrganizationTypes?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes?start=0&count=10",
+						"url": "http://localhost:33347/api/OrganizationTypes?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -1352,9 +1352,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes/4",
+					"name": "http://localhost:33347/api/OrganizationTypes/4",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes/count",
+						"url": "http://localhost:33347/api/OrganizationTypes/count",
 						"method": "GET",
 						"header": [
 							{
@@ -1369,9 +1369,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes/1",
+					"name": "http://localhost:33347/api/OrganizationTypes/1",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes/1",
+						"url": "http://localhost:33347/api/OrganizationTypes/1",
 						"method": "PUT",
 						"header": [
 							{
@@ -1394,9 +1394,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/OrganizationTypes/3",
+					"name": "http://localhost:33347/api/OrganizationTypes/3",
 					"request": {
-						"url": "http://localhost:33346/api/OrganizationTypes/9",
+						"url": "http://localhost:33347/api/OrganizationTypes/9",
 						"method": "DELETE",
 						"header": [
 							{
@@ -1417,9 +1417,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/Organizations",
+					"name": "http://localhost:33347/api/Organizations",
 					"request": {
-						"url": "http://localhost:33346/api/Organizations",
+						"url": "http://localhost:33347/api/Organizations",
 						"method": "POST",
 						"header": [
 							{
@@ -1442,9 +1442,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Organizations/count",
+					"name": "http://localhost:33347/api/Organizations/count",
 					"request": {
-						"url": "http://localhost:33346/api/Organizations/count",
+						"url": "http://localhost:33347/api/Organizations/count",
 						"method": "GET",
 						"header": [
 							{
@@ -1459,9 +1459,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Organizations",
+					"name": "http://localhost:33347/api/Organizations",
 					"request": {
-						"url": "http://localhost:33346/api/Organizations",
+						"url": "http://localhost:33347/api/Organizations",
 						"method": "GET",
 						"header": [
 							{
@@ -1476,9 +1476,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Organizations?start=0&count=10",
+					"name": "http://localhost:33347/api/Organizations?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/Organizations?start=0&count=10",
+						"url": "http://localhost:33347/api/Organizations?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -1493,9 +1493,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Organizations/3",
+					"name": "http://localhost:33347/api/Organizations/3",
 					"request": {
-						"url": "http://localhost:33346/api/Organizations/3",
+						"url": "http://localhost:33347/api/Organizations/3",
 						"method": "GET",
 						"header": [
 							{
@@ -1510,9 +1510,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Organizations/3",
+					"name": "http://localhost:33347/api/Organizations/3",
 					"request": {
-						"url": "http://localhost:33346/api/Organizations/3",
+						"url": "http://localhost:33347/api/Organizations/3",
 						"method": "PUT",
 						"header": [
 							{
@@ -1535,9 +1535,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Organizations/3",
+					"name": "http://localhost:33347/api/Organizations/3",
 					"request": {
-						"url": "http://localhost:33346/api/Organizations/3",
+						"url": "http://localhost:33347/api/Organizations/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -1558,9 +1558,9 @@
 			"description": "",
 			"item": [
 				{
-					"name": "http://localhost:33346/api/Roles",
+					"name": "http://localhost:33347/api/Roles",
 					"request": {
-						"url": "http://localhost:33346/api/Roles",
+						"url": "http://localhost:33347/api/Roles",
 						"method": "POST",
 						"header": [
 							{
@@ -1583,9 +1583,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Roles/count",
+					"name": "http://localhost:33347/api/Roles/count",
 					"request": {
-						"url": "http://localhost:33346/api/Roles/count",
+						"url": "http://localhost:33347/api/Roles/count",
 						"method": "GET",
 						"header": [
 							{
@@ -1600,9 +1600,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Roles",
+					"name": "http://localhost:33347/api/Roles",
 					"request": {
-						"url": "http://localhost:33346/api/Roles",
+						"url": "http://localhost:33347/api/Roles",
 						"method": "GET",
 						"header": [
 							{
@@ -1617,9 +1617,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Roles?start=0&count=10",
+					"name": "http://localhost:33347/api/Roles?start=0&count=10",
 					"request": {
-						"url": "http://localhost:33346/api/Roles?start=0&count=10",
+						"url": "http://localhost:33347/api/Roles?start=0&count=10",
 						"method": "GET",
 						"header": [
 							{
@@ -1634,9 +1634,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Roles/3",
+					"name": "http://localhost:33347/api/Roles/3",
 					"request": {
-						"url": "http://localhost:33346/api/Roles/3",
+						"url": "http://localhost:33347/api/Roles/3",
 						"method": "GET",
 						"header": [
 							{
@@ -1651,9 +1651,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Roles/3",
+					"name": "http://localhost:33347/api/Roles/3",
 					"request": {
-						"url": "http://localhost:33346/api/Roles/3",
+						"url": "http://localhost:33347/api/Roles/3",
 						"method": "PUT",
 						"header": [
 							{
@@ -1676,9 +1676,9 @@
 					"response": []
 				},
 				{
-					"name": "http://localhost:33346/api/Roles/3",
+					"name": "http://localhost:33347/api/Roles/3",
 					"request": {
-						"url": "http://localhost:33346/api/Roles/3",
+						"url": "http://localhost:33347/api/Roles/3",
 						"method": "DELETE",
 						"header": [
 							{
@@ -1695,9 +1695,9 @@
 			]
 		},
 		{
-			"name": "http://localhost:33346/token",
+			"name": "http://localhost:33347/token",
 			"request": {
-				"url": "http://localhost:33346/token",
+				"url": "http://localhost:33347/token",
 				"method": "POST",
 				"header": [
 					{
