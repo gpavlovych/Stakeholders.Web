@@ -12,21 +12,33 @@ angular
             });
         }
     ])
-.factory('OrganizationCategory', ['$resource',
-    function ($resource) {
-        return $resource(
-            '/api/OrganizationCategories/:id',
-            null,
-            {
-                'update': { method: 'PUT' }
-            });
-    }])
+    .factory('OrganizationCategory', ['$resource',
+        function($resource) {
+            return $resource(
+                '/api/OrganizationCategories/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }
+    ])
+    .factory('Company', ['$resource',
+        function($resource) {
+            return $resource(
+                '/api/Companies/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }
+    ])
     .controller('organizationCategoriesController',
     [
         '$scope',
         'OrganizationCategory',
+        'Company',
         'dialogService',
-        function ($scope, OrganizationCategory, dialogService) {
+        function ($scope, OrganizationCategory, Company, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
 
@@ -42,8 +54,17 @@ angular
                 refresh();
             };
 
+            $scope.editedOrganizationCategory = null;
             $scope.editOrganizationCategory = function (id) {
-                $scope.editedOrganizationCategory = OrganizationCategory.get({ id: id });
+                Company.query(function (result) {
+                    $scope.editedOrganizationCategoryCompanies = result;
+                });
+                OrganizationCategory.get({ id: id }, function (category) {
+                    Company.get({ id: category.companyId }, function (company) {
+                        category.company = company;
+                    });
+                    $scope.editedOrganizationCategory = category;
+                });
             };
 
             $scope.closeEditor = function () {
@@ -53,6 +74,10 @@ angular
             $scope.saveEditor = function (event) {
                 dialogService.showConfirmationSaveDialog(event,
                     function () {
+                        $scope.editedOrganizationCategory.companyId =
+                            $scope.editedOrganizationCategory.company != null
+                            ? $scope.editedOrganizationCategory.company.id
+                            : null;
                         $scope.editedOrganizationCategory.$update({ id: $scope.editedOrganizationCategory.id },
                             function () {
                                 dialogService.showMessageSavedDialog(event, null);
@@ -63,8 +88,8 @@ angular
                     null);
             };
 
-            $scope.removeContact = function (event, id) {
-                dialogService.showConfirmationDeleteDialog(event,
+            $scope.removeOrganizationCategory = function (id) {
+                dialogService.showConfirmationDeleteDialog(null,
                     function () {
                         $scope.editedOrganizationCategory.$remove({ id: id },
                             function () {

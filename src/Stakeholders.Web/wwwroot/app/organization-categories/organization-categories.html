@@ -13,13 +13,16 @@
     </div>
     <activity-form></activity-form>
     <task-form></task-form>
-      <div class="editorPanel" ng-hide="editedOrganizationCategory!=null">
-          <span class="closeModal" id="toggleFilterCatEdit" ng-click="closeEditor();"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
+      <div class="editorPanel" ng-show="editedOrganizationCategory!=null">
+          <span class="closeModal" id="toggleFilterCatEdit" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
             <div class="colLeft" style="height: 470px;">
                   <div class="formEditor" ng-scrollbars ng-scrollbars-config="config">
                         <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedOrganizationCategory.name"/>
-                        <input type="text" placeholder="{{'COMPANY' | translate}}" ng-model="editedOrganizationCategory.companyId"/>
-                        <div class="photoBrands">
+                      <div class="statusList">
+                          <h3>{{'ORGANIZATION' | translate}}</h3>
+                          <div dropdown-select="editedOrganizationCategoryCompanies" dropdown-model="editedOrganizationCategory.company" dropdown-item-label="name"></div>
+                      </div>
+                      <!--<div class="photoBrands">
                               <h3>{{'LOGO' | translate}}</h3>
                               <div class="photo">
                                     <span class="brandImage">
@@ -30,7 +33,7 @@
                                     </md-button>
                                     <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_ICON' | translate}}</button>
                               </div>
-                        </div>
+                        </div>-->
                         <textarea placeholder="{{'INFLUENCING' | translate}}" ng-model="editedOrganizationCategory.influencing"></textarea>
                         <textarea placeholder="{{'INFLUENCED_BY' | translate}}" ng-model="editedOrganizationCategory.influencedBy"></textarea>
                   </div>
@@ -82,13 +85,13 @@
                                     <td>{{ organizationCategory.name }}</td>
                                     <td>{{ organizationCategory.influencing }}</td>
                                     <td>{{ organizationCategory.influencedBy }}</td>
-                                    <td><span class="brand"><img src="/images/{{ cat.company.iconUrl }}.png" /></span> <span class="companyname">{{ cat.company.name }}</span></td>
+                                    <td><span class="brand"><img src="{{ organizationCategory.company.logoUrl }}" /></span> <span class="companyname">{{ organizationCategory.company.name }}</span></td>
                                     <td><img src="{{ cat.iconUrl }}" /></td>
                                     <td>
-                                          <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeActivity($event, activity.id)">
+                                          <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeOrganizationCategory(organizationCategory.id)">
                                                 <md-icon md-svg-src="/images/trash.svg"></md-icon>
                                           </md-button>
-                                          <md-button id="toggleFilterCatEdit" ng-click="editActivity(activity.id)" class="md-fab footerpen" aria-label="Pen">
+                                          <md-button id="toggleFilterCatEdit" ng-click="editOrganizationCategory(organizationCategory.id)" class="md-fab footerpen" aria-label="Pen">
                                                 <md-icon md-svg-src="/images/pen.svg"></md-icon>
                                           </md-button>
                                     </td>
