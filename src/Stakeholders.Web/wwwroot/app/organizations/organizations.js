@@ -91,33 +91,33 @@ angular
             };
 
             $scope.editOrganization = function (id) {
-                $scope.editedOrganizationCategories = OrganizationCategory.query(function(result) {
+                OrganizationCategory.query(function(result) {
                     $scope.editedOrganizationCategories = result;
                 });
-                $scope.editedOrganizationTypes = OrganizationType.query(function (result) {
+                OrganizationType.query(function (result) {
                     $scope.editedOrganizationTypes = result;
                 });
-                $scope.editedOrganizationUsers = User.query(function (result) {
+                User.query(function (result) {
                     $scope.editedOrganizationUsers = result;
                 });
 
-                $scope.editedOrganization = Organization.get({ id: id },
-                    function(result) {
-
-                        $scope.editedOrganizationSelectedCategory = OrganizationCategory
-                            .get({ id: result.categoryId },
-                                function(result) {
-                                    $scope.editedOrganizationSelectedCategory = result;
+                 Organization.get({ id: id },
+                    function(organization) {
+                        OrganizationCategory
+                            .get({ id: organization.categoryId },
+                                function(category) {
+                                    organization.category = category;
                                 });
-                        $scope.editedOrganizationSelectedType = OrganizationType
-                            .get({ id: result.typeId },
-                                function(result) {
-                                    $scope.editedOrganizationSelectedType = result;
+                        OrganizationType
+                            .get({ id: organization.typeId },
+                                function(type) {
+                                    organization.type = type;
                                 });
-                        $scope.editedOrganizationSelectedUser = User.get({ id: result.userId },
-                            function(result) {
-                                $scope.editedOrganizationSelectedUser = result;
+                        User.get({ id: organization.userId },
+                            function (user) {
+                                organization.user = user;
                             });
+                        $scope.editedOrganization = organization;
                     });
             };
 
@@ -129,16 +129,16 @@ angular
                 dialogService.showConfirmationSaveDialog(event,
                     function() {
                         $scope.editedOrganization.categoryId =
-                            $scope.editedOrganizationSelectedCategory != null
-                            ? $scope.editedOrganizationSelectedCategory.id
+                             $scope.editedOrganization.category != null
+                            ? $scope.editedOrganization.category.id
                             : null;
                         $scope.editedOrganization.typeId =
-                            $scope.editedOrganizationSelectedType != null
-                            ? $scope.editedOrganizationSelectedType.id
+                           $scope.editedOrganization.type != null
+                            ? $scope.editedOrganization.type.id
                             : null;
                         $scope.editedOrganization.userId =
-                            $scope.editedOrganizationSelectedUser != null
-                            ? $scope.editedOrganizationSelectedUser.id
+                            $scope.editedOrganization.user != null
+                            ? $scope.editedOrganization.user.id
                             : null;
                         $scope.editedOrganization.$update({ id: $scope.editedOrganization.id },
                             function() {

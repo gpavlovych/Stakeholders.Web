@@ -30,13 +30,13 @@
                   <div class="formEditor">
                         <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedOrganization.name"/>
                         <div class="statusList one">
-                              <div dropdown-select="editedOrganizationCategories" dropdown-model="editedOrganizationSelectedCategory" dropdown-item-label="name"></div>
+                              <div dropdown-select="editedOrganizationCategories" dropdown-model="editedOrganization.category" dropdown-item-label="name"></div>
                         </div>
                         <div class="statusList">
-                              <div dropdown-select="editedOrganizationTypes" dropdown-model="editedOrganizationSelectedType" dropdown-item-label="type"></div>
+                              <div dropdown-select="editedOrganizationTypes" dropdown-model="editedOrganization.type" dropdown-item-label="type"></div>
                         </div>
                         <div class="statusList">
-                              <div dropdown-select="editedOrganizationUsers" dropdown-model="editedOrganizationSelectedUser" dropdown-item-label="name"></div>
+                              <div dropdown-select="editedOrganizationUsers" dropdown-model="editedOrganization.user" dropdown-item-label="name"></div>
                         </div>
                         <textarea placeholder="{{'INFLUENCING' | translate}}" ng-model="editedOrganization.influencing"></textarea>
                         <textarea placeholder="{{'INFLUENCED_BY' | translate}}" ng-model="editedOrganization.influencedBy"></textarea>
