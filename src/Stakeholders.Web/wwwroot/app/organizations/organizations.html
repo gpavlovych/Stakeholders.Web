@@ -30,13 +30,13 @@
                   <div class="formEditor">
                         <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedOrganization.name"/>
                         <div class="statusList one">
-                              <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
+                              <div dropdown-select="editedOrganizationCategories" dropdown-model="editedOrganizationSelectedCategory" dropdown-item-label="name"></div>
                         </div>
                         <div class="statusList">
-                              <div dropdown-select="ddSelectOptionsType" dropdown-model="ddSelectSelectedType" dropdown-item-label="text"></div>
+                              <div dropdown-select="editedOrganizationTypes" dropdown-model="editedOrganizationSelectedType" dropdown-item-label="type"></div>
                         </div>
                         <div class="statusList">
-                              <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
+                              <div dropdown-select="editedOrganizationUsers" dropdown-model="editedOrganizationSelectedUser" dropdown-item-label="name"></div>
                         </div>
                         <textarea placeholder="{{'INFLUENCING' | translate}}" ng-model="editedOrganization.influencing"></textarea>
                         <textarea placeholder="{{'INFLUENCED_BY' | translate}}" ng-model="editedOrganization.influencedBy"></textarea>
@@ -52,12 +52,12 @@
                   <ul class="listResult" ng-repeat="organization in organizations">
                         <li>
                               <h3 class="title">
-                                    {{ organization.title }}
+                                    {{ organization.name }}
                               </h3>
                               <div class="contact">
-                                    <p><span>{{'CATEGORY' | translate}}</span><strong>{{ organization.categoryId }}</strong></p>
-                                    <p><span>{{'TYPE' | translate}}</span><strong>{{ organization.typeId }}</strong></p>
-                                    <p><span>{{'OWNERSHIP' | translate}}</span><strong>{{ organization.userId }}</strong></p>
+                                    <p><span>{{'CATEGORY' | translate}}</span><strong>{{ organization.category.name }}</strong></p>
+                                    <p><span>{{'TYPE' | translate}}</span><strong>{{ organization.type.type }}</strong></p>
+                                    <p><span>{{'OWNERSHIP' | translate}}</span><strong>{{ organization.user.name }}</strong></p>
                               </div>
                               <div class="bottomFooter">
                                     <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeOrganization(organization.id)">
@@ -104,9 +104,9 @@
                         <tbody ng-scrollbars ng-scrollbars-config="config">
                               <tr ng-repeat="organization in organizations|orderBy:orderByField:reverseSort">
                                     <td>{{ organization.name }}</td>
-                                    <td>{{ organization.categoryId }}</td>
-                                    <td>{{ organization.typeId }}</td>
-                                    <td>{{ organization.userId }}</td>
+                                    <td>{{ organization.category.name }}</td>
+                                    <td>{{ organization.type.type }}</td>
+                                    <td>{{ organization.user.name }}</td>
                                     <td>
                                           <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeOrganization(organization.id)">
                                                 <md-icon md-svg-src="/images/trash.svg"></md-icon>
