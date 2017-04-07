@@ -19,7 +19,7 @@ namespace Stakeholders.Web.Models.OrganizationViewModels
     /// Class OrganizationViewModel.
     /// </summary>
     /// <seealso cref="Stakeholders.Web.Models.Base.ViewModelBase" />
-    public class OrganizationViewModel: ViewModelBase
+    public class OrganizationViewModel : ViewModelBase
     {
         /// <summary>
         /// Gets or sets the name.
@@ -33,11 +33,15 @@ namespace Stakeholders.Web.Models.OrganizationViewModels
         /// <value>The category identifier.</value>
         public long? CategoryId { get; set; }
 
+        public string CategoryName { get; set; }
+
         /// <summary>
         /// Gets or sets the type identifier.
         /// </summary>
         /// <value>The type identifier.</value>
         public long? TypeId { get; set; }
+
+        public string TypeType { get; set; }
 
         /// <summary>
         /// Gets or sets the influencing.
@@ -57,10 +61,16 @@ namespace Stakeholders.Web.Models.OrganizationViewModels
         /// <value>The user identifier.</value>
         public long? UserId { get; set; }
 
+        public string UserTitle { get; set; }
+
+        public string UserName { get; set; }
+
         /// <summary>
         /// Gets or sets the company identifier.
         /// </summary>
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
+        
+        public string CompanyName { get; set; }
     }
 }

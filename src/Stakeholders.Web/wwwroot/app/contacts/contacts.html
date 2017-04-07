@@ -81,8 +81,8 @@
                         <span>{{ contact.title }}</span>
                     </h3>
                     <div class="contact">
-                        <p><span>{{'ORGANIZATION' | translate}}</span><strong>{{ contact.organization.name }}</strong></p>
-                        <p><span>{{'OWNERSHIP' | translate}}</span><strong>{{ contact.user.title }} {{ contact.user.name }}</strong></p>
+                        <p><span>{{'ORGANIZATION' | translate}}</span><strong>{{ contact.organizationName }}</strong></p>
+                        <p><span>{{'OWNERSHIP' | translate}}</span><strong>{{ contact.userTitle }} {{ contact.userName }}</strong></p>
                         <p><span>{{'PHONE' | translate}}</span><strong>{{ contact.phone }}</strong></p>
                         <p><span>{{'EMAIL' | translate}}</span><strong><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></strong></p>
                     </div>

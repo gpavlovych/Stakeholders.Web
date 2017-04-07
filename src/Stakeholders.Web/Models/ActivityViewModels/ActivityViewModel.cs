@@ -28,11 +28,15 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// <value>The task identifier.</value>
         public long? TaskId { get; set; }
 
+        public string TaskSubject { get; set; }
+
         /// <summary>
         /// Gets or sets the company identifier.
         /// </summary>
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
+
+        public string CompanyName { get; set; }
 
         /// <summary>
         /// Gets or sets the contact identifier.
@@ -69,7 +73,7 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// </summary>
         /// <value>The observer user ids.</value>
         public long[] ObserverUserIds { get; set; }
-
+        
         /// <summary>
         /// Gets or sets the subject.
         /// </summary>
@@ -82,10 +86,24 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// <value>The type identifier.</value>
         public long? TypeId { get; set; }
 
+        public string TypeName { get; set; }
+
         /// <summary>
         /// Gets or sets the user identifier.
         /// </summary>
         /// <value>The user identifier.</value>
         public long? UserId { get; set; }
+
+        public string UserName { get; set; }
+
+        public string UserTitle { get; set; }
+
+        public string ContactNameF { get; set; }
+
+        public string ContactNameL { get; set; }
+
+        public long? RelatedToGoalId { get; set; }
+
+        public string RelatedToGoalTitle { get; set; }
     }
 }

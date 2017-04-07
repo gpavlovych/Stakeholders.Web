@@ -77,11 +77,12 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
+        /// <param name="search">The search.</param>
         /// <returns>GoalInfoViewModel[].</returns>
         [HttpGet]
-        public GoalViewModel[] GetGoals(int start = 0, int count = 10)
+        public GoalViewModel[] GetGoals(int start = 0, int count = 10, string search = "")
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<GoalViewModel>(it)).ToArray();
+            return this.repository.GetAll(start, count, it => string.IsNullOrEmpty(search) || it.Title.Contains(search)).Select(it => this.mapper.Map<GoalViewModel>(it)).ToArray();
         }
 
         // GET: api/Goals/count

@@ -11,6 +11,9 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using System.Collections.Generic;
+
 namespace Stakeholders.Web.Models
 {
     /// <summary>
@@ -60,5 +63,7 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The company.</value>
         public Company Company { get; set; }
+
+        public ICollection<ActivityTaskOrganization> Tasks { get; set; }
     }
 }

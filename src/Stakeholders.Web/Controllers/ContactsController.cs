@@ -81,9 +81,9 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>ContactInfoViewModel[].</returns>
         [HttpGet]
-        public ContactViewModel[] GetContacts(int start = 0, int count = 10)
+        public ContactViewModel[] GetContacts(int start = 0, int count = 10, string search = "")
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<ContactViewModel>(it)).ToArray();
+            return this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search) || it.NameF.Contains(search) || it.NameL.Contains(search)).Select(it => this.mapper.Map<ContactViewModel>(it)).ToArray();
         }
 
         // GET: api/Contacts/count

@@ -23,26 +23,26 @@
                 <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedActivity.description" />
                 <div class="statusList">
                     <h3>{{'TYPE' | translate}}</h3>
-                    <div dropdown-select="editedActivityTypes" dropdown-model="editedActivity.type" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/ActivityTypes" dropdown-value="editedActivity.typeId" dropdown-item-label="name"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'RELATED_TASK' | translate}}</h3>
-                    <div dropdown-select="editedActivityTasks" dropdown-model="editedActivity.task" dropdown-item-label="subject"></div>
+                    <div dropdown-select dropdown-url="/api/ActivityTasks" dropdown-value="editedActivity.taskId" dropdown-item-label="subject"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'RELATED_USER' | translate}}</h3>
-                    <div dropdown-select="editedActivityUsers" dropdown-model="editedActivity.user" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedActivity.userId" dropdown-item-label="name"></div>
                 </div>
             </div>
         </div>
         <div class="colRight">
             <div class="statusList">
                 <h3>{{'RELATED_COMPANY' | translate}}</h3>
-                <div dropdown-select="editedActivityCompanies" dropdown-model="editedActivity.company" dropdown-item-label="name"></div>
+                <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedActivity.companyId" dropdown-item-label="name"></div>
             </div>
             <div class="statusList">
                 <h3>{{'RELATED_CONTACT' | translate}}</h3>
-                <div dropdown-select="editedActivityContacts" dropdown-model="editedActivity.contact" dropdown-item-label="name"></div>
+                <div dropdown-select dropdown-url="/api/Contacts" dropdown-value="editedActivity.contactId" dropdown-item-label="name"></div>
             </div>
             <div class="relatedOrganizations">
                 <h3>{{'OBSERVER_COMPANIES' | translate}}</h3>
@@ -107,8 +107,8 @@
                         {{ activity.description }}
                     </p>
                     <div class="contact">
-                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.user.title }} {{ activity.user.name }}</strong></p>
-                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ activity.relatedToGoal.title }}</strong></p>
+                        <p><span>{{'CONTACT' | translate}}</span><strong>{{ activity.userTitle }} {{ activity.userName }}</strong></p>
+                        <p><span>{{'RELATED_TO_GOAL' | translate}}</span><strong>{{ activity.relatedToGoalTitle }}</strong></p>
                         <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ activity.dateCreated }}</strong></p>
                     </div>
                     <div class="bottomFooter">

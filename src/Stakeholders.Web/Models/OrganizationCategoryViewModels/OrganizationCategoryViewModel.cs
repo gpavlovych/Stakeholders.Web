@@ -49,5 +49,7 @@ namespace Stakeholders.Web.Models.OrganizationCategoryViewModels
         /// </summary>
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
+
+        public string CompanyName { get; set; }
     }
 }

@@ -283,6 +283,20 @@ namespace Stakeholders.Web.Models
 
             var statusId = source.StatusId;
             destination.Status = statusId != null ? this.repositoryStatuses.FindById(statusId.Value) : null;
+
+            destination.Organizations = source.OrganizationIds?.Select(
+                    organizationId =>
+                        this.context.ActivityTaskOrganizations.FirstOrDefault(
+                            it =>
+                                (it.OrganizationId == organizationId) &&
+                                (it.TaskId == destination.Id)) ??
+                        new ActivityTaskOrganization()
+                        {
+                            TaskId = destination.Id,
+                            Task = destination,
+                            OrganizationId = organizationId,
+                            Organization = this.repositoryOrganizations.FindById(organizationId)
+                        }).ToList();
         }
 
         /// <summary>

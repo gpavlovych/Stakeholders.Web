@@ -11,6 +11,9 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using System.Collections.Generic;
+
 namespace Stakeholders.Web.Models
 {
     /// <summary>
@@ -24,5 +27,7 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The title.</value>
         public string Title { get; set; }
+
+        public ICollection<ActivityTask> Tasks { get; set; }
     }
 }

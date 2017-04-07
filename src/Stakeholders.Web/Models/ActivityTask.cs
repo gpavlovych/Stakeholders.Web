@@ -99,5 +99,11 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The contacts.</value>
         public ICollection<ActivityTaskObserverUser> ObserverUsers { get; set; }
+
+        public ICollection<Activity> Activities { get; set; }
+
+        public Company Company { get; set; }
+
+        public ICollection<ActivityTaskOrganization> Organizations { get; set; }
     }
 }

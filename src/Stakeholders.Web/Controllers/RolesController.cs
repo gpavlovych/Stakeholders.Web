@@ -81,9 +81,9 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>RoleInfoViewModel[].</returns>
         [HttpGet]
-        public RoleViewModel[] GetRoles(int start = 0, int count = 10)
+        public RoleViewModel[] GetRoles(int start = 0, int count = 10, string search = "")
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<RoleViewModel>(it)).ToArray();
+            return this.repository.GetAll(start, count, it => string.IsNullOrEmpty(search) || it.Name.Contains(search)).Select(it => this.mapper.Map<RoleViewModel>(it)).ToArray();
         }
 
         // GET: api/Roles/count

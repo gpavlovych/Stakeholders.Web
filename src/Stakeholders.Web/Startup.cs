@@ -172,6 +172,7 @@ namespace Stakeholders.Web
 
                     mapperConfigurationExpression
                         .CreateMap<Goal, GoalViewModel>()
+                        .AfterMap<EntityToViewModel>()
                         .ReverseMap()
                         .ForMember(it => it.Id, resolve => resolve.Ignore());
 

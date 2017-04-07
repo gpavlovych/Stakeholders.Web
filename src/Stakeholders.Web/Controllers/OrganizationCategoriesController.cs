@@ -79,10 +79,10 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>OrganizationCategoryViewModel[].</returns>
         [HttpGet]
-        public OrganizationCategoryViewModel[] GetOrganizationCategories(int start = 0, int count = 10)
+        public OrganizationCategoryViewModel[] GetOrganizationCategories(int start = 0, int count = 10, string search = "")
         {
             return
-                this.repository.GetAll(start, count)
+                this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search) || it.Name.Contains(search))
                     .Select(it => this.mapper.Map<OrganizationCategoryViewModel>(it))
                     .ToArray();
         }

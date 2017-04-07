@@ -69,9 +69,9 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>ActivityTypeInfoViewModel[].</returns>
         [HttpGet]
-        public ActivityTypeViewModel[] GetActivityTypes(int start = 0, int count = 10)
+        public ActivityTypeViewModel[] GetActivityTypes(int start = 0, int count = 10, string search="")
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<ActivityTypeViewModel>(it)).ToArray();
+            return this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search)||it.Name.Contains(search)).Select(it => this.mapper.Map<ActivityTypeViewModel>(it)).ToArray();
         }
 
         // GET: api/ActivityTypes/count

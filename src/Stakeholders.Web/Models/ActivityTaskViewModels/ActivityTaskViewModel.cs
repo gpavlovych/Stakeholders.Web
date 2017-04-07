@@ -34,11 +34,15 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// <value>The goal identifier.</value>
         public long? GoalId { get; set; }
 
+        public string GoalTitle { get; set; }
+
         /// <summary>
         /// Gets or sets the assign to identifier.
         /// </summary>
         /// <value>The assign to identifier.</value>
         public long? AssignToId { get; set; }
+        public string AssignToTitle { get; set; }
+        public string AssignToName { get; set; }
 
         /// <summary>
         /// Gets or sets the contact ids.
@@ -52,6 +56,10 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// <value>The created by identifier.</value>
         public long? CreatedById { get; set; }
 
+        public string CreatedByTitle { get; set; }
+
+        public string CreatedByName { get; set; }
+        
         /// <summary>
         /// Gets or sets the observer user ids.
         /// </summary>
@@ -94,10 +102,14 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// <value>The status identifier.</value>
         public long? StatusId { get; set; }
 
+        public string StatusName { get; set; }
+
         /// <summary>
         /// Gets or sets the success factor.
         /// </summary>
         /// <value>The success factor.</value>
         public string SuccessFactor { get; set; }
+
+        public long[] OrganizationIds { get; set; }
     }
 }

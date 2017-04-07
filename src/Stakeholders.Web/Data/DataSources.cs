@@ -121,7 +121,9 @@ namespace Stakeholders.Web.Data
                 .Include(it => it.Company)
                 .Include(it => it.Category)
                 .Include(it => it.Type)
-                .Include(it => it.User);
+                .Include(it => it.User)
+                .Include(it => it.Tasks)
+                    .ThenInclude(it => it.Task);
         }
     }
 
@@ -151,7 +153,9 @@ namespace Stakeholders.Web.Data
         /// <returns>IQueryable&lt;Goal&gt;.</returns>
         public IQueryable<Goal> GetDataQueryable()
         {
-            return this.context.Goals;
+            return this.context.Goals
+                .Include(it => it.Tasks)
+                    .ThenInclude(it => it.Status);
         }
     }
 
@@ -216,6 +220,10 @@ namespace Stakeholders.Web.Data
                 .Include(it => it.Organization)
                 .Include(it => it.Tasks)
                     .ThenInclude(it => it.Task)
+                        .ThenInclude(it=>it.Activities)
+                .Include(it => it.Tasks)
+                    .ThenInclude(it => it.Task)
+                        .ThenInclude(it => it.Status)
                 .Include(it => it.User);
         }
     }
@@ -285,7 +293,8 @@ namespace Stakeholders.Web.Data
                     .ThenInclude(it => it.Company)
                 .Include(it => it.Type)
                 .Include(it => it.User)
-                .Include(it => it.Task);
+                .Include(it => it.Task)
+                   .ThenInclude(it => it.Goal);
         }
     }
 
@@ -322,6 +331,8 @@ namespace Stakeholders.Web.Data
                     .ThenInclude(it => it.User)
                 .Include(it => it.Contacts)
                     .ThenInclude(it => it.Contact)
+                .Include(it=>it.Organizations)
+                    .ThenInclude(it=>it.Organization)
                 .Include(it => it.Goal)
                 .Include(it => it.Status);
         }

@@ -106,11 +106,7 @@ angular
         '$scope',
         '$rootScope',
         'Activity',
-        'ActivityType',
         'Company',
-        'Contact',
-        'ActivityTask',
-        'Goal',
         'User',
         'dialogService',
         function ($scope, $rootScope, Activity, ActivityType, Company, Contact, ActivityTask, Goal, User, dialogService) {
@@ -118,12 +114,6 @@ angular
                 Activity.query()
                     .$promise
                     .then(function (activities) {
-                        for (var index = 0; index < activities.length; index++) {
-                            var activity = activities[index];
-                            activity.user = User.get({ id: activity.userId });
-
-                            activity.relatedToGoal = Goal.get({ id: ActivityTask.get({ id: activity.taskId }) });
-                        }
                         $scope.activities = activities;
                     });
             }
@@ -133,44 +123,16 @@ angular
                 refresh();
             });
             $scope.editActivity = function(id) {
-                ActivityType.query(function(result) {
-                    $scope.editedActivityTypes = result;
-                });
-                ActivityTask.query(function(result) {
-                    $scope.editedActivityTasks = result;
-                });
+              
                 User.query(function(result) {
                     $scope.editedActivityUsers = result;
                 });
                 Company.query(function(result) {
                     $scope.editedActivityCompanies = result;
                 });
-                Contact.query(function(result) {
-                    $scope.editedActivityContacts = result;
-                });
-
+                
                 Activity.get({ id: id },
                     function(activity) {
-                        ActivityType.get({ id: activity.typeId },
-                            function(type) {
-                                activity.type = type;
-                            });
-                        ActivityTask.get({ id: activity.taskId },
-                            function(task) {
-                                activity.task = task;
-                            });
-                        User.get({ id: activity.userId },
-                            function(user) {
-                                activity.user = user;
-                            });
-                        Company.get({ id: activity.companyId },
-                            function(company) {
-                                activity.company = company;
-                            });
-                        Contact.get({ id: activity.contactId },
-                            function(contact) {
-                                activity.contact = contact;
-                            });
                         activity.dateActivityDate = activity.dateActivity != null
                             ? new Date(activity.dateActivity)
                             : null;
@@ -209,26 +171,7 @@ angular
                             .dateActivity = $scope.editedActivity.dateActivityDate != null
                             ? $scope.editedActivity.dateActivityDate.toISOString()
                             : null;
-                        $scope.editedActivity.typeId =
-                                                  $scope.editedActivity.type != null
-                                                 ? $scope.editedActivity.type.id
-                                                 : null;
-                        $scope.editedActivity.taskId =
-                                                  $scope.editedActivity.task != null
-                                                 ? $scope.editedActivity.task.id
-                                                 : null;
-                        $scope.editedActivity.userId =
-                            $scope.editedActivity.user != null
-                            ? $scope.editedActivity.user.id
-                            : null;
-                        $scope.editedActivity.companyId =
-                            $scope.editedActivity.company != null
-                            ? $scope.editedActivity.company.id
-                            : null;
-                        $scope.editedActivity.contactId =
-                            $scope.editedActivity.contact != null
-                            ? $scope.editedActivity.contact.id
-                            : null;
+                        
                         if ($scope.selectedObserverCompanies != null) {
                             $scope.editedActivity.observerCompanyIds = [];
                             for (var index = 0; index < $scope.selectedObserverCompanies.length; index++) {
@@ -261,7 +204,7 @@ angular
             $scope.removeActivity = function (event, id) {
                 dialogService.showConfirmationDeleteDialog(event,
                     function () {
-                        activityService.$delete({ id: id })
+                        Activity.delete({ id: id })
                             .$promise
                             .then(function () {
                                 refresh();

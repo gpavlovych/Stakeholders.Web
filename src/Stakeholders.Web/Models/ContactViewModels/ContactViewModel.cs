@@ -45,6 +45,8 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// <value>The organization identifier.</value>
         public long? OrganizationId { get; set; }
 
+        public string OrganizationName { get; set; }
+        
         /// <summary>
         /// Gets or sets the phone.
         /// </summary>
@@ -69,6 +71,8 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// <value>The user identifier.</value>
         public long? UserId { get; set; }
 
+        public string UserName { get; set; }
+
         /// <summary>
         /// Gets or sets the comments.
         /// </summary>
@@ -81,10 +85,16 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
 
+        public string CompanyName { get; set; }
+        
         /// <summary>
         /// Gets or sets the task ids.
         /// </summary>
         /// <value>The task ids.</value>
         public long[] TaskIds { get; set; }
+
+        public int? TasksCompleted { get; set; }
+
+        public int Activities { get; set; }
     }
 }

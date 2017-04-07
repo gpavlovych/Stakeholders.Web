@@ -73,9 +73,9 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         [HttpGet]
-        public OrganizationTypeViewModel[] GetOrganizationTypes(int start = 0, int count = 10)
+        public OrganizationTypeViewModel[] GetOrganizationTypes(int start = 0, int count = 10,string search = "")
         {
-            return this.repository.GetAll(start, count).Select(
+            return this.repository.GetAll(start, count, it => string.IsNullOrEmpty(search) || it.Type.Contains(search)).Select(
                     it => this.mapper.Map<OrganizationTypeViewModel>(it)).ToArray();
         }
 

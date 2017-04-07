@@ -83,9 +83,9 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <returns>ApplicationUserInfoViewModel[].</returns>
         [HttpGet]
-        public ApplicationUserViewModel[] GetApplicationUsers(int start = 0, int count = 10)
+        public ApplicationUserViewModel[] GetApplicationUsers(int start = 0, int count = 10, string search="")
         {
-            return this.repository.GetAll(start, count).Select(it => this.mapper.Map<ApplicationUserViewModel>(it)).ToArray();
+            return this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search) || it.Name.Contains(search)).Select(it => this.mapper.Map<ApplicationUserViewModel>(it)).ToArray();
         }
 
         // GET: api/ApplicationUsers/count

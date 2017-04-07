@@ -39,11 +39,15 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
 
+        public string CompanyName { get; set; }
+
         /// <summary>
         /// Gets or sets the role identifier.
         /// </summary>
         /// <value>The role identifier.</value>
         public long? RoleId { get; set; }
+
+        public string RoleName { get; set; }
 
         /// <summary>
         /// Gets or sets the observer activity identifiers.

@@ -11,6 +11,8 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+
+using System;
 using System.Linq;
 using AutoMapper;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
@@ -18,6 +20,7 @@ using Stakeholders.Web.Models.ActivityViewModels;
 using Stakeholders.Web.Models.ApplicationUserViewModels;
 using Stakeholders.Web.Models.CompanyViewModels;
 using Stakeholders.Web.Models.ContactViewModels;
+using Stakeholders.Web.Models.GoalViewModels;
 
 namespace Stakeholders.Web.Models
 {
@@ -34,7 +37,8 @@ namespace Stakeholders.Web.Models
             IMappingAction<ActivityTask, ActivityTaskViewModel>,
             IMappingAction<Company, CompanyViewModel>,
             IMappingAction<ApplicationUser, ApplicationUserViewModel>,
-            IMappingAction<Contact, ContactViewModel>
+            IMappingAction<Contact, ContactViewModel>,
+            IMappingAction<Goal, GoalViewModel>
     {
         /// <summary>
         /// Implementors can modify both the source and destination objects
@@ -49,6 +53,8 @@ namespace Stakeholders.Web.Models
             destination.ObserverUserIds =
             (source.ObserverUsers?.Where(it => it.User != null).Select(it => it.User.Id) ??
              Enumerable.Empty<long>()).ToArray();
+            destination.RelatedToGoalId = source.Task?.Goal?.Id;
+            destination.RelatedToGoalTitle = source.Task?.Goal?.Title;
         }
 
         /// <summary>
@@ -60,6 +66,8 @@ namespace Stakeholders.Web.Models
         {
             destination.ObserverUserIds =
             (source.ObserverUsers?.Where(it => it.User != null).Select(it => it.User.Id) ??
+             Enumerable.Empty<long>()).ToArray();
+            destination.OrganizationIds = (source.Organizations?.Select(it => it.OrganizationId) ??
              Enumerable.Empty<long>()).ToArray();
         }
 
@@ -101,6 +109,24 @@ namespace Stakeholders.Web.Models
             destination.TaskIds =
             (source.Tasks?.Where(it => it.Task != null).Select(it => it.Task.Id) ??
              Enumerable.Empty<long>()).ToArray();
+            destination.TasksCompleted =
+                source.Tasks?.Count(
+                    it => string.Equals(it.Task?.Status?.NameEn, "Done", StringComparison.OrdinalIgnoreCase));
+            destination.Activities = source.Tasks.SelectMany(it => it.Task.Activities).Distinct().Count();
+        }
+
+        public void Process(Goal source, GoalViewModel destination)
+        {
+            var totalCount = source.Tasks.Count;
+            destination.ValueProcess =
+                source.Tasks.Count(
+                    it => string.Equals(it.Status?.Name, "In Process", StringComparison.OrdinalIgnoreCase));
+            destination.PercentProcess = (destination.ValueProcess*100.0)/totalCount;
+            destination.ValueCompleted = source.Tasks.Count(
+                    it => string.Equals(it.Status?.Name, "Done", StringComparison.OrdinalIgnoreCase));
+            destination.PercentCompleted = (destination.ValueCompleted * 100.0) / totalCount;
+            destination.ValueReady = totalCount - destination.ValueProcess - destination.ValueCompleted;
+            destination.PercentReady = 100.0 - destination.PercentProcess - destination.PercentCompleted;
         }
     }
 }

@@ -271,8 +271,9 @@ namespace Stakeholders.Web.Migrations
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AssignToId = table.Column<long>(nullable: true),
+                    CompanyId = table.Column<long>(nullable: true),
                     CreatedById = table.Column<long>(nullable: true),
-                    DateCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    DateCreated = table.Column<DateTime>(nullable: false),
                     DateDeadline = table.Column<DateTime>(nullable: false),
                     DateEnd = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
@@ -289,6 +290,12 @@ namespace Stakeholders.Web.Migrations
                         name: "FK_ActivityTasks_AspNetUsers_AssignToId",
                         column: x => x.AssignToId,
                         principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ActivityTasks_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -379,6 +386,30 @@ namespace Stakeholders.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ActivityTaskOrganizations",
+                columns: table => new
+                {
+                    OrganizationId = table.Column<long>(nullable: false),
+                    TaskId = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActivityTaskOrganizations", x => new { x.OrganizationId, x.TaskId });
+                    table.ForeignKey(
+                        name: "FK_ActivityTaskOrganizations_Organizations_OrganizationId",
+                        column: x => x.OrganizationId,
+                        principalTable: "Organizations",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ActivityTaskOrganizations_ActivityTasks_TaskId",
+                        column: x => x.TaskId,
+                        principalTable: "ActivityTasks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
                 {
@@ -427,7 +458,7 @@ namespace Stakeholders.Web.Migrations
                     CompanyId = table.Column<long>(nullable: true),
                     ContactId = table.Column<long>(nullable: true),
                     DateActivity = table.Column<DateTime>(nullable: true),
-                    DateCreated = table.Column<DateTime>(nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    DateCreated = table.Column<DateTime>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Subject = table.Column<string>(nullable: true),
                     TaskId = table.Column<long>(nullable: true),
@@ -617,6 +648,11 @@ namespace Stakeholders.Web.Migrations
                 column: "AssignToId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ActivityTasks_CompanyId",
+                table: "ActivityTasks",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ActivityTasks_CreatedById",
                 table: "ActivityTasks",
                 column: "CreatedById");
@@ -650,6 +686,16 @@ namespace Stakeholders.Web.Migrations
                 name: "IX_ActivityTaskObserverUsers_UserId",
                 table: "ActivityTaskObserverUsers",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActivityTaskOrganizations_OrganizationId",
+                table: "ActivityTaskOrganizations",
+                column: "OrganizationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActivityTaskOrganizations_TaskId",
+                table: "ActivityTaskOrganizations",
+                column: "TaskId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUsers_CompanyId",
@@ -746,6 +792,9 @@ namespace Stakeholders.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "ActivityTaskObserverUsers");
+
+            migrationBuilder.DropTable(
+                name: "ActivityTaskOrganizations");
 
             migrationBuilder.DropTable(
                 name: "Activities");

@@ -100,6 +100,8 @@ namespace Stakeholders.Web.Data
         /// <value>The activity task contacts.</value>
         public DbSet<ActivityTaskContact> ActivityTaskContacts { get; set; }
 
+        public DbSet<ActivityTaskOrganization> ActivityTaskOrganizations { get; set; }
+
         /// <summary>
         /// Gets or sets the activity task observer users.
         /// </summary>
@@ -144,24 +146,19 @@ namespace Stakeholders.Web.Data
             activityEntityBuilder.HasOne(it => it.User);
             activityEntityBuilder.HasOne(it => it.Company);
             activityEntityBuilder.HasOne(it => it.Contact);
-            activityEntityBuilder.HasOne(it => it.Task);
+            activityEntityBuilder.HasOne(it => it.Task).WithMany(it => it.Activities);
             activityEntityBuilder.HasOne(it => it.Type);
-
-            var activityDateCreatedPropertyBuilder = activityEntityBuilder.Property(it => it.DateCreated);
-            activityDateCreatedPropertyBuilder.HasDefaultValueSql("GETUTCDATE()");
-            activityDateCreatedPropertyBuilder.ValueGeneratedOnAdd();
 
             var activityTaskEntityBuilder = builder.Entity<ActivityTask>();
             activityTaskEntityBuilder.HasKey(it => it.Id);
             activityTaskEntityBuilder.HasOne(it => it.AssignTo);
             activityTaskEntityBuilder.HasOne(it => it.CreatedBy);
-            activityTaskEntityBuilder.HasOne(it => it.Goal);
+            activityTaskEntityBuilder.HasOne(it => it.Goal).WithMany(it => it.Tasks);
             activityTaskEntityBuilder.HasOne(it => it.Status);
+            activityTaskEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.Task);
             activityTaskEntityBuilder.HasMany(it => it.Contacts).WithOne(it => it.Task);
             activityTaskEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Task);
-            var activityTaskDateCreatedPropertyBuilder = activityTaskEntityBuilder.Property(it => it.DateCreated);
-            activityTaskDateCreatedPropertyBuilder.HasDefaultValueSql("GETUTCDATE()");
-            activityTaskDateCreatedPropertyBuilder.ValueGeneratedOnAdd();
+            activityTaskEntityBuilder.HasMany(it => it.Organizations).WithOne(it => it.Task);
 
             var activityTypeEntityBuilder = builder.Entity<ActivityType>();
             activityTypeEntityBuilder.HasKey(it => it.Id);
@@ -176,6 +173,7 @@ namespace Stakeholders.Web.Data
 
             var goalEntityBuilder = builder.Entity<Goal>();
             goalEntityBuilder.HasKey(it => it.Id);
+            goalEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Goal);
 
             var organizationEntityBuilder = builder.Entity<Organization>();
             organizationEntityBuilder.HasKey(it => it.Id);
@@ -183,6 +181,7 @@ namespace Stakeholders.Web.Data
             organizationEntityBuilder.HasOne(it => it.Company);
             organizationEntityBuilder.HasOne(it => it.Type);
             organizationEntityBuilder.HasOne(it => it.User);
+            organizationEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Organization);
 
             var organizationTypeEntityBuilder = builder.Entity<OrganizationType>();
             organizationTypeEntityBuilder.HasKey(it => it.Id);
@@ -237,6 +236,17 @@ namespace Stakeholders.Web.Data
                 .HasOne(bc => bc.Contact)
                 .WithMany(b => b.Tasks)
                 .HasForeignKey(bc => bc.ContactId);
+
+            var activityTaskOrganizationEntityBuilder = builder.Entity<ActivityTaskOrganization>();
+            activityTaskOrganizationEntityBuilder.HasKey(it => new { it.OrganizationId, it.TaskId });
+            activityTaskOrganizationEntityBuilder
+               .HasOne(bc => bc.Task)
+               .WithMany(b => b.Organizations)
+               .HasForeignKey(bc => bc.TaskId);
+            activityTaskOrganizationEntityBuilder
+                .HasOne(bc => bc.Organization)
+                .WithMany(b => b.Tasks)
+                .HasForeignKey(bc => bc.OrganizationId);
         }
     }
 }

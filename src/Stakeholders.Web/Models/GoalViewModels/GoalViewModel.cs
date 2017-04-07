@@ -26,5 +26,12 @@ namespace Stakeholders.Web.Models.GoalViewModels
         /// </summary>
         /// <value>The title.</value>
         public string Title { get; set; }
+
+        public int ValueProcess { get; set; }
+        public double PercentProcess { get; set; }
+        public int ValueCompleted { get; set; }
+        public double PercentCompleted { get; set; }
+        public int ValueReady { get; set; }
+        public double PercentReady { get; set; }
     }
 }
