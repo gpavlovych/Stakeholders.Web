@@ -1256,22 +1256,22 @@ namespace Stakeholders.Web.Data
         /// <param name="name">The name.</param>
         /// <param name="nameEn">The name en.</param>
         /// <returns>Role.</returns>
-        private static Role FindRoleByNameOrCreate(this ApplicationDbContext context, string name, string nameEn)
+        private static Role FindRoleByNameOrCreate(this ApplicationDbContext context, string alias, string name)
         {
-            var result = context.Roles.FirstOrDefault(it => it.Name == name);
+            var result = context.Roles.FirstOrDefault(it => it.Alias == alias);
             if (result == null)
             {
                 result = new Role()
                 {
-                    Name = name,
-                    NameEn = nameEn
+                    Alias = alias,
+                    Name = name
                 };
                 context.Roles.Add(result);
                 context.SaveChanges();
             }
             else
             {
-                result.NameEn = nameEn;
+                result.Name = name;
                 context.SaveChanges();
             }
             return result;

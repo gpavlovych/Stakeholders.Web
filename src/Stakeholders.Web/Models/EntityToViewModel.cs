@@ -21,6 +21,7 @@ using Stakeholders.Web.Models.ApplicationUserViewModels;
 using Stakeholders.Web.Models.CompanyViewModels;
 using Stakeholders.Web.Models.ContactViewModels;
 using Stakeholders.Web.Models.GoalViewModels;
+using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Models
 {
@@ -98,6 +99,9 @@ namespace Stakeholders.Web.Models
             destination.ObserverTaskIds =
             (source.ObserverTasks?.Where(it => it.Task != null).Select(it => it.Task.Id) ??
              Enumerable.Empty<long>()).ToArray();
+
+            destination.ActivitiesCount = source.Activities?.Count() ?? 0;
+            destination.TasksCompleted = source.AssignedTasks.Any() ? source.AssignedTasks.Count(it => it.Status.Alias == "Done") * 100.0 / source.AssignedTasks.Count() : 0;
         }
 
         /// <summary>

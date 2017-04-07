@@ -33,14 +33,20 @@
                         <nav ng-if="user!=null">
                             <ul class="navMenu">
                                 <li ng-class="{active: $route.current.activetab=='home'}"><a class="home" href="home">{{'HOME' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='companies'}"><a class="companies" href="companies">{{'COMPANIES' | translate}}</a></li>
-                                <!--<li ng-class="{active: $route.current.activetab=='ceo-dashboard'}"><a href="ceo-dashboard">{{'CEO_DASHBOARD' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='managers-dashboard'}"><a href="managers-dashboard">{{'MANAGERS_DASHBOARD' | translate}}</a></li>-->
+                                <li ng-class="{active: $route.current.activetab=='ceo-dashboard'}"><a href="ceo-dashboard">{{'CEO_DASHBOARD' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='managers-dashboard'}"><a href="managers-dashboard">{{'MANAGERS_DASHBOARD' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='tasks'}"><a href="tasks">{{'TASKS' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='activities'}"><a href="activities">{{'ACTIVITIES' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='organizations'}"><a href="organizations">{{'ORGANIZATIONS' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='contacts'}"><a href="contacts">{{'CONTACTS' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='organization-categories'}"><a href="organization-categories">{{'ORGANIZATION_CATEGORIES' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='users' || $route.current.activetab=='companies' || $route.current.activetab=='organization-categories' }">
+                                    <a class="users" href="#">{{'ADMIN' | translate}}</a>
+                                    <ul>
+                                        <li ng-class="{active: $route.current.activetab=='users'}"><a class="users" href="users">{{'USERS' | translate}}</a></li>
+                                        <li ng-class="{active: $route.current.activetab=='companies'}"><a class="companies" href="companies">{{'COMPANIES' | translate}}</a></li>
+                                        <li ng-class="{active: $route.current.activetab=='organization-categories'}"><a href="organization-categories">{{'CATEGORIES' | translate}}</a></li>
+                                    </ul>
+                                </li>
                                 <!--<li ng-class="{active: $route.current.activetab=='organization-types'}"><a href="organization-types">{{'ORGANIZATION_TYPES' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='activity-task-statuses'}"><a href="activity-task-statuses">{{'ACTIVITY_TASK_STATUSES' | translate}}</a></li>
                                 <li ng-class="{active: $route.current.activetab=='activity-types'}"><a href="activity-task-statuses">{{'ACTIVITY_TYPES' | translate}}</a></li>-->

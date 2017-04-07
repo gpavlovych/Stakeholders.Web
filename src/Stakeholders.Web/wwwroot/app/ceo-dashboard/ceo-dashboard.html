@@ -5,15 +5,13 @@
             <ul class="listActivities" ng-repeat="activity in activities">
                 <li class="oneLevel">
                     <div class="icon-activities">
-                        <img src="{{pathImage}}icon-{{ activ.listingIcon }}.png" />
+                        <img src="/images/icon-hands.png" />
                     </div>
                     <ul class="dashedUl">
                         <li>
-                            <h3>Lorem activities</h3>
+                            <h3>{{activity.subject}}</h3>
                         </li>
-                        <li>{{ activ.listingOne }}</li>
-                        <li>{{ activ.listingTwo }}</li>
-                        <li>{{ activ.listingThree }}</li>
+                        <li>{{ activity.description }}</li>
                     </ul>
                 </li>
             </ul>
@@ -42,13 +40,13 @@
                     <li>
                         <h3 class="title">
                             <img class="imageUser" src="{{pathUser}}{{ user.userimage }}" />
-                            <strong>{{ user.title }}</strong>
-                            <span>{{ user.ocupation }}</span>
+                            <strong>{{ user.name }}</strong>
+                            <span>{{ user.title }}</span>
                         </h3>
                         <div class="statsResult">
-                            <p>Loren Role:</p>
-                            <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ user.taskcomp }}%</strong></p>
-                            <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ user.activities }}</strong></p>
+                            <p> {{user.roleName}}</p>
+                            <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ user.tasksCompleted }}%</strong></p>
+                            <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ user.activitiesCount }}</strong></p>
                         </div>
                     </li>
                 </ul>

@@ -25,9 +25,9 @@ namespace Stakeholders.Web.Models
     public class Role: IdentityRole<long>, IBaseEntity
     {
         /// <summary>
-        /// Gets or sets the name en.
+        /// Gets or sets the alias.
         /// </summary>
-        /// <value>The name en.</value>
-        public string NameEn { get; set; }
+        /// <value>The alias.</value>
+        public string Alias { get; set; }
     }
 }

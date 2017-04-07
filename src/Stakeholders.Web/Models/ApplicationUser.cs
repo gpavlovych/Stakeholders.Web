@@ -59,5 +59,17 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The observer activities.</value>
         public ICollection<ActivityTaskObserverUser> ObserverTasks { get; set; }
+
+        /// <summary>
+        /// Gets or sets the assigned tasks.
+        /// </summary>
+        /// <value>The assigned tasks.</value>
+        public ICollection<ActivityTask> AssignedTasks { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activities.
+        /// </summary>
+        /// <value>The activities.</value>
+        public ICollection<Activity> Activities { get; set; }
     }
 }

@@ -74,5 +74,17 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
         /// </summary>
         /// <value>The observer task identifiers.</value>
         public long[] ObserverTaskIds { get; set; }
+
+        /// <summary>
+        /// Gets the % of tasks completed.
+        /// </summary>
+        /// <value>The % of tasks completed.</value>
+        public double TasksCompleted { get; internal set; }
+
+        /// <summary>
+        /// Gets the activities count.
+        /// </summary>
+        /// <value>The activities count.</value>
+        public long ActivitiesCount { get; internal set; }
     }
 }

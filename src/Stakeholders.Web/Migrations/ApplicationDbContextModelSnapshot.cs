@@ -491,13 +491,13 @@ namespace Stakeholders.Web.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Alias");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
                     b.Property<string>("Name")
                         .HasAnnotation("MaxLength", 256);
-
-                    b.Property<string>("NameEn");
 
                     b.Property<string>("NormalizedName")
                         .HasAnnotation("MaxLength", 256);
@@ -566,7 +566,7 @@ namespace Stakeholders.Web.Migrations
                         .HasForeignKey("TypeId");
 
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Activities")
                         .HasForeignKey("UserId");
                 });
 
@@ -599,7 +599,7 @@ namespace Stakeholders.Web.Migrations
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityTask", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "AssignTo")
-                        .WithMany()
+                        .WithMany("AssignedTasks")
                         .HasForeignKey("AssignToId");
 
                     b.HasOne("Stakeholders.Web.Models.Company", "Company")

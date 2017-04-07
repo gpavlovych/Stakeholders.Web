@@ -429,9 +429,12 @@ namespace Stakeholders.Web.Data
             return this.context.Users
                 .Include(it => it.Company)
                 .Include(it => it.ObserverActivities)
-                .ThenInclude(it => it.Activity)
+                    .ThenInclude(it => it.Activity)
                 .Include(it => it.ObserverTasks)
-                .ThenInclude(it => it.Task)
+                    .ThenInclude(it => it.Task)
+                .Include(it=>it.AssignedTasks)
+                    .ThenInclude(it=>it.Status)
+                .Include(it=>it.Activities)
                 .Include(it=>it.Role);
         }
     }

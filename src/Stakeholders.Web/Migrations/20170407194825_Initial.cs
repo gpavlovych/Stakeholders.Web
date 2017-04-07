@@ -103,9 +103,9 @@ namespace Stakeholders.Web.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Alias = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NameEn = table.Column<string>(nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
                 },
                 constraints: table =>

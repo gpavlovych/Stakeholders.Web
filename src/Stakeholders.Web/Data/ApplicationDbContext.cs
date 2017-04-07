@@ -140,6 +140,8 @@ namespace Stakeholders.Web.Data
 
             var applicationUserEntityBuilder = builder.Entity<ApplicationUser>();
             applicationUserEntityBuilder.HasKey(it => it.Id);
+            applicationUserEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.User);
+            applicationUserEntityBuilder.HasMany(it => it.AssignedTasks).WithOne(it => it.AssignTo);
             applicationUserEntityBuilder.HasMany(it => it.ObserverActivities).WithOne(it => it.User);
             applicationUserEntityBuilder.HasMany(it => it.ObserverTasks).WithOne(it => it.User);
 
@@ -147,7 +149,7 @@ namespace Stakeholders.Web.Data
             activityEntityBuilder.HasKey(it => it.Id);
             activityEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Activity);
             activityEntityBuilder.HasMany(it => it.ObserverCompanies).WithOne(it => it.Activity);
-            activityEntityBuilder.HasOne(it => it.User);
+            activityEntityBuilder.HasOne(it => it.User).WithMany(it=>it.Activities);
             activityEntityBuilder.HasOne(it => it.Company);
             activityEntityBuilder.HasOne(it => it.Contact);
             activityEntityBuilder.HasOne(it => it.Task).WithMany(it => it.Activities);
@@ -155,7 +157,7 @@ namespace Stakeholders.Web.Data
 
             var activityTaskEntityBuilder = builder.Entity<ActivityTask>();
             activityTaskEntityBuilder.HasKey(it => it.Id);
-            activityTaskEntityBuilder.HasOne(it => it.AssignTo);
+            activityTaskEntityBuilder.HasOne(it => it.AssignTo).WithMany(it=>it.AssignedTasks);
             activityTaskEntityBuilder.HasOne(it => it.CreatedBy);
             activityTaskEntityBuilder.HasOne(it => it.Goal).WithMany(it => it.Tasks);
             activityTaskEntityBuilder.HasOne(it => it.Status);

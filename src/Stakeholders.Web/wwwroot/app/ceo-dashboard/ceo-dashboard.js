@@ -12,10 +12,41 @@ angular
             });
         }
     ])
+    .factory('Activity',
+    [
+        '$resource',
+        function ($resource) {
+            return $resource(
+                '/api/Activities/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }
+    ])
+    .factory('User',
+    [
+        '$resource',
+        function ($resource) {
+            return $resource(
+                '/api/ApplicationUsers/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }
+    ])
     .controller('ceoDashboardController',
     [
         '$scope',
-        function ($scope) {
-            //TODO
+        'Activity',
+        'User',
+        function ($scope, Activity, User) {
+            Activity.query(function (result) {
+                $scope.activities = result;
+            });
+            User.query(function (result) {
+                $scope.users = result;
+            });
         }
     ]);
