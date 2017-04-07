@@ -1,32 +1,12 @@
-﻿// ***********************************************************************
-// Assembly         : Stakeholders.Web
-// Author           : George
-// Created          : 04-07-2017
-//
-// Last Modified By : George
-// Last Modified On : 04-07-2017
-// ***********************************************************************
-// <copyright file="20170407113947_Initial.cs" company="">
-//     Copyright (c) . All rights reserved.
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-using System;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Stakeholders.Web.Migrations
 {
-    /// <summary>
-    /// Class Initial.
-    /// </summary>
-    /// <seealso cref="Microsoft.EntityFrameworkCore.Migrations.Migration" />
     public partial class Initial : Migration
     {
-        /// <summary>
-        /// Ups the specified migration builder.
-        /// </summary>
-        /// <param name="migrationBuilder">The migration builder.</param>
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -49,8 +29,8 @@ namespace Stakeholders.Web.Migrations
                 {
                     Id = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    NameEn = table.Column<string>(nullable: true)
+                    Alias = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -784,10 +764,6 @@ namespace Stakeholders.Web.Migrations
                 column: "NormalizedName");
         }
 
-        /// <summary>
-        /// Downs the specified migration builder.
-        /// </summary>
-        /// <param name="migrationBuilder">The migration builder.</param>
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

@@ -31,88 +31,345 @@ namespace Stakeholders.Web.Data
         /// <param name="context">The context.</param>
         public static void EnsureSeedData(this ApplicationDbContext context)
         {
+            var loremLong =
+                "על זקוק בחירות הקנאים תנך. בה ארץ כיצד קסאם, מה זאת רוסית פולנית לויקיפדים, כדי על הרוח ולחבר יוצרים. דת החול דפים בגרסה בקר, שתי עמוד ביוני גם, אם הטבע שנתי ייִדיש ארץ. ליום הארץ תיקונים אנא ב, לטיפול לעריכת האנציקלופדיה ויש גם. מה ראשי שנתי סטטיסטיקה ארץ, שמות להפוך והגולשים אתה ב. רבה או הארץ כלשהו, ב ציור ספינות ארץ. הטבע הבהרה מאמרשיחהצפה אם אתה. אל כתב מדינות אגרונומיה, על כתב רשימות לעריכה, שמו קהילה פוליטיקה בויקיפדיה דת. גם חרטומים רב־לשוני היסטוריה אתה, רבה אל הנדסת פוליטיקה. מדע לכאן הבקשה קישורים אל, אנא בהבנה מועמדים ממונרכיה בה.";
+            var LoremShort =
+                "לוח או הקהילה סטטיסטיקה, רביעי סוציולוגיה שער אל, בקר לחבר המלצת אינטרנט אל. או ויקימדיה אתנולוגיה שמו. ב והוא בגרסה עוד, דת כלשהו לעריכת בקר, בכפוף הבאים על עוד. העזרה לאחרונה ב צעד, מדע אם שונה מוגש, גם היא קסאם הקנאים.";
+            var LoremTiny = "זאת או שמות קבלו התוכן.החלה שאלות תנך אל.";
+
             if (context.AllMigrationsApplied())
             {
                 #region Stub Roles
-                //INSERT INTO[dbo].[Roles]([id] ,[name],[name_en]) VALUES(1,'Admin','אדמיניסראטור')
-                //INSERT INTO[dbo].[Roles]([id] ,[name],[name_en]) VALUES(2,'CEO','מנכ"ל')
-                //INSERT INTO[dbo].[Roles]([id] ,[name],[name_en]) VALUES(3,'Manager','מנהל')
+
                 var role1 = context.FindRoleByNameOrCreate("Admin", "אדמיניסראטור");
                 var role2 = context.FindRoleByNameOrCreate("CEO", "מנכ\"ל");
-                var role3 = context.FindRoleByNameOrCreate("Admin", "אדמיניסראטור");
+                var role3 = context.FindRoleByNameOrCreate("Manager", "מנהל");
 
                 #endregion
 
                 #region Stub companies
 
-                var company0 = context.FindCompanyByNameOrCreate("Poria", "", "", "", "", "", "", "", "");
-                var company1 = context.FindCompanyByNameOrCreate("Har Tov", "HP32323", "hartov.png", "somewhere 12", "Tel Aviv", "03-3434344", "into@hartov.com", "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", "Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var company2= context.FindCompanyByNameOrCreate("Some company", "HP32323", "somecompany.png", "somewhere 4", "Tel Aviv", "03-54545555", "into@somecompany.com", "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", "Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
+                var company0 = context.FindCompanyByNameOrCreate("פוריה ", "", "", "", "", "", "", "", "");
+                var company1 = context.FindCompanyByNameOrCreate(
+                    "הר טוב",
+                    "HP32323",
+                    "hartov.png",
+                    "החמניות 12",
+                    "תל אביב",
+                    "03-3434344",
+                    "into@hartov.com",
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var company2 = context.FindCompanyByNameOrCreate(
+                    "קוקה קולה",
+                    "HP32323",
+                    "somecompany.png",
+                    "הכלניות 4",
+                    "תל אביב",
+                    "03-54545555",
+                    "into@somecompany.com",
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
 
                 #endregion
 
                 #region Stub users
 
-                var user1 = context.FindApplicationUserByNameOrCreate("Ud", "Puria admin", role1, company0);
-                var user2 = context.FindApplicationUserByNameOrCreate("Amos", "CEO", role2, company1);
-                var user3 = context.FindApplicationUserByNameOrCreate("Danny", "Marketing", role3, company1);
-                var user4= context.FindApplicationUserByNameOrCreate("Ohad", "Puria admin", role3, company1);
-                var user5 = context.FindApplicationUserByNameOrCreate("Anat", "Sales", role3, company1);
+                var user1 = context.FindApplicationUserByNameOrCreate("user1", "אוד", "אדמיניסטרטור", role1, company0);
+                var user2 = context.FindApplicationUserByNameOrCreate("user2", "עמוס", "מנכ\"ל", role2, company1);
+                var user3 = context.FindApplicationUserByNameOrCreate("user3", "דני", "שיווק", role3, company1);
+                var user4 = context.FindApplicationUserByNameOrCreate("user4", "אהד", "קשרי לקוחות", role3, company1);
+                var user5 = context.FindApplicationUserByNameOrCreate("user5", "ענת", "מכירות", role3, company1);
 
                 #endregion
 
                 #region Stub organization categories
 
-                var organizationCategory1 = context.FindOrganizationCategoryByNameOrCreate("Governmental","Governmental.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory2 = context.FindOrganizationCategoryByNameOrCreate("Clients","Clients.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory3 = context.FindOrganizationCategoryByNameOrCreate("Employees","Employees.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory4 = context.FindOrganizationCategoryByNameOrCreate("Competitors","Competitors.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory5 = context.FindOrganizationCategoryByNameOrCreate("Suppliers","Suppliers.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory6 = context.FindOrganizationCategoryByNameOrCreate("NGOs","NGOs.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory7 = context.FindOrganizationCategoryByNameOrCreate("Community","Community.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory8 = context.FindOrganizationCategoryByNameOrCreate("Distributors","Distributors.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory9 = context.FindOrganizationCategoryByNameOrCreate("Business Partners","Partners.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory10 = context.FindOrganizationCategoryByNameOrCreate("Share holders","Share_holders.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory11 = context.FindOrganizationCategoryByNameOrCreate("Media","Media.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory12 = context.FindOrganizationCategoryByNameOrCreate("Research institutes","Research.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory13 = context.FindOrganizationCategoryByNameOrCreate("Elected Officials/politicians","Elected.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organizationCategory14 = context.FindOrganizationCategoryByNameOrCreate("Opinion leaders","Opinion.png", company1,"Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
+                var organizationCategory1 = context.FindOrganizationCategoryByNameOrCreate(
+                        "רגולטורים, רשויות, חברות ממשלתיות",
+                        "Governmental.png",
+                        company1,
+                        "משפיעים 1" + loremLong,
+                        "מושפעים 1" + loremLong);
+                var organizationCategory2 = context.FindOrganizationCategoryByNameOrCreate(
+                    "לקוחות",
+                    "Clients.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory3 = context.FindOrganizationCategoryByNameOrCreate(
+                    "עובדים",
+                    "Employees.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory4 = context.FindOrganizationCategoryByNameOrCreate(
+                    "מתחרים",
+                    "Competitors.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory5 = context.FindOrganizationCategoryByNameOrCreate(
+                    "ספקים ויועצים",
+                    "Suppliers.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory6 = context.FindOrganizationCategoryByNameOrCreate(
+                    "ארגונים אזרחיים",
+                    "NGOs.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory7 = context.FindOrganizationCategoryByNameOrCreate(
+                    "קהילה וסביבה",
+                    "Community.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory8 = context.FindOrganizationCategoryByNameOrCreate(
+                    "מפיצים",
+                    "Distributors.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory9 = context.FindOrganizationCategoryByNameOrCreate(
+                    "שותפים עסקיים",
+                    "Partners.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory10 = context.FindOrganizationCategoryByNameOrCreate(
+                    "בעלי מניות",
+                    "Share_holders.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory11 = context.FindOrganizationCategoryByNameOrCreate(
+                    "תקשורת",
+                    "Media.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory12 =
+                    context.FindOrganizationCategoryByNameOrCreate(
+                        "מכוני מחקר, גופי ידע ואקדמיה",
+                        "Research.png",
+                        company1,
+                        "משפיעים 1" + loremLong,
+                        "מושפעים 1" + loremLong);
+                var organizationCategory13 = context.FindOrganizationCategoryByNameOrCreate(
+                    "נבחרי ציבור",
+                    "Elected.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organizationCategory14 = context.FindOrganizationCategoryByNameOrCreate(
+                    "מובילי דעה",
+                    "Opinion.png",
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
 
                 #endregion
 
                 #region Stub organization types
 
-                var organizationType1 = context.FindOrganizationTypeByTypeOrCreate("Nearby City");
-                var organizationType2 = context.FindOrganizationTypeByTypeOrCreate("City Council");
-                var organizationType3 = context.FindOrganizationTypeByTypeOrCreate("School");
-                var organizationType4 = context.FindOrganizationTypeByTypeOrCreate("General");
+                var organizationType1 = context.FindOrganizationTypeByTypeOrCreate("עיר שכנה");
+                var organizationType2 = context.FindOrganizationTypeByTypeOrCreate("ראשות מקומית");
+                var organizationType3 = context.FindOrganizationTypeByTypeOrCreate("בית ספר");
+                var organizationType4 = context.FindOrganizationTypeByTypeOrCreate("כללי");
 
                 #endregion
 
                 #region Stub organizations
 
-                var organization1 = context.FindOrganizationByNameOrCreate("Org1", organizationCategory1, organizationType1, user3, company1, "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organization2 = context.FindOrganizationByNameOrCreate("Org2", organizationCategory1, organizationType2, user3, company1, "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organization3 = context.FindOrganizationByNameOrCreate("Org3", organizationCategory2, organizationType2, user4, company1, "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organization4 = context.FindOrganizationByNameOrCreate("Org4", organizationCategory2, organizationType3, user4, company1, "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organization5 = context.FindOrganizationByNameOrCreate("Org5", organizationCategory3, organizationType4, user5, company1, "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
-                var organization6 = context.FindOrganizationByNameOrCreate("Org6", organizationCategory4, organizationType4, user5, company1, "Lorem ipsum influencing dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum","Lorem ipsum influencedBy dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum");
+                var organization1 = context.FindOrganizationByNameOrCreate(
+                    "גוף 1",
+                    organizationCategory1,
+                    organizationType1,
+                    user3,
+                    company1,
+                    "משפיעים 1" + loremLong,
+                    "מושפעים 1" + loremLong);
+                var organization2 = context.FindOrganizationByNameOrCreate(
+                    "גוף 2",
+                    organizationCategory1,
+                    organizationType2,
+                    user3,
+                    company1,
+                    "משפיעים 2" + loremLong,
+                    "מושפעים 2" + loremLong);
+                var organization3 = context.FindOrganizationByNameOrCreate(
+                    "גוף 3",
+                    organizationCategory2,
+                    organizationType2,
+                    user4,
+                    company1,
+                    "משפיעים 3" + loremLong,
+                    "מושפעים 3" + loremLong);
+                var organization4 = context.FindOrganizationByNameOrCreate(
+                    "גוף 4",
+                    organizationCategory2,
+                    organizationType3,
+                    user4,
+                    company1,
+                    "משפיעים 4" + loremLong,
+                    "מושפעים 4" + loremLong);
+                var organization5 = context.FindOrganizationByNameOrCreate(
+                    "גוף 5",
+                    organizationCategory3,
+                    organizationType4,
+                    user5,
+                    company1,
+                    "משפיעים 5" + loremLong,
+                    "מושפעים 5" + loremLong);
+                var organization6 = context.FindOrganizationByNameOrCreate(
+                    "גוף 6",
+                    organizationCategory4,
+                    organizationType4,
+                    user5,
+                    company1,
+                    "משפיעים 6" + loremLong,
+                    "מושפעים 6" + loremLong);
 
                 #endregion
 
                 #region Stub contacts
-                var contact1 = context.FindContactByNameFAndNameLOrCreate("Contact1","One", "Title A",organization1,"03-23344234","one@contancs.com","one.png",user3,"No Comments", company1);
-                var contact2 = context.FindContactByNameFAndNameLOrCreate("Contact2","Two", "Title B", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact3 = context.FindContactByNameFAndNameLOrCreate("Contact3","Three", "Title C", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact4 = context.FindContactByNameFAndNameLOrCreate("Contact4","Four", "Title D", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact5 = context.FindContactByNameFAndNameLOrCreate("Contact5","Five", "Title E", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact6 = context.FindContactByNameFAndNameLOrCreate("Contact6","Six", "Title F", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact7 = context.FindContactByNameFAndNameLOrCreate("Contact7","Seven", "Title G", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact8 = context.FindContactByNameFAndNameLOrCreate("Contact8","Eight", "Title H", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact9 = context.FindContactByNameFAndNameLOrCreate("Contact9","Nine", "Title I", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact10 = context.FindContactByNameFAndNameLOrCreate("Contact10","Ten", "Title G", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact11 = context.FindContactByNameFAndNameLOrCreate("Contact11","Eleven", "Title K", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
-                var contact12 = context.FindContactByNameFAndNameLOrCreate("Contact12","Twelve", "Title L", organization1, "03-23344234","one@contancs.com","one.png", user3, "No Comments", company1);
+
+                var contact1 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact1",
+                    "One",
+                    "Title A",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact2 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact2",
+                    "Two",
+                    "Title B",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact3 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact3",
+                    "Three",
+                    "Title C",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact4 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact4",
+                    "Four",
+                    "Title D",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact5 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact5",
+                    "Five",
+                    "Title E",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact6 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact6",
+                    "Six",
+                    "Title F",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact7 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact7",
+                    "Seven",
+                    "Title G",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact8 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact8",
+                    "Eight",
+                    "Title H",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact9 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact9",
+                    "Nine",
+                    "Title I",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact10 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact10",
+                    "Ten",
+                    "Title G",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact11 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact11",
+                    "Eleven",
+                    "Title K",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+                var contact12 = context.FindContactByNameFAndNameLOrCreate(
+                    "Contact12",
+                    "Twelve",
+                    "Title L",
+                    organization1,
+                    "03-23344234",
+                    "one@contancs.com",
+                    "one.png",
+                    user3,
+                    "No Comments",
+                    company1);
+
                 //var contact1 = context.FindContactByNameFAndNameLOrCreate(
                 //    "somenamef1",
                 //    "somenamel1",
@@ -130,53 +387,200 @@ namespace Stakeholders.Web.Data
 
                 #region Stub activity task statuses
 
-                var activityTaskStatus1 = context.FindActivityTaskStatusByNameOrCreate("Awaiting","Awaiting");
-                var activityTaskStatus2 = context.FindActivityTaskStatusByNameOrCreate("In Process", "In Process");
-                var activityTaskStatus3 = context.FindActivityTaskStatusByNameOrCreate("On Hold", "On Hold");
-                var activityTaskStatus4 = context.FindActivityTaskStatusByNameOrCreate("Done", "Done");
+                var activityTaskStatus1 = context.FindActivityTaskStatusByNameOrCreate(
+                    "Awaiting",
+                    "לא התחילה",
+                    "לא התחילה");
+                var activityTaskStatus2 = context.FindActivityTaskStatusByNameOrCreate("InProcess", "בתהליך", "בתהליך");
+                var activityTaskStatus3 = context.FindActivityTaskStatusByNameOrCreate("OnHold", "בהמתנה", "בהמתנה");
+                var activityTaskStatus4 = context.FindActivityTaskStatusByNameOrCreate("Done", "הסתיימה", "הסתיימה");
 
                 #endregion
 
                 #region Stub activity types
 
-                var activityType1 = context.FindActivityTypeByNameOrCreate("Phone call");
-                var activityType2 = context.FindActivityTypeByNameOrCreate("Email");
-                var activityType3 = context.FindActivityTypeByNameOrCreate("Meeting");
+                var activityType1 = context.FindActivityTypeByNameOrCreate("שיחת טלפון");
+                var activityType2 = context.FindActivityTypeByNameOrCreate("אימייל");
+                var activityType3 = context.FindActivityTypeByNameOrCreate("פגישה");
 
                 #endregion
 
                 #region Stub goals
 
-                var goal1 = context.FindGoalByTitleOrCreate("Lorem ipsum Goal1 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var goal2 = context.FindGoalByTitleOrCreate("Lorem ipsum Goal2 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var goal3 = context.FindGoalByTitleOrCreate("Lorem ipsum Goal3 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var goal4 = context.FindGoalByTitleOrCreate("Lorem ipsum Goal4 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var goal5 = context.FindGoalByTitleOrCreate("Lorem ipsum Goal5 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var goal6 = context.FindGoalByTitleOrCreate("Lorem ipsum Goal6 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
+                var goal1 = context.FindGoalByTitleOrCreate(" מטרה 1 " + LoremTiny);
+                var goal2 = context.FindGoalByTitleOrCreate(" מטרה 2 " + LoremTiny);
+                var goal3 = context.FindGoalByTitleOrCreate(" מטרה 3 " + LoremTiny);
+                var goal4 = context.FindGoalByTitleOrCreate(" מטרה 4 " + LoremTiny);
+                var goal5 = context.FindGoalByTitleOrCreate(" מטרה 5 " + LoremTiny);
+                var goal6 = context.FindGoalByTitleOrCreate(" מטרה 6 " + LoremTiny);
 
                 #endregion
 
                 #region Stub tasks
 
-                var task1 = context.FindActivityTaskBySubjectOrCreate("Task 1", activityTaskStatus1, user2, user3, false, new DateTime(2015,12,31), new DateTime(2016, 1, 1), new DateTime(2016, 3, 31), goal1, company1, "Lorem ipsum successFactor1 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", "Lorem ipsum description1 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var task2 = context.FindActivityTaskBySubjectOrCreate("Task 2", activityTaskStatus2, user2, user3, false, new DateTime(2015, 12, 31), new DateTime(2016, 4, 1), new DateTime(2016, 7, 31), goal2, company1, "Lorem ipsum successFactor2 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", "Lorem ipsum description2 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var task3 = context.FindActivityTaskBySubjectOrCreate("Task 3", activityTaskStatus2, user2, user4, false, new DateTime(2015, 12, 31), new DateTime(2016, 1, 1), new DateTime(2016, 5, 30), goal2, company1, "Lorem ipsum successFactor3 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", "Lorem ipsum description3 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var task4 = context.FindActivityTaskBySubjectOrCreate("Task 4", activityTaskStatus3, user2, user4, false, new DateTime(2015, 12, 31), new DateTime(2016, 4, 1), new DateTime(2016, 8, 31), goal3, company1, "Lorem ipsum successFactor4 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", "Lorem ipsum description4 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var task5 = context.FindActivityTaskBySubjectOrCreate("Task 5", activityTaskStatus3, user2, user5, false, new DateTime(2015, 12, 31), new DateTime(2016, 8, 1), new DateTime(2016, 11, 30), goal3, company1, "Lorem ipsum successFactor5 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", "Lorem ipsum description5 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var task6 = context.FindActivityTaskBySubjectOrCreate("Task 6", activityTaskStatus4, user2, user5, false, new DateTime(2015, 12, 31), new DateTime(2016, 12, 1), new DateTime(2016, 12, 31), goal4, company1, "Lorem ipsum successFactor6 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor", "Lorem ipsum description6 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
+                var task1 = context.FindActivityTaskBySubjectOrCreate(
+                    "משימה 1",
+                    activityTaskStatus1,
+                    user2,
+                    user3,
+                    false,
+                    new DateTime(2015, 12, 31),
+                    new DateTime(2016, 1, 1),
+                    new DateTime(2016, 3, 31),
+                    goal1,
+                    company1,
+                    "מדד הצלחה 1" + @LoremTiny,
+                    "תיאור 1" + @LoremShort);
+                var task2 = context.FindActivityTaskBySubjectOrCreate(
+                    "משימה 2",
+                    activityTaskStatus2,
+                    user2,
+                    user3,
+                    false,
+                    new DateTime(2015, 12, 31),
+                    new DateTime(2016, 4, 1),
+                    new DateTime(2016, 7, 31),
+                    goal2,
+                    company1,
+                    "מדד הצלחה 2" + @LoremTiny,
+                    "תיאור 2" + @LoremShort);
+                var task3 = context.FindActivityTaskBySubjectOrCreate(
+                    "משימה 3",
+                    activityTaskStatus2,
+                    user2,
+                    user4,
+                    false,
+                    new DateTime(2015, 12, 31),
+                    new DateTime(2016, 1, 1),
+                    new DateTime(2016, 5, 30),
+                    goal2,
+                    company1,
+                    "מדד הצלחה 3" + @LoremTiny,
+                    "תיאור 3" + @LoremShort);
+                var task4 = context.FindActivityTaskBySubjectOrCreate(
+                    "משימה 4",
+                    activityTaskStatus3,
+                    user2,
+                    user4,
+                    false,
+                    new DateTime(2015, 12, 31),
+                    new DateTime(2016, 4, 1),
+                    new DateTime(2016, 8, 31),
+                    goal3,
+                    company1,
+                    "מדד הצלחה 4" + @LoremTiny,
+                    "תיאור 4" + @LoremShort);
+                var task5 = context.FindActivityTaskBySubjectOrCreate(
+                    "משימה 5",
+                    activityTaskStatus3,
+                    user2,
+                    user5,
+                    false,
+                    new DateTime(2015, 12, 31),
+                    new DateTime(2016, 8, 1),
+                    new DateTime(2016, 11, 30),
+                    goal3,
+                    company1,
+                    "מדד הצלחה 5" + @LoremTiny,
+                    "תיאור 5" + @LoremShort);
+                var task6 = context.FindActivityTaskBySubjectOrCreate(
+                    "משימה 6",
+                    activityTaskStatus4,
+                    user2,
+                    user5,
+                    false,
+                    new DateTime(2015, 12, 31),
+                    new DateTime(2016, 12, 1),
+                    new DateTime(2016, 12, 31),
+                    goal4,
+                    company1,
+                    "מדד הצלחה 6" + @LoremTiny,
+                    "תיאור 6" + @LoremShort);
 
                 #endregion
 
                 #region Stub activities
 
-                var activity1 = context.FindActivityBySubjectOrCreate(contact1, user3, activityType1, task1, new DateTime(2016, 4, 10), new DateTime(2016, 4, 15), company1, "Lorem ipsum subject1 dolor sit amet, consectetur ", "Lorem ipsum description1 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var activity2 = context.FindActivityBySubjectOrCreate(contact2, user4, activityType1, task1, new DateTime(2016, 6, 10), new DateTime(2016, 6, 15), company1, "Lorem ipsum subject2 dolor sit amet, consectetur ", "Lorem ipsum description2 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var activity3 = context.FindActivityBySubjectOrCreate(contact3, user4, activityType1, task1, new DateTime(2016, 6, 10), new DateTime(2016, 6, 15), company1, "Lorem ipsum subject3 dolor sit amet, consectetur ", "Lorem ipsum description3 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var activity4 = context.FindActivityBySubjectOrCreate(contact4, user4, activityType1, task1, new DateTime(2016, 8, 10), new DateTime(2016, 8, 15), company1, "Lorem ipsum subject4 dolor sit amet, consectetur ", "Lorem ipsum description4 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var activity5 = context.FindActivityBySubjectOrCreate(contact5, user5, activityType1, task1, new DateTime(2016, 8, 10), new DateTime(2016, 8, 15), company1, "Lorem ipsum subject5 dolor sit amet, consectetur ", "Lorem ipsum description5 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var activity6 = context.FindActivityBySubjectOrCreate(contact6, user5, activityType1, task1, new DateTime(2016, 11, 10), new DateTime(2016, 11, 15), company1, "Lorem ipsum subject6 dolor sit amet, consectetur ", "Lorem ipsum description6 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var activity7 = context.FindActivityBySubjectOrCreate(contact7, user5, activityType1, task1, new DateTime(2016, 11, 10), new DateTime(2016, 11, 15), company1, "Lorem ipsum subject7 dolor sit amet, consectetur ", "Lorem ipsum description7 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
-                var activity8 = context.FindActivityBySubjectOrCreate(contact8, user5, activityType1, task1, new DateTime(2016, 11, 10), new DateTime(2016, 11, 15), company1, "Lorem ipsum subject8 dolor sit amet, consectetur ", "Lorem ipsum description8 dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor");
+                var activity1 = context.FindActivityBySubjectOrCreate(
+                    contact1,
+                    user3,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 4, 10),
+                    new DateTime(2016, 4, 15),
+                    company1,
+                    "נושא 1" + @LoremTiny,
+                    "תיאור 1" + @LoremShort);
+                var activity2 = context.FindActivityBySubjectOrCreate(
+                    contact2,
+                    user4,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 6, 10),
+                    new DateTime(2016, 6, 15),
+                    company1,
+                    "נושא 2" + @LoremTiny,
+                    "תיאור 2" + @LoremShort);
+                var activity3 = context.FindActivityBySubjectOrCreate(
+                    contact3,
+                    user4,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 6, 10),
+                    new DateTime(2016, 6, 15),
+                    company1,
+                    "נושא 3" + @LoremTiny,
+                    "תיאור 3" + @LoremShort);
+                var activity4 = context.FindActivityBySubjectOrCreate(
+                    contact4,
+                    user4,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 8, 10),
+                    new DateTime(2016, 8, 15),
+                    company1,
+                    "נושא 4" + @LoremTiny,
+                    "תיאור 4" + @LoremShort);
+                var activity5 = context.FindActivityBySubjectOrCreate(
+                    contact5,
+                    user5,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 8, 10),
+                    new DateTime(2016, 8, 15),
+                    company1,
+                    "נושא 5" + @LoremTiny,
+                    "תיאור 5" + @LoremShort);
+                var activity6 = context.FindActivityBySubjectOrCreate(
+                    contact6,
+                    user5,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 11, 10),
+                    new DateTime(2016, 11, 15),
+                    company1,
+                    "נושא 6" + @LoremTiny,
+                    "תיאור 6" + @LoremShort);
+                var activity7 = context.FindActivityBySubjectOrCreate(
+                    contact7,
+                    user5,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 11, 10),
+                    new DateTime(2016, 11, 15),
+                    company1,
+                    "נושא 7" + @LoremTiny,
+                    "תיאור 7" + @LoremShort);
+                var activity8 = context.FindActivityBySubjectOrCreate(
+                    contact8,
+                    user5,
+                    activityType1,
+                    task1,
+                    new DateTime(2016, 11, 10),
+                    new DateTime(2016, 11, 15),
+                    company1,
+                    "נושא 8" + @LoremTiny,
+                    "תיאור 8" + @LoremShort);
 
                 #endregion
 
@@ -190,7 +594,7 @@ namespace Stakeholders.Web.Data
                 var taskObserverUser6 = context.CreateTaskObserverUsers(task6, user2);
                 var taskObserverUser7 = context.CreateTaskObserverUsers(task6, user3);
 
-                #endregion 
+                #endregion
 
                 #region Stub task contacts
 
@@ -561,24 +965,25 @@ namespace Stakeholders.Web.Data
         /// <returns>ActivityTaskStatus.</returns>
         private static ActivityTaskStatus FindActivityTaskStatusByNameOrCreate(
             this ApplicationDbContext context,
+            string alias,
             string name,
             string nameEn)
         {
             var result =
-                context.ActivityTaskStatuses.FirstOrDefault(it => it.Name == name);
+                context.ActivityTaskStatuses.FirstOrDefault(it => it.Alias == alias);
             if (result == null)
             {
                 result = new ActivityTaskStatus()
                 {
-                    Name = name,
-                    NameEn = nameEn
+                    Alias = alias,
+                    Name = name
                 };
                 context.ActivityTaskStatuses.Add(result);
                 context.SaveChanges();
             }
             else
             {
-                result.NameEn = nameEn;
+                result.Name = name;
                 context.SaveChanges();
             }
             return result;
@@ -756,6 +1161,7 @@ namespace Stakeholders.Web.Data
         /// <returns>ApplicationUser.</returns>
         private static ApplicationUser FindApplicationUserByNameOrCreate(
             this ApplicationDbContext context,
+            string alias,
             string name,
             string title,
             Role role,
@@ -763,7 +1169,7 @@ namespace Stakeholders.Web.Data
         {
             var passwordHash = new PasswordHasher<ApplicationUser>();
 
-            var email = name + "@example.com";
+            var email = alias + "@example.com";
             var result = context.Users.FirstOrDefault(it => it.Name == name);
             if (result == null)
             {

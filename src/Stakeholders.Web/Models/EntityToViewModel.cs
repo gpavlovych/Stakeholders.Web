@@ -112,7 +112,7 @@ namespace Stakeholders.Web.Models
              Enumerable.Empty<long>()).ToArray();
             destination.TasksCompleted =
                 source.Tasks?.Count(
-                    it => string.Equals(it.Task?.Status?.NameEn, "Done", StringComparison.OrdinalIgnoreCase))*100.0/
+                    it => string.Equals(it.Task?.Status?.Alias, "done", StringComparison.OrdinalIgnoreCase))*100.0/
                 source.Tasks.Count();
             destination.Activities = source.Tasks.SelectMany(it => it.Task.Activities).Distinct().Count();
             destination.DisplayName = destination.NameF + " " + destination.NameL;
@@ -128,10 +128,10 @@ namespace Stakeholders.Web.Models
             var totalCount = source.Tasks.Count;
             destination.ValueProcess =
                 source.Tasks.Count(
-                    it => string.Equals(it.Status?.Name, "In Process", StringComparison.OrdinalIgnoreCase));
+                    it => string.Equals(it.Status?.Name, "inprocess", StringComparison.OrdinalIgnoreCase));
             destination.PercentProcess = (destination.ValueProcess*100.0)/totalCount;
             destination.ValueCompleted = source.Tasks.Count(
-                    it => string.Equals(it.Status?.Name, "Done", StringComparison.OrdinalIgnoreCase));
+                    it => string.Equals(it.Status?.Name, "done", StringComparison.OrdinalIgnoreCase));
             destination.PercentCompleted = (destination.ValueCompleted * 100.0) / totalCount;
             destination.ValueReady = totalCount - destination.ValueProcess - destination.ValueCompleted;
             destination.PercentReady = 100.0 - destination.PercentProcess - destination.PercentCompleted;

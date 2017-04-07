@@ -94,8 +94,8 @@
                     <p class="related">
                         <span>{{'RELATED_TO_GOAL' | translate}}: </span><strong>{{ task.goalTitle }}</strong>
                     </p>
-                    <md-button class="{{ task.statusName }}" aria-label="Status" ng-disabled="true">
-                        {{ task.status.name }}
+                    <md-button class="{{ task.statusAlias }}" aria-label="Status" ng-disabled="true">
+                        {{ task.statusName }}
                     </md-button>
                     <div class="showRelated">
                         <div class="deadlinedate">

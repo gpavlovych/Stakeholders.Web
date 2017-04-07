@@ -129,6 +129,12 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         public string StatusName { get; set; }
 
         /// <summary>
+        /// Gets or sets the alias of the status.
+        /// </summary>
+        /// <value>The alias of the status.</value>
+        public string StatusAlias { get; set; }
+
+        /// <summary>
         /// Gets or sets the success factor.
         /// </summary>
         /// <value>The success factor.</value>

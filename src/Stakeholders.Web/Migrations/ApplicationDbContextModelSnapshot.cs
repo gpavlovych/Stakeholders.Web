@@ -1,35 +1,15 @@
-﻿// ***********************************************************************
-// Assembly         : Stakeholders.Web
-// Author           : George
-// Created          : 04-07-2017
-//
-// Last Modified By : George
-// Last Modified On : 04-07-2017
-// ***********************************************************************
-// <copyright file="ApplicationDbContextModelSnapshot.cs" company="">
-//     Copyright (c) . All rights reserved.
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-using System;
+﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Stakeholders.Web.Data;
 
 namespace Stakeholders.Web.Migrations
 {
-    /// <summary>
-    /// Class ApplicationDbContextModelSnapshot.
-    /// </summary>
-    /// <seealso cref="Microsoft.EntityFrameworkCore.Infrastructure.ModelSnapshot" />
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <summary>
-        /// Builds the model.
-        /// </summary>
-        /// <param name="modelBuilder">The model builder.</param>
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
@@ -281,9 +261,9 @@ namespace Stakeholders.Web.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Alias");
 
-                    b.Property<string>("NameEn");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 

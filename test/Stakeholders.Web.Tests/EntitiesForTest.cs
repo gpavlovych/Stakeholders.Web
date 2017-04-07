@@ -374,7 +374,7 @@ namespace Stakeholders.Web.Tests
             {
                 Id = this.CreateInt(),
                 Name = this.CreateString(),
-                NameEn = this.CreateString()
+                Alias = this.CreateString()
             };
         }
 
@@ -515,7 +515,7 @@ namespace Stakeholders.Web.Tests
             {
                 Id = this.CreateInt(),
                 Name = this.CreateString(),
-                NameEn = this.CreateString()
+                Alias = this.CreateString()
             };
         }
 

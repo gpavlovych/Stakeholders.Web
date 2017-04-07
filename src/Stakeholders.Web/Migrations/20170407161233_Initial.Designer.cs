@@ -8,7 +8,7 @@ using Stakeholders.Web.Data;
 namespace Stakeholders.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170407113947_Initial")]
+    [Migration("20170407161233_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,9 +262,9 @@ namespace Stakeholders.Web.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Alias");
 
-                    b.Property<string>("NameEn");
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 

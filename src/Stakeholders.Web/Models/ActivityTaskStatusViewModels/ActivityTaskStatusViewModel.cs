@@ -27,9 +27,9 @@ namespace Stakeholders.Web.Models.ActivityTaskStatusViewModels
         /// <value>The name.</value>
         public string Name { get; set; }
         /// <summary>
-        /// Gets or sets the name en.
+        /// Gets or sets the alias.
         /// </summary>
         /// <value>The name en.</value>
-        public string NameEn { get; set; }
+        public string Alias { get; set; }
     }
 }
