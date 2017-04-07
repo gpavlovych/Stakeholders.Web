@@ -36,15 +36,11 @@
                 <input type="text" placeholder="{{'TITLE' | translate}}" ng-model="editedContact.title" />
                 <div class="statusList">
                     <h3>{{'ORGANIZATION' | translate}}</h3>
-                    <div dropdown-select="editedContactOrganizations" dropdown-model="editedContact.organization" dropdown-item-label="name"></div>
-                </div>
-                <div class="statusList">
-                    <h3>{{'OWNER' | translate}}</h3>
-                    <div dropdown-select="editedContactUsers" dropdown-model="editedContact.user" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="editedContact.organizationId" dropdown-item-label="name"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'COMPANY' | translate}}</h3>
-                    <div dropdown-select="editedContactCompanies" dropdown-model="editedContact.company" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedContact.companyId" dropdown-item-label="name"></div>
                 </div>
                 <input type="text" placeholder="{{'PHONE' | translate}}" ng-model="editedContact.phone" />
                 <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedContact.email" />
@@ -62,7 +58,8 @@
         </div>
         <div class="colRight">
             <div class="statusList">
-                <div dropdown-select="ddSelectOptionsOwner" dropdown-model="ddSelectSelectedOwner" dropdown-item-label="text"></div>
+                <h3>{{'OWNER' | translate}}</h3>
+                <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedContact.userId" dropdown-item-label="name"></div>
             </div>
             <textarea placeholder="{{'COMMENT' | translate}}" ng-model="editedContact.comments"></textarea>
         </div>
@@ -88,7 +85,7 @@
                     </div>
                     <div class="statsResult">
                         <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ contact.tasksCompleted }}%</strong></p>
-                        <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>TODO{{ contact.activities }}</strong></p>
+                        <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ contact.activities }}</strong></p>
                     </div>
                     <div class="bottomFooter">
                         <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeContact(contact.id);">
@@ -162,8 +159,8 @@
                         <td>{{ contact.nameF }}</td>
                         <td>{{ contact.nameL }}</td>
                         <td>{{ contact.title }}</td>
-                        <td>{{ contact.organization.name }}</td>
-                        <td>{{ contact.user.title }} {{ contact.user.name }}</td>
+                        <td>{{ contact.organizationName }}</td>
+                        <td>{{ contact.userName }}, {{ contact.userTitle }}</td>
                         <td>{{ contact.phone }}</td>
                         <td>{{ contact.email }}</td>
                         <td>{{ contact.tasksCompleted }}</td>

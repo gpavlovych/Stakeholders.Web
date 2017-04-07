@@ -1,84 +1,94 @@
 <div class="dashboardContent users" ng-cloak>
-      <h1>{{'USERS' | translate}}</h1>
-      <div class="blockFilters">
-            <form class="formSearch">
-                  <div class="form-group">
-                        <div class="input-group">
-                              <input type="text" class="form-control" ng-model="search">
-                              <md-icon md-svg-src="/images/magnify.svg"></md-icon>
-                        </div>
-                  </div>
-            </form>
+    <h1>{{'USERS' | translate}}</h1>
+    <div class="blockFilters">
+        <form class="formSearch">
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="search">
+                    <md-icon md-svg-src="/images/magnify.svg"></md-icon>
+                </div>
+            </div>
+        </form>
 
-            <dial-control></dial-control>
+        <dial-control></dial-control>
     </div>
 
-  
+
     <activity-form></activity-form>
     <task-form></task-form>
 
     <div class="editorPanel" ng-show="editedUser!=null">
-          <span class="closeModal" id="toggleFilterUsersEdit" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
-            <div class="colLeft">
-                  <div class="formEditor">
-                        <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedUser.name"/>
-                        <input type="text" placeholder="{{'TITLE' | translate}}" ng-model="editedUser.title"/>
-                  </div>
+        <span class="closeModal" id="toggleFilterUsersEdit" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
+        <div class="colLeft">
+            <div class="formEditor">
+                <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedUser.name" />
+                <input type="text" placeholder="{{'TITLE' | translate}}" ng-model="editedUser.title" />
+                <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedUser.email" />
+                <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="editedUser.password" />
+                <div class="statusList">
+                    <h3>{{'STATUS' | translate}}</h3>
+                    <div dropdown-select dropdown-url="/api/Roles" dropdown-value="editedUser.roleId" dropdown-item-label="name"></div>
+                </div>
+                <div class="statusList">
+                    <h3>{{'STATUS' | translate}}</h3>
+                    <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedUser.companyId" dropdown-item-label="name"></div>
+                </div>
             </div>
-            <p class="saveBlock">
-                <button class="btnCancel" id="toggleFilterUsersEdit" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
-                <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
-            </p>
-      </div>
-      <div class="usersResult">
-            <div class="tableList">
-                  <table class="table table-bordered table-striped">
-                        <thead>
-                              <tr>
-                                    <th>
-                                          <a class="tagcolor" href="#" ng-click="orderByField='nameField'; reverseSort = !reverseSort">
-                                                {{'NAME' | translate}} <span ng-show="orderByField == 'nameField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='titleField'; reverseSort = !reverseSort">
-                                                {{'TITLE' | translate}} <span ng-show="orderByField == 'titleField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='roleField'; reverseSort = !reverseSort">
-                                                {{'ROLE' | translate}} <span ng-show="orderByField == 'roleField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#" ng-click="orderByField='companyField'; reverseSort = !reverseSort">
-                                                {{'COMPANY' | translate}} <span ng-show="orderByField == 'companyField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
-                                          </a>
-                                    </th>
-                                    <th>
-                                          <a href="#">
-                                                {{'OPTIONS' | translate}}
-                                          </a>
-                                    </th>
-                              </tr>
-                        </thead>
-                        <tbody ng-scrollbars ng-scrollbars-config="config">
-                              <tr ng-repeat="user in users|orderBy:orderByField:reverseSort">
-                                    <td>{{ user.name }}</td>
-                                    <td>{{ user.title }}</td>
-                                    <td>{{ user.role }}</td>
-                                    <td><span class="brand"><img src="/images/user/john.png" /></span> <span class="companyname">{{ user.company }}</span></td>
-                                    <td>
-                                          <md-button class="md-fab footertrash" aria-label="Trash" ng-click="remover($event, $index);">
-                                                <md-icon md-svg-src="/images/trash.svg"></md-icon>
-                                          </md-button>
-                                        <md-button id="toggleFilterUsersEdit" ng-click="toggleFilterUsersEdit()" class="md-fab footerpen" aria-label="Pen">
-                                            <md-icon md-svg-src="/images/pen.svg"></md-icon>
-                                        </md-button>
-                                    </td>
-                              </tr>
-                        </tbody>
-                  </table>
-            </div>
-      </div>
+        </div>
+        <p class="saveBlock">
+            <button class="btnCancel" id="toggleFilterUsersEdit" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
+            <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
+        </p>
+    </div>
+    <div class="usersResult">
+        <div class="tableList">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <a class="tagcolor" href="#" ng-click="orderByField='nameField'; reverseSort = !reverseSort">
+                                {{'NAME' | translate}} <span ng-show="orderByField == 'nameField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='titleField'; reverseSort = !reverseSort">
+                                {{'TITLE' | translate}} <span ng-show="orderByField == 'titleField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='roleField'; reverseSort = !reverseSort">
+                                {{'ROLE' | translate}} <span ng-show="orderByField == 'roleField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="orderByField='companyField'; reverseSort = !reverseSort">
+                                {{'COMPANY' | translate}} <span ng-show="orderByField == 'companyField'"><span ng-show="reverseSort"><md-icon md-svg-src="/images/up-arrow-triangle-outline.svg"></md-icon></span><span ng-show="!reverseSort"><md-icon md-svg-src="/images/arrow-down-filled-triangle.svg"></md-icon></span></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#">
+                                {{'OPTIONS' | translate}}
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-scrollbars ng-scrollbars-config="config">
+                    <tr ng-repeat="user in users|orderBy:orderByField:reverseSort">
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.title }}</td>
+                        <td>{{ user.roleName }}</td>
+                        <td><span class="brand"><img src="/images/user/john.png" /></span> <span class="companyname">{{ user.companyName }}</span></td>
+                        <td>
+                            <md-button class="md-fab footertrash" aria-label="Trash" ng-click="remover($event, $index);">
+                                <md-icon md-svg-src="/images/trash.svg"></md-icon>
+                            </md-button>
+                            <md-button id="toggleFilterUsersEdit" ng-click="toggleFilterUsersEdit()" class="md-fab footerpen" aria-label="Pen">
+                                <md-icon md-svg-src="/images/pen.svg"></md-icon>
+                            </md-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

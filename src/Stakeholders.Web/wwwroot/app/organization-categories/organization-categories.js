@@ -22,23 +22,12 @@ angular
                 });
         }
     ])
-    .factory('Company', ['$resource',
-        function($resource) {
-            return $resource(
-                '/api/Companies/:id',
-                null,
-                {
-                    'update': { method: 'PUT' }
-                });
-        }
-    ])
     .controller('organizationCategoriesController',
     [
         '$scope',
         'OrganizationCategory',
-        'Company',
         'dialogService',
-        function ($scope, OrganizationCategory, Company, dialogService) {
+        function ($scope, OrganizationCategory, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
 
@@ -56,13 +45,7 @@ angular
 
             $scope.editedOrganizationCategory = null;
             $scope.editOrganizationCategory = function (id) {
-                Company.query(function (result) {
-                    $scope.editedOrganizationCategoryCompanies = result;
-                });
                 OrganizationCategory.get({ id: id }, function (category) {
-                    Company.get({ id: category.companyId }, function (company) {
-                        category.company = company;
-                    });
                     $scope.editedOrganizationCategory = category;
                 });
             };
@@ -74,10 +57,6 @@ angular
             $scope.saveEditor = function (event) {
                 dialogService.showConfirmationSaveDialog(event,
                     function () {
-                        $scope.editedOrganizationCategory.companyId =
-                            $scope.editedOrganizationCategory.company != null
-                            ? $scope.editedOrganizationCategory.company.id
-                            : null;
                         $scope.editedOrganizationCategory.$update({ id: $scope.editedOrganizationCategory.id },
                             function () {
                                 dialogService.showMessageSavedDialog(event, null);

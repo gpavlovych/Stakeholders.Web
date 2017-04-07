@@ -19,7 +19,7 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
     /// Class ApplicationUserViewModel.
     /// </summary>
     /// <seealso cref="Stakeholders.Web.Models.Base.ViewModelBase" />
-    public class ApplicationUserViewModel: ViewModelBase
+    public class ApplicationUserViewModel : ViewModelBase
     {
         /// <summary>
         /// Gets or sets the name.
@@ -32,6 +32,8 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
         /// </summary>
         /// <value>The title.</value>
         public string Title { get; set; }
+
+        public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets the company identifier.

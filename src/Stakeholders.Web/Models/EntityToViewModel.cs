@@ -111,8 +111,10 @@ namespace Stakeholders.Web.Models
              Enumerable.Empty<long>()).ToArray();
             destination.TasksCompleted =
                 source.Tasks?.Count(
-                    it => string.Equals(it.Task?.Status?.NameEn, "Done", StringComparison.OrdinalIgnoreCase));
+                    it => string.Equals(it.Task?.Status?.NameEn, "Done", StringComparison.OrdinalIgnoreCase))*100.0/
+                source.Tasks.Count();
             destination.Activities = source.Tasks.SelectMany(it => it.Task.Activities).Distinct().Count();
+            destination.DisplayName = destination.NameF + " " + destination.NameL;
         }
 
         public void Process(Goal source, GoalViewModel destination)

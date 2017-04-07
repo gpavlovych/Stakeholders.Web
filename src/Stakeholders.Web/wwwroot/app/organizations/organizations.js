@@ -64,23 +64,14 @@ angular
     [
         '$scope',
         'Organization',
-        'OrganizationType',
-        'OrganizationCategory',
-        'User',
         'dialogService',
-        function ($scope, Organization, OrganizationType, OrganizationCategory, User, dialogService) {
+        function ($scope, Organization, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
 
             function refresh() {
                 Organization.query({ start: 0, count: 10, search: $scope.search },
                     function (organizations) {
-                        for (var index = 0; index < organizations.length; index++) {
-                            var organization = organizations[index];
-                            organization.type = OrganizationType.get({ id: organization.typeId });
-                            organization.category = OrganizationCategory.get({ id: organization.categoryId });
-                            organization.user = User.get({ id: organization.userId });
-                        }
                         $scope.organizations = organizations;
                     });
             }
@@ -91,32 +82,8 @@ angular
             };
 
             $scope.editOrganization = function (id) {
-                OrganizationCategory.query(function(result) {
-                    $scope.editedOrganizationCategories = result;
-                });
-                OrganizationType.query(function (result) {
-                    $scope.editedOrganizationTypes = result;
-                });
-                User.query(function (result) {
-                    $scope.editedOrganizationUsers = result;
-                });
-
                  Organization.get({ id: id },
                     function(organization) {
-                        OrganizationCategory
-                            .get({ id: organization.categoryId },
-                                function(category) {
-                                    organization.category = category;
-                                });
-                        OrganizationType
-                            .get({ id: organization.typeId },
-                                function(type) {
-                                    organization.type = type;
-                                });
-                        User.get({ id: organization.userId },
-                            function (user) {
-                                organization.user = user;
-                            });
                         $scope.editedOrganization = organization;
                     });
             };
@@ -128,18 +95,6 @@ angular
             $scope.saveEditor = function(event) {
                 dialogService.showConfirmationSaveDialog(event,
                     function() {
-                        $scope.editedOrganization.categoryId =
-                             $scope.editedOrganization.category != null
-                            ? $scope.editedOrganization.category.id
-                            : null;
-                        $scope.editedOrganization.typeId =
-                           $scope.editedOrganization.type != null
-                            ? $scope.editedOrganization.type.id
-                            : null;
-                        $scope.editedOrganization.userId =
-                            $scope.editedOrganization.user != null
-                            ? $scope.editedOrganization.user.id
-                            : null;
                         $scope.editedOrganization.$update({ id: $scope.editedOrganization.id },
                             function() {
                                 dialogService.showMessageSavedDialog(event, null);

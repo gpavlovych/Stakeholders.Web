@@ -26,11 +26,11 @@
                 <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedTask.description" />
                 <div class="statusList">
                     <h3>{{'STATUS' | translate}}</h3>
-                    <div dropdown-select="editedTaskStatuses" dropdown-model="editedTask.status" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/ActivityTaskStatuses" dropdown-value="$ctrl.task.statusId" dropdown-item-label="name"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'GOAL' | translate}}</h3>
-                    <div dropdown-select="editedTaskGoals" dropdown-model="editedTask.goal" dropdown-item-label="title"></div>
+                    <div dropdown-select dropdown-url="/api/Goals" dropdown-value="$ctrl.task.goalId" dropdown-item-label="title"></div>
                 </div>
                 <div class="relatedOrganizations">
                     <h3>{{'RELATED_ORGANIZATIONS' | translate}}</h3>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="relatedContacts">
                     <h3>{{'RELATED_CONTACTS' | translate}}</h3>
-                    <md-chips-select ng-model="editedTaskSelectedContacts" select-items="editedTaskContacts" main-title="nameF nameL"></md-chips-select>
+                    <md-chips-select ng-model="editedTaskSelectedContacts" select-items="editedTaskContacts" main-title="displayName"></md-chips-select>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="statusList">
                 {{'OWNER' | translate}}
-                <div dropdown-select="editedTaskUsers" dropdown-model="editedTask.user" dropdown-item-label="name"></div>
+                <div dropdown-select dropdown-url="/api/ActivityUsers" dropdown-model="$ctrl.task.assignToId" dropdown-item-label="name"></div>
             </div>
             <!--<div class="attached" ng-controller="fileControllerTask">
             <div class="fileinput" id="attachedTask">
@@ -92,9 +92,9 @@
                         {{ task.description }}
                     </p>
                     <p class="related">
-                        <span>{{'RELATED_TO_GOAL' | translate}}: </span><strong>{{ task.goal.title }}</strong>
+                        <span>{{'RELATED_TO_GOAL' | translate}}: </span><strong>{{ task.goalTitle }}</strong>
                     </p>
-                    <md-button class="{{ task.status.name }}" aria-label="Status" ng-disabled="true">
+                    <md-button class="{{ task.statusName }}" aria-label="Status" ng-disabled="true">
                         {{ task.status.name }}
                     </md-button>
                     <div class="showRelated">

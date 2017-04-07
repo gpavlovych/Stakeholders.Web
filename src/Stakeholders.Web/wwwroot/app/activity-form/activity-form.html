@@ -6,26 +6,26 @@
             <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="$ctrl.activity.description" />
             <div class="statusList">
                 <h3>{{'TYPE' | translate}}</h3>
-                <div dropdown-select="$ctrl.types" dropdown-model="$ctrl.selectedType" dropdown-item-label="name"></div>
+                <div dropdown-select dropdown-url="/api/ActivityTypes" dropdown-value="$ctrl.activity.typeId" dropdown-item-label="name"></div>
             </div>
             <div class="statusList">
                 <h3>{{'RELATED_TASK' | translate}}</h3>
-                <div dropdown-select="$ctrl.tasks" dropdown-model="$ctrl.selectedTask" dropdown-item-label="subject"></div>
+                <div dropdown-select dropdown-url="/api/ActivityTasks"  dropdown-value="$ctrl.activity.taskId" dropdown-item-label="subject"></div>
             </div>
             <div class="statusList">
                 <h3>{{'RELATED_USER' | translate}}</h3>
-                <div dropdown-select="$ctrl.users" dropdown-model="$ctrl.selectedUser" dropdown-item-label="name"></div>
+                <div dropdown-select dropdown-url="/api/ApplicationUsers"  dropdown-value="$ctrl.activity.userId" dropdown-item-label="name"></div>
             </div>
         </div>
     </div>
     <div class="colRight">
         <div class="statusList">
             <h3>{{'RELATED_COMPANY' | translate}}</h3>
-            <div dropdown-select="$ctrl.companies" dropdown-model="$ctrl.selectedCompany" dropdown-item-label="name"></div>
+            <div dropdown-select dropdown-url="/api/Companies"  dropdown-value="$ctrl.activity.companyId" dropdown-item-label="name"></div>
         </div>
         <div class="statusList">
             <h3>{{'RELATED_CONTACT' | translate}}</h3>
-            <div dropdown-select="$ctrl.contacts" dropdown-model="$ctrl.selectedContact" dropdown-item-label="name"></div>
+            <div dropdown-select dropdown-url="/api/Contacts"  dropdown-value="$ctrl.activity.contactId" dropdown-item-label="displayName"></div>
         </div>
         <div class="relatedOrganizations">
             <h3>{{'OBSERVER_COMPANIES' | translate}}</h3>

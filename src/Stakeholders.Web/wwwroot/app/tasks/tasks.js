@@ -21,22 +21,6 @@ angular
                     'update': { method: 'PUT' }
                 });
         }])
-    .factory('ActivityTaskStatus', ['$resource',
-        function ($resource) {
-            return $resource('/api/ActivityTaskStatuses/:id',
-                        null,
-                        {
-                            'update': { method: 'PUT' }
-                        });
-        }])
-    .factory('User', ['$resource',
-        function ($resource) {
-            return $resource('/api/ApplicationUsers/:id',
-                        null,
-                        {
-                            'update': { method: 'PUT' }
-                        });
-        }])
     .factory('Contact', ['$resource',
         function ($resource) {
             return $resource('/api/Contacts/:id',
@@ -53,33 +37,19 @@ angular
                             'update': { method: 'PUT' }
                         });
         }])
-    .factory('Goal', ['$resource',
-        function ($resource) {
-            return $resource('/api/Goals/:id',
-                        null,
-                        {
-                            'update': { method: 'PUT' }
-                        });
-        }])
     .controller('tasksController', [
             '$scope',
             '$rootScope',
             'ActivityTask',
-            'ActivityTaskStatus', 
-            'User', 
             'Contact', 
             'Organization',
-            'Goal', 
             'dialogService',
         function (
             $scope, 
             $rootScope, 
             ActivityTask, 
-            ActivityTaskStatus, 
-            User, 
             Contact, 
-            Organization, 
-            Goal, 
+            Organization,
             dialogService) {
             
             $scope.search = "";
@@ -88,11 +58,6 @@ angular
             function refresh() {
                 ActivityTask.query({ start: 0, count: 10, search: $scope.search },
                     function (tasks) {
-                        for (var index = 0; index < tasks.length; index++) {
-                            var task = tasks[index];
-                            task.goal = Goal.get({ id: task.goalId });
-                            task.status = ActivityTaskStatus.get({ id: task.statusId });
-                        }
                         $scope.tasks = tasks;
                     });
             }
@@ -106,35 +71,15 @@ angular
             };
 
             $scope.editTask = function (id) {
-                ActivityTaskStatus.query(function (result) {
-                    $scope.editedTaskStatuses = result;
-                });
-                Goal.query(function (result) {
-                    $scope.editedTaskGoals = result;
-                });
                 Organization.query(function (result) {
                     $scope.editedTaskOrganizations = result;
                 });
                 Contact.query(function (result) {
                     $scope.editedTaskContacts = result;
                 });
-                User.query(function (result) {
-                    $scope.editedTaskUsers = result;
-                });
+               
                 ActivityTask.get({ id: id },
                    function (task) {
-                       ActivityTaskStatus.get({ id: task.statusId },
-                               function (status) {
-                                   task.status = status;
-                               });
-                       Goal.get({ id: task.goalId },
-                               function (goal) {
-                                   task.goal = goal;
-                               });
-                       User.get({ id: task.userId },
-                           function (user) {
-                               task.user = user;
-                           });
                        task.dateEndDate = Date.parse(task.dateEnd);
                        task.dateDeadlineDate = Date.parse(task.dateDeadline);
                        $scope.editedTaskSelectedOrganizations = [];
@@ -171,18 +116,7 @@ angular
                     function () {
                         $scope.editedTask.dateEnd = $scope.editedTask.dateEndDate.toISOString();
                         $scope.editedTask.dateDeadline = $scope.editedTask.dateDeadlineDate.toISOString();
-                        $scope.editedTask.statusId =
-                                                  $scope.editedTask.status != null
-                                                 ? $scope.editedTask.status.id
-                                                 : null;
-                        $scope.editedTask.goalId =
-                           $scope.editedTask.goal != null
-                            ? $scope.editedTask.goal.id
-                            : null;
-                        $scope.editedTask.userId =
-                            $scope.editedTask.user != null
-                            ? $scope.editedTask.user.id
-                            : null;
+                       
                         if ($scope.editedTaskSelectedObserverUsers != null) {
                             $scope.editedTask.observerUserIds = [];
                             for (var index = 0; index < $scope.editedTaskSelectedObserverUsers.length; index++) {
@@ -214,7 +148,7 @@ angular
             $scope.removeTask = function (id) {
                 dialogService.showConfirmationDeleteDialog(null,
                     function () {
-                        $scope.editedTask.$remove({ id: id },
+                        ActivityTask.delete({ id: id },
                             function () {
                                 refresh();
                             });

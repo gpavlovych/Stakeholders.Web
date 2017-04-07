@@ -109,7 +109,7 @@ angular
         'Company',
         'User',
         'dialogService',
-        function ($scope, $rootScope, Activity, ActivityType, Company, Contact, ActivityTask, Goal, User, dialogService) {
+        function ($scope, $rootScope, Activity, Company, User, dialogService) {
             function refresh() {
                 Activity.query()
                     .$promise

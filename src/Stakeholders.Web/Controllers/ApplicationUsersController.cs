@@ -44,11 +44,17 @@ namespace Stakeholders.Web.Controllers
 
         private readonly IApplicationUserManager userManager;
 
+        private readonly IRepository<Role> roleRepository;
+
+        private readonly IRepository<Company> companyRepository;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationUsersController" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
+        /// <param name="roleRepository">The role repository.</param>
         /// <param name="mapper">The mapper.</param>
+        /// <param name="companyRepository">The company repository.</param>
         /// <exception cref="System.ArgumentNullException">repository
         /// or
         /// mapper</exception>
@@ -57,6 +63,8 @@ namespace Stakeholders.Web.Controllers
         /// mapper</exception>
         public ApplicationUsersController(
             IRepository<ApplicationUser> repository,
+            IRepository<Company> companyRepository,
+            IRepository<Role> roleRepository,
             IMapper mapper,
             IApplicationUserManager userManager)
         {
@@ -73,6 +81,8 @@ namespace Stakeholders.Web.Controllers
             this.repository = repository;
             this.mapper = mapper;
             this.userManager = userManager;
+            this.roleRepository = roleRepository;
+            this.companyRepository = companyRepository;
         }
 
         // GET: api/ApplicationUsers
@@ -174,6 +184,15 @@ namespace Stakeholders.Web.Controllers
             try
             {
                 await this.userManager.CreateAsync(entity, model.Password);
+                if (model.CompanyId != null)
+                {
+                    entity.Company = this.companyRepository.FindById(model.CompanyId.Value);
+                }
+
+                if (model.RoleId != null)
+                {
+                    entity.Role = this.roleRepository.FindById(model.RoleId.Value);
+                }
 
                 return this.CreatedAtAction(
                     "GetApplicationUser",

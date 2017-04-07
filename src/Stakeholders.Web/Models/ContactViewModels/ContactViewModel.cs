@@ -93,8 +93,10 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// <value>The task ids.</value>
         public long[] TaskIds { get; set; }
 
-        public int? TasksCompleted { get; set; }
+        public double? TasksCompleted { get; set; }
 
         public int Activities { get; set; }
+
+        public string DisplayName { get; set; }
     }
 }

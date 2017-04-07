@@ -42,5 +42,9 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
         /// </summary>
         /// <value>The password.</value>
         public string Password { get; set; }
+
+        public long? RoleId { get; set; }
+
+        public long? CompanyId { get; set; }
     }
 }

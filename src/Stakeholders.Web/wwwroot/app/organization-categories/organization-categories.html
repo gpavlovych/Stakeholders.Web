@@ -20,9 +20,9 @@
                         <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedOrganizationCategory.name"/>
                       <div class="statusList">
                           <h3>{{'ORGANIZATION' | translate}}</h3>
-                          <div dropdown-select="editedOrganizationCategoryCompanies" dropdown-model="editedOrganizationCategory.company" dropdown-item-label="name"></div>
+                          <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="editedOrganizationCategory.id" dropdown-item-label="name"></div>
                       </div>
-                      <!--<div class="photoBrands">
+                      <div class="photoBrands">
                               <h3>{{'LOGO' | translate}}</h3>
                               <div class="photo">
                                     <span class="brandImage">
@@ -33,7 +33,7 @@
                                     </md-button>
                                     <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_ICON' | translate}}</button>
                               </div>
-                        </div>-->
+                        </div>
                         <textarea placeholder="{{'INFLUENCING' | translate}}" ng-model="editedOrganizationCategory.influencing"></textarea>
                         <textarea placeholder="{{'INFLUENCED_BY' | translate}}" ng-model="editedOrganizationCategory.influencedBy"></textarea>
                   </div>
@@ -85,7 +85,7 @@
                                     <td>{{ organizationCategory.name }}</td>
                                     <td>{{ organizationCategory.influencing }}</td>
                                     <td>{{ organizationCategory.influencedBy }}</td>
-                                    <td><span class="brand"><img src="{{ organizationCategory.company.logoUrl }}" /></span> <span class="companyname">{{ organizationCategory.company.name }}</span></td>
+                                    <td><span class="brand"><img src="{{ organizationCategory.iconUrl }}" /></span> <span class="companyname">{{ organizationCategory.companyName }}</span></td>
                                     <td><img src="{{ cat.iconUrl }}" /></td>
                                     <td>
                                           <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeOrganizationCategory(organizationCategory.id)">
