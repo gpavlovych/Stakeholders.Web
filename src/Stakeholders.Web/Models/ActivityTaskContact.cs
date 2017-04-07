@@ -1,10 +1,10 @@
 ﻿// ***********************************************************************
-// Assembly         : 
+// Assembly         : Stakeholders.Web
 // Author           : George
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-19-2017
+// Last Modified On : 04-04-2017
 // ***********************************************************************
 // <copyright file="ActivityTaskContact.cs" company="">
 //     Copyright (c) . All rights reserved.

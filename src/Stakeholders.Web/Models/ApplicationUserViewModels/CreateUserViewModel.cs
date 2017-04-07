@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="CreateUserViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -43,8 +43,16 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
         /// <value>The password.</value>
         public string Password { get; set; }
 
+        /// <summary>
+        /// Gets or sets the role identifier.
+        /// </summary>
+        /// <value>The role identifier.</value>
         public long? RoleId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the company identifier.
+        /// </summary>
+        /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
     }
 }

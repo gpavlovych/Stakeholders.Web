@@ -1,10 +1,10 @@
 ﻿// ***********************************************************************
-// Assembly         : 
+// Assembly         : Stakeholders.Web
 // Author           : George
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-21-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ApplicationDbContextExtensions.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -12,7 +12,6 @@
 // <summary></summary>
 // ***********************************************************************
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -254,6 +253,13 @@ namespace Stakeholders.Web.Data
             return !total.Except(applied).Any();
         }
 
+        /// <summary>
+        /// Creates the task organizations.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="task">The task.</param>
+        /// <param name="organization">The organization.</param>
+        /// <returns>ActivityTaskOrganization.</returns>
         private static ActivityTaskOrganization CreateTaskOrganizations(
             this ApplicationDbContext context,
             ActivityTask task,
@@ -275,6 +281,13 @@ namespace Stakeholders.Web.Data
             return result;
         }
 
+        /// <summary>
+        /// Creates the activity observer users.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="activity">The activity.</param>
+        /// <param name="user">The user.</param>
+        /// <returns>ActivityObserverUser.</returns>
         private static ActivityObserverUser CreateActivityObserverUsers(
           this ApplicationDbContext context,
           Activity activity,
@@ -295,6 +308,13 @@ namespace Stakeholders.Web.Data
             return result;
         }
 
+        /// <summary>
+        /// Creates the activity observer companies.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="activity">The activity.</param>
+        /// <param name="company">The company.</param>
+        /// <returns>ActivityObserverCompany.</returns>
         private static ActivityObserverCompany CreateActivityObserverCompanies(
           this ApplicationDbContext context,
           Activity activity,
@@ -315,6 +335,13 @@ namespace Stakeholders.Web.Data
             return result;
         }
 
+        /// <summary>
+        /// Creates the task observer users.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="task">The task.</param>
+        /// <param name="user">The user.</param>
+        /// <returns>ActivityTaskObserverUser.</returns>
         private static ActivityTaskObserverUser CreateTaskObserverUsers(
             this ApplicationDbContext context,
             ActivityTask task,
@@ -335,6 +362,13 @@ namespace Stakeholders.Web.Data
             return result;
         }
 
+        /// <summary>
+        /// Creates the task contacts.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="task">The task.</param>
+        /// <param name="contact">The contact.</param>
+        /// <returns>ActivityTaskContact.</returns>
         private static ActivityTaskContact CreateTaskContacts(
            this ApplicationDbContext context,
            ActivityTask task,
@@ -359,14 +393,15 @@ namespace Stakeholders.Web.Data
         /// Finds the activity by subject or create.
         /// </summary>
         /// <param name="context">The context.</param>
-        /// <param name="subject">The subject.</param>
-        /// <param name="company">The company.</param>
-        /// <param name="task">The task.</param>
-        /// <param name="activityType">Type of the activity.</param>
         /// <param name="contact">The contact.</param>
         /// <param name="user">The user.</param>
-        /// <param name="activityObserverUsers">The activity observer users.</param>
-        /// <param name="activityObserverCompanies">The activity observer companies.</param>
+        /// <param name="activityType">Type of the activity.</param>
+        /// <param name="task">The task.</param>
+        /// <param name="dateActivity">The date activity.</param>
+        /// <param name="dateCreated">The date created.</param>
+        /// <param name="company">The company.</param>
+        /// <param name="subject">The subject.</param>
+        /// <param name="description">The description.</param>
         /// <returns>Activity.</returns>
         private static Activity FindActivityBySubjectOrCreate(
             this ApplicationDbContext context,
@@ -418,11 +453,17 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="subject">The subject.</param>
-        /// <param name="userAssignTo">The user assign to.</param>
-        /// <param name="userCreatedBy">The user created by.</param>
         /// <param name="status">The status.</param>
+        /// <param name="userCreatedBy">The user created by.</param>
+        /// <param name="userAssignTo">The user assign to.</param>
+        /// <param name="isImportant">if set to <c>true</c> [is important].</param>
+        /// <param name="dateDeadline">The date deadline.</param>
+        /// <param name="dateEnd">The date end.</param>
+        /// <param name="dateCreated">The date created.</param>
         /// <param name="goal">The goal.</param>
-        /// <param name="contacts">The contacts.</param>
+        /// <param name="company">The company.</param>
+        /// <param name="successFactor">The success factor.</param>
+        /// <param name="description">The description.</param>
         /// <returns>ActivityTask.</returns>
         private static ActivityTask FindActivityTaskBySubjectOrCreate(
             this ApplicationDbContext context,
@@ -516,6 +557,7 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="name">The name.</param>
+        /// <param name="nameEn">The name en.</param>
         /// <returns>ActivityTaskStatus.</returns>
         private static ActivityTaskStatus FindActivityTaskStatusByNameOrCreate(
             this ApplicationDbContext context,
@@ -548,9 +590,14 @@ namespace Stakeholders.Web.Data
         /// <param name="context">The context.</param>
         /// <param name="nameF">The name f.</param>
         /// <param name="nameL">The name l.</param>
-        /// <param name="user">The user.</param>
-        /// <param name="company">The company.</param>
+        /// <param name="title">The title.</param>
         /// <param name="organization">The organization.</param>
+        /// <param name="phone">The phone.</param>
+        /// <param name="email">The email.</param>
+        /// <param name="photoUrl">The photo URL.</param>
+        /// <param name="user">The user.</param>
+        /// <param name="comments">The comments.</param>
+        /// <param name="company">The company.</param>
         /// <returns>Contact.</returns>
         private static Contact FindContactByNameFAndNameLOrCreate(
             this ApplicationDbContext context,
@@ -592,10 +639,12 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="name">The name.</param>
-        /// <param name="type">The type.</param>
-        /// <param name="company">The company.</param>
         /// <param name="category">The category.</param>
+        /// <param name="type">The type.</param>
         /// <param name="user">The user.</param>
+        /// <param name="company">The company.</param>
+        /// <param name="influencing">The influencing.</param>
+        /// <param name="influencedBy">The influenced by.</param>
         /// <returns>Organization.</returns>
         private static Organization FindOrganizationByNameOrCreate(
             this ApplicationDbContext context,
@@ -665,7 +714,10 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="name">The name.</param>
+        /// <param name="iconUrl">The icon URL.</param>
         /// <param name="company">The company.</param>
+        /// <param name="influencing">The influencing.</param>
+        /// <param name="influencedBy">The influenced by.</param>
         /// <returns>OrganizationCategory.</returns>
         private static OrganizationCategory FindOrganizationCategoryByNameOrCreate(
             this ApplicationDbContext context,
@@ -698,6 +750,7 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="name">The name.</param>
+        /// <param name="title">The title.</param>
         /// <param name="role">The role.</param>
         /// <param name="company">The company.</param>
         /// <returns>ApplicationUser.</returns>
@@ -746,6 +799,14 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="name">The name.</param>
+        /// <param name="companyCode">The company code.</param>
+        /// <param name="logoUrl">The logo URL.</param>
+        /// <param name="address">The address.</param>
+        /// <param name="city">The city.</param>
+        /// <param name="phone">The phone.</param>
+        /// <param name="email">The email.</param>
+        /// <param name="influencing">The influencing.</param>
+        /// <param name="influencedBy">The influenced by.</param>
         /// <returns>Company.</returns>
         private static Company FindCompanyByNameOrCreate(
             this ApplicationDbContext context,
@@ -787,6 +848,7 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="name">The name.</param>
+        /// <param name="nameEn">The name en.</param>
         /// <returns>Role.</returns>
         private static Role FindRoleByNameOrCreate(this ApplicationDbContext context, string name, string nameEn)
         {

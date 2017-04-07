@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ViewModelToEntity.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -124,6 +124,7 @@ namespace Stakeholders.Web.Models
         /// <param name="repositoryOrganizationCategories">The repository organization categories.</param>
         /// <param name="repositoryOrganizations">The repository organizations.</param>
         /// <param name="repositoryRoles">The repository roles.</param>
+        /// <param name="context">The context.</param>
         public ViewModelToEntity(
             IRepository<Activity> repositoryActivities,
             IRepository<ApplicationUser> repositoryUsers,

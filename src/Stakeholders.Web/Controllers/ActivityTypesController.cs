@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ActivityTypesController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -67,6 +67,7 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
+        /// <param name="search">The search.</param>
         /// <returns>ActivityTypeInfoViewModel[].</returns>
         [HttpGet]
         public ActivityTypeViewModel[] GetActivityTypes(int start = 0, int count = 10, string search="")

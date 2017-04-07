@@ -1,5 +1,5 @@
 ﻿// ***********************************************************************
-// Assembly         : 
+// Assembly         : Stakeholders.Web
 // Author           : George
 // Created          : 02-21-2017
 //
@@ -30,7 +30,7 @@ namespace Stakeholders.Web
         private readonly UserManager<ApplicationUser> userManager;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApplicationUserManager"/> class.
+        /// Initializes a new instance of the <see cref="ApplicationUserManager" /> class.
         /// </summary>
         /// <param name="userManager">The user manager.</param>
         public ApplicationUserManager(UserManager<ApplicationUser> userManager)

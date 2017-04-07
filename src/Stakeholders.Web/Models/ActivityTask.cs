@@ -4,7 +4,7 @@
 // Created          : 02-18-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-18-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ActivityTask.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -100,10 +100,22 @@ namespace Stakeholders.Web.Models
         /// <value>The contacts.</value>
         public ICollection<ActivityTaskObserverUser> ObserverUsers { get; set; }
 
+        /// <summary>
+        /// Gets or sets the activities.
+        /// </summary>
+        /// <value>The activities.</value>
         public ICollection<Activity> Activities { get; set; }
 
+        /// <summary>
+        /// Gets or sets the company.
+        /// </summary>
+        /// <value>The company.</value>
         public Company Company { get; set; }
 
+        /// <summary>
+        /// Gets or sets the organizations.
+        /// </summary>
+        /// <value>The organizations.</value>
         public ICollection<ActivityTaskOrganization> Organizations { get; set; }
     }
 }

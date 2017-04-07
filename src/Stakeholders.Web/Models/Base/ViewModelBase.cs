@@ -1,10 +1,10 @@
 ﻿// ***********************************************************************
-// Assembly         : 
+// Assembly         : Stakeholders.Web
 // Author           : George
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 02-21-2017
 // ***********************************************************************
 // <copyright file="ViewModelBase.cs" company="">
 //     Copyright (c) . All rights reserved.

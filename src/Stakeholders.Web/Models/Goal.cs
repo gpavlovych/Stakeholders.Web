@@ -4,7 +4,7 @@
 // Created          : 02-16-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-18-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="Goal.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -28,6 +28,10 @@ namespace Stakeholders.Web.Models
         /// <value>The title.</value>
         public string Title { get; set; }
 
+        /// <summary>
+        /// Gets or sets the tasks.
+        /// </summary>
+        /// <value>The tasks.</value>
         public ICollection<ActivityTask> Tasks { get; set; }
     }
 }

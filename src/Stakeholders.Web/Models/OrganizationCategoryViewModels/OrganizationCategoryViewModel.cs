@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="OrganizationCategoryViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -18,6 +18,7 @@ namespace Stakeholders.Web.Models.OrganizationCategoryViewModels
     /// <summary>
     /// Class OrganizationCategoryViewModel.
     /// </summary>
+    /// <seealso cref="Stakeholders.Web.Models.Base.ViewModelBase" />
     public class OrganizationCategoryViewModel: ViewModelBase
     {
         /// <summary>
@@ -50,6 +51,10 @@ namespace Stakeholders.Web.Models.OrganizationCategoryViewModels
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the company.
+        /// </summary>
+        /// <value>The name of the company.</value>
         public string CompanyName { get; set; }
     }
 }

@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="IDataSource.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -42,7 +42,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RoleDataSource"/> class.
+        /// Initializes a new instance of the <see cref="RoleDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public RoleDataSource(ApplicationDbContext context)
@@ -72,7 +72,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrganizationCategoryDataSource"/> class.
+        /// Initializes a new instance of the <see cref="OrganizationCategoryDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public OrganizationCategoryDataSource(ApplicationDbContext context)
@@ -103,7 +103,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrganizationDataSource"/> class.
+        /// Initializes a new instance of the <see cref="OrganizationDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public OrganizationDataSource(ApplicationDbContext context)
@@ -139,7 +139,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GoalDataSource"/> class.
+        /// Initializes a new instance of the <see cref="GoalDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public GoalDataSource(ApplicationDbContext context)
@@ -171,7 +171,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ActivityTaskStatusDataSource"/> class.
+        /// Initializes a new instance of the <see cref="ActivityTaskStatusDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public ActivityTaskStatusDataSource(ApplicationDbContext context)
@@ -201,7 +201,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContactDataSource"/> class.
+        /// Initializes a new instance of the <see cref="ContactDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public ContactDataSource(ApplicationDbContext context)
@@ -240,7 +240,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrganizationTypeDataSource"/> class.
+        /// Initializes a new instance of the <see cref="OrganizationTypeDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public OrganizationTypeDataSource(ApplicationDbContext context)
@@ -270,7 +270,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ActivityDataSource"/> class.
+        /// Initializes a new instance of the <see cref="ActivityDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public ActivityDataSource(ApplicationDbContext context)
@@ -310,7 +310,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ActivityTaskDataSource"/> class.
+        /// Initializes a new instance of the <see cref="ActivityTaskDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public ActivityTaskDataSource(ApplicationDbContext context)
@@ -350,7 +350,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CompanyDataSource"/> class.
+        /// Initializes a new instance of the <see cref="CompanyDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public CompanyDataSource(ApplicationDbContext context)
@@ -382,7 +382,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ActivityTypeDataSource"/> class.
+        /// Initializes a new instance of the <see cref="ActivityTypeDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public ActivityTypeDataSource(ApplicationDbContext context)
@@ -412,7 +412,7 @@ namespace Stakeholders.Web.Data
         private readonly ApplicationDbContext context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApplicationUserDataSource"/> class.
+        /// Initializes a new instance of the <see cref="ApplicationUserDataSource" /> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public ApplicationUserDataSource(ApplicationDbContext context)

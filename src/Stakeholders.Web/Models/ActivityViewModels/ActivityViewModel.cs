@@ -1,10 +1,10 @@
 // ***********************************************************************
-// Assembly         : 
+// Assembly         : Stakeholders.Web
 // Author           : George
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ActivityViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -28,6 +28,10 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// <value>The task identifier.</value>
         public long? TaskId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the task subject.
+        /// </summary>
+        /// <value>The task subject.</value>
         public string TaskSubject { get; set; }
 
         /// <summary>
@@ -36,6 +40,10 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the company.
+        /// </summary>
+        /// <value>The name of the company.</value>
         public string CompanyName { get; set; }
 
         /// <summary>
@@ -73,7 +81,7 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// </summary>
         /// <value>The observer user ids.</value>
         public long[] ObserverUserIds { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the subject.
         /// </summary>
@@ -86,6 +94,10 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// <value>The type identifier.</value>
         public long? TypeId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the type.
+        /// </summary>
+        /// <value>The name of the type.</value>
         public string TypeName { get; set; }
 
         /// <summary>
@@ -94,16 +106,40 @@ namespace Stakeholders.Web.Models.ActivityViewModels
         /// <value>The user identifier.</value>
         public long? UserId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
+        /// <value>The name of the user.</value>
         public string UserName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the user title.
+        /// </summary>
+        /// <value>The user title.</value>
         public string UserTitle { get; set; }
 
+        /// <summary>
+        /// Gets or sets the contact name f.
+        /// </summary>
+        /// <value>The contact name f.</value>
         public string ContactNameF { get; set; }
 
+        /// <summary>
+        /// Gets or sets the contact name l.
+        /// </summary>
+        /// <value>The contact name l.</value>
         public string ContactNameL { get; set; }
 
+        /// <summary>
+        /// Gets or sets the related to goal identifier.
+        /// </summary>
+        /// <value>The related to goal identifier.</value>
         public long? RelatedToGoalId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the related to goal title.
+        /// </summary>
+        /// <value>The related to goal title.</value>
         public string RelatedToGoalTitle { get; set; }
     }
 }

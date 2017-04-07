@@ -100,6 +100,10 @@ namespace Stakeholders.Web.Data
         /// <value>The activity task contacts.</value>
         public DbSet<ActivityTaskContact> ActivityTaskContacts { get; set; }
 
+        /// <summary>
+        /// Gets or sets the activity task organizations.
+        /// </summary>
+        /// <value>The activity task organizations.</value>
         public DbSet<ActivityTaskOrganization> ActivityTaskOrganizations { get; set; }
 
         /// <summary>

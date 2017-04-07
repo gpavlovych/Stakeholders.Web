@@ -4,7 +4,7 @@
 // Created          : 02-18-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-19-2017
+// Last Modified On : 04-03-2017
 // ***********************************************************************
 // <copyright file="Repository.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -41,6 +41,11 @@ namespace Stakeholders.Web.Data
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="dataSource">The data source.</param>
+        /// <exception cref="ArgumentNullException">
+        /// context
+        /// or
+        /// dataSource
+        /// </exception>
         public Repository(ApplicationDbContext context, IDataSource<T> dataSource)
         {
             if (context == null)
@@ -229,7 +234,7 @@ namespace Stakeholders.Web.Data
         /// <param name="entity">The entity.</param>
         /// <returns>Task.</returns>
         /// <exception cref="ArgumentNullException">entity</exception>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="NotImplementedException">entity</exception>
         public async Task DeleteAsync(T entity)
         {
             if (entity == null)

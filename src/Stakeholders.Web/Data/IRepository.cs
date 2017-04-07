@@ -4,7 +4,7 @@
 // Created          : 02-18-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-19-2017
+// Last Modified On : 04-03-2017
 // ***********************************************************************
 // <copyright file="IRepository.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -69,7 +69,7 @@ namespace Stakeholders.Web.Data
         Task<T> GetByIdAsync(long id);
 
         /// <summary>
-        ///Gets the entity by specified identifier, returning null if no corresponding entity is found.
+        /// Gets the entity by specified identifier, returning null if no corresponding entity is found.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>The entity.</returns>
@@ -92,6 +92,7 @@ namespace Stakeholders.Web.Data
         /// Inserts the specified entity asynchronously.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <returns>Task.</returns>
         Task InsertAsync(T entity);
 
         /// <summary>
@@ -104,6 +105,7 @@ namespace Stakeholders.Web.Data
         /// Updates the specified entity asynchronously.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <returns>Task.</returns>
         Task UpdateAsync(T entity);
 
         /// <summary>
@@ -116,6 +118,7 @@ namespace Stakeholders.Web.Data
         /// Deletes the specified entity asynchronously.
         /// </summary>
         /// <param name="entity">The entity.</param>
+        /// <returns>Task.</returns>
         Task DeleteAsync(T entity);
     }
 }

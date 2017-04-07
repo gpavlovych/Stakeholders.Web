@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="EntitiesForTest.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -159,7 +159,8 @@ namespace Stakeholders.Web.Tests
                 Email = this.CreateString(),
                 Phone = this.CreateString(),
                 CompanyCode = this.CreateString(),
-                LogoUrl = this.CreateString()
+                LogoUrl = this.CreateString(),
+                ObserverActivities = this.CreateCollection(3, ()=>this.CreateActivityObserverCompany())
             };
         }
 
@@ -175,7 +176,10 @@ namespace Stakeholders.Web.Tests
                 Name = this.CreateString(),
                 Role = this.CreateRole(),
                 Title = this.CreateString(),
-                Company = this.CreateCompany()
+                Company = this.CreateCompany(),
+                Email = this.CreateString(),
+                UserName = this.CreateString(),
+                ObserverActivities = this.CreateCollection(3, () => this.CreateActivityObserverUser())
             };
         }
 
@@ -197,18 +201,18 @@ namespace Stakeholders.Web.Tests
         /// Creates the activity observer user company.
         /// </summary>
         /// <param name="activity">The activity.</param>
-        /// <param name="user">The user.</param>
         /// <param name="company">The company.</param>
         /// <returns>ActivityObserverUserCompany.</returns>
         public ActivityObserverCompany CreateActivityObserverCompany(
             Activity activity = null,
-            ApplicationUser user = null,
             Company company = null)
         {
             return new ActivityObserverCompany()
             {
                 Activity = activity,
-                Company = company
+                Company = company,
+                CompanyId = this.CreateInt(),
+                ActivityId = this.CreateInt()
             };
         }
 
@@ -217,12 +221,10 @@ namespace Stakeholders.Web.Tests
         /// </summary>
         /// <param name="activity">The activity.</param>
         /// <param name="user">The user.</param>
-        /// <param name="company">The company.</param>
         /// <returns>ActivityObserverUserCompany.</returns>
         public ActivityObserverUser CreateActivityObserverUser(
             Activity activity = null,
-            ApplicationUser user = null,
-            Company company = null)
+            ApplicationUser user = null)
         {
             return new ActivityObserverUser()
             {
@@ -323,7 +325,25 @@ namespace Stakeholders.Web.Tests
                 IsImportant = this.CreateBool(),
                 Status = this.CreateActivityTaskStatus(),
                 SuccessFactor = this.CreateString(),
-                Contacts = this.CreateCollection(3, () => this.CreateActivityTaskContact(contact: this.CreateContact()))
+                Contacts = this.CreateCollection(3, () => this.CreateActivityTaskContact(contact: this.CreateContact())),
+                Company =this.CreateCompany(),
+                Activities = this.CreateCollection(3, () => this.CreateActivity()),
+                Organizations = this.CreateCollection(3, () => this.CreateActivityTaskOrganization()),
+            };
+        }
+
+        /// <summary>
+        /// Creates the activity task organization.
+        /// </summary>
+        /// <returns>ActivityTaskOrganization.</returns>
+        private ActivityTaskOrganization CreateActivityTaskOrganization()
+        {
+            return new ActivityTaskOrganization()
+            {
+                OrganizationId = this.CreateInt(),
+                Organization = this.CreateOrganization(),
+                Task = this.CreateActivityTask(),
+                TaskId = this.CreateInt()
             };
         }
 
@@ -338,7 +358,9 @@ namespace Stakeholders.Web.Tests
             return new ActivityTaskContact()
             {
                 Contact = contact,
-                Task = task
+                Task = task,
+                ContactId = this.CreateInt(),
+                TaskId = this.CreateInt()
             };
         }
 
@@ -369,7 +391,9 @@ namespace Stakeholders.Web.Tests
             return new ActivityTaskObserverUser()
             {
                 Task = task,
-                User = user
+                User = user,
+                TaskId = this.CreateInt(),
+                UserId = this.CreateInt()
             };
         }
 
@@ -382,7 +406,8 @@ namespace Stakeholders.Web.Tests
             return new Goal()
             {
                 Id = this.CreateInt(),
-                Title = this.CreateString()
+                Title = this.CreateString(),
+                Tasks = this.CreateCollection(3, ()=>this.CreateActivityTask())
             };
         }
 
@@ -435,7 +460,16 @@ namespace Stakeholders.Web.Tests
                 ObserverCompanyIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
                 TaskId = this.CreateInt(),
                 ObserverUserIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
-                UserId = this.CreateInt()
+                UserId = this.CreateInt(),
+                UserName = this.CreateString(),
+                TypeName = this.CreateString(),
+                RelatedToGoalId = this.CreateInt(),
+                CompanyName = this.CreateString(),
+                ContactNameF = this.CreateString(),
+                ContactNameL = this.CreateString(),
+                RelatedToGoalTitle = this.CreateString(),
+                TaskSubject = this.CreateString(),
+                UserTitle = this.CreateString()
             };
         }
 
@@ -460,7 +494,14 @@ namespace Stakeholders.Web.Tests
                 SuccessFactor = this.CreateString(),
                 CreatedById = this.CreateInt(),
                 StatusId = this.CreateInt(),
-                GoalId = this.CreateInt()
+                GoalId = this.CreateInt(),
+                OrganizationIds = this.CreateCollection(3, () => this.CreateInt()).ToArray(),
+                AssignToName = this.CreateString(),
+                AssignToTitle = this.CreateString(),
+                CreatedByName = this.CreateString(),
+                CreatedByTitle = this.CreateString(),
+                GoalTitle = this.CreateString(),
+                StatusName = this.CreateString()
             };
         }
 
@@ -532,7 +573,13 @@ namespace Stakeholders.Web.Tests
                 UserId = this.CreateInt(),
                 Comments = this.CreateString(),
                 PhotoUrl = this.CreateString(),
-                Title = this.CreateString()
+                Title = this.CreateString(),
+                Activities = this.CreateInt(),
+                UserName = this.CreateString(),
+                CompanyName = this.CreateString(),
+                TasksCompleted = this.CreateInt(),
+                DisplayName = this.CreateString(),
+                OrganizationName = this.CreateString()
             };
         }
 
@@ -545,7 +592,13 @@ namespace Stakeholders.Web.Tests
             return new GoalViewModel()
             {
                 Id = this.CreateInt(),
-                Title = this.CreateString()
+                Title = this.CreateString(),
+                PercentCompleted = this.CreateInt(),
+                PercentProcess = this.CreateInt(),
+                PercentReady = this.CreateInt(),
+                ValueCompleted = this.CreateInt(),
+                ValueProcess = this.CreateInt(),
+                ValueReady = this.CreateInt()
             };
         }
 
@@ -564,7 +617,12 @@ namespace Stakeholders.Web.Tests
                 CompanyId = this.CreateInt(),
                 CategoryId = this.CreateInt(),
                 InfluencedBy = this.CreateString(),
-                Influencing = this.CreateString()
+                Influencing = this.CreateString(),
+                UserName = this.CreateString(),
+                CompanyName = this.CreateString(),
+                UserTitle = this.CreateString(),
+                CategoryName = this.CreateString(),
+                TypeType = this.CreateString()
             };
         }
 
@@ -581,7 +639,8 @@ namespace Stakeholders.Web.Tests
                 CompanyId = this.CreateInt(),
                 InfluencedBy = this.CreateString(),
                 Influencing = this.CreateString(),
-                IconUrl = this.CreateString()
+                IconUrl = this.CreateString(),
+                CompanyName = this.CreateString()
             };
         }
 
@@ -599,7 +658,10 @@ namespace Stakeholders.Web.Tests
                 RoleId = this.CreateInt(),
                 Title = this.CreateString(),
                 ObserverTaskIds = this.CreateCollection(3, this.CreateInt).ToArray(),
-                ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
+                ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray(),
+                CompanyName = this.CreateString(),
+                Email = this.CreateString(),
+                RoleName = this.CreateString()
             };
         }
 
@@ -614,7 +676,9 @@ namespace Stakeholders.Web.Tests
                 Name = this.CreateString(),
                 Title = this.CreateString(),
                 Email = this.CreateString(),
-                Password = this.CreateString()
+                Password = this.CreateString(),
+                CompanyId = this.CreateInt(),
+                RoleId = this.CreateInt()
             };
         }
 

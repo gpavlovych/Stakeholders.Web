@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ApplicationUsersControllerTest.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -52,7 +52,20 @@ namespace Stakeholders.Web.Tests.Controllers
         /// </summary>
         private readonly Mock<IMapper> mapperMock;
 
+        /// <summary>
+        /// The user manager mock
+        /// </summary>
         private readonly Mock<IApplicationUserManager> userManagerMock;
+
+        /// <summary>
+        /// The repository role mock
+        /// </summary>
+        private readonly Mock<IRepository<Role>> repositoryRoleMock;
+
+        /// <summary>
+        /// The repository company mock
+        /// </summary>
+        private readonly Mock<IRepository<Company>> repositoryCompanyMock;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationUsersControllerTest" /> class.
@@ -61,11 +74,15 @@ namespace Stakeholders.Web.Tests.Controllers
         {
             this.entitiesForTest = new EntitiesForTest();
             this.repositoryMock = new Mock<IRepository<ApplicationUser>>();
+            this.repositoryCompanyMock = new Mock<IRepository<Company>>();
+            this.repositoryRoleMock = new Mock<IRepository<Role>>();
             this.mapperMock = new Mock<IMapper>();
             this.userManagerMock = new Mock<IApplicationUserManager>();
 
             this.target = new ApplicationUsersController(
                 this.repositoryMock.Object,
+                this.repositoryCompanyMock.Object,
+                this.repositoryRoleMock.Object,
                 this.mapperMock.Object,
                 this.userManagerMock.Object);
         }

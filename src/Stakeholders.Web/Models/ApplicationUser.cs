@@ -4,7 +4,7 @@
 // Created          : 02-16-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-18-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ApplicationUser.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -19,6 +19,7 @@ namespace Stakeholders.Web.Models
     /// <summary>
     /// Class ApplicationUser.
     /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser{System.Int64}" />
     /// <seealso cref="Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUser{int}" />
     /// <seealso cref="Stakeholders.Web.Models.IBaseEntity" />
     public class ApplicationUser : IdentityUser<long>, IBaseEntity

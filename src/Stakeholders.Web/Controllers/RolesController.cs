@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="RolesController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -47,12 +47,10 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="System.ArgumentNullException">
-        /// repository
-        /// or
-        /// mapper
-        /// </exception>
         /// <exception cref="ArgumentNullException">repository
+        /// or
+        /// mapper</exception>
+        /// <exception cref="System.ArgumentNullException">repository
         /// or
         /// mapper</exception>
         public RolesController(
@@ -79,6 +77,7 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
+        /// <param name="search">The search.</param>
         /// <returns>RoleInfoViewModel[].</returns>
         [HttpGet]
         public RoleViewModel[] GetRoles(int start = 0, int count = 10, string search = "")

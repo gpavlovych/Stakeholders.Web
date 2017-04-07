@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-19-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="OrganizationTypesController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -38,6 +38,9 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         private readonly IRepository<OrganizationType> repository;
 
+        /// <summary>
+        /// The mapper
+        /// </summary>
         private readonly IMapper mapper;
 
         /// <summary>
@@ -45,11 +48,9 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">
-        /// repository
+        /// <exception cref="ArgumentNullException">repository
         /// or
-        /// mapper
-        /// </exception>
+        /// mapper</exception>
         public OrganizationTypesController(IRepository<OrganizationType> repository, IMapper mapper)
         {
             if (repository == null)
@@ -72,6 +73,8 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
+        /// <param name="search">The search.</param>
+        /// <returns>OrganizationTypeViewModel[].</returns>
         [HttpGet]
         public OrganizationTypeViewModel[] GetOrganizationTypes(int start = 0, int count = 10,string search = "")
         {
@@ -94,6 +97,7 @@ namespace Stakeholders.Web.Controllers
         /// Gets the type of the organization.
         /// </summary>
         /// <param name="id">The identifier.</param>
+        /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrganizationType([FromRoute] long id)
         {
@@ -118,7 +122,8 @@ namespace Stakeholders.Web.Controllers
         /// Puts the type of the organization.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="organizationType">Type of the organization.</param>
+        /// <param name="model">The model.</param>
+        /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutOrganizationType(
             [FromRoute] long id,
@@ -146,6 +151,7 @@ namespace Stakeholders.Web.Controllers
         /// Posts the type of the organization.
         /// </summary>
         /// <param name="model">The model.</param>
+        /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpPost]
         public async Task<IActionResult> PostOrganizationType([FromBody] OrganizationTypeViewModel model)
         {
@@ -171,6 +177,7 @@ namespace Stakeholders.Web.Controllers
         /// Deletes the type of the organization.
         /// </summary>
         /// <param name="id">The identifier.</param>
+        /// <returns>Task&lt;IActionResult&gt;.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrganizationType([FromRoute] long id)
         {

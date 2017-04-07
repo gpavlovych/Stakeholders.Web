@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ContactViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -45,8 +45,12 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// <value>The organization identifier.</value>
         public long? OrganizationId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the organization.
+        /// </summary>
+        /// <value>The name of the organization.</value>
         public string OrganizationName { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the phone.
         /// </summary>
@@ -71,6 +75,10 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// <value>The user identifier.</value>
         public long? UserId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
+        /// <value>The name of the user.</value>
         public string UserName { get; set; }
 
         /// <summary>
@@ -85,18 +93,34 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// <value>The company identifier.</value>
         public long? CompanyId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the company.
+        /// </summary>
+        /// <value>The name of the company.</value>
         public string CompanyName { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the task ids.
         /// </summary>
         /// <value>The task ids.</value>
         public long[] TaskIds { get; set; }
 
+        /// <summary>
+        /// Gets or sets the tasks completed.
+        /// </summary>
+        /// <value>The tasks completed.</value>
         public double? TasksCompleted { get; set; }
 
-        public int Activities { get; set; }
+        /// <summary>
+        /// Gets or sets the activities.
+        /// </summary>
+        /// <value>The activities.</value>
+        public long Activities { get; set; }
 
+        /// <summary>
+        /// Gets or sets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
         public string DisplayName { get; set; }
     }
 }

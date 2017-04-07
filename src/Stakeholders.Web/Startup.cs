@@ -4,7 +4,7 @@
 // Created          : 02-16-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-18-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="Startup.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -199,6 +199,9 @@ namespace Stakeholders.Web
         // The secret key every token will be signed with.
         // In production, you should store this securely in environment variables
         // or a key management tool. Don't hardcode this into your application!
+        /// <summary>
+        /// The secret key
+        /// </summary>
         private static readonly string secretKey = "mysupersecret_secretkey!123";
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

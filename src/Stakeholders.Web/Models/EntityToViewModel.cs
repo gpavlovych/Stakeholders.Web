@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="EntityToViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -27,6 +27,7 @@ namespace Stakeholders.Web.Models
     /// <summary>
     /// Class EntityToViewModel.
     /// </summary>
+    /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.Goal, Stakeholders.Web.Models.GoalViewModels.GoalViewModel}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.Contact, Stakeholders.Web.Models.ContactViewModels.ContactViewModel}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ApplicationUser, Stakeholders.Web.Models.ApplicationUserViewModels.ApplicationUserViewModel}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.Activity, Stakeholders.Web.Models.ActivityViewModels.ActivityViewModel}" />
@@ -117,6 +118,11 @@ namespace Stakeholders.Web.Models
             destination.DisplayName = destination.NameF + " " + destination.NameL;
         }
 
+        /// <summary>
+        /// Implementors can modify both the source and destination objects
+        /// </summary>
+        /// <param name="source">Source object</param>
+        /// <param name="destination">Destination object</param>
         public void Process(Goal source, GoalViewModel destination)
         {
             var totalCount = source.Tasks.Count;

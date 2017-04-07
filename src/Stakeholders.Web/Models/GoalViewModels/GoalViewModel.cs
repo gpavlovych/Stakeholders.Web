@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="GoalViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -27,11 +27,40 @@ namespace Stakeholders.Web.Models.GoalViewModels
         /// <value>The title.</value>
         public string Title { get; set; }
 
-        public int ValueProcess { get; set; }
+        /// <summary>
+        /// Gets or sets the value process.
+        /// </summary>
+        /// <value>The value process.</value>
+        public long ValueProcess { get; set; }
+
+        /// <summary>
+        /// Gets or sets the percent process.
+        /// </summary>
+        /// <value>The percent process.</value>
         public double PercentProcess { get; set; }
-        public int ValueCompleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value completed.
+        /// </summary>
+        /// <value>The value completed.</value>
+        public long ValueCompleted { get; set; }
+
+        /// <summary>
+        /// Gets or sets the percent completed.
+        /// </summary>
+        /// <value>The percent completed.</value>
         public double PercentCompleted { get; set; }
-        public int ValueReady { get; set; }
+
+        /// <summary>
+        /// Gets or sets the value ready.
+        /// </summary>
+        /// <value>The value ready.</value>
+        public long ValueReady { get; set; }
+
+        /// <summary>
+        /// Gets or sets the percent ready.
+        /// </summary>
+        /// <value>The percent ready.</value>
         public double PercentReady { get; set; }
     }
 }

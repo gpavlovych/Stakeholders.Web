@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ApplicationUsersController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -42,23 +42,33 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         private readonly IMapper mapper;
 
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly IApplicationUserManager userManager;
 
+        /// <summary>
+        /// The role repository
+        /// </summary>
         private readonly IRepository<Role> roleRepository;
 
+        /// <summary>
+        /// The company repository
+        /// </summary>
         private readonly IRepository<Company> companyRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationUsersController" /> class.
         /// </summary>
         /// <param name="repository">The repository.</param>
+        /// <param name="companyRepository">The company repository.</param>
         /// <param name="roleRepository">The role repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <param name="companyRepository">The company repository.</param>
-        /// <exception cref="System.ArgumentNullException">repository
+        /// <param name="userManager">The user manager.</param>
+        /// <exception cref="ArgumentNullException">repository
         /// or
         /// mapper</exception>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="System.ArgumentNullException">repository
         /// or
         /// mapper</exception>
         public ApplicationUsersController(
@@ -91,6 +101,7 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
+        /// <param name="search">The search.</param>
         /// <returns>ApplicationUserInfoViewModel[].</returns>
         [HttpGet]
         public ApplicationUserViewModel[] GetApplicationUsers(int start = 0, int count = 10, string search="")

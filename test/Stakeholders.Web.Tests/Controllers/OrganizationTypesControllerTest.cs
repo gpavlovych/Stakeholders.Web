@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-19-2017
+// Last Modified On : 04-03-2017
 // ***********************************************************************
 // <copyright file="OrganizationTypesControllerTest.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -32,6 +32,9 @@ namespace Stakeholders.Web.Tests.Controllers
     /// </summary>
     public class OrganizationTypesControllerTest
     {
+        /// <summary>
+        /// The entities for test
+        /// </summary>
         private readonly EntitiesForTest entitiesForTest;
 
         /// <summary>
@@ -50,7 +53,7 @@ namespace Stakeholders.Web.Tests.Controllers
         private Mock<IMapper> mapperMock;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrganizationTypesControllerTest"/> class.
+        /// Initializes a new instance of the <see cref="OrganizationTypesControllerTest" /> class.
         /// </summary>
         public OrganizationTypesControllerTest()
         {

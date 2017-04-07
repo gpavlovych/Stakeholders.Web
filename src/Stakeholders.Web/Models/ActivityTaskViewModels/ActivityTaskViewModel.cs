@@ -1,10 +1,10 @@
 ﻿// ***********************************************************************
-// Assembly         : 
+// Assembly         : Stakeholders.Web
 // Author           : George
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-20-2017
+// Last Modified On : 04-07-2017
 // ***********************************************************************
 // <copyright file="ActivityTaskViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -34,6 +34,10 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// <value>The goal identifier.</value>
         public long? GoalId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the goal title.
+        /// </summary>
+        /// <value>The goal title.</value>
         public string GoalTitle { get; set; }
 
         /// <summary>
@@ -41,7 +45,15 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// </summary>
         /// <value>The assign to identifier.</value>
         public long? AssignToId { get; set; }
+        /// <summary>
+        /// Gets or sets the assign to title.
+        /// </summary>
+        /// <value>The assign to title.</value>
         public string AssignToTitle { get; set; }
+        /// <summary>
+        /// Gets or sets the name of the assign to.
+        /// </summary>
+        /// <value>The name of the assign to.</value>
         public string AssignToName { get; set; }
 
         /// <summary>
@@ -56,10 +68,18 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// <value>The created by identifier.</value>
         public long? CreatedById { get; set; }
 
+        /// <summary>
+        /// Gets or sets the created by title.
+        /// </summary>
+        /// <value>The created by title.</value>
         public string CreatedByTitle { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the created by.
+        /// </summary>
+        /// <value>The name of the created by.</value>
         public string CreatedByName { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the observer user ids.
         /// </summary>
@@ -102,6 +122,10 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// <value>The status identifier.</value>
         public long? StatusId { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name of the status.
+        /// </summary>
+        /// <value>The name of the status.</value>
         public string StatusName { get; set; }
 
         /// <summary>
@@ -110,6 +134,10 @@ namespace Stakeholders.Web.Models.ActivityTaskViewModels
         /// <value>The success factor.</value>
         public string SuccessFactor { get; set; }
 
+        /// <summary>
+        /// Gets or sets the organization ids.
+        /// </summary>
+        /// <value>The organization ids.</value>
         public long[] OrganizationIds { get; set; }
     }
 }
