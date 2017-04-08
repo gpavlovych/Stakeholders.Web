@@ -1,16 +1,16 @@
 ﻿<div class="dashboardContent activities" ng-cloak>
     <h1>{{'ACTIVITIES' | translate}}</h1>
-    <time-filter></time-filter>
+    <time-filter time-filter-period="period" time-filter-period-changed="refresh()"></time-filter>
     <dial-control></dial-control>
     <filter>
         <div class="statusList one">
-            <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
+            <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="categoryId" dropdown-item-label="name" dropdown-onchange="refresh()"></div>
         </div>
         <div class="statusList one">
-            <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
+            <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="organizationId" dropdown-item-label="name" dropdown-onchange="refresh()"></div>
         </div>
         <div class="statusList one">
-            <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
+            <div dropdown-select dropdown-url="/api/Contacts" dropdown-value="contactId" dropdown-item-label="displayName" dropdown-onchange="refresh()"></div>
         </div>
     </filter>
     <activity-form></activity-form>

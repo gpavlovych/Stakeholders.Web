@@ -1,7 +1,7 @@
 ﻿<div id="nav-show">
-    <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
-    <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
-    <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
-    <a class="filterTabFour" href="#">{{'THIS_WEEK' | translate}}</a>
+    <a class="filterTabOne" ng-class="{'current_page_item': $ctrl.timeFilterPeriod==1}" ng-click="$ctrl.setTimeFilterPeriod(1)" href="#">{{'THIS_YEAR' | translate}}</a>
+    <a class="filterTabTwo" ng-class="{'current_page_item': $ctrl.timeFilterPeriod==2}" ng-click="$ctrl.setTimeFilterPeriod(2)" href="#">{{'THIS_QUARTER' | translate}}</a>
+    <a class="filterTabThree" ng-class="{'current_page_item': $ctrl.timeFilterPeriod==3}" ng-click="$ctrl.setTimeFilterPeriod(3)" href="#">{{'THIS_MONTH' | translate}}</a>
+    <a class="filterTabFour" ng-class="{'current_page_item': $ctrl.timeFilterPeriod==4}" ng-click="$ctrl.setTimeFilterPeriod(4)" href="#">{{'THIS_WEEK' | translate}}</a>
     <div id="magic-line"></div>
 </div>

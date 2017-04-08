@@ -111,12 +111,14 @@ angular
         'dialogService',
         function ($scope, $rootScope, Activity, Company, User, dialogService) {
             function refresh() {
-                Activity.query()
-                    .$promise
-                    .then(function (activities) {
+                Activity.query({ period: period, organizationId: $scope.organizationId, contactId: $scope.contactId, organizationCategoryId: $scope.categoryId }, function (activities) {
                         $scope.activities = activities;
                     });
             }
+
+            $scope.refresh = function() {
+                refresh();
+            };
 
             refresh();
             $rootScope.$on("refreshActivities", function() {

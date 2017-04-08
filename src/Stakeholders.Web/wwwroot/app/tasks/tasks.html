@@ -1,23 +1,20 @@
 <div class="dashboardContent tasks" ng-cloak>
     <h1>{{'TASKS' | translate}}</h1>
-    <time-filter></time-filter>
+    <time-filter time-filter-period="period" time-filter-period-changed="refresh()"></time-filter>
     <dial-control></dial-control>
-
     <filter>
         <div class="statusList one">
-            <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
+            <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="categoryId" dropdown-item-label="name" dropdown-onchanged="refresh()"></div>
         </div>
         <div class="statusList one">
-            <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
+            <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="organizationId" dropdown-item-label="name" dropdown-onchanged="refresh()"></div>
         </div>
         <div class="statusList one">
-            <div dropdown-select="ddSelectOptionsContact" dropdown-model="ddSelectSelectedContact" dropdown-item-label="text"></div>
+            <div dropdown-select dropdown-url="/api/Contacts" dropdown-value="contactId" dropdown-item-label="displayName" dropdown-onchanged="refresh()"></div>
         </div>
     </filter>
-
     <activity-form></activity-form>
     <task-form></task-form>
-
     <div class="editorPanel" ng-show="editedTask != null">
         <span class="closeModal" id="toggleFilterTasksEdit" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
         <div class="colLeft">

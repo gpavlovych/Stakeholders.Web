@@ -42,10 +42,10 @@ angular
         'Activity',
         'User',
         function ($scope, Activity, User) {
-            Activity.query(function (result) {
+            Activity.query({period: period}, function (result) {
                 $scope.activities = result;
             });
-            User.query(function (result) {
+            User.query({ period: period }, function (result) {
                 $scope.users = result;
             });
         }

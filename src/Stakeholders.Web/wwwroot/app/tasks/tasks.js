@@ -51,12 +51,14 @@ angular
             Contact, 
             Organization,
             dialogService) {
-            
+            $scope.refresh = function() {
+                refresh();
+            };
             $scope.search = "";
             $scope.switchView = false;
 
             function refresh() {
-                ActivityTask.query({ start: 0, count: 10, search: $scope.search },
+                ActivityTask.query({ start: 0, count: 10, search: $scope.search, period: $scope.period, organizationId: $scope.organizationId, contactId: $scope.contactId, organizationCategoryId: $scope.categoryId },
                     function (tasks) {
                         $scope.tasks = tasks;
                     });

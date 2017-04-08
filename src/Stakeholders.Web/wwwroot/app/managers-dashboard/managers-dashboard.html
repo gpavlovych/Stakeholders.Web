@@ -9,11 +9,9 @@
                     </div>
                     <ul class="dashedUl">
                         <li>
-                            <h3>{{ task.title }}</h3>
+                            <h3>{{ task.subject }}</h3>
                         </li>
-                        <li>{{ task.optionone }}</li>
-                        <li>{{ task.optiontwo }}</li>
-                        <li>{{ task.optionthree }}</li>
+                        <li>{{ task.description }}</li>
                     </ul>
                 </li>
             </ul>
@@ -21,28 +19,21 @@
     </div>
     <div class="contentDashboard">
         <h1>{{'CATEGORIES_OF_ORGANIZATIONS' | translate}}</h1>
-        <div id="nav-show">
-            <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
-            <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
-            <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
-            <a class="filterTabFour" href="#">{{'THIS_WEEK' | translate}}</a>
-            <div id="magic-line"></div>
-        </div>
-
+        <time-filter time-filter-period="period" time-filter-period-changed="periodChanged()"></time-filter>
         <dial-control></dial-control>
         <activity-form></activity-form>
         <task-form></task-form>
         <div class="clearSeparate"></div>
         <div class="activitiesResult">
             <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
-                <ul class="listResult" ng-repeat="entities in organizations">
+                <ul class="listResult" ng-repeat="category in categories">
                     <li>
                         <h3 class="title">
-                            {{ entities.categorie }}
+                            {{ category.name }}
                         </h3>
                         <div class="statsResult">
                             <div class="imageEntitie">
-                                <img src="{{pathImage}}{{ entities.categoryimage }}.png" />
+                                <img src="{{category.iconUrl}}" />
                             </div>
                             <div class="leftEntity">
                                 <p><span class="color red"></span>{{'TASKS_COMP' | translate}}: <strong>{{ entities.taskcomp }}%</strong></p>

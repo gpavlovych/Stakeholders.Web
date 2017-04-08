@@ -1,73 +1,71 @@
 <div class="dashboardContent companies" ng-cloak>
-      <h1>{{'COMPANIES' | translate}}</h1>
+    <h1>{{'COMPANIES' | translate}}</h1>
 
-      <div class="blockFilters">
-            <form class="formSearch">
-                  <div class="form-group">
-                        <div class="input-group">
-                              <input type="text" class="form-control" ng-model="search" ng-change="filter()">
-                              <md-icon md-svg-src="/images/magnify.svg"></md-icon>
-                        </div>
-                  </div>
-            </form>
+    <div class="blockFilters">
+        <form class="formSearch">
+                <div class="form-group">
+                    <div class="input-group">
+                            <input type="text" class="form-control" ng-model="search" ng-change="filter()">
+                            <md-icon md-svg-src="/images/magnify.svg"></md-icon>
+                    </div>
+                </div>
+        </form>
 
-          <dial-control/>
-      </div>
-
+        <dial-control/>
+    </div>
     <task-form/>
     <activity-form/>
-
-      <div class="editorPanel" ng-show="editedCompany != null">
-          <span class="closeModal" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
-            <div class="colLeft" style="height: 460px;">
-                  <div class="formEditor" ng-scrollbars ng-scrollbars-config="config" style="max-height:440px;">
-                        <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedCompany.name"/>
-                        <input type="text" placeholder="{{'COMPANY_CODE' | translate}}" ng-model="editedCompany.companyCode"/>
-                        <input type="text" placeholder="{{'ADDRESS' | translate}}" ng-model="editedCompany.address"/>
-                        <input type="text" placeholder="{{'CITY' | translate}}" ng-model="editedCompany.city"/>
-                        <input type="text" placeholder="{{'PHONE' | translate}}" ng-model="editedCompany.phone"/>
-                        <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedCompany.email"/>
-                        <div class="photoBrands">
-                              <h3>{{'LOGO' | translate}}</h3>
-                              <div class="photo">
-                                    <span class="brandImage">
-                                          <img src="/images/apple.png" alt="apple" />
-                                    </span>
-                                    <md-button class="md-fab footertrash" aria-label="Trash">
-                                          <md-icon md-svg-src="/images/trash.svg"></md-icon>
-                                    </md-button>
-                                    <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_LOGO' | translate}}</button>
-                              </div>
-                        </div>
-                        <textarea placeholder="{{'INFLUENCING' | translate}}"></textarea>
-                        <textarea placeholder="{{'INFLUENCED_BY' | translate}}"></textarea>
-                  </div>
-            </div>
-            <p class="saveBlock">
-                <button class="btnCancel" id="toggleFilterCompEdit" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
-                <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
-            </p>
-      </div>
-      <div class="companiesResult">
-            <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
-                  <ul class="listResult" ng-repeat="company in companies">
-                        <li>
-                              <h3 class="title">
-                                    {{ company.name }}
-                              </h3>
-                              <div class="contact">
-                                    <a href="#"><img src="{{ company.logoUrl }}" alt="{{ company.name }}" /></a>
-                              </div>
-                              <div class="bottomFooter">
-                                    <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeCompany($event, company.id);">
-                                          <md-icon md-svg-src="/images/trash.svg"></md-icon>
-                                    </md-button>
-                                  <md-button id="toggleFilterCompEdit" ng-click="editCompany(company.id)" class="md-fab footerpen" aria-label="Pen">
-                                      <md-icon md-svg-src="/images/pen.svg"></md-icon>
-                                  </md-button>
-                              </div>
-                        </li>
-                  </ul>
-            </div>
-      </div>
+    <div class="editorPanel" ng-show="editedCompany != null">
+        <span class="closeModal" ng-click="closeEditor()"><md-icon class="closeIcon" md-svg-src="/images/close.svg"></md-icon></span>
+        <div class="colLeft" style="height: 460px;">
+                <div class="formEditor" ng-scrollbars ng-scrollbars-config="config" style="max-height:440px;">
+                    <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedCompany.name"/>
+                    <input type="text" placeholder="{{'COMPANY_CODE' | translate}}" ng-model="editedCompany.companyCode"/>
+                    <input type="text" placeholder="{{'ADDRESS' | translate}}" ng-model="editedCompany.address"/>
+                    <input type="text" placeholder="{{'CITY' | translate}}" ng-model="editedCompany.city"/>
+                    <input type="text" placeholder="{{'PHONE' | translate}}" ng-model="editedCompany.phone"/>
+                    <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedCompany.email"/>
+                    <div class="photoBrands">
+                            <h3>{{'LOGO' | translate}}</h3>
+                            <div class="photo">
+                                <span class="brandImage">
+                                        <img src="/images/apple.png" alt="apple" />
+                                </span>
+                                <md-button class="md-fab footertrash" aria-label="Trash">
+                                        <md-icon md-svg-src="/images/trash.svg"></md-icon>
+                                </md-button>
+                                <button class="btnDefault" type='button' ng-click='addphoto()'>{{'ADD_LOGO' | translate}}</button>
+                            </div>
+                    </div>
+                    <textarea placeholder="{{'INFLUENCING' | translate}}"></textarea>
+                    <textarea placeholder="{{'INFLUENCED_BY' | translate}}"></textarea>
+                </div>
+        </div>
+        <p class="saveBlock">
+            <button class="btnCancel" id="toggleFilterCompEdit" ng-click="closeEditor()" type='button'>{{'CANCEL' | translate}}</button>
+            <button class="btnSave" type='button' ng-click="saveEditor()">{{'SAVE' | translate}}</button>
+        </p>
+    </div>
+    <div class="companiesResult">
+        <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
+                <ul class="listResult" ng-repeat="company in companies">
+                    <li>
+                            <h3 class="title">
+                                {{ company.name }}
+                            </h3>
+                            <div class="contact">
+                                <a href="#"><img src="{{ company.logoUrl }}" alt="{{ company.name }}" /></a>
+                            </div>
+                            <div class="bottomFooter">
+                                <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeCompany($event, company.id);">
+                                        <md-icon md-svg-src="/images/trash.svg"></md-icon>
+                                </md-button>
+                                <md-button id="toggleFilterCompEdit" ng-click="editCompany(company.id)" class="md-fab footerpen" aria-label="Pen">
+                                    <md-icon md-svg-src="/images/pen.svg"></md-icon>
+                                </md-button>
+                            </div>
+                    </li>
+                </ul>
+        </div>
+    </div>
 </div>

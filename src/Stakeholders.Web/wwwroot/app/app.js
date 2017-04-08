@@ -19,6 +19,7 @@ angular
         'porlaDashboard.activityForm',
         'porlaDashboard.filter',
         'porlaDashboard.taskForm',
+        'porlaDashboard.timeFilter',
         'porlaDashboard.dialControl',
         'porlaDashboard.activities',
         'porlaDashboard.categories',
@@ -168,6 +169,7 @@ angular
                 $rootScope.msg = direction;
                 $translate.use(language);
                 $rootScope.urlPage = $location.absUrl();
+                $rootScope.$emit('setLanguage', { language: language, direction: direction });
             }
             $rootScope.setLanguage($localStorage.language || "he", $localStorage.msg || "rtl");
 

@@ -19,20 +19,10 @@
     </div>
     <div class="contentDashboard">
         <h1>{{'USERS' | translate}}</h1>
-
-        <div id="nav-show">
-            <a class="filterTabOne current_page_item" href="">{{'THIS_YEAR' | translate}}</a>
-            <a class="filterTabTwo" href="#">{{'THIS_QUARTER' | translate}}</a>
-            <a class="filterTabThree" href="#">{{'THIS_MONTH' | translate}}</a>
-            <a class="filterTabFour" href="#">{{'THIS_WEEK' | translate}}</a>
-            <div id="magic-line"></div>
-        </div>
-
+        <time-filter time-filter-period="period" time-filter-period-changed="periodChanged()"></time-filter>
         <dial-control/>
-
         <activity-form></activity-form>
         <task-form></task-form>
-
         <div class="clearSeparate"></div>
         <div class="activitiesResult">
             <div class="contentList" ng-scrollbars ng-scrollbars-config="config">
