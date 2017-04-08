@@ -92,6 +92,7 @@ namespace Stakeholders.Web.Controllers
         {
             DateTime? startPeriod = null;
             DateTime? endPeriod = null;
+
             switch (period)
             {
                 case 1:
@@ -122,10 +123,10 @@ namespace Stakeholders.Web.Controllers
                         count,
                         activity =>
                             (string.IsNullOrEmpty(search) || activity.Subject.Contains(search)) &&
-                            ((contactId == null) || (activity.Contact.Id == contactId.Value)) &&
-                            ((organizationId == null) || (activity.Contact.Organization.Id == organizationId.Value)) &&
+                            ((contactId == null) || (activity.Contact.Id == contactId)) &&
+                            ((organizationId == null) || (activity.Contact.Organization.Id == organizationId)) &&
                             ((organizationCategoryId == null) ||
-                             (activity.Contact.Organization.Category.Id == organizationCategoryId.Value)) &&
+                             (activity.Contact.Organization.Category.Id == organizationCategoryId)) &&
                             (((startPeriod == null) || (startPeriod <= activity.DateActivity)) &&
                              ((endPeriod == null) || (activity.DateActivity <= endPeriod))))
                     .Select(it => this.mapper.Map<ActivityViewModel>(it))

@@ -71,6 +71,8 @@ namespace Stakeholders.Web.Models
              Enumerable.Empty<long>()).ToArray();
             destination.OrganizationIds = (source.Organizations?.Select(it => it.OrganizationId) ??
              Enumerable.Empty<long>()).ToArray();
+            destination.ContactIds = (source.Contacts?.Select(it => it.ContactId) ??
+             Enumerable.Empty<long>()).ToArray();
         }
 
         /// <summary>

@@ -14,6 +14,7 @@
 using System.Linq;
 using Stakeholders.Web.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.ResultOperators.Internal;
 
 namespace Stakeholders.Web.Data
 {
@@ -287,6 +288,8 @@ namespace Stakeholders.Web.Data
             return this.context.Activities
                 .Include(it => it.Company)
                 .Include(it => it.Contact)
+                    .ThenInclude(it=>it.Organization)
+                        .ThenInclude(it=>it.Category)
                 .Include(it => it.ObserverUsers)
                     .ThenInclude(it => it.User)
                 .Include(it => it.ObserverCompanies)
@@ -331,8 +334,9 @@ namespace Stakeholders.Web.Data
                     .ThenInclude(it => it.User)
                 .Include(it => it.Contacts)
                     .ThenInclude(it => it.Contact)
-                .Include(it=>it.Organizations)
-                    .ThenInclude(it=>it.Organization)
+                .Include(it => it.Organizations)
+                    .ThenInclude(it => it.Organization)
+                        .ThenInclude(it => it.Category)
                 .Include(it => it.Goal)
                 .Include(it => it.Status);
         }

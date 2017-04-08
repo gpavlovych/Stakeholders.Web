@@ -82,9 +82,9 @@ namespace Stakeholders.Web.Controllers
         /// <returns>ActivityTaskInfoViewModel[].</returns>
         [HttpGet]
         public ActivityTaskViewModel[] GetActivityTasks(
-            int start = 0, 
-            int count = 10, 
-            string search="",
+            int start = 0,
+            int count = 10,
+            string search = "",
             int? period = null,
             long? organizationId = null,
             long? organizationCategoryId = null,
@@ -95,41 +95,45 @@ namespace Stakeholders.Web.Controllers
             switch (period)
             {
                 case 1:
+
                     //this year
                     startPeriod = DateTime.UtcNow.AddYears(-1);
                     endPeriod = DateTime.UtcNow;
                     break;
                 case 2:
+
                     //this quarter
                     startPeriod = DateTime.UtcNow.AddMonths(-3);
                     endPeriod = DateTime.UtcNow;
                     break;
                 case 3:
+
                     //this month
                     startPeriod = DateTime.UtcNow.AddMonths(-1);
                     endPeriod = DateTime.UtcNow;
                     break;
                 case 4:
+
                     //this week
                     startPeriod = DateTime.UtcNow.AddDays(-7);
                     endPeriod = DateTime.UtcNow;
                     break;
             }
 
-            return
-                this.repository.GetAll(
-                        start,
-                        count,
-                        activity =>
-                            (string.IsNullOrEmpty(search) || activity.Subject.Contains(search)) &&
-                            ((contactId == null) || (activity.Contacts.Any(it=>it.ContactId == contactId.Value))) &&
-                            ((organizationId == null) || (activity.Organizations.Any(it=>it.OrganizationId == organizationId.Value))) &&
-                            ((organizationCategoryId == null) ||
-                             (activity.Organizations.Any(it => it.Organization.Category.Id == organizationCategoryId.Value))) &&
-                            (((startPeriod == null) || (startPeriod <= activity.DateDeadline)) &&
-                             ((endPeriod == null) || (activity.DateDeadline <= endPeriod))))
-                    .Select(it => this.mapper.Map<ActivityTaskViewModel>(it))
-                    .ToArray();
+            return this.repository.GetAll(
+                    start,
+                    count,
+                    activity =>
+                        (string.IsNullOrEmpty(search) || activity.Subject.Contains(search)) &&
+                        ((contactId == null) || (activity.Contacts.Any(it => it.ContactId == contactId))) &&
+                        ((organizationId == null) ||
+                         (activity.Organizations.Any(it => it.OrganizationId == organizationId))) &&
+                        ((organizationCategoryId == null) ||
+                         (activity.Organizations.Any(it => it.Organization.Category.Id == organizationCategoryId))) &&
+                        (((startPeriod == null) || (startPeriod <= activity.DateDeadline)) &&
+                         ((endPeriod == null) || (activity.DateDeadline <= endPeriod))))
+                .Select(it => this.mapper.Map<ActivityTaskViewModel>(it))
+                .ToArray();
         }
 
         // GET: api/ActivityTasks/count
