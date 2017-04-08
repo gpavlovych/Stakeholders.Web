@@ -1,6 +1,6 @@
 <div class="dashboardContent tasks" ng-cloak>
     <h1>{{'TASKS' | translate}}</h1>
-    <time-filter time-filter-period="period" time-filter-period-changed="refresh()"></time-filter>
+    <time-filter time-filter-period="period" time-filter-period-changed="periodChanged(period)"></time-filter>
     <dial-control></dial-control>
     <filter>
         <div class="statusList one">

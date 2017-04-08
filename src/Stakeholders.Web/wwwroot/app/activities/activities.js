@@ -29,60 +29,12 @@ angular
                 });
         }
     ])
-    .factory('ActivityType',
-    [
-        '$resource',
-        function($resource) {
-            return $resource(
-                '/api/ActivityTypes/:id',
-                null,
-                {
-                    'update': { method: 'PUT' }
-                });
-        }
-    ])
     .factory('Company',
     [
         '$resource',
         function ($resource) {
             return $resource(
                 '/api/Companies/:id',
-                null,
-                {
-                    'update': { method: 'PUT' }
-                });
-        }
-    ])
-    .factory('Contact',
-    [
-        '$resource',
-        function ($resource) {
-            return $resource(
-                '/api/Contacts/:id',
-                null,
-                {
-                    'update': { method: 'PUT' }
-                });
-        }
-    ])
-    .factory('ActivityTask',
-    [
-        '$resource',
-        function ($resource) {
-            return $resource(
-                '/api/ActivityTasks/:id',
-                null,
-                {
-                    'update': { method: 'PUT' }
-                });
-        }
-    ])
-    .factory('Goal',
-    [
-        '$resource',
-        function($resource) {
-            return $resource(
-                '/api/Goals/:id',
                 null,
                 {
                     'update': { method: 'PUT' }
@@ -111,10 +63,15 @@ angular
         'dialogService',
         function ($scope, $rootScope, Activity, Company, User, dialogService) {
             function refresh() {
-                Activity.query({ period: period, organizationId: $scope.organizationId, contactId: $scope.contactId, organizationCategoryId: $scope.categoryId }, function (activities) {
+                Activity.query({ period: $scope.period, organizationId: $scope.organizationId, contactId: $scope.contactId, organizationCategoryId: $scope.categoryId }, function (activities) {
                         $scope.activities = activities;
                     });
             }
+
+            $scope.periodChanged = function(period) {
+                $scope.period = period;
+                refresh();
+            };
 
             $scope.refresh = function() {
                 refresh();

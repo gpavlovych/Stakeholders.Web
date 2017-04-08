@@ -5,41 +5,57 @@
     {
         transclude: true,
         bindings: {
-            timeFilterPeriod: '=',
+            timeFilterPeriod: '<',
             timeFilterPeriodChanged: '&'
         },
         controller: ['$rootScope', function ($rootScope) {
             var ctrl = this;
 
-            function refresh() {
-                switch (ctrl.timeFilterPeriod || 1) {
-                case 1:
+            function refresh(period) {
+                if (period) {
+                    switch (period) {
+                    case 1:
+                        $('#magic-line')
+                            .animate({ left: $(".filterTabOne").position().left, width: $(".filterTabOne").width() });
+                        break;
+                    case 2:
+                        $('#magic-line')
+                            .animate({ left: $(".filterTabTwo").position().left, width: $(".filterTabTwo").width() });
+                        break;
+                    case 3:
+                        $('#magic-line')
+                            .animate({
+                                left: $(".filterTabThree").position().left,
+                                width:
+                                    $(".filterTabThree").width()
+                            });
+                        break;
+                    case 4:
+                        $('#magic-line')
+                            .animate({ left: $(".filterTabFour").position().left, width: $(".filterTabFour").width() });
+                        break;
+                    }
+                } else {
                     $('#magic-line')
-                        .animate({ left: $(".filterTabOne").position().left, width: $(".filterTabOne").width() });
-                    break;
-                case 2:
-                    $('#magic-line')
-                        .animate({ left: $(".filterTabTwo").position().left, width: $(".filterTabTwo").width() });
-                    break;
-                case 3:
-                    $('#magic-line')
-                        .animate({ left: $(".filterTabThree").position().left, width: $(".filterTabThree").width() });
-                    break;
-                case 4:
-                    $('#magic-line')
-                        .animate({ left: $(".filterTabFour").position().left, width: $(".filterTabFour").width() });
-                    break;
+                        .animate({ left: $(".filterTabAll").position().left, width: $(".filterTabAll").width() });
                 }
             }
 
+            this.$onChanges = function(newValue) {
+                refresh(ctrl.timeFilterPeriod);
+            };
+
+            this.$onInit = function() {
+                refresh(ctrl.timeFilterPeriod);
+            };
+
             $rootScope.$on('setLanguage',
                 function() {
-                    refresh();
+                    refresh(ctrl.timeFilterPeriod);
                 });
             this.setTimeFilterPeriod = function(value) {
-                ctrl.timeFilterPeriod = value;
-                refresh();
-                ctrl.timeFilterPeriodChanged();
+                refresh(value);
+                ctrl.timeFilterPeriodChanged({period: value});
             };
             //$('.filterTabOne').on('click', function () {
             //    $('.filterTabTwo, .filterTabThree, .filterTabFour').removeClass('current_page_item');

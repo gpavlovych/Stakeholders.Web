@@ -16,6 +16,9 @@ angular
     [
         '$scope',
         function ($scope) {
-            //TODO
+            $scope.periodChanged = function (period) {
+                $scope.period = period;
+                refresh();
+            };
         }
     ]);

@@ -75,11 +75,61 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         /// <param name="search">The search.</param>
+        /// <param name="period">The period (1-this year, 2-this quarter, 3-this month, 4-this week).</param>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <param name="organizationCategoryId">The organization category identifier.</param>
+        /// <param name="contactId">The contact identifier.</param>
         /// <returns>ActivityTaskInfoViewModel[].</returns>
         [HttpGet]
-        public ActivityTaskViewModel[] GetActivityTasks(int start = 0, int count = 10, string search="")
+        public ActivityTaskViewModel[] GetActivityTasks(
+            int start = 0, 
+            int count = 10, 
+            string search="",
+            int? period = null,
+            long? organizationId = null,
+            long? organizationCategoryId = null,
+            long? contactId = null)
         {
-            return this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search) || it.Subject.Contains(search)).Select(it => this.mapper.Map<ActivityTaskViewModel>(it)).ToArray();
+            DateTime? startPeriod = null;
+            DateTime? endPeriod = null;
+            switch (period)
+            {
+                case 1:
+                    //this year
+                    startPeriod = DateTime.UtcNow.AddYears(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 2:
+                    //this quarter
+                    startPeriod = DateTime.UtcNow.AddMonths(-3);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 3:
+                    //this month
+                    startPeriod = DateTime.UtcNow.AddMonths(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 4:
+                    //this week
+                    startPeriod = DateTime.UtcNow.AddDays(-7);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+            }
+
+            return
+                this.repository.GetAll(
+                        start,
+                        count,
+                        activity =>
+                            (string.IsNullOrEmpty(search) || activity.Subject.Contains(search)) &&
+                            ((contactId == null) || (activity.Contacts.Any(it=>it.ContactId == contactId.Value))) &&
+                            ((organizationId == null) || (activity.Organizations.Any(it=>it.OrganizationId == organizationId.Value))) &&
+                            ((organizationCategoryId == null) ||
+                             (activity.Organizations.Any(it => it.Organization.Category.Id == organizationCategoryId.Value))) &&
+                            (((startPeriod == null) || (startPeriod <= activity.DateDeadline)) &&
+                             ((endPeriod == null) || (activity.DateDeadline <= endPeriod))))
+                    .Select(it => this.mapper.Map<ActivityTaskViewModel>(it))
+                    .ToArray();
         }
 
         // GET: api/ActivityTasks/count

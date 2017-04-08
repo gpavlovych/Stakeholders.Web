@@ -51,7 +51,13 @@ angular
             Contact, 
             Organization,
             dialogService) {
-            $scope.refresh = function() {
+
+            $scope.periodChanged = function (period) {
+                $scope.period = period;
+                refresh();
+            };
+
+            $scope.refresh = function () {
                 refresh();
             };
             $scope.search = "";

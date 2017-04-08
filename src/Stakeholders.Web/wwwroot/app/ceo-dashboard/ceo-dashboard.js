@@ -42,11 +42,20 @@ angular
         'Activity',
         'User',
         function ($scope, Activity, User) {
-            Activity.query({period: period}, function (result) {
-                $scope.activities = result;
-            });
-            User.query({ period: period }, function (result) {
-                $scope.users = result;
-            });
+            function refresh() {
+                Activity.query({ period: $scope.period }, function (result) {
+                    $scope.activities = result;
+                });
+                User.query({ period: $scope.period }, function (result) {
+                    $scope.users = result;
+                });
+            }
+
+            $scope.periodChanged = function (period) {
+                $scope.period = period;
+                refresh();
+            };
+
+            refresh();
         }
     ]);

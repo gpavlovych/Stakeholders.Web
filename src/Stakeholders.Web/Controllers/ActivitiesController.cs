@@ -75,18 +75,61 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         /// <param name="search">The search.</param>
+        /// <param name="period">The period (1-this year, 2-this quarter, 3-this month, 4-this week).</param>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <param name="organizationCategoryId">The organization category identifier.</param>
+        /// <param name="contactId">The contact identifier.</param>
         /// <returns>ActivityInfoViewModel[].</returns>
         [HttpGet]
-        public ActivityViewModel[] GetActivities(int start = 0, int count = 10, string search = "")
+        public ActivityViewModel[] GetActivities(
+            int start = 0,
+            int count = 10,
+            string search = "",
+            int? period = null,
+            long? organizationId = null,
+            long? organizationCategoryId = null,
+            long? contactId = null)
         {
-            if (!string.IsNullOrEmpty(search))
+            DateTime? startPeriod = null;
+            DateTime? endPeriod = null;
+            switch (period)
             {
-                return this.repository.GetAll(start, count, activity => activity.Subject.Contains(search)).Select(it => this.mapper.Map<ActivityViewModel>(it)).ToArray();
+                case 1:
+                    //this year
+                    startPeriod = DateTime.UtcNow.AddYears(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 2:
+                    //this quarter
+                    startPeriod = DateTime.UtcNow.AddMonths(-3);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 3:
+                    //this month
+                    startPeriod = DateTime.UtcNow.AddMonths(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 4:
+                    //this week
+                    startPeriod = DateTime.UtcNow.AddDays(-7);
+                    endPeriod = DateTime.UtcNow;
+                    break;
             }
-            else
-            {
-                return this.repository.GetAll(start, count).Select(it => this.mapper.Map<ActivityViewModel>(it)).ToArray();
-            }
+
+            return
+                this.repository.GetAll(
+                        start,
+                        count,
+                        activity =>
+                            (string.IsNullOrEmpty(search) || activity.Subject.Contains(search)) &&
+                            ((contactId == null) || (activity.Contact.Id == contactId.Value)) &&
+                            ((organizationId == null) || (activity.Contact.Organization.Id == organizationId.Value)) &&
+                            ((organizationCategoryId == null) ||
+                             (activity.Contact.Organization.Category.Id == organizationCategoryId.Value)) &&
+                            (((startPeriod == null) || (startPeriod <= activity.DateActivity)) &&
+                             ((endPeriod == null) || (activity.DateActivity <= endPeriod))))
+                    .Select(it => this.mapper.Map<ActivityViewModel>(it))
+                    .ToArray();
         }
 
         // GET: api/Activities/count
