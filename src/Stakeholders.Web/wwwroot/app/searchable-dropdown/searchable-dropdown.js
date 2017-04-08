@@ -11,7 +11,8 @@ dd.directive('dropdownSelect', ['DropdownService', '$window',
               dropdownSelect: '=',
               dropdownModel: '=',
               dropdownValue: '=',
-              dropdownOnchange: '&'
+              dropdownOnchange: '&',
+              dropdownValuechanged: '&'
           },
 
           controller: ['$scope', '$element', '$attrs', '$resource', function ($scope, $element, $attrs, $resource) {
@@ -34,6 +35,7 @@ dd.directive('dropdownSelect', ['DropdownService', '$window',
               $scope.$watch('dropdownModel',
                   function(newValue, oldValue) {
                       $scope.dropdownModelValue = newValue;
+                      $scope.dropdownValuechanged({ value: newValue });
                   },
                   true);
               $scope.search = function(obj) {
@@ -54,7 +56,8 @@ dd.directive('dropdownSelect', ['DropdownService', '$window',
 
               this.select = function (selected) {
                   if (selected.id !== $scope.dropdownValue) {
-                     $scope.dropdownValue = selected.id;
+                      $scope.dropdownValue = selected.id;
+                      $scope.dropdownValuechanged({ value: selected.id });
                   }
                   if (selected !== $scope.dropdownModelValue) {
                       angular.copy(selected, $scope.dropdownModelValue);

@@ -4,13 +4,16 @@
     <dial-control></dial-control>
     <filter>
         <div class="statusList one">
-            <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="categoryId" dropdown-item-label="name" dropdown-onchange="refresh()"></div>
+            {{'CATEGORY' | translate}}
+            <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="categoryId" dropdown-item-label="name" dropdown-valuechanged="categoryChanged(value)"></div>
         </div>
         <div class="statusList one">
-            <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="organizationId" dropdown-item-label="name" dropdown-onchange="refresh()"></div>
+            {{'ORGANIZATION' | translate}}
+            <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="organizationId" dropdown-item-label="name" dropdown-valuechanged="organizationChanged(value)"></div>
         </div>
         <div class="statusList one">
-            <div dropdown-select dropdown-url="/api/Contacts" dropdown-value="contactId" dropdown-item-label="displayName" dropdown-onchange="refresh()"></div>
+            {{'CONTACT' | translate}}
+            <div dropdown-select dropdown-url="/api/Contacts" dropdown-value="contactId" dropdown-item-label="displayName" dropdown-valuechanged="contactChanged(value)"></div>
         </div>
     </filter>
     <activity-form></activity-form>
@@ -56,28 +59,28 @@
                 <md-datepicker ng-model="editedActivity.dateActivityDate" md-placeholder="{{'ACTIVITY_DATE' | translate}}"></md-datepicker>
             </div>
             <!--<div class="relatedContacts" ng-controller="chipsSelector">
-            <h3>{{'SHARE_WITH' | translate}}</h3>
-            <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
-        </div>
-        <div class="dateField" ng-controller="dateController">
-            <md-datepicker ng-model="activity.deadline" md-placeholder="Activity Date"></md-datepicker>
-        </div>
-        <div class="attached" ng-controller="fileControllerActiv">
-            <div class="fileinput" id="attachedActiv">
-                <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
-                <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple/>
-                <label for="file">
-                    <span class="labelValTask"></span>
-                    <strong>{{'ATTACH' | translate}}Attach</strong>
-                </label>
+                <h3>{{'SHARE_WITH' | translate}}</h3>
+                <md-chips-select ng-model="selectedContacts" select-items="contactsList" main-title="contact"></md-chips-select>
             </div>
-            <div class="itemAttached">
-                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+            <div class="dateField" ng-controller="dateController">
+                <md-datepicker ng-model="activity.deadline" md-placeholder="Activity Date"></md-datepicker>
             </div>
-            <div class="itemAttached">
-                <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
-            </div>
-        </div>-->
+            <div class="attached" ng-controller="fileControllerActiv">
+                <div class="fileinput" id="attachedActiv">
+                    <h3>{{'ATTACH_DOCUMENT' | translate}}</h3>
+                    <input type="file" name="file[]" id="file" class="inputfile inputfileTask" data-multiple-caption="{count} files selected" multiple/>
+                    <label for="file">
+                        <span class="labelValTask"></span>
+                        <strong>{{'ATTACH' | translate}}Attach</strong>
+                    </label>
+                </div>
+                <div class="itemAttached">
+                    <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+                </div>
+                <div class="itemAttached">
+                    <md-icon class="clip" md-svg-src="{{pathImage}}clip.svg"></md-icon> theme-docs-new.xml <a href="#"><md-icon class="close" md-svg-src="{{pathImage}}close.svg"></md-icon></a>
+                </div>
+            </div>-->
         </div>
         <div class="saveBlock">
             <span>{{'CREATION_DATE' | translate}}: {{editedActivity.dateCreated}}</span>

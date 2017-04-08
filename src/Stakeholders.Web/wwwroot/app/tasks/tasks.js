@@ -56,7 +56,18 @@ angular
                 $scope.period = period;
                 refresh();
             };
-
+            $scope.categoryChanged = function (categoryId) {
+                $scope.categoryId = categoryId;
+                refresh();
+            };
+            $scope.organizationChanged = function (organizationId) {
+                $scope.organizationId = organizationId;
+                refresh();
+            };
+            $scope.contactChanged = function (contactId) {
+                $scope.contactId = contactId;
+                refresh();
+            };
             $scope.refresh = function () {
                 refresh();
             };
