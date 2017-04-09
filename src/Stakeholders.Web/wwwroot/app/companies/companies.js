@@ -30,6 +30,10 @@ angular
         'dialogService',
         function($scope, Company, dialogService) {
             $scope.search = "";
+            $scope.searchChanged = function (ctrl) {
+                $scope.search = ctrl.search;
+                refresh();
+            };
 
             function refresh() {
                 Company.query({ start: 0, count: 10, search: $scope.search },

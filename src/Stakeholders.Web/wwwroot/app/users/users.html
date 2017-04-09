@@ -1,15 +1,16 @@
 <div class="dashboardContent users" ng-cloak>
     <h1>{{'USERS' | translate}}</h1>
     <div class="blockFilters">
-        <form class="formSearch">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="search">
-                    <md-icon md-svg-src="/images/magnify.svg"></md-icon>
+        <filter>
+            <form class="formSearch">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="search" ng-change="searchChanged(this)">
+                        <md-icon md-svg-src="/images/magnify.svg"></md-icon>
+                    </div>
                 </div>
-            </div>
-        </form>
-
+            </form>
+        </filter>
         <dial-control></dial-control>
     </div>
 

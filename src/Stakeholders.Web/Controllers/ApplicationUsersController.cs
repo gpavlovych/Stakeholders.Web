@@ -112,7 +112,8 @@ namespace Stakeholders.Web.Controllers
             int start = 0,
             int count = 10,
             string search = "",
-            int? period = null)
+            int? period = null,
+            int? includeStats=0)
         {
             DateTime? startPeriod = null;
             DateTime? endPeriod = null;
@@ -143,46 +144,56 @@ namespace Stakeholders.Web.Controllers
                     endPeriod = DateTime.UtcNow;
                     break;
             }
-
-            return this.source.GetDataQueryable()
+            var query = this.source.GetDataQueryable()
                 .Where(it => string.IsNullOrEmpty(search) || it.Name.Contains(search))
                 .Skip(start)
-                .Take(count)
-                .Select(
-                    it => new Tuple<ApplicationUser, long, long, long>(
-                        //Item1 - User
-                        it,
-                        //Item2 - Tasks total
-                        it.AssignedTasks.Distinct().Count(
-                            task =>
-                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
-                                ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
-                        //Item3 - Tasks done
-                        it.AssignedTasks.Distinct().Count(
-                            task => (task.Status.Alias == "Done") &&
-                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
-                                ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
-                        //Item4 - Activities
-                        it.Activities.Select(activity => activity.Task).Distinct().Count(
-                            task =>
-                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
-                                ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
-                    ))
-                .ToList()
-                .Select(
-                    it =>
-                    {
-                        var user = it.Item1;
-                        var tasksTotal = it.Item2;
-                        var tasksDone = it.Item3;
-                        var activities = it.Item4;
+                .Take(count);
+            if (includeStats == 1)
+            {
+                return query.Select(
+                        it => new Tuple<ApplicationUser, long, long, long>(
 
-                        var result = this.mapper.Map<ApplicationUserViewModel>(user);
-                        result.TasksCompletedPercentage = tasksTotal != 0 ? tasksDone*100.0/tasksTotal: 0;
-                        result.ActivitiesNumber = activities;
-                        return result;
-                    })
-                .ToArray();
+                            //Item1 - User
+                            it,
+
+                            //Item2 - Tasks total
+                            it.AssignedTasks.Distinct().Count(
+                                task =>
+                                    ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                    ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
+
+                            //Item3 - Tasks done
+                            it.AssignedTasks.Distinct().Count(
+                                task => (task.Status.Alias == "Done") &&
+                                        ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                        ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
+
+                            //Item4 - Activities
+                            it.Activities.Select(activity => activity.Task).Distinct().Count(
+                                task =>
+                                    ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                    ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
+                        ))
+                    .ToList()
+                    .Select(
+                        it =>
+                        {
+                            var user = it.Item1;
+                            var tasksTotal = it.Item2;
+                            var tasksDone = it.Item3;
+                            var activities = it.Item4;
+
+                            var result = this.mapper.Map<ApplicationUserViewModel>(user);
+                            result.TasksCompletedPercentage = tasksTotal != 0 ? tasksDone*100.0/tasksTotal : 0;
+                            result.ActivitiesNumber = activities;
+                            return result;
+                        })
+                    .ToArray();
+            }
+            else
+            {
+                return query.ToList().Select(it => this.mapper.Map<ApplicationUserViewModel>(it)).ToArray();
+            }
         }
 
         // GET: api/ApplicationUsers/count

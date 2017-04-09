@@ -30,6 +30,10 @@ angular
         function ($scope, OrganizationCategory, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
+            $scope.searchChanged = function (ctrl) {
+                $scope.search = ctrl.search;
+                refresh();
+            };
 
             function refresh() {
                 OrganizationCategory.query({ start: 0, count: 10, search: $scope.search },

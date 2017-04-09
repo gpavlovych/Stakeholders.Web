@@ -94,7 +94,7 @@ namespace Stakeholders.Web.Controllers
         /// <param name="period">The period.</param>
         /// <returns>OrganizationCategoryViewModel[].</returns>
         [HttpGet]
-        public OrganizationCategoryViewModel[] GetOrganizationCategories(int start = 0, int count = 10, string search = "", int? period = null)
+        public OrganizationCategoryViewModel[] GetOrganizationCategories(int start = 0, int count = 10, string search = "", int? period = null, int? includeStats = 0)
         {
             DateTime? startPeriod = null;
             DateTime? endPeriod = null;
@@ -126,42 +126,68 @@ namespace Stakeholders.Web.Controllers
                     break;
             }
 
-            return this.source.GetDataQueryable()
+            var query = this.source.GetDataQueryable()
                 .Where(it => string.IsNullOrEmpty(search) || it.Name.Contains(search))
                 .Skip(start)
-                .Take(count)
-                .Select(it => new Tuple<OrganizationCategory, long, long, long>(
-                    //Item1 - organizationCategory
-                    it,
-                    //Item2 - activites
-                    it.Organizations.SelectMany(org=>org.Contacts).SelectMany(cont=>cont.Activities).Distinct().Count(activity =>
-                        ((startPeriod == null) || (activity.DateActivity >= startPeriod)) &&
-                        ((endPeriod == null) || (activity.DateActivity <= endPeriod))),
-                    //Item3 - tasksTotal
-                    it.Organizations.SelectMany(org => org.Contacts).SelectMany(cont => cont.Tasks).Select(taskContact=> taskContact.Task).Distinct().Count(task =>
-                         ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
-                         ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
-                    //Item4 - tasksDone
-                    it.Organizations.SelectMany(org => org.Contacts).SelectMany(cont => cont.Tasks).Select(taskContact => taskContact.Task).Distinct().Count(task =>
-                         (task.Status.Alias == "Done") &&
-                         ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
-                         ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
-                    ))
-                .ToList()
-                .Select(
-                    it =>
-                    {
-                        var organizationCategory = it.Item1;
-                        var activities = it.Item2;
-                        var tasksTotal = it.Item3;
-                        var tasksDone = it.Item4;
-                        var result = this.mapper.Map<OrganizationCategoryViewModel>(organizationCategory);
-                        result.TasksCompletedPercentage = tasksTotal != 0 ? tasksDone*100.0/tasksTotal : 0;
-                        result.ActivitiesNumber = activities;
-                        result.TasksNumber = tasksTotal;
-                        return result;
-                    })
-                .ToArray();
+                .Take(count);
+            if (includeStats == 1)
+            {
+                return query.Select(
+                        it => new Tuple<OrganizationCategory, long, long, long>(
+
+                            //Item1 - organizationCategory
+                            it,
+
+                            //Item2 - activites
+                            it.Organizations.SelectMany(org => org.Contacts)
+                                .SelectMany(cont => cont.Activities)
+                                .Distinct()
+                                .Count(
+                                    activity =>
+                                        ((startPeriod == null) || (activity.DateActivity >= startPeriod)) &&
+                                        ((endPeriod == null) || (activity.DateActivity <= endPeriod))),
+
+                            //Item3 - tasksTotal
+                            it.Organizations.SelectMany(org => org.Contacts)
+                                .SelectMany(cont => cont.Tasks)
+                                .Select(taskContact => taskContact.Task)
+                                .Distinct()
+                                .Count(
+                                    task =>
+                                        ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                        ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
+
+                            //Item4 - tasksDone
+                            it.Organizations.SelectMany(org => org.Contacts)
+                                .SelectMany(cont => cont.Tasks)
+                                .Select(taskContact => taskContact.Task)
+                                .Distinct()
+                                .Count(
+                                    task =>
+                                        (task.Status.Alias == "Done") &&
+                                        ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                        ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
+                        ))
+                    .ToList()
+                    .Select(
+                        it =>
+                        {
+                            var organizationCategory = it.Item1;
+                            var activities = it.Item2;
+                            var tasksTotal = it.Item3;
+                            var tasksDone = it.Item4;
+                            var result = this.mapper.Map<OrganizationCategoryViewModel>(organizationCategory);
+                            result.TasksCompletedPercentage = tasksTotal != 0 ? tasksDone*100.0/tasksTotal : 0;
+                            result.ActivitiesNumber = activities;
+                            result.TasksNumber = tasksTotal;
+                            return result;
+                        })
+                    .ToArray();
+            }
+            else
+            {
+                return query.ToList().Select(it => this.mapper.Map<OrganizationCategoryViewModel>(it)).ToArray();
+            }
         }
 
         // GET: api/OrganizationCategories/count

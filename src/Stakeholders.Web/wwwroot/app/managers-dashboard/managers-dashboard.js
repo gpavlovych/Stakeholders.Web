@@ -52,7 +52,7 @@ angular
                     function (tasksDeadline) {
                         $scope.tasksDeadline = tasksDeadline;
                     });
-                OrganizationCategory.query({ period: $scope.period },
+                OrganizationCategory.query({ period: $scope.period, includeStats: 1 },
                    function (categories) {
                        $scope.categories = categories;
                    });

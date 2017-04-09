@@ -46,7 +46,7 @@ angular
                 Activity.query({ period: $scope.period }, function (result) {
                     $scope.activities = result;
                 });
-                User.query({ period: $scope.period }, function (result) {
+                User.query({ period: $scope.period, includeStats: 1 }, function (result) {
                     $scope.users = result;
                 });
             }

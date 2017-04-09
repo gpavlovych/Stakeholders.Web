@@ -29,6 +29,10 @@ angular
         function ($scope, User, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
+            $scope.searchChanged = function(ctrl) {
+                $scope.search = ctrl.search;
+                refresh();
+            };
 
             function refresh() {
                 User.query({ start: 0, count: 10, search: $scope.search },
