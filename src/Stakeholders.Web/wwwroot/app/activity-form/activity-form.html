@@ -20,16 +20,8 @@
     </div>
     <div class="colRight">
         <div class="statusList">
-            <h3>{{'RELATED_COMPANY' | translate}}</h3>
-            <div dropdown-select dropdown-url="/api/Companies"  dropdown-value="$ctrl.activity.companyId" dropdown-item-label="name"></div>
-        </div>
-        <div class="statusList">
             <h3>{{'RELATED_CONTACT' | translate}}</h3>
             <div dropdown-select dropdown-url="/api/Contacts"  dropdown-value="$ctrl.activity.contactId" dropdown-item-label="displayName"></div>
-        </div>
-        <div class="relatedOrganizations">
-            <h3>{{'OBSERVER_COMPANIES' | translate}}</h3>
-            <md-chips-select ng-model="$ctrl.selectedObserverCompanies" select-items="$ctrl.companies" main-title="name"></md-chips-select>
         </div>
         <div class="relatedContacts">
             <h3>{{'OBSERVER_USERS' | translate}}</h3>

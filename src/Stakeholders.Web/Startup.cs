@@ -91,6 +91,7 @@ namespace Stakeholders.Web
                         options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IPeriodProvider, PeriodProvider>();
             services.AddScoped<IApplicationUserManager, ApplicationUserManager>();
             services.AddScoped<IDataSource<Activity>, ActivityDataSource>();
             services.AddScoped<IDataSource<ActivityTask>, ActivityTaskDataSource>();

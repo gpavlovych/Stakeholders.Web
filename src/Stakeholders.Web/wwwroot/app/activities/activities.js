@@ -165,5 +165,7 @@ angular
                     },
                     null);
             };
+
+            $scope.selectedObserverUsers = [];
         }
     ]);

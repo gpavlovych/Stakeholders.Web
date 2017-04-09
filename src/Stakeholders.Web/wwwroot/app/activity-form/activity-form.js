@@ -21,11 +21,6 @@
                     {
                         'update': { method: 'PUT' }
                     });
-                var Company = $resource('/api/Companies/:id',
-                    null,
-                    {
-                        'update': { method: 'PUT' }
-                    });
 
                 var vm = this;
                 this.dateCreated = new Date();
@@ -41,13 +36,6 @@
                     vm.activity = null;
                 }
                 this.save = function() {
-                    var observerCompanyIds = [];
-                    for (var index = 0; index < vm.selectedObserverCompanies.length; index++) {
-                        var selectedObserverCompany = vm.selectedObserverCompanies[index];
-                        observerCompanyIds.push(selectedObserverCompany.id);
-                    }
-                    vm.activity.observerCompanyIds = observerCompanyIds;
-
                     var observerUserIds = [];
                     for (var index = 0; index < vm.selectedObserverUsers.length; index++) {
                         var selectedObserverUser = vm.selectedObserverUsers[index];
@@ -66,11 +54,6 @@
                     vm.users = result;
                 });
 
-                this.companies = Company.query(function(result) {
-                    vm.companies = result;
-                });
-
-                this.selectedObserverCompanies = [];
                 this.selectedObserverUsers = [];
             }
         ],

@@ -55,6 +55,8 @@ namespace Stakeholders.Web.Models
             destination.ObserverUserIds =
             (source.ObserverUsers?.Where(it => it.User != null).Select(it => it.User.Id) ??
              Enumerable.Empty<long>()).ToArray();
+            destination.DateActivity = source.DateActivity?.ToLocalTime();
+            destination.DateCreated = source.DateCreated.ToLocalTime();
             destination.CompanyId = source.User?.Company?.Id;
             destination.CompanyName = source.User?.Company?.Name;
             destination.RelatedToGoalId = source.Task?.Goal?.Id;
@@ -68,6 +70,9 @@ namespace Stakeholders.Web.Models
         /// <param name="destination">Destination object</param>
         public void Process(ActivityTask source, ActivityTaskViewModel destination)
         {
+            destination.DateDeadline = source.DateDeadline.ToLocalTime();
+            destination.DateCreated = source.DateCreated.ToLocalTime();
+            destination.DateEnd = source.DateEnd.ToLocalTime();
             destination.ObserverUserIds =
             (source.ObserverUsers?.Where(it => it.User != null).Select(it => it.User.Id) ??
              Enumerable.Empty<long>()).ToArray();

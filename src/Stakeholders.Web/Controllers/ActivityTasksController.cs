@@ -35,6 +35,7 @@ namespace Stakeholders.Web.Controllers
     [Authorize]
     public class ActivityTasksController : Controller
     {
+        private readonly IPeriodProvider periodProvider;
         private readonly IApplicationUserManager userManager;
         private readonly IHttpContextAccessor httpContextAccessor;
 
@@ -57,6 +58,7 @@ namespace Stakeholders.Web.Controllers
         /// or
         /// mapper</exception>
         public ActivityTasksController(
+            IPeriodProvider periodProvider,
             IApplicationUserManager userManager,
             IHttpContextAccessor httpContextAccessor,
             IRepository<ActivityTask> repository,
@@ -72,6 +74,7 @@ namespace Stakeholders.Web.Controllers
                 throw new ArgumentNullException(nameof(mapper));
             }
 
+            this.periodProvider = periodProvider;
             this.userManager = userManager;
             this.httpContextAccessor = httpContextAccessor;
             this.repository = repository;
@@ -100,35 +103,30 @@ namespace Stakeholders.Web.Controllers
             long? organizationCategoryId = null,
             long? contactId = null)
         {
-            DateTime? startPeriod = null;
-            DateTime? endPeriod = null;
+            DateRange periodRange = null;
             switch (period)
             {
                 case 1:
-
                     //this year
-                    startPeriod = DateTime.UtcNow.AddYears(-1);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisYearRange();
                     break;
                 case 2:
-
                     //this quarter
-                    startPeriod = DateTime.UtcNow.AddMonths(-3);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisQuarterRange();
                     break;
                 case 3:
-
                     //this month
-                    startPeriod = DateTime.UtcNow.AddMonths(-1);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisMonthRange();
                     break;
                 case 4:
-
                     //this week
-                    startPeriod = DateTime.UtcNow.AddDays(-7);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisWeekRange();
                     break;
             }
+
+            DateTime? startPeriod = periodRange?.MinDate;
+            DateTime? endPeriod = periodRange?.MaxDate;
+
 
             return this.repository.GetAll(
                     start,

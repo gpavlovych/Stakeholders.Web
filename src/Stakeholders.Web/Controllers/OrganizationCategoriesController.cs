@@ -33,6 +33,11 @@ namespace Stakeholders.Web.Controllers
     public class OrganizationCategoriesController : Controller
     {
         /// <summary>
+        /// The period provider
+        /// </summary>
+        private readonly IPeriodProvider periodProvider;
+
+        /// <summary>
         /// The source
         /// </summary>
         private readonly IDataSource<OrganizationCategory> source;
@@ -50,16 +55,18 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="OrganizationCategoriesController" /> class.
         /// </summary>
+        /// <param name="periodProvider">The period provider.</param>
         /// <param name="source">The source.</param>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
-        /// or
-        /// mapper</exception>
         /// <exception cref="System.ArgumentNullException">repository
         /// or
         /// mapper</exception>
+        /// <exception cref="ArgumentNullException">repository
+        /// or
+        /// mapper</exception>
         public OrganizationCategoriesController(
+            IPeriodProvider periodProvider,
             IDataSource<OrganizationCategory> source, 
             IRepository<OrganizationCategory> repository,
             IMapper mapper)
@@ -79,6 +86,7 @@ namespace Stakeholders.Web.Controllers
                 throw new ArgumentNullException(nameof(mapper));
             }
 
+            this.periodProvider = periodProvider;
             this.source = source;
             this.repository = repository;
             this.mapper = mapper;
@@ -92,39 +100,34 @@ namespace Stakeholders.Web.Controllers
         /// <param name="count">The count.</param>
         /// <param name="search">The search.</param>
         /// <param name="period">The period.</param>
+        /// <param name="includeStats">The include stats.</param>
         /// <returns>OrganizationCategoryViewModel[].</returns>
         [HttpGet]
         public OrganizationCategoryViewModel[] GetOrganizationCategories(int start = 0, int count = 10, string search = "", int? period = null, int? includeStats = 0)
         {
-            DateTime? startPeriod = null;
-            DateTime? endPeriod = null;
+            DateRange periodRange = null;
             switch (period)
             {
                 case 1:
-
                     //this year
-                    startPeriod = DateTime.UtcNow.AddYears(-1);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisYearRange();
                     break;
                 case 2:
-
                     //this quarter
-                    startPeriod = DateTime.UtcNow.AddMonths(-3);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisQuarterRange();
                     break;
                 case 3:
-
                     //this month
-                    startPeriod = DateTime.UtcNow.AddMonths(-1);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisMonthRange();
                     break;
                 case 4:
-
                     //this week
-                    startPeriod = DateTime.UtcNow.AddDays(-7);
-                    endPeriod = DateTime.UtcNow;
+                    periodRange = this.periodProvider.GetThisWeekRange();
                     break;
             }
+
+            DateTime? startPeriod = periodRange?.MinDate;
+            DateTime? endPeriod = periodRange?.MaxDate;
 
             var query = this.source.GetDataQueryable()
                 .Where(it => string.IsNullOrEmpty(search) || it.Name.Contains(search))

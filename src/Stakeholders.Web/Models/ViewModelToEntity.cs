@@ -161,6 +161,7 @@ namespace Stakeholders.Web.Models
         /// <param name="destination">The entity.</param>
         public void Process(ActivityViewModel source, Activity destination)
         {
+            destination.DateActivity = source.DateActivity?.ToUniversalTime();
             var contactId = source.ContactId;
             destination.Contact = contactId != null ? this.repositoryContacts.FindById(contactId.Value) : null;
 
@@ -198,6 +199,9 @@ namespace Stakeholders.Web.Models
         /// <param name="destination">The entity.</param>
         public void Process(ActivityTaskViewModel source, ActivityTask destination)
         {
+            destination.DateDeadline = source.DateDeadline.ToUniversalTime();
+            destination.DateEnd = source.DateEnd.ToUniversalTime();
+
             var assignToId = source.AssignToId;
             destination.AssignTo = assignToId != null ? this.repositoryUsers.FindById(assignToId.Value) : null;
 
