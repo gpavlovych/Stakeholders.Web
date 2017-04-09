@@ -12,7 +12,6 @@
             var ctrl = this;
 
             function refresh(period) {
-                if (period) {
                     switch (period) {
                     case 1:
                         $('#magic-line')
@@ -34,10 +33,10 @@
                         $('#magic-line')
                             .animate({ left: $(".filterTabFour").position().left, width: $(".filterTabFour").width() });
                         break;
-                    }
-                } else {
-                    $('#magic-line')
-                        .animate({ left: $(".filterTabAll").position().left, width: $(".filterTabAll").width() });
+                    default:
+                        $('#magic-line')
+                            .animate({ left: $(".filterTabAll").position().left, width: $(".filterTabAll").width() });
+                        break;
                 }
             }
 
@@ -45,7 +44,7 @@
                 refresh(ctrl.timeFilterPeriod);
             };
 
-            this.$onInit = function() {
+            this.$onInit = function () {
                 refresh(ctrl.timeFilterPeriod);
             };
 
