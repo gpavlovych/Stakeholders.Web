@@ -55,7 +55,7 @@
         </div>-->
     </div>
     <div class="saveBlock">
-        <span>{{'CREATION_DATE' | translate}}: {{$ctrl.dateCreated}}</span>
+        <span>{{'CREATION_DATE' | translate}}: {{$ctrl.dateCreated | date: 'shortDate'}}</span>
         <button class="btnCancel" id="toggleFilterActvTask" ng-click="$ctrl.close()" type='button'>{{'CANCEL' | translate}}</button>
         <button class="btnSave" type='button' ng-click="$ctrl.save()">{{'SAVE' | translate}}</button>
     </div>

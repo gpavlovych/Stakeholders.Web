@@ -31,7 +31,17 @@
                         vm.open();
                     });
                 this.open = function() {
+                    this.dateCreated = new Date();
+                    var nextMonthDate = null;
+                    var now = new Date();
+                    if (now.getMonth() == 11) {
+                        nextMonthDate = new Date(now.getFullYear() + 1, 0, 1);
+                    } else {
+                        nextMonthDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+                    }
                     vm.task = new ActivityTask();
+                    vm.task.dateDeadline = nextMonthDate;
+                    vm.task.dateEnd = nextMonthDate;
                 };
 
                 this.close = function() {
