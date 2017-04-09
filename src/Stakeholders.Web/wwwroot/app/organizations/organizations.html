@@ -2,22 +2,25 @@
       <h1>{{'ORGANIZATIONS' | translate}}</h1>
     <dial-control></dial-control>
       <div class="blockFilters">
-            <md-input-container class="table-gallery">
-                  <span>{{'GALLERY' | translate}}</span>
-                  <md-switch class="md-primary" name="switchView" aria-label="switchView" ng-model="switchView" required></md-switch>
-                  <span>{{'TABLE' | translate}}</span>
-            </md-input-container>
-            <div class="categoryList">
-                  <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
-            </div>
-            <form class="formSearch">
+          <md-input-container class="table-gallery">
+              <span>{{'GALLERY' | translate}}</span>
+              <md-switch class="md-primary" name="switchView" aria-label="switchView" ng-model="switchView" required></md-switch>
+              <span>{{'TABLE' | translate}}</span>
+          </md-input-container>
+          <filter>
+              <div class="statusList one">
+                  {{'CATEGORY' | translate}}
+                  <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="categoryId" dropdown-item-label="name" dropdown-valuechanged="categoryChanged(value)"></div>
+              </div>
+              <form class="formSearch">
                   <div class="form-group">
-                        <div class="input-group">
-                              <input type="text" class="form-control" ng-model="search">
-                              <md-icon md-svg-src="/images/magnify.svg"></md-icon>
-                        </div>
+                      <div class="input-group">
+                          <input type="text" class="form-control" ng-model="search" ng-change="searchChanged(this)">
+                          <md-icon md-svg-src="/images/magnify.svg"></md-icon>
+                      </div>
                   </div>
-            </form>
+              </form>
+          </filter>
       </div>
 
     <activity-form/>
@@ -36,7 +39,7 @@
                               <div dropdown-select dropdown-url="/api/OrganizationTypes" dropdown-value="editedOrganization.typeId" dropdown-item-label="type"></div>
                         </div>
                         <div class="statusList">
-                              <div dropdown-select dropdown-url="/api/OrganizationUsers" dropdown-value="editedOrganization.userId" dropdown-item-label="name"></div>
+                              <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedOrganization.userId" dropdown-item-label="name"></div>
                         </div>
                         <textarea placeholder="{{'INFLUENCING' | translate}}" ng-model="editedOrganization.influencing"></textarea>
                         <textarea placeholder="{{'INFLUENCED_BY' | translate}}" ng-model="editedOrganization.influencedBy"></textarea>

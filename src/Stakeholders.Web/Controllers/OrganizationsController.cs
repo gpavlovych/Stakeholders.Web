@@ -47,10 +47,10 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="System.ArgumentNullException">repository
         /// or
         /// mapper</exception>
-        /// <exception cref="System.ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">repository
         /// or
         /// mapper</exception>
         public OrganizationsController(
@@ -78,11 +78,24 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         /// <param name="search">The search.</param>
+        /// <param name="organizationCategoryId">The organization category identifier.</param>
         /// <returns>OrganizationInfoViewModel[].</returns>
         [HttpGet]
-        public OrganizationViewModel[] GetOrganizations(int start = 0, int count = 10, string search = "")
+        public OrganizationViewModel[] GetOrganizations(
+            int start = 0,
+            int count = 10,
+            string search = "",
+            long? organizationCategoryId = null)
         {
-            return this.repository.GetAll(start, count, it => string.IsNullOrEmpty(search) || it.Name.Contains(search)).Select(it => this.mapper.Map<OrganizationViewModel>(it)).ToArray();
+            return
+                this.repository.GetAll(
+                        start,
+                        count,
+                        it =>
+                            (string.IsNullOrEmpty(search) || it.Name.Contains(search)) &&
+                            ((organizationCategoryId == null) || (it.Category.Id == organizationCategoryId)))
+                    .Select(it => this.mapper.Map<OrganizationViewModel>(it))
+                    .ToArray();
         }
 
         // GET: api/Organizations/count
