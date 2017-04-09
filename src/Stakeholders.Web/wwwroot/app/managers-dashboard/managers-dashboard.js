@@ -39,14 +39,18 @@ angular
     .controller('managersDashboardController',
     [
         '$scope',
+        '$rootScope',
         'ActivityTask',
         'OrganizationCategory',
-        function ($scope, ActivityTask, OrganizationCategory) {
+        function ($scope, $rootScope, ActivityTask, OrganizationCategory) {
             $scope.periodChanged = function (period) {
                 $scope.period = period;
                 refresh();
             };
             refresh();
+            $rootScope.$on("refresh", function () {
+                refresh();
+            });
             function refresh() {
                 ActivityTask.query({period: 3},//TODO: hardcoded 1 month, change
                     function (tasksDeadline) {

@@ -25,6 +25,7 @@ angular
     .controller('organizationCategoriesController',
     [
         '$scope',
+        '$rootScope',
         'OrganizationCategory',
         'dialogService',
         function ($scope, OrganizationCategory, dialogService) {
@@ -35,6 +36,9 @@ angular
                 refresh();
             };
 
+            $rootScope.$on("refresh", function () {
+                refresh();
+            });
             function refresh() {
                 OrganizationCategory.query({ start: 0, count: 10, search: $scope.search },
                     function (organizationCategories) {

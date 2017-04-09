@@ -65,7 +65,7 @@
 
                     vm.task.$save(function () {
                         dialogService.showMessageSavedDialog();
-                        $rootScope.$emit("refreshActivityTasks", vm.task);
+                        $rootScope.$emit("refresh", vm.task);
                     });
                     vm.task = null;
                 };

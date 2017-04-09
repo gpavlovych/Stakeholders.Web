@@ -39,9 +39,10 @@ angular
     .controller('ceoDashboardController',
     [
         '$scope',
+        '$rootScope',
         'Activity',
         'User',
-        function ($scope, Activity, User) {
+        function ($scope, $rootScope, Activity, User) {
             function refresh() {
                 Activity.query({ period: $scope.period }, function (result) {
                     $scope.activities = result;
@@ -55,6 +56,10 @@ angular
                 $scope.period = period;
                 refresh();
             };
+
+            $rootScope.$on("refresh", function () {
+                refresh();
+            });
 
             refresh();
         }

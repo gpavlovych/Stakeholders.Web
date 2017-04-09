@@ -52,7 +52,7 @@
 
                     vm.activity.$save(function () {
                         dialogService.showMessageSavedDialog();
-                        $rootScope.$emit("refreshActivities", vm.activity);
+                        $rootScope.$emit("refresh", vm.activity);
                     });
                     vm.activity = null;
                 }

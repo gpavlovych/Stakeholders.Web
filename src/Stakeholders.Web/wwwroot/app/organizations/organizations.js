@@ -63,9 +63,10 @@ angular
     .controller('organizationsController',
     [
         '$scope',
+        '$rootScope',
         'Organization',
         'dialogService',
-        function ($scope, Organization, dialogService) {
+        function ($scope, $rootScope, Organization, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
             $scope.categoryChanged = function(value) {
@@ -76,6 +77,9 @@ angular
                 $scope.search = ctrl.search;
                 refresh();
             }
+            $rootScope.$on("refresh", function () {
+                refresh();
+            });
             function refresh() {
                 Organization.query({ start: 0, count: 10, search: $scope.search, organizationCategoryId: $scope.categoryId },
                     function (organizations) {

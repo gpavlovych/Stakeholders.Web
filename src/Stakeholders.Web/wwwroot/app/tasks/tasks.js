@@ -94,7 +94,7 @@ angular
             }
 
             refresh();
-            $rootScope.$on("refreshActivityTasks", function () {
+            $rootScope.$on("refresh", function () {
                 refresh();
             });
             $scope.filter = function () {

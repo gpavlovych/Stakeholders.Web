@@ -3,7 +3,7 @@
 angular
     .module('porlaDashboard.users', ['ngRoute'])
     .config([
-        '$routeProvider', function ($routeProvider) {
+        '$routeProvider', function($routeProvider) {
             $routeProvider.when('/users',
             {
                 templateUrl: 'users/users.html',
@@ -12,27 +12,35 @@ angular
             });
         }
     ])
-      .factory('User', ['$resource',
-    function ($resource) {
-        return $resource(
-            '/api/ApplicationUsers/:id',
-            null,
-            {
-                'update': { method: 'PUT' }
-            });
-    }])
-  .controller('usersController',
+    .factory('User',
+    [
+        '$resource',
+        function($resource) {
+            return $resource(
+                '/api/ApplicationUsers/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }
+    ])
+    .controller('usersController',
     [
         '$scope',
+        '$rootScope',
         'User',
         'dialogService',
-        function ($scope, User, dialogService) {
+        function ($scope, $rootScope, User, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
             $scope.searchChanged = function(ctrl) {
                 $scope.search = ctrl.search;
                 refresh();
             };
+
+            $rootScope.$on("refresh", function () {
+                refresh();
+            });
 
             function refresh() {
                 User.query({ start: 0, count: 10, search: $scope.search },

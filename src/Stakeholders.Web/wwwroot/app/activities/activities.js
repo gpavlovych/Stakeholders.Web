@@ -76,7 +76,7 @@ angular
             };
 
             refresh();
-            $rootScope.$on("refreshActivities", function() {
+            $rootScope.$on("refresh", function() {
                 refresh();
             });
             $scope.editActivityTypeChanged = function(value) {

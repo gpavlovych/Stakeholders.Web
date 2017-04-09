@@ -24,10 +24,11 @@ angular
     ])
     .controller('contactsController',
     [
+        '$rootScope',
         '$scope',
         'Contact',
         'dialogService',
-        function ($scope, Contact, dialogService) {
+        function ($rootScope, $scope, Contact, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
             $scope.categoryChanged = function(value) {
@@ -59,7 +60,12 @@ angular
             $scope.filter = function () {
                 refresh();
             };
-            $scope.editContactOrganizationChanged = function(value) {
+
+            $rootScope.$on("refresh", function () {
+                refresh();
+            });
+
+            $scope.editContactOrganizationChanged = function (value) {
                 if ($scope.editedContact) {
                     $scope.editedContact.organizationId = value;
                 }

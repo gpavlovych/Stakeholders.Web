@@ -25,11 +25,20 @@ angular.module('porlaDashboard.home', ['ngRoute'])
     .controller('homeController',
     [
         '$scope',
+        '$rootScope',
         'Goal',
-        function ($scope, Goal) {
+        function ($scope, $rootScope, Goal) {
             $scope.labels = ["Task in progress", "Tasks Completed", "Tasks ready to start"];
-            Goal.query(function (goals) {
-                $scope.goals = goals;
+
+            function refresh() {
+                Goal.query(function(goals) {
+                    $scope.goals = goals;
+                });
+            }
+
+            $rootScope.$on("refresh", function () {
+                refresh();
             });
+            refresh();
         }
     ]);

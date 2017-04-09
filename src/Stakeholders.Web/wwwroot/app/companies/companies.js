@@ -26,9 +26,10 @@ angular
     .controller('companiesController',
     [
         '$scope',
+        '$rootScope',
         'Company',
         'dialogService',
-        function($scope, Company, dialogService) {
+        function($scope,$rootScope, Company, dialogService) {
             $scope.search = "";
             $scope.searchChanged = function (ctrl) {
                 $scope.search = ctrl.search;
@@ -47,7 +48,11 @@ angular
                 refresh();
             };
 
-            $scope.editCompany = function(id) {
+            $rootScope.$on("refresh", function () {
+                refresh();
+            });
+
+            $scope.editCompany = function (id) {
                 $scope.editedCompany = Company.get({ id: id });
             };
 
