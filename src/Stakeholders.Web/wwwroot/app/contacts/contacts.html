@@ -84,8 +84,8 @@
                         <p><span>{{'EMAIL' | translate}}</span><strong><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></strong></p>
                     </div>
                     <div class="statsResult">
-                        <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ contact.tasksCompleted }}%</strong></p>
-                        <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ contact.activities }}</strong></p>
+                        <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ contact.tasksCompletedPercentage | number:0 }}%</strong></p>
+                        <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ contact.activitiesNumber }}</strong></p>
                     </div>
                     <div class="bottomFooter">
                         <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeContact(contact.id);">

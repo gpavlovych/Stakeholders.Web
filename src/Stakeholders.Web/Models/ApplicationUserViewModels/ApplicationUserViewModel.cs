@@ -79,12 +79,12 @@ namespace Stakeholders.Web.Models.ApplicationUserViewModels
         /// Gets the % of tasks completed.
         /// </summary>
         /// <value>The % of tasks completed.</value>
-        public double TasksCompleted { get; internal set; }
+        public double TasksCompletedPercentage { get; internal set; }
 
         /// <summary>
         /// Gets the activities count.
         /// </summary>
         /// <value>The activities count.</value>
-        public long ActivitiesCount { get; internal set; }
+        public long ActivitiesNumber { get; internal set; }
     }
 }

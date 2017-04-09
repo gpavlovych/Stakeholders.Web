@@ -87,5 +87,11 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The tasks.</value>
         public ICollection<ActivityTaskContact> Tasks { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activities.
+        /// </summary>
+        /// <value>The activities.</value>
+        public ICollection<Activity> Activities { get; set; }
     }
 }

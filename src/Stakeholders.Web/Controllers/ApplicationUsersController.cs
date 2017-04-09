@@ -32,6 +32,8 @@ namespace Stakeholders.Web.Controllers
     [Authorize]
     public class ApplicationUsersController : Controller
     {
+        private readonly IDataSource<ApplicationUser> source;
+
         /// <summary>
         /// The context
         /// </summary>
@@ -72,6 +74,7 @@ namespace Stakeholders.Web.Controllers
         /// or
         /// mapper</exception>
         public ApplicationUsersController(
+            IDataSource<ApplicationUser> source,
             IRepository<ApplicationUser> repository,
             IRepository<Company> companyRepository,
             IRepository<Role> roleRepository,
@@ -88,6 +91,7 @@ namespace Stakeholders.Web.Controllers
                 throw new ArgumentNullException(nameof(mapper));
             }
 
+            this.source = source;
             this.repository = repository;
             this.mapper = mapper;
             this.userManager = userManager;
@@ -104,9 +108,81 @@ namespace Stakeholders.Web.Controllers
         /// <param name="search">The search.</param>
         /// <returns>ApplicationUserInfoViewModel[].</returns>
         [HttpGet]
-        public ApplicationUserViewModel[] GetApplicationUsers(int start = 0, int count = 10, string search="")
+        public ApplicationUserViewModel[] GetApplicationUsers(
+            int start = 0,
+            int count = 10,
+            string search = "",
+            int? period = null)
         {
-            return this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search) || it.Name.Contains(search)).Select(it => this.mapper.Map<ApplicationUserViewModel>(it)).ToArray();
+            DateTime? startPeriod = null;
+            DateTime? endPeriod = null;
+            switch (period)
+            {
+                case 1:
+
+                    //this year
+                    startPeriod = DateTime.UtcNow.AddYears(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 2:
+
+                    //this quarter
+                    startPeriod = DateTime.UtcNow.AddMonths(-3);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 3:
+
+                    //this month
+                    startPeriod = DateTime.UtcNow.AddMonths(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 4:
+
+                    //this week
+                    startPeriod = DateTime.UtcNow.AddDays(-7);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+            }
+
+            return this.source.GetDataQueryable()
+                .Where(it => string.IsNullOrEmpty(search) || it.Name.Contains(search))
+                .Skip(start)
+                .Take(count)
+                .Select(
+                    it => new Tuple<ApplicationUser, long, long, long>(
+                        //Item1 - User
+                        it,
+                        //Item2 - Tasks total
+                        it.AssignedTasks.Distinct().Count(
+                            task =>
+                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
+                        //Item3 - Tasks done
+                        it.AssignedTasks.Distinct().Count(
+                            task => (task.Status.Alias == "Done") &&
+                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
+                        //Item4 - Activities
+                        it.Activities.Select(activity => activity.Task).Distinct().Count(
+                            task =>
+                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
+                    ))
+                .ToList()
+                .Select(
+                    it =>
+                    {
+                        var user = it.Item1;
+                        var tasksTotal = it.Item2;
+                        var tasksDone = it.Item3;
+                        var activities = it.Item4;
+
+                        var result = this.mapper.Map<ApplicationUserViewModel>(user);
+                        result.TasksCompletedPercentage = tasksTotal != 0 ? tasksDone*100.0/tasksTotal: 0;
+                        result.ActivitiesNumber = activities;
+                        return result;
+                    })
+                .ToArray();
         }
 
         // GET: api/ApplicationUsers/count

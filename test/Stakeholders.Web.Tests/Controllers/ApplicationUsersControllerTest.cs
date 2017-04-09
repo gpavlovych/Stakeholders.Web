@@ -68,11 +68,17 @@ namespace Stakeholders.Web.Tests.Controllers
         private readonly Mock<IRepository<Company>> repositoryCompanyMock;
 
         /// <summary>
+        /// The source mock
+        /// </summary>
+        private readonly Mock<IDataSource<ApplicationUser>> sourceMock;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationUsersControllerTest" /> class.
         /// </summary>
         public ApplicationUsersControllerTest()
         {
             this.entitiesForTest = new EntitiesForTest();
+            this.sourceMock = new Mock<IDataSource<ApplicationUser>>();
             this.repositoryMock = new Mock<IRepository<ApplicationUser>>();
             this.repositoryCompanyMock = new Mock<IRepository<Company>>();
             this.repositoryRoleMock = new Mock<IRepository<Role>>();
@@ -80,6 +86,7 @@ namespace Stakeholders.Web.Tests.Controllers
             this.userManagerMock = new Mock<IApplicationUserManager>();
 
             this.target = new ApplicationUsersController(
+                this.sourceMock.Object,
                 this.repositoryMock.Object,
                 this.repositoryCompanyMock.Object,
                 this.repositoryRoleMock.Object,

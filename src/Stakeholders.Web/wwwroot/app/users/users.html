@@ -26,11 +26,11 @@
                 <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedUser.email" />
                 <input type="password" placeholder="{{'PASSWORD' | translate}}" ng-model="editedUser.password" />
                 <div class="statusList">
-                    <h3>{{'STATUS' | translate}}</h3>
+                    <h3>{{'ROLE' | translate}}</h3>
                     <div dropdown-select dropdown-url="/api/Roles" dropdown-value="editedUser.roleId" dropdown-item-label="name"></div>
                 </div>
                 <div class="statusList">
-                    <h3>{{'STATUS' | translate}}</h3>
+                    <h3>{{'COMPANY' | translate}}</h3>
                     <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedUser.companyId" dropdown-item-label="name"></div>
                 </div>
             </div>

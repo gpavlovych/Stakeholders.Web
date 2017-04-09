@@ -193,7 +193,7 @@ namespace Stakeholders.Web.Tests
             {
                 Id = this.random.Next(),
                 Name = this.CreateString(),
-                NameEn = this.CreateString(),
+                Alias = this.CreateString(),
             };
         }
 
@@ -574,10 +574,10 @@ namespace Stakeholders.Web.Tests
                 Comments = this.CreateString(),
                 PhotoUrl = this.CreateString(),
                 Title = this.CreateString(),
-                Activities = this.CreateInt(),
+                ActivitiesNumber = this.CreateInt(),
                 UserName = this.CreateString(),
                 CompanyName = this.CreateString(),
-                TasksCompleted = this.CreateInt(),
+                TasksCompletedPercentage = this.CreateInt(),
                 DisplayName = this.CreateString(),
                 OrganizationName = this.CreateString()
             };

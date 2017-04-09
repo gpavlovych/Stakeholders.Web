@@ -35,8 +35,8 @@
                         </h3>
                         <div class="statsResult">
                             <p> {{user.roleName}}</p>
-                            <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ user.tasksCompleted }}%</strong></p>
-                            <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ user.activitiesCount }}</strong></p>
+                            <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ user.tasksCompletedPercentage | number:0 }}%</strong></p>
+                            <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ user.activitiesNumber }}</strong></p>
                         </div>
                     </li>
                 </ul>

@@ -151,7 +151,7 @@ namespace Stakeholders.Web.Data
             activityEntityBuilder.HasMany(it => it.ObserverCompanies).WithOne(it => it.Activity);
             activityEntityBuilder.HasOne(it => it.User).WithMany(it=>it.Activities);
             activityEntityBuilder.HasOne(it => it.Company);
-            activityEntityBuilder.HasOne(it => it.Contact);
+            activityEntityBuilder.HasOne(it => it.Contact).WithMany(it => it.Activities);
             activityEntityBuilder.HasOne(it => it.Task).WithMany(it => it.Activities);
             activityEntityBuilder.HasOne(it => it.Type);
 
@@ -175,7 +175,9 @@ namespace Stakeholders.Web.Data
 
             var contactEntityBuilder = builder.Entity<Contact>();
             contactEntityBuilder.HasKey(it => it.Id);
+            contactEntityBuilder.HasOne(it => it.Organization).WithMany(it => it.Contacts);
             contactEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Contact);
+            contactEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.Contact);
 
             var goalEntityBuilder = builder.Entity<Goal>();
             goalEntityBuilder.HasKey(it => it.Id);
@@ -183,7 +185,8 @@ namespace Stakeholders.Web.Data
 
             var organizationEntityBuilder = builder.Entity<Organization>();
             organizationEntityBuilder.HasKey(it => it.Id);
-            organizationEntityBuilder.HasOne(it => it.Category);
+            organizationEntityBuilder.HasOne(it => it.Category).WithMany(it => it.Organizations);
+            organizationEntityBuilder.HasMany(it => it.Contacts).WithOne(it => it.Organization);
             organizationEntityBuilder.HasOne(it => it.Company);
             organizationEntityBuilder.HasOne(it => it.Type);
             organizationEntityBuilder.HasOne(it => it.User);
@@ -195,6 +198,7 @@ namespace Stakeholders.Web.Data
             var organizationCategoryEntityBuilder = builder.Entity<OrganizationCategory>();
             organizationCategoryEntityBuilder.HasKey(it => it.Id);
             organizationCategoryEntityBuilder.HasOne(it => it.Company);
+            organizationCategoryEntityBuilder.HasMany(it => it.Organizations).WithOne(it => it.Category);
 
             var activityTaskStatusEntityBuilder = builder.Entity<ActivityTaskStatus>();
             activityTaskStatusEntityBuilder.HasKey(it => it.Id);

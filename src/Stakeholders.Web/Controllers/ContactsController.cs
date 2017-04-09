@@ -35,6 +35,11 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// The context
         /// </summary>
+        private readonly IDataSource<Contact> source;
+
+        /// <summary>
+        /// The context
+        /// </summary>
         private readonly IRepository<Contact> repository;
 
         /// <summary>
@@ -45,6 +50,7 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="ContactsController" /> class.
         /// </summary>
+        /// <param name="source"></param>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
         /// <exception cref="ArgumentNullException">repository
@@ -54,6 +60,7 @@ namespace Stakeholders.Web.Controllers
         /// or
         /// mapper</exception>
         public ContactsController(
+            IDataSource<Contact> source,
             IRepository<Contact> repository,
             IMapper mapper)
         {
@@ -67,6 +74,7 @@ namespace Stakeholders.Web.Controllers
                 throw new ArgumentNullException(nameof(mapper));
             }
 
+            this.source = source;
             this.repository = repository;
             this.mapper = mapper;
         }
@@ -80,9 +88,73 @@ namespace Stakeholders.Web.Controllers
         /// <param name="search">The search.</param>
         /// <returns>ContactInfoViewModel[].</returns>
         [HttpGet]
-        public ContactViewModel[] GetContacts(int start = 0, int count = 10, string search = "")
+        public ContactViewModel[] GetContacts(int start = 0, int count = 10, string search = "", int? period = null)
         {
-            return this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search) || it.NameF.Contains(search) || it.NameL.Contains(search)).Select(it => this.mapper.Map<ContactViewModel>(it)).ToArray();
+            DateTime? startPeriod = null;
+            DateTime? endPeriod = null;
+            switch (period)
+            {
+                case 1:
+
+                    //this year
+                    startPeriod = DateTime.UtcNow.AddYears(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 2:
+
+                    //this quarter
+                    startPeriod = DateTime.UtcNow.AddMonths(-3);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 3:
+
+                    //this month
+                    startPeriod = DateTime.UtcNow.AddMonths(-1);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+                case 4:
+
+                    //this week
+                    startPeriod = DateTime.UtcNow.AddDays(-7);
+                    endPeriod = DateTime.UtcNow;
+                    break;
+            }
+
+            return this.source.GetDataQueryable()
+                .Where(it => string.IsNullOrEmpty(search) || it.NameF.Contains(search) || it.NameL.Contains(search))
+                .Skip(start)
+                .Take(count)
+                .Select(it=>new Tuple<Contact, long, long, long>(
+                    //Item1 - contact
+                    it, 
+                    //Item2 - activities
+                    it.Activities.Distinct().Count(activity=> 
+                        ((startPeriod == null) || (activity.DateActivity >= startPeriod)) && 
+                        ((endPeriod == null) || (activity.DateActivity <= endPeriod))),
+                    //Item3 - tasksTotal
+                    it.Tasks.Select(taskContact => taskContact.Task).Distinct().Count(task =>
+                         ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                         ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
+                    //Item4 - tasksDone
+                    it.Tasks.Select(taskContact => taskContact.Task).Distinct().Count(task =>
+                        (task.Status.Alias == "Done") &&
+                        ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                        ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
+                    ))
+                .ToList()
+                .Select(
+                    it =>
+                    {
+                        var contact = it.Item1;
+                        var activities = it.Item2;
+                        var tasksTotal = it.Item3;
+                        var tasksDone = it.Item4;
+                        var result = this.mapper.Map<ContactViewModel>(contact);
+                        result.TasksCompletedPercentage = tasksTotal != 0 ? tasksDone*100.0/tasksTotal : 0;
+                        result.ActivitiesNumber = activities;
+                        return result;
+                    })
+                .ToArray();
         }
 
         // GET: api/Contacts/count

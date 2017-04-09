@@ -22,7 +22,7 @@ angular
             });
     }])
   .controller('usersController',
-    [[
+    [
         '$scope',
         'User',
         'dialogService',
@@ -66,7 +66,7 @@ angular
             $scope.removeUser = function (event, id) {
                 dialogService.showConfirmationDeleteDialog(event,
                     function () {
-                        $scope.editedUser.$remove({ id: id },
+                        User.remove({ id: id },
                             function () {
                                 refresh();
                             });
@@ -74,5 +74,4 @@ angular
                     null);
             };
         }
-    ]
     ]);

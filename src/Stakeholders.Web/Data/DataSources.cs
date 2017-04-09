@@ -88,7 +88,15 @@ namespace Stakeholders.Web.Data
         public IQueryable<OrganizationCategory> GetDataQueryable()
         {
             return this.context.OrganizationCategories
-                .Include(it => it.Company);
+                .Include(it => it.Company)
+                .Include(it=>it.Organizations)
+                    .ThenInclude(it=>it.Contacts)
+                        .ThenInclude(it=>it.Tasks)
+                            .ThenInclude(it=>it.Task)
+                                .ThenInclude(it=>it.Status)
+                .Include(it => it.Organizations)
+                    .ThenInclude(it => it.Contacts)
+                        .ThenInclude(it => it.Activities);
         }
     }
 
@@ -334,6 +342,9 @@ namespace Stakeholders.Web.Data
                     .ThenInclude(it => it.User)
                 .Include(it => it.Contacts)
                     .ThenInclude(it => it.Contact)
+                .Include(it => it.Contacts)
+                    .ThenInclude(it => it.Contact)
+                        .ThenInclude(it => it.Activities)
                 .Include(it => it.Organizations)
                     .ThenInclude(it => it.Organization)
                         .ThenInclude(it => it.Category)

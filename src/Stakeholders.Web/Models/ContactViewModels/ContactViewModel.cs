@@ -109,13 +109,13 @@ namespace Stakeholders.Web.Models.ContactViewModels
         /// Gets or sets the tasks completed.
         /// </summary>
         /// <value>The tasks completed.</value>
-        public double? TasksCompleted { get; set; }
+        public double TasksCompletedPercentage { get; set; }
 
         /// <summary>
         /// Gets or sets the activities.
         /// </summary>
         /// <value>The activities.</value>
-        public long Activities { get; set; }
+        public long ActivitiesNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the display name.

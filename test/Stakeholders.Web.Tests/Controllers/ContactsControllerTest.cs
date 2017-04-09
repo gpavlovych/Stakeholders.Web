@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-03-2017
+// Last Modified On : 04-09-2017
 // ***********************************************************************
 // <copyright file="ContactsControllerTest.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -53,15 +53,22 @@ namespace Stakeholders.Web.Tests.Controllers
         private readonly Mock<IMapper> mapperMock;
 
         /// <summary>
+        /// The source mock
+        /// </summary>
+        private readonly Mock<IDataSource<Contact>> sourceMock;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ContactsControllerTest" /> class.
         /// </summary>
         public ContactsControllerTest()
         {
             this.entitiesForTest = new EntitiesForTest();
+            this.sourceMock = new Mock<IDataSource<Contact>>();
             this.repositoryMock = new Mock<IRepository<Contact>>();
             this.mapperMock = new Mock<IMapper>();
 
             this.target = new ContactsController(
+                this.sourceMock.Object,
                 this.repositoryMock.Object,
                 this.mapperMock.Object);
         }

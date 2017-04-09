@@ -22,6 +22,7 @@ using Stakeholders.Web.Models.CompanyViewModels;
 using Stakeholders.Web.Models.ContactViewModels;
 using Stakeholders.Web.Models.GoalViewModels;
 using Stakeholders.Web.Data;
+using Stakeholders.Web.Models.OrganizationCategoryViewModels;
 
 namespace Stakeholders.Web.Models
 {
@@ -101,9 +102,6 @@ namespace Stakeholders.Web.Models
             destination.ObserverTaskIds =
             (source.ObserverTasks?.Where(it => it.Task != null).Select(it => it.Task.Id) ??
              Enumerable.Empty<long>()).ToArray();
-
-            destination.ActivitiesCount = source.Activities?.Count() ?? 0;
-            destination.TasksCompleted = source.AssignedTasks.Any() ? source.AssignedTasks.Count(it => it.Status.Alias == "Done") * 100.0 / source.AssignedTasks.Count() : 0;
         }
 
         /// <summary>
@@ -116,11 +114,6 @@ namespace Stakeholders.Web.Models
             destination.TaskIds =
             (source.Tasks?.Where(it => it.Task != null).Select(it => it.Task.Id) ??
              Enumerable.Empty<long>()).ToArray();
-            destination.TasksCompleted =
-                source.Tasks?.Count(
-                    it => string.Equals(it.Task?.Status?.Alias, "done", StringComparison.OrdinalIgnoreCase))*100.0/
-                source.Tasks.Count();
-            destination.Activities = source.Tasks.SelectMany(it => it.Task.Activities).Distinct().Count();
             destination.DisplayName = destination.NameF + " " + destination.NameL;
         }
 

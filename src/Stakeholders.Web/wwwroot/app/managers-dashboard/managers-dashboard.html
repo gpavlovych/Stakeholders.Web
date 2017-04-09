@@ -2,10 +2,10 @@
     <div class="sidebarDashboard" >
         <h1>{{'APPROACHING_DEADLINE_TASKS' | translate}}</h1>
         <div class="latestActivities" ng-scrollbars ng-scrollbars-config="config">
-            <ul class="listActivities" ng-repeat="task in deadline">
-                <li class="oneLevel {{ task.deadlinestatus }}">
+            <ul class="listActivities" ng-repeat="task in tasksDeadline">
+                <li class="oneLevel" ng-class="{'blue': task.statusAlias=='Awaiting', 'orange': task.statusAlias=='InProcess', 'red': task.statusAlias=='OnHold', 'green': task.statusAlias=='Done' }">
                     <div class="icon-activities">
-                        <h1>{{ task.taskid }}</h1>
+                        <h1>{{ $index }}</h1>
                     </div>
                     <ul class="dashedUl">
                         <li>
@@ -36,14 +36,14 @@
                                 <img src="{{category.iconUrl}}" />
                             </div>
                             <div class="leftEntity">
-                                <p><span class="color red"></span>{{'TASKS_COMP' | translate}}: <strong>{{ entities.taskcomp }}%</strong></p>
-                                <p><span class="color green"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ entities.activities }}</strong></p>
-                                <p><span class="color blue"></span>{{'TASKS_COMP' | translate}}: <strong>{{ entities.taskcomp }}%</strong></p>
+                                <p><span class="color red"></span>{{'TASKS_LOW' | translate}}: <strong>{{ category.tasksNumber }}</strong></p>
+                                <p><span class="color green"></span>{{'TASKS_COMP' | translate}}: <strong>{{ category.tasksCompletedPercentage | number:0 }}%</strong></p>
+                                <p><span class="color blue"></span>{{'ACTIVITIES_LOW' | translate}}: <strong>{{ category.activitiesNumber }}</strong></p>
                             </div>
                         </div>
                         <div class="legend">
-                            <p><span class="ng-tooltip">Lorem Ipsum</span><img src="{{pathImage}}influency.png" /> {{'INFLUENCING' | translate}}</p>
-                            <p><span class="ng-tooltip">Lorem Ipsum</span><img src="{{pathImage}}influencyby.png" /> {{'INFLUENCED_BY' | translate}}</p>
+                            <p><span class="ng-tooltip">{{category.influencing}}</span><img src="{{pathImage}}influency.png" /> {{'INFLUENCING' | translate}}</p>
+                            <p><span class="ng-tooltip">{{category.influencedBy}}</span><img src="{{pathImage}}influencyby.png" /> {{'INFLUENCED_BY' | translate}}</p>
                         </div>
                     </li>
                 </ul>

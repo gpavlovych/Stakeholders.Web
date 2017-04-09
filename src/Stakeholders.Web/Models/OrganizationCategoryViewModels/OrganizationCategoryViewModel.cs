@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-08-2017
 // ***********************************************************************
 // <copyright file="OrganizationCategoryViewModel.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -19,7 +19,7 @@ namespace Stakeholders.Web.Models.OrganizationCategoryViewModels
     /// Class OrganizationCategoryViewModel.
     /// </summary>
     /// <seealso cref="Stakeholders.Web.Models.Base.ViewModelBase" />
-    public class OrganizationCategoryViewModel: ViewModelBase
+    public class OrganizationCategoryViewModel : ViewModelBase
     {
         /// <summary>
         /// Gets or sets the name.
@@ -56,5 +56,23 @@ namespace Stakeholders.Web.Models.OrganizationCategoryViewModels
         /// </summary>
         /// <value>The name of the company.</value>
         public string CompanyName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tasks completed percentage.
+        /// </summary>
+        /// <value>The tasks completed percentage.</value>
+        public double TasksCompletedPercentage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the tasks number.
+        /// </summary>
+        /// <value>The tasks number.</value>
+        public long TasksNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the activities number.
+        /// </summary>
+        /// <value>The activities number.</value>
+        public long ActivitiesNumber { get; set; }
     }
 }
