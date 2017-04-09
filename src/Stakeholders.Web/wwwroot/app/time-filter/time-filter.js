@@ -56,22 +56,6 @@
                 refresh(value);
                 ctrl.timeFilterPeriodChanged({period: value});
             };
-            //$('.filterTabOne').on('click', function () {
-            //    $('.filterTabTwo, .filterTabThree, .filterTabFour').removeClass('current_page_item');
-            //    $(this).toggleClass('current_page_item');
-            //});
-            //$('.filterTabTwo').on('click', function () {
-            //    $('.filterTabOne, .filterTabThree, .filterTabFour').removeClass('current_page_item');
-            //    $(this).toggleClass('current_page_item');
-            //});
-            //$('.filterTabThree').on('click', function () {
-            //    $('.filterTabOne, .filterTabTwo, .filterTabFour').removeClass('current_page_item');
-            //    $(this).toggleClass('current_page_item');
-            //});
-            //$('.filterTabFour').on('click', function () {
-            //    $('.filterTabOne, .filterTabTwo, .filterTabThree').removeClass('current_page_item');
-            //    $(this).toggleClass('current_page_item');
-            //});
         }],
         templateUrl: 'time-filter/time-filter.html'
     })

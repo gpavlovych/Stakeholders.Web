@@ -26,10 +26,13 @@ angular.module('porlaDashboard.home', ['ngRoute'])
     [
         '$scope',
         '$rootScope',
+        '$translate',
         'Goal',
-        function ($scope, $rootScope, Goal) {
-            $scope.labels = ["Task in progress", "Tasks Completed", "Tasks ready to start"];
-
+        function ($scope, $rootScope, $translate, Goal) {
+            $translate(['TASKS_IN_PROCESS', 'TASKS_COMPLETED', 'TASKS_READY_TO_START'])
+            .then(function (translation) {
+                $scope.labels = [translation.TASKS_IN_PROCESS, translation.TASKS_COMPLETED, translation.TASKS_READY_TO_START];
+            });
             function refresh() {
                 Goal.query(function(goals) {
                     $scope.goals = goals;

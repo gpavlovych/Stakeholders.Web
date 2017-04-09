@@ -81,8 +81,9 @@ angular
     [
         '$scope',
         '$location',
+        '$translate',
         'loginService',
-        function ($scope, $location, loginService) {
+        function ($scope, $location, $translate, loginService) {
             loginService.logout();
             $scope.login = function() {
                 loginService.login(
@@ -92,7 +93,11 @@ angular
                         if (success) {
                             $location.path('/');
                         } else {
-                            alert('username or password is incorrect');
+                            $translate(['USERNAME_OR_PASSWORD_INCORRECT'])
+                             .then(function (translation) {
+                                 alert(translation.USERNAME_OR_PASSWORD_INCORRECT);
+                             });
+
                         }
                     });
 

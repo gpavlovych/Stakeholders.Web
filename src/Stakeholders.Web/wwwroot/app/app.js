@@ -120,41 +120,52 @@ angular
     .service('dialogService',
     [
         '$mdDialog',
-        function($mdDialog) {
+        '$translate',
+        function ($mdDialog, $translate) {
+            
             this.showConfirmationDeleteDialog = function(event, fnOk, fnCancel) {
-                var confirm = $mdDialog.confirm()
-                    .title('Confirm Delete')
-                    .textContent('Are you sure you want to delete the item?')
-                    .ariaLabel('Confirm Delete')
-                    .targetEvent(event)
-                    .ok('Yes')
-                    .cancel('No');
-                $mdDialog.show(confirm).then(fnOk, fnCancel);
+                $translate(['CONFIRM_DELETE', 'SURE_WANT_DELETE', 'YES', 'NO'])
+                    .then(function(translation) {
+                        var confirm = $mdDialog.confirm()
+                            .title(translation.CONFIRM_DELETE)
+                            .textContent(translation.SURE_WANT_DELETE)
+                            .ariaLabel(translation.CONFIRM_DELETE)
+                            .targetEvent(event)
+                            .ok(translation.YES)
+                            .cancel(translation.NO);
+                        $mdDialog.show(confirm).then(fnOk, fnCancel);
+                    });
             };
 
             this.showConfirmationSaveDialog = function(event, fnOk, fnCancel) {
-                var confirm = $mdDialog.confirm()
-                    .title('Confirm Save')
-                    .textContent('Are you sure you want to save the item?')
-                    .ariaLabel('Confirm Save')
-                    .targetEvent(event)
-                    .ok('Yes')
-                    .cancel('No');
-                $mdDialog.show(confirm).then(fnOk, fnCancel);
+                $translate(['CONFIRM_SAVE', 'SURE_WANT_SAVE', 'YES', 'NO'])
+                    .then(function(translation) {
+                        var confirm = $mdDialog.confirm()
+                            .title(translation.CONFIRM_SAVE)
+                            .textContent(translation.SURE_WANT_SAVE)
+                            .ariaLabel(translation.CONFIRM_SAVE)
+                            .targetEvent(event)
+                            .ok(translation.YES)
+                            .cancel(translation.NO);
+                        $mdDialog.show(confirm).then(fnOk, fnCancel);
+                    });
             };
 
-            this.showMessageSavedDialog = function(event, fnOk) {
-                $mdDialog.show(
-                        $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .title('Confirm Save')
-                        .textContent('Content saved successfully!')
-                        .ariaLabel('Confirm Save')
-                        .ok('Ok')
-                        .targetEvent(event)
-                    )
-                    .then(fnOk);
+            this.showMessageSavedDialog = function (event, fnOk) {
+                $translate(['CONFIRM_SAVE','SAVED_SUCCESSFULLY', 'OK'])
+                    .then(function(translation) {
+                        $mdDialog.show(
+                                $mdDialog.alert()
+                                .parent(angular.element(document.querySelector('#popupContainer')))
+                                .clickOutsideToClose(true)
+                                .title(translation.CONFIRM_SAVE)
+                                .textContent(translation.SAVED_SUCCESSFULLY)
+                                .ariaLabel(translation.CONFIRM_SAVE)
+                                .ok(translation.OK)
+                                .targetEvent(event)
+                            )
+                            .then(fnOk);
+                    });
             };
         }
     ])
