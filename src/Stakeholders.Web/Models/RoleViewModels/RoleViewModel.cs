@@ -22,9 +22,15 @@ namespace Stakeholders.Web.Models.RoleViewModels
     public class RoleViewModel: ViewModelBase
     {
         /// <summary>
+        /// Gets or sets the alias.
+        /// </summary>
+        /// <value>The alias.</value>
+        public string Alias { get; set; }
+
+        /// <summary>
         /// Gets or sets the name en.
         /// </summary>
         /// <value>The name en.</value>
-        public string NameEn { get; set; }
+        public string Name { get; set; }
     }
 }

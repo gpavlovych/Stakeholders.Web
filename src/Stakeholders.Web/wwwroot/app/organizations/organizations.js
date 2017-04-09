@@ -87,7 +87,21 @@ angular
             $scope.filter = function () {
                 refresh();
             };
-
+            $scope.editOrganizationCategoryChanged = function(value) {
+                if ($scope.editedOrganization) {
+                    $scope.editedOrganization.categoryId = value;
+                }
+            };
+            $scope.editOrganizationTypeChanged = function(value) {
+                if ($scope.editedOrganization) {
+                    $scope.editedOrganization.typeId = value;
+                }
+            };
+            $scope.editOrganizationUserChanged = function(value) {
+                if ($scope.editedOrganization) {
+                    $scope.editedOrganization.userId = value;
+                }
+            };
             $scope.editOrganization = function (id) {
                  Organization.get({ id: id },
                     function(organization) {

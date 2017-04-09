@@ -100,7 +100,21 @@ angular
             $scope.filter = function () {
                 refresh();
             };
-        
+            $scope.editTaskStatusChanged = function(value) {
+                if ($scope.editedTask) {
+                    $scope.editedTask.statusId = value;
+                }
+            };
+            $scope.editTaskGoalChanged = function(value) {
+                if ($scope.editedTask) {
+                    $scope.editedTask.goalId = value;
+                }
+            };
+            $scope.editTaskUserChanged = function(value) {
+                if ($scope.editedTask) {
+                    $scope.editedTask.assignToId = value;
+                }
+            };
             $scope.editTask = function (id) {
                 $scope.editedTaskSelectedOrganizations = [];
                 $scope.editedTaskSelectedContacts = [];

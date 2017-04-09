@@ -26,26 +26,26 @@
                 <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedActivity.description" />
                 <div class="statusList">
                     <h3>{{'TYPE' | translate}}</h3>
-                    <div dropdown-select dropdown-url="/api/ActivityTypes" dropdown-value="editedActivity.typeId" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/ActivityTypes" dropdown-value="editedActivity.typeId" dropdown-item-label="name" dropdown-valuechanged="editActivityTypeChanged(value)"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'RELATED_TASK' | translate}}</h3>
-                    <div dropdown-select dropdown-url="/api/ActivityTasks" dropdown-value="editedActivity.taskId" dropdown-item-label="subject"></div>
+                    <div dropdown-select dropdown-url="/api/ActivityTasks" dropdown-value="editedActivity.taskId" dropdown-item-label="subject" dropdown-valuechanged="editActivityTaskChanged(value)"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'RELATED_USER' | translate}}</h3>
-                    <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedActivity.userId" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedActivity.userId" dropdown-item-label="name" dropdown-valuechanged="editActivityUserChanged(value)"></div>
                 </div>
             </div>
         </div>
         <div class="colRight">
             <div class="statusList">
                 <h3>{{'RELATED_COMPANY' | translate}}</h3>
-                <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedActivity.companyId" dropdown-item-label="name"></div>
+                <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedActivity.companyId" dropdown-item-label="name" dropdown-valuechanged="editActivityCompanyChanged(value)"></div>
             </div>
             <div class="statusList">
                 <h3>{{'RELATED_CONTACT' | translate}}</h3>
-                <div dropdown-select dropdown-url="/api/Contacts" dropdown-value="editedActivity.contactId" dropdown-item-label="displayName"></div>
+                <div dropdown-select dropdown-url="/api/Contacts" dropdown-value="editedActivity.contactId" dropdown-item-label="displayName" dropdown-valuechanged="editActivityContactChanged(value)"></div>
             </div>
             <div class="relatedOrganizations">
                 <h3>{{'OBSERVER_COMPANIES' | translate}}</h3>

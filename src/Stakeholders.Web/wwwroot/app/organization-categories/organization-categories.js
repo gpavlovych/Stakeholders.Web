@@ -48,6 +48,12 @@ angular
             };
 
             $scope.editedOrganizationCategory = null;
+
+            $scope.editOrganizationCategoryOrganizationChanged = function(value) {
+                if ($scope.editedOrganizationCategory) {
+                    $scope.editedOrganizationCategory.organizationId = value;
+                }
+            };
             $scope.editOrganizationCategory = function (id) {
                 OrganizationCategory.get({ id: id }, function (category) {
                     $scope.editedOrganizationCategory = category;

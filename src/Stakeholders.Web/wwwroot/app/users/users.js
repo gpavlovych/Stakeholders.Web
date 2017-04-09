@@ -46,6 +46,16 @@ angular
                 refresh();
             };
 
+            $scope.editUserRoleChanged = function(value) {
+                if ($scope.editedUser) {
+                    $scope.editedUser.roleId = value;
+                }
+            };
+            $scope.editUserCompanyChanged = function(value) {
+                if ($scope.editedUser) {
+                    $scope.editedUser.companyId = value;
+                }
+            };
             $scope.editUser = function (id) {
                 User.get({ id: id }, function(result) {
                     $scope.editedUser = result;

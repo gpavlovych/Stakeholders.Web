@@ -26,11 +26,11 @@
                 <textarea placeholder="{{'DESCRIPTION' | translate}}" ng-model="editedTask.description" />
                 <div class="statusList">
                     <h3>{{'STATUS' | translate}}</h3>
-                    <div dropdown-select dropdown-url="/api/ActivityTaskStatuses" dropdown-value="editedTask.statusId" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/ActivityTaskStatuses" dropdown-value="editedTask.statusId" dropdown-item-label="name" dropdown-valuechanged="editTaskStatusChanged(value)"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'GOAL' | translate}}</h3>
-                    <div dropdown-select dropdown-url="/api/Goals" dropdown-value="editedTask.goalId" dropdown-item-label="title"></div>
+                    <div dropdown-select dropdown-url="/api/Goals" dropdown-value="editedTask.goalId" dropdown-item-label="title" dropdown-valuechanged="editTaskGoalChanged(value)"></div>
                 </div>
                 <div class="relatedOrganizations">
                     <h3>{{'RELATED_ORGANIZATIONS' | translate}}</h3>
@@ -55,7 +55,7 @@
             </div>
             <div class="statusList">
                 {{'OWNER' | translate}}
-                <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedTask.assignToId" dropdown-item-label="name"></div>
+                <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedTask.assignToId" dropdown-item-label="name"  dropdown-valuechanged="editTaskUserChanged(value)"></div>
             </div>
             <!--<div class="attached" ng-controller="fileControllerTask">
             <div class="fileinput" id="attachedTask">

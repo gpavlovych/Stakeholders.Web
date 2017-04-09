@@ -40,11 +40,11 @@
                 <input type="text" placeholder="{{'TITLE' | translate}}" ng-model="editedContact.title" />
                 <div class="statusList">
                     <h3>{{'ORGANIZATION' | translate}}</h3>
-                    <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="editedContact.organizationId" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="editedContact.organizationId" dropdown-item-label="name" dropdown-valuechanged="editContactOrganizationChanged(value)"></div>
                 </div>
                 <div class="statusList">
                     <h3>{{'COMPANY' | translate}}</h3>
-                    <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedContact.companyId" dropdown-item-label="name"></div>
+                    <div dropdown-select dropdown-url="/api/Companies" dropdown-value="editedContact.companyId" dropdown-item-label="name" dropdown-valuechanged="editContactCompanyChanged(value)"></div>
                 </div>
                 <input type="text" placeholder="{{'PHONE' | translate}}" ng-model="editedContact.phone" />
                 <input type="text" placeholder="{{'EMAIL' | translate}}" ng-model="editedContact.email" />

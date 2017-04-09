@@ -59,7 +59,16 @@ angular
             $scope.filter = function () {
                 refresh();
             };
-
+            $scope.editContactOrganizationChanged = function(value) {
+                if ($scope.editedContact) {
+                    $scope.editedContact.organizationId = value;
+                }
+            };
+            $scope.editContactCompanyChanged = function (value) {
+                if ($scope.editedContact) {
+                    $scope.editedContact.companyId = value;
+                }
+            };
             $scope.editContact = function (id) {
                 Contact.get({ id: id }, function (contact) {
                     $scope.editedContact = contact;

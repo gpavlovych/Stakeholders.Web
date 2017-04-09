@@ -33,13 +33,13 @@
                   <div class="formEditor">
                         <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedOrganization.name"/>
                         <div class="statusList one">
-                              <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="editedOrganization.categoryId" dropdown-item-label="name"></div>
+                              <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="editedOrganization.categoryId" dropdown-item-label="name" dropdown-valuechanged="editOrganizationCategoryChanged(value)"></div>
                         </div>
                         <div class="statusList">
-                              <div dropdown-select dropdown-url="/api/OrganizationTypes" dropdown-value="editedOrganization.typeId" dropdown-item-label="type"></div>
+                              <div dropdown-select dropdown-url="/api/OrganizationTypes" dropdown-value="editedOrganization.typeId" dropdown-item-label="type" dropdown-valuechanged="editOrganizationTypeChanged(value)"></div>
                         </div>
                         <div class="statusList">
-                              <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedOrganization.userId" dropdown-item-label="name"></div>
+                              <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="editedOrganization.userId" dropdown-item-label="name" dropdown-valuechanged="editOrganizationUserChanged(value)"></div>
                         </div>
                         <textarea placeholder="{{'INFLUENCING' | translate}}" ng-model="editedOrganization.influencing"></textarea>
                         <textarea placeholder="{{'INFLUENCED_BY' | translate}}" ng-model="editedOrganization.influencedBy"></textarea>

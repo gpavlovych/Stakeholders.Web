@@ -22,7 +22,7 @@
                         <input type="text" placeholder="{{'NAME' | translate}}" ng-model="editedOrganizationCategory.name"/>
                       <div class="statusList">
                           <h3>{{'ORGANIZATION' | translate}}</h3>
-                          <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="editedOrganizationCategory.id" dropdown-item-label="name"></div>
+                          <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="editedOrganizationCategory.id" dropdown-item-label="name" dropdown-valuechanged="editOrganizationCategoryOrganizationChanged(value)"></div>
                       </div>
                       <div class="photoBrands">
                               <h3>{{'LOGO' | translate}}</h3>

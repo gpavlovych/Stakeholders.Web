@@ -92,7 +92,32 @@ angular
             $rootScope.$on("refreshActivities", function() {
                 refresh();
             });
-            $scope.editActivity = function(id) {
+            $scope.editActivityTypeChanged = function(value) {
+                if ($scope.editedActivity) {
+                    $scope.editedActivity.typeId = value;
+                }
+            };
+            $scope.editActivityTaskChanged = function(value) {
+                if ($scope.editedActivity) {
+                    $scope.editedActivity.taskId = value;
+                }
+            };
+            $scope.editActivityUserChanged = function(value) {
+                if ($scope.editedActivity) {
+                    $scope.editedActivity.userId = value;
+                }
+            };
+            $scope.editActivityCompanyChanged = function(value) {
+                if ($scope.editedActivity) {
+                    $scope.editedActivity.companyId = value;
+                }
+            };
+            $scope.editActivityContactChanged = function(value) {
+                if ($scope.editedActivity) {
+                    $scope.editedActivity.contactId = value;
+                }
+            };
+            $scope.editActivity = function (id) {
               
                 User.query(function(result) {
                     $scope.editedActivityUsers = result;
