@@ -43,7 +43,7 @@ namespace Stakeholders.Web
         /// Gets or sets the expiration.
         /// </summary>
         /// <value>The expiration.</value>
-        public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(5);
+        public TimeSpan Expiration { get; set; } = TimeSpan.FromDays(30);
 
         /// <summary>
         /// Gets or sets the signing credentials.
