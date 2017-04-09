@@ -4,7 +4,7 @@
 // Created          : 02-21-2017
 //
 // Last Modified By : George
-// Last Modified On : 02-21-2017
+// Last Modified On : 04-09-2017
 // ***********************************************************************
 // <copyright file="IApplicationUserManager.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -28,5 +28,12 @@ namespace Stakeholders.Web
         /// <param name="password">The password.</param>
         /// <returns>Task.</returns>
         Task CreateAsync(ApplicationUser user, string password);
+
+        /// <summary>
+        /// Finds the by name asynchronous.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <returns>Task&lt;ApplicationUser&gt;.</returns>
+        Task<ApplicationUser> FindByNameAsync(string userName);
     }
 }

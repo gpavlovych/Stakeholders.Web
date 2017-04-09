@@ -63,7 +63,7 @@ namespace Stakeholders.Web.Controllers
             {
                 throw new ArgumentNullException(nameof(mapper));
             }
-
+            
             this.repository = repository;
             this.mapper = mapper;
         }
@@ -214,7 +214,7 @@ namespace Stakeholders.Web.Controllers
             }
 
             var entity = this.mapper.Map<Activity>(model);
-
+            entity.DateCreated = DateTime.UtcNow;
             await this.repository.InsertAsync(entity);
 
             return this.CreatedAtAction(

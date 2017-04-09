@@ -13,6 +13,7 @@
 // ***********************************************************************
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -20,6 +21,8 @@ using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace Stakeholders.Web.Controllers
 {
@@ -32,6 +35,9 @@ namespace Stakeholders.Web.Controllers
     [Authorize]
     public class ActivityTasksController : Controller
     {
+        private readonly IApplicationUserManager userManager;
+        private readonly IHttpContextAccessor httpContextAccessor;
+
         /// <summary>
         /// The context
         /// </summary>
@@ -51,6 +57,8 @@ namespace Stakeholders.Web.Controllers
         /// or
         /// mapper</exception>
         public ActivityTasksController(
+            IApplicationUserManager userManager,
+            IHttpContextAccessor httpContextAccessor,
             IRepository<ActivityTask> repository,
             IMapper mapper)
         {
@@ -64,6 +72,8 @@ namespace Stakeholders.Web.Controllers
                 throw new ArgumentNullException(nameof(mapper));
             }
 
+            this.userManager = userManager;
+            this.httpContextAccessor = httpContextAccessor;
             this.repository = repository;
             this.mapper = mapper;
         }
@@ -217,7 +227,10 @@ namespace Stakeholders.Web.Controllers
             }
 
             var entity = this.mapper.Map<ActivityTask>(model);
-
+            entity.DateCreated = DateTime.UtcNow;
+            var currentUserId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var currentUser = await this.userManager.FindByNameAsync(currentUserId);
+            entity.CreatedBy = currentUser;
             await this.repository.InsertAsync(entity);
 
             return this.CreatedAtAction(

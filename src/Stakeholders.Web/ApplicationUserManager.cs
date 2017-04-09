@@ -53,5 +53,16 @@ namespace Stakeholders.Web
                 throw new InvalidOperationException(result.Errors.ToString());
             }
         }
+
+        /// <summary>
+        /// find by name as an asynchronous operation.
+        /// </summary>
+        /// <param name="userName">Name of the user.</param>
+        /// <returns>Task&lt;ApplicationUser&gt;.</returns>
+        public async Task<ApplicationUser> FindByNameAsync(string userName)
+        {
+            var result = await this.userManager.FindByNameAsync(userName);
+            return result;
+        }
     }
 }

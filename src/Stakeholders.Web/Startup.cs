@@ -25,6 +25,7 @@ using Microsoft.IdentityModel.Tokens;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityTypeViewModels;
@@ -88,7 +89,7 @@ namespace Stakeholders.Web
             services.AddDbContext<ApplicationDbContext>(
                 options => 
                         options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IApplicationUserManager, ApplicationUserManager>();
             services.AddScoped<IDataSource<Activity>, ActivityDataSource>();

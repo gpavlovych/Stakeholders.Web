@@ -35,7 +35,7 @@
         </div>
         <div class="statusList">
             {{'OWNER' | translate}}
-            <div dropdown-select dropdown-url="/api/ActivityUsers" dropdown-model="$ctrl.task.assignToId" dropdown-item-label="name"></div>
+            <div dropdown-select dropdown-url="/api/ApplicationUsers" dropdown-value="$ctrl.task.assignToId" dropdown-item-label="name"></div>
         </div>
         <!--<div class="attached" ng-controller="fileControllerTask">
             <div class="fileinput" id="attachedTask">
