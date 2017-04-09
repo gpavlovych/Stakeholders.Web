@@ -1708,7 +1708,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"email\":\"someemail@example.com\",\r\n\t\"password\":\"ABCabc123@\"\r\n}"
+					"raw": "{\r\n\t\"email\":\"user1@example.com\",\r\n\t\"password\":\"Password@123\"\r\n}"
 				},
 				"description": "Generating JWT for Stakeholders.Web"
 			},
