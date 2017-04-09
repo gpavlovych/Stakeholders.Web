@@ -28,7 +28,7 @@ angular
         '$rootScope',
         'OrganizationCategory',
         'dialogService',
-        function ($scope, OrganizationCategory, dialogService) {
+        function ($scope, $rootScope, OrganizationCategory, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
             $scope.searchChanged = function (ctrl) {

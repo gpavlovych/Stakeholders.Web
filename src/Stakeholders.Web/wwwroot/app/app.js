@@ -17,6 +17,7 @@ angular
         'md.chips.select',
         'pascalprecht.translate',
         'porlaDashboard.activityForm',
+        'porlaDashboard.error',
         'porlaDashboard.filter',
         'porlaDashboard.taskForm',
         'porlaDashboard.timeFilter',
@@ -44,16 +45,41 @@ angular
                         strokeColor: '#1cc327',
                         highlightFill: '#1cc327',
                         highlightStroke: '#1cc327'
-                    }, "#fb375c", "#0e84fc", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"]
+                    }, "#fb375c", "#0e84fc", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"
+                ]
             });
             // Configure all doughnut charts
             ChartJsProvider.setOptions('doughnut',
-                {
+            {
                 cutoutPercentage: 80,
                 tooltips: { enabled: false }
             });
         }
     ])
+    .factory('testInterceptor',
+    ['$q', '$location', function ($q, $location) {
+            var service = {
+                responseError: responseError
+            };
+
+            return service;
+
+            function responseError(rejection) {
+                if (rejection.status === 404) {
+                    $location.path('/error');
+                    return $q(function() { return null; });
+                }
+                if (rejection.status === 401) {
+                    $location.path('/login');
+                    return $q(function() { return null; });
+                }
+                return $q.reject(rejection);
+            }
+        }
+    ])
+    .config(['$httpProvider', function ($httpProvider) {
+        $httpProvider.interceptors.push('testInterceptor');
+    }])
     .config(['HateoasInterceptorProvider', function (HateoasInterceptorProvider) {
         HateoasInterceptorProvider.transformAllResponses();
     }])
