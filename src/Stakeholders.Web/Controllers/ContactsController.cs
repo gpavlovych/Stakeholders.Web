@@ -88,7 +88,13 @@ namespace Stakeholders.Web.Controllers
         /// <param name="search">The search.</param>
         /// <returns>ContactInfoViewModel[].</returns>
         [HttpGet]
-        public ContactViewModel[] GetContacts(int start = 0, int count = 10, string search = "", int? period = null)
+        public ContactViewModel[] GetContacts(
+            int start = 0,
+            int count = 10,
+            string search = "",
+            int? period = null,
+            long? organizationCategoryId = null,
+            long? organizationId = null)
         {
             DateTime? startPeriod = null;
             DateTime? endPeriod = null;
@@ -121,25 +127,37 @@ namespace Stakeholders.Web.Controllers
             }
 
             return this.source.GetDataQueryable()
-                .Where(it => string.IsNullOrEmpty(search) || it.NameF.Contains(search) || it.NameL.Contains(search))
+                .Where(
+                    it =>
+                        (string.IsNullOrEmpty(search) || it.NameF.Contains(search) || it.NameL.Contains(search)) &&
+                        ((organizationId == null) || (it.Organization.Id == organizationId)) &&
+                        ((organizationCategoryId == null) || (it.Organization.Category.Id == organizationCategoryId)))
                 .Skip(start)
                 .Take(count)
-                .Select(it=>new Tuple<Contact, long, long, long>(
-                    //Item1 - contact
-                    it, 
-                    //Item2 - activities
-                    it.Activities.Distinct().Count(activity=> 
-                        ((startPeriod == null) || (activity.DateActivity >= startPeriod)) && 
-                        ((endPeriod == null) || (activity.DateActivity <= endPeriod))),
-                    //Item3 - tasksTotal
-                    it.Tasks.Select(taskContact => taskContact.Task).Distinct().Count(task =>
-                         ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
-                         ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
-                    //Item4 - tasksDone
-                    it.Tasks.Select(taskContact => taskContact.Task).Distinct().Count(task =>
-                        (task.Status.Alias == "Done") &&
-                        ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
-                        ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
+                .Select(
+                    it => new Tuple<Contact, long, long, long>(
+
+                        //Item1 - contact
+                        it,
+
+                        //Item2 - activities
+                        it.Activities.Distinct().Count(
+                            activity =>
+                                ((startPeriod == null) || (activity.DateActivity >= startPeriod)) &&
+                                ((endPeriod == null) || (activity.DateActivity <= endPeriod))),
+
+                        //Item3 - tasksTotal
+                        it.Tasks.Select(taskContact => taskContact.Task).Distinct().Count(
+                            task =>
+                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                ((endPeriod == null) || (task.DateDeadline <= endPeriod))),
+
+                        //Item4 - tasksDone
+                        it.Tasks.Select(taskContact => taskContact.Task).Distinct().Count(
+                            task =>
+                                (task.Status.Alias == "Done") &&
+                                ((startPeriod == null) || (task.DateDeadline >= startPeriod)) &&
+                                ((endPeriod == null) || (task.DateDeadline <= endPeriod)))
                     ))
                 .ToList()
                 .Select(

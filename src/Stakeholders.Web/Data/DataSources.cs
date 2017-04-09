@@ -227,6 +227,7 @@ namespace Stakeholders.Web.Data
             return this.context.Contacts
                 .Include(it => it.Company)
                 .Include(it => it.Organization)
+                    .ThenInclude(it => it.Category)
                 .Include(it => it.Tasks)
                     .ThenInclude(it => it.Task)
                         .ThenInclude(it=>it.Activities)

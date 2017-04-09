@@ -8,20 +8,24 @@
             <md-switch class="md-primary" name="switchView" aria-label="switchView" ng-model="switchView" required></md-switch>
             <span>{{'TABLE' | translate}}</span>
         </md-input-container>
-        <div class="categoryList">
-            <div dropdown-select="ddSelectOptionsOrg" dropdown-model="ddSelectSelectedOrg" dropdown-item-label="text"></div>
-        </div>
-        <div class="categoryList">
-            <div dropdown-select="ddSelectOptionsCat" dropdown-model="ddSelectSelectedCat" dropdown-item-label="text"></div>
-        </div>
-        <form class="formSearch">
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="search">
-                    <md-icon md-svg-src="/images/magnify.svg"></md-icon>
-                </div>
+        <filter>
+            <div class="statusList one">
+                {{'CATEGORY' | translate}}
+                <div dropdown-select dropdown-url="/api/OrganizationCategories" dropdown-value="categoryId" dropdown-item-label="name" dropdown-valuechanged="categoryChanged(value)"></div>
             </div>
-        </form>
+            <div class="statusList one">
+                {{'ORGANIZATION' | translate}}
+                <div dropdown-select dropdown-url="/api/Organizations" dropdown-value="organizationId" dropdown-item-label="name" dropdown-valuechanged="organizationChanged(value)"></div>
+            </div>
+            <form class="formSearch">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="search" ng-change="searchChanged(this)">
+                        <md-icon md-svg-src="/images/magnify.svg"></md-icon>
+                    </div>
+                </div>
+            </form>
+        </filter>
     </div>
 
     <activity-form></activity-form>

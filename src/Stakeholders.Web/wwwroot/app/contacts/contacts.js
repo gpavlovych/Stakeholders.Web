@@ -30,9 +30,26 @@ angular
         function ($scope, Contact, dialogService) {
             $scope.search = "";
             $scope.switchView = false;
-
+            $scope.categoryChanged = function(value) {
+                $scope.categoryId = value;
+                refresh();
+            };
+            $scope.organizationChanged = function(value) {
+                $scope.organizationId = value;
+                refresh();
+            };
+            $scope.searchChanged = function (ctrl) {
+                $scope.search = ctrl.search;
+                refresh();
+            }
             function refresh() {
-                Contact.query({ start: 0, count: 10, search: $scope.search },
+                Contact.query({
+                        start: 0,
+                        count: 10,
+                        search: $scope.search,
+                        organizationId: $scope.organizationId,
+                        organizationCategoryId: $scope.organizationCategoryId
+                    },
                     function (contacts) {
                         $scope.contacts = contacts;
                     });
