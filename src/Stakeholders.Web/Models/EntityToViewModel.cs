@@ -128,10 +128,10 @@ namespace Stakeholders.Web.Models
             destination.ValueProcess =
                 source.Tasks.Count(
                     it => string.Equals(it.Status?.Name, "inprocess", StringComparison.OrdinalIgnoreCase));
-            destination.PercentProcess = (destination.ValueProcess*100.0)/totalCount;
+            destination.PercentProcess = totalCount != 0 ? (destination.ValueProcess*100.0)/totalCount : 0;
             destination.ValueCompleted = source.Tasks.Count(
                     it => string.Equals(it.Status?.Name, "done", StringComparison.OrdinalIgnoreCase));
-            destination.PercentCompleted = (destination.ValueCompleted * 100.0) / totalCount;
+            destination.PercentCompleted = totalCount != 0 ? (destination.ValueCompleted*100.0)/totalCount : 0;
             destination.ValueReady = totalCount - destination.ValueProcess - destination.ValueCompleted;
             destination.PercentReady = 100.0 - destination.PercentProcess - destination.PercentCompleted;
         }

@@ -28,8 +28,7 @@ angular.module('porlaDashboard.home', ['ngRoute'])
         'Goal',
         function ($scope, Goal) {
             $scope.labels = ["Task in progress", "Tasks Completed", "Tasks ready to start"];
-            $scope.data = [50, 30, 20];
-            Goal.query(function(goals) {
+            Goal.query(function (goals) {
                 $scope.goals = goals;
             });
         }

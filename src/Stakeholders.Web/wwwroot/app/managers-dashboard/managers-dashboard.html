@@ -5,7 +5,7 @@
             <ul class="listActivities" ng-repeat="task in tasksDeadline">
                 <li class="oneLevel" ng-class="{'blue': task.statusAlias=='Awaiting', 'orange': task.statusAlias=='InProcess', 'red': task.statusAlias=='OnHold', 'green': task.statusAlias=='Done' }">
                     <div class="icon-activities">
-                        <h1>{{ $index }}</h1>
+                        <h1>{{ $index + 1}}</h1>
                     </div>
                     <ul class="dashedUl">
                         <li>

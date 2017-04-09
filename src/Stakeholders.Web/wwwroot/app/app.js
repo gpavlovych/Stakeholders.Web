@@ -38,11 +38,17 @@ angular
         function(ChartJsProvider) {
             // Configure all charts
             ChartJsProvider.setOptions({
-                colors: ["#1cc327", "#fb375c", "#0e84fc", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"]
+                colours: [
+                    {
+                        fillColor: '#1cc327',
+                        strokeColor: '#1cc327',
+                        highlightFill: '#1cc327',
+                        highlightStroke: '#1cc327'
+                    }, "#fb375c", "#0e84fc", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"]
             });
             // Configure all doughnut charts
             ChartJsProvider.setOptions('doughnut',
-            {
+                {
                 cutoutPercentage: 80,
                 tooltips: { enabled: false }
             });

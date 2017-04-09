@@ -103,7 +103,7 @@ angular
                 
                 Activity.get({ id: id },
                     function(activity) {
-                        activity.dateActivityDate = activity.dateActivity != null
+                        $scope.dateActivityDate = activity.dateActivity != null
                             ? new Date(activity.dateActivity)
                             : null;
                         $scope.selectedObserverCompanies = [];
@@ -138,8 +138,8 @@ angular
                 dialogService.showConfirmationSaveDialog(event,
                     function () {
                         $scope.editedActivity
-                            .dateActivity = $scope.editedActivity.dateActivityDate != null
-                            ? $scope.editedActivity.dateActivityDate.toISOString()
+                            .dateActivity = $scope.dateActivityDate != null
+                            ? $scope.dateActivityDate.toISOString()
                             : null;
                         
                         if ($scope.selectedObserverCompanies != null) {

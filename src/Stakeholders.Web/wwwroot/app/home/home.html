@@ -10,7 +10,7 @@
                 <li>
                     <h3 class="title">{{ goal.title }}</h3>
                     <div class="graphResult">
-                        <canvas id="doughnut" class="chart chart-doughnut" chart-data="data" chart-labels="labels" chart-options="options" width="166" height="166"></canvas>
+                        <canvas id="doughnut" class="chart chart-doughnut" chart-data="[goal.percentCompleted, goal.percentProcess, goal.percentReady]" chart-backgroundColor="goal.data.backgroundColor" chart-labels="labels" chart-options="options" width="166" height="166"></canvas>
                         <div class="numberTasks">
                             <h2>{{ goal.valueProcess + goal.valueCompleted + goal.valueReady }}</h2>
                             <span>{{'TASKS' | translate}}</span>

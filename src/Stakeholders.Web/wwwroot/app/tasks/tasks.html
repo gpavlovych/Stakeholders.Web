@@ -48,10 +48,10 @@
                 <md-checkbox ng-model="editedTask.isImportant" aria-label="Checkbox 1"></md-checkbox>
             </p>
             <div class="dateField">
-                <md-datepicker ng-model="editedTask.dateDeadlineDate" md-placeholder="{{'DEADLINE' | translate}}"></md-datepicker>
+                <md-datepicker ng-model="dateDeadlineDate" md-placeholder="{{'DEADLINE' | translate}}"></md-datepicker>
             </div>
             <div class="dateField">
-                <md-datepicker ng-model="editedTask.dateEndDate" md-placeholder="{{'COMPLETE_DATE' | translate}}"></md-datepicker>
+                <md-datepicker ng-model="dateEndDate" md-placeholder="{{'COMPLETE_DATE' | translate}}"></md-datepicker>
             </div>
             <div class="statusList">
                 {{'OWNER' | translate}}
@@ -94,7 +94,7 @@
                     <p class="related">
                         <span>{{'RELATED_TO_GOAL' | translate}}: </span><strong>{{ task.goalTitle }}</strong>
                     </p>
-                    <md-button class="{{ task.statusAlias }}" aria-label="Status" ng-disabled="true">
+                    <md-button ng-class="{'Awaiting': task.statusAlias=='Awaiting', 'In Process': task.statusAlias=='InProcess', 'On Hold': task.statusAlias=='OnHold', 'Done': task.statusAlias=='Done' }" aria-label="Status" ng-disabled="true">
                         {{ task.statusName }}
                     </md-button>
                     <div class="showRelated">
