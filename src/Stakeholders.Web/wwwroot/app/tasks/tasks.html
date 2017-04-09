@@ -111,20 +111,20 @@
                     <div class="rollBox" ng-scrollbars ng-scrollbars-config="config">
                         <div class="relatedActivies">
                             <div class="show">
-                                <a ng-click="goRelated = !goRelated" href="#" class="accordionRelated">
+                                <a ng-click="toggleRelated(task)" href="#" class="accordionRelated">
                                     <span class="iconplus">
-                                        <md-icon ng-hide="goRelated" md-svg-src="/images/add-black.svg"></md-icon>
-                                        <md-icon ng-hide="!goRelated" md-svg-src="/images/minus-black.svg"></md-icon>
+                                        <md-icon ng-hide="task.goRelated" md-svg-src="/images/add-black.svg"></md-icon>
+                                        <md-icon ng-hide="!task.goRelated" md-svg-src="/images/minus-black.svg"></md-icon>
                                     </span>
                                     {{'SHOW_RELATED_ACTIVITIES' | translate}}
                                 </a>
                                 <md-button class="md-fab add" aria-label="Add"> <md-icon md-svg-src="/images/add.svg"></md-icon> </md-button>
                                 <md-button class="md-fab clip" aria-label="Clip"> <md-icon md-svg-src="/images/paperclip.svg"></md-icon> </md-button>
                             </div>
-                            <ul ng-show="goRelated" class="tasksActivities">
-                                <li>
-                                    <p><strong>{{ task.titlerelated }}</strong></p>
-                                    <p><span>{{'DEADLINE' | translate}}: {{ task.dateDeadline }}</span></p>
+                            <ul ng-show="task.goRelated" class="tasksActivities">
+                                <li ng-repeat="activity in task.activities">
+                                    <p><strong>{{ activity.subject }}</strong></p>
+                                    <p><span>{{'DEADLINE' | translate}}: {{ activity.dateActivity }}</span></p>
                                 </li>
                             </ul>
                         </div>

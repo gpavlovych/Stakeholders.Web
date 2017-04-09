@@ -97,7 +97,8 @@ namespace Stakeholders.Web.Controllers
             int? period = null,
             long? organizationId = null,
             long? organizationCategoryId = null,
-            long? contactId = null)
+            long? contactId = null,
+            long? taskId = null)
         {
             DateRange periodRange = null;
             switch (period)
@@ -129,6 +130,7 @@ namespace Stakeholders.Web.Controllers
                         count,
                         activity =>
                             (string.IsNullOrEmpty(search) || activity.Subject.Contains(search)) &&
+                            ((taskId == null) || (activity.Task.Id == taskId)) &&
                             ((contactId == null) || (activity.Contact.Id == contactId)) &&
                             ((organizationId == null) || (activity.Contact.Organization.Id == organizationId)) &&
                             ((organizationCategoryId == null) ||

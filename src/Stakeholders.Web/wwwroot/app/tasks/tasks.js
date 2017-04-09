@@ -21,6 +21,15 @@ angular
                     'update': { method: 'PUT' }
                 });
         }])
+    .factory('Activity', ['$resource',
+        function ($resource) {
+            return $resource(
+                '/api/Activities/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }])
     .factory('Contact', ['$resource',
         function ($resource) {
             return $resource('/api/Contacts/:id',
@@ -41,17 +50,27 @@ angular
             '$scope',
             '$rootScope',
             'ActivityTask',
+            'Activity',
             'Contact', 
             'Organization',
             'dialogService',
         function (
             $scope, 
             $rootScope, 
-            ActivityTask, 
+            ActivityTask,
+            Activity,
             Contact, 
             Organization,
             dialogService) {
-
+            $scope.toggleRelated = function(task) {
+                task.goRelated = !task.goRelated;
+                if (task.goRelated) {
+                    Activity.query({ taskId: task.id },
+                        function(result) {
+                            task.activities = result;
+                        });
+                }
+            };
             $scope.periodChanged = function (period) {
                 $scope.period = period;
                 refresh();
