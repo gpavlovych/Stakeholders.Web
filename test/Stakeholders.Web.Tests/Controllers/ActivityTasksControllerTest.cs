@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using FluentAssertions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Stakeholders.Web.Controllers;
@@ -52,16 +53,25 @@ namespace Stakeholders.Web.Tests.Controllers
         /// </summary>
         private readonly Mock<IMapper> mapperMock;
 
+        private readonly Mock<IApplicationUserManager> applicationUserManagerMock;
+
+        private readonly Mock<IHttpContextAccessor> httpContextAccessorMock;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivitiesControllerTest" /> class.
         /// </summary>
         public ActivityTasksControllerTest()
         {
             this.entitiesForTest = new EntitiesForTest();
+
+            this.applicationUserManagerMock = new Mock<IApplicationUserManager>();
+            this.httpContextAccessorMock = new Mock<IHttpContextAccessor>();
             this.repositoryMock = new Mock<IRepository<ActivityTask>>();
             this.mapperMock = new Mock<IMapper>();
 
             this.target = new ActivityTasksController(
+                this.applicationUserManagerMock.Object,
+                this.httpContextAccessorMock.Object,
                 this.repositoryMock.Object,
                 this.mapperMock.Object);
         }

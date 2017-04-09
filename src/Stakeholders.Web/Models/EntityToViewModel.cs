@@ -38,7 +38,6 @@ namespace Stakeholders.Web.Models
     public class EntityToViewModel
         : IMappingAction<Activity, ActivityViewModel>,
             IMappingAction<ActivityTask, ActivityTaskViewModel>,
-            IMappingAction<Company, CompanyViewModel>,
             IMappingAction<ApplicationUser, ApplicationUserViewModel>,
             IMappingAction<Contact, ContactViewModel>,
             IMappingAction<Goal, GoalViewModel>
@@ -51,11 +50,13 @@ namespace Stakeholders.Web.Models
         public void Process(Activity source, ActivityViewModel destination)
         {
             destination.ObserverCompanyIds =
-            (source.ObserverCompanies?.Where(it => it.Company != null).Select(it => it.Company.Id) ??
+            (source.ObserverUsers?.Select(it => it.User?.Company?.Id).Where(it => it != null).Select(it => it.Value) ??
              Enumerable.Empty<long>()).ToArray();
             destination.ObserverUserIds =
             (source.ObserverUsers?.Where(it => it.User != null).Select(it => it.User.Id) ??
              Enumerable.Empty<long>()).ToArray();
+            destination.CompanyId = source.User?.Company?.Id;
+            destination.CompanyName = source.User?.Company?.Name;
             destination.RelatedToGoalId = source.Task?.Goal?.Id;
             destination.RelatedToGoalTitle = source.Task?.Goal?.Title;
         }
@@ -73,18 +74,6 @@ namespace Stakeholders.Web.Models
             destination.OrganizationIds = (source.Organizations?.Select(it => it.OrganizationId) ??
              Enumerable.Empty<long>()).ToArray();
             destination.ContactIds = (source.Contacts?.Select(it => it.ContactId) ??
-             Enumerable.Empty<long>()).ToArray();
-        }
-
-        /// <summary>
-        /// Implementors can modify both the source and destination objects
-        /// </summary>
-        /// <param name="source">Source object</param>
-        /// <param name="destination">Destination object</param>
-        public void Process(Company source, CompanyViewModel destination)
-        {
-            destination.ObserverActivityIds =
-            (source.ObserverActivities?.Where(it => it.Activity != null).Select(it => it.Activity.Id) ??
              Enumerable.Empty<long>()).ToArray();
         }
 

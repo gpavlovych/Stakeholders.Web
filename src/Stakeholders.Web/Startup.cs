@@ -134,10 +134,8 @@ namespace Stakeholders.Web
 
                     mapperConfigurationExpression
                         .CreateMap<Company, CompanyViewModel>()
-                        .AfterMap<EntityToViewModel>()
                         .ReverseMap()
-                        .ForMember(it => it.Id, resolve => resolve.Ignore())
-                        .AfterMap<ViewModelToEntity>();
+                        .ForMember(it => it.Id, resolve => resolve.Ignore());
 
                     mapperConfigurationExpression
                         .CreateMap<Activity, ActivityViewModel>()

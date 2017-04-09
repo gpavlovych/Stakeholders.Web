@@ -70,12 +70,6 @@ namespace Stakeholders.Web.Models.CompanyViewModels
         public string Phone { get; set; }
 
         /// <summary>
-        /// Gets or sets the observer activity ids.
-        /// </summary>
-        /// <value>The observer activity ids.</value>
-        public long[] ObserverActivityIds { get; set; }
-
-        /// <summary>
         /// Gets or sets the logo URL.
         /// </summary>
         /// <value>The logo URL.</value>

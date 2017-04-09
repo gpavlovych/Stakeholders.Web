@@ -628,14 +628,6 @@ namespace Stakeholders.Web.Data
                 var activityUser4 = context.CreateActivityObserverUsers(activity3, user2);
 
                 #endregion
-
-                #region Stub activity observer companies
-
-                var activityCompany1 = context.CreateActivityObserverCompanies(activity1, company1);
-                var activityCompany2 = context.CreateActivityObserverCompanies(activity2, company1);
-                var activityCompany3 = context.CreateActivityObserverCompanies(activity3, company1);
-
-                #endregion
             }
         }
 
@@ -707,33 +699,6 @@ namespace Stakeholders.Web.Data
                     User = user
                 };
                 context.ActivityObserverUsers.Add(result);
-                context.SaveChanges();
-            }
-            return result;
-        }
-
-        /// <summary>
-        /// Creates the activity observer companies.
-        /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="activity">The activity.</param>
-        /// <param name="company">The company.</param>
-        /// <returns>ActivityObserverCompany.</returns>
-        private static ActivityObserverCompany CreateActivityObserverCompanies(
-          this ApplicationDbContext context,
-          Activity activity,
-          Company company)
-        {
-            var result =
-                context.ActivityObserverCompanies.FirstOrDefault(it => (it.ActivityId == activity.Id) && (it.CompanyId == company.Id));
-            if (result == null)
-            {
-                result = new ActivityObserverCompany()
-                {
-                    Activity = activity,
-                    Company = company
-                };
-                context.ActivityObserverCompanies.Add(result);
                 context.SaveChanges();
             }
             return result;
@@ -825,7 +790,6 @@ namespace Stakeholders.Web.Data
                 result = new Activity()
                 {
                     Subject = subject,
-                    Company = company,
                     Task = task,
                     Type = activityType,
                     Description = description,
@@ -839,7 +803,6 @@ namespace Stakeholders.Web.Data
             }
             else
             {
-                result.Company = company;
                 result.Task = task;
                 result.Type = activityType;
                 result.Description = description;

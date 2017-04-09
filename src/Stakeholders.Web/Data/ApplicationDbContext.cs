@@ -114,12 +114,6 @@ namespace Stakeholders.Web.Data
         public DbSet<ActivityTaskObserverUser> ActivityTaskObserverUsers { get; set; }
 
         /// <summary>
-        /// Gets or sets the activity observer companies.
-        /// </summary>
-        /// <value>The activity observer companies.</value>
-        public DbSet<ActivityObserverCompany> ActivityObserverCompanies { get; set; }
-
-        /// <summary>
         /// Gets or sets the activity observer users.
         /// </summary>
         /// <value>The activity observer users.</value>
@@ -150,9 +144,9 @@ namespace Stakeholders.Web.Data
             var activityEntityBuilder = builder.Entity<Activity>();
             activityEntityBuilder.HasKey(it => it.Id);
             activityEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Activity).OnDelete(DeleteBehavior.Cascade);
-            activityEntityBuilder.HasMany(it => it.ObserverCompanies).WithOne(it => it.Activity).OnDelete(DeleteBehavior.Cascade);
+            //activityEntityBuilder.HasMany(it => it.ObserverCompanies).WithOne(it => it.Activity).OnDelete(DeleteBehavior.Cascade);
             activityEntityBuilder.HasOne(it => it.User).WithMany(it=>it.Activities);
-            activityEntityBuilder.HasOne(it => it.Company);
+            //activityEntityBuilder.HasOne(it => it.Company);
             activityEntityBuilder.HasOne(it => it.Contact).WithMany(it => it.Activities);
             activityEntityBuilder.HasOne(it => it.Task).WithMany(it => it.Activities);
             activityEntityBuilder.HasOne(it => it.Type);
@@ -173,7 +167,6 @@ namespace Stakeholders.Web.Data
 
             var companyEntityBuilder = builder.Entity<Company>();
             companyEntityBuilder.HasKey(it => it.Id);
-            companyEntityBuilder.HasMany(it => it.ObserverActivities).WithOne(it => it.Company).OnDelete(DeleteBehavior.Cascade);
 
             var contactEntityBuilder = builder.Entity<Contact>();
             contactEntityBuilder.HasKey(it => it.Id);
@@ -215,17 +208,6 @@ namespace Stakeholders.Web.Data
                 .HasOne(bc => bc.User)
                 .WithMany(b => b.ObserverActivities)
                 .HasForeignKey(bc => bc.UserId);
-
-            var observerActivityCompanyEntityBuilder = builder.Entity<ActivityObserverCompany>();
-            observerActivityCompanyEntityBuilder.HasKey(it => new { it.ActivityId, it.CompanyId });
-            observerActivityCompanyEntityBuilder
-                .HasOne(bc => bc.Activity)
-                .WithMany(b => b.ObserverCompanies)
-                .HasForeignKey(bc => bc.ActivityId);
-            observerActivityCompanyEntityBuilder
-                .HasOne(bc => bc.Company)
-                .WithMany(b => b.ObserverActivities)
-                .HasForeignKey(bc => bc.CompanyId);
 
             var activityTaskObserverUserEntityBuilder = builder.Entity<ActivityTaskObserverUser>();
             activityTaskObserverUserEntityBuilder.HasKey(it => new {it.UserId, it.TaskId});

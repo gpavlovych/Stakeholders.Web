@@ -160,7 +160,6 @@ namespace Stakeholders.Web.Tests
                 Phone = this.CreateString(),
                 CompanyCode = this.CreateString(),
                 LogoUrl = this.CreateString(),
-                ObserverActivities = this.CreateCollection(3, ()=>this.CreateActivityObserverCompany())
             };
         }
 
@@ -201,25 +200,6 @@ namespace Stakeholders.Web.Tests
         /// Creates the activity observer user company.
         /// </summary>
         /// <param name="activity">The activity.</param>
-        /// <param name="company">The company.</param>
-        /// <returns>ActivityObserverUserCompany.</returns>
-        public ActivityObserverCompany CreateActivityObserverCompany(
-            Activity activity = null,
-            Company company = null)
-        {
-            return new ActivityObserverCompany()
-            {
-                Activity = activity,
-                Company = company,
-                CompanyId = this.CreateInt(),
-                ActivityId = this.CreateInt()
-            };
-        }
-
-        /// <summary>
-        /// Creates the activity observer user company.
-        /// </summary>
-        /// <param name="activity">The activity.</param>
         /// <param name="user">The user.</param>
         /// <returns>ActivityObserverUserCompany.</returns>
         public ActivityObserverUser CreateActivityObserverUser(
@@ -242,7 +222,6 @@ namespace Stakeholders.Web.Tests
             return new Activity()
             {
                 Id = this.CreateInt(),
-                Company = this.CreateCompany(),
                 Contact = this.CreateContact(),
                 DateActivity = this.CreateDate(),
                 DateCreated = this.CreateDate(),
@@ -254,9 +233,6 @@ namespace Stakeholders.Web.Tests
                 ObserverUsers = this.CreateCollection(
                     3,
                     () => this.CreateActivityObserverUser(user: this.CreateApplicationUser())),
-                ObserverCompanies = this.CreateCollection(
-                    3,
-                    () => this.CreateActivityObserverCompany(company: this.CreateCompany()))
             };
         }
 
@@ -550,7 +526,6 @@ namespace Stakeholders.Web.Tests
                 InfluencedBy = this.CreateString(),
                 Phone = this.CreateString(),
                 LogoUrl = this.CreateString(),
-                ObserverActivityIds = this.CreateCollection(3, this.CreateInt).ToArray()
             };
         }
 
@@ -691,7 +666,8 @@ namespace Stakeholders.Web.Tests
             return new RoleViewModel()
             {
                 Id = this.CreateInt(),
-                NameEn = this.CreateString()
+                Name = this.CreateString(),
+                Alias = this.CreateString()
             };
         }
 

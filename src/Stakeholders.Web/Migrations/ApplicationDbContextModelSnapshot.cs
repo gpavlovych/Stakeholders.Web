@@ -104,8 +104,6 @@ namespace Stakeholders.Web.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long?>("CompanyId");
-
                     b.Property<long?>("ContactId");
 
                     b.Property<DateTime?>("DateActivity");
@@ -124,8 +122,6 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("ContactId");
 
                     b.HasIndex("TaskId");
@@ -135,21 +131,6 @@ namespace Stakeholders.Web.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Activities");
-                });
-
-            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverCompany", b =>
-                {
-                    b.Property<long>("ActivityId");
-
-                    b.Property<long>("CompanyId");
-
-                    b.HasKey("ActivityId", "CompanyId");
-
-                    b.HasIndex("ActivityId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("ActivityObserverCompanies");
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUser", b =>
@@ -549,10 +530,6 @@ namespace Stakeholders.Web.Migrations
 
             modelBuilder.Entity("Stakeholders.Web.Models.Activity", b =>
                 {
-                    b.HasOne("Stakeholders.Web.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
                     b.HasOne("Stakeholders.Web.Models.Contact", "Contact")
                         .WithMany("Activities")
                         .HasForeignKey("ContactId")
@@ -571,19 +548,6 @@ namespace Stakeholders.Web.Migrations
                         .WithMany("Activities")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.SetNull);
-                });
-
-            modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverCompany", b =>
-                {
-                    b.HasOne("Stakeholders.Web.Models.Activity", "Activity")
-                        .WithMany("ObserverCompanies")
-                        .HasForeignKey("ActivityId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Stakeholders.Web.Models.Company", "Company")
-                        .WithMany("ObserverActivities")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverUser", b =>

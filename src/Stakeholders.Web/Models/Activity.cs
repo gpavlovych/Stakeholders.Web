@@ -70,11 +70,11 @@ namespace Stakeholders.Web.Models
         /// <value>The date created.</value>
         public DateTime DateCreated { get; set; }
 
-        /// <summary>
-        /// Gets or sets the company.
-        /// </summary>
-        /// <value>The company.</value>
-        public Company Company { get; set; }
+        ///// <summary>
+        ///// Gets or sets the company.
+        ///// </summary>
+        ///// <value>The company.</value>
+        //public Company Company { get; set; }
 
         /// <summary>
         /// Gets or sets the observer users.
@@ -82,10 +82,10 @@ namespace Stakeholders.Web.Models
         /// <value>The observer users.</value>
         public ICollection<ActivityObserverUser> ObserverUsers { get; set; }
 
-        /// <summary>
-        /// Gets or sets the observer companies.
-        /// </summary>
-        /// <value>The observer companies.</value>
-        public ICollection<ActivityObserverCompany> ObserverCompanies { get; set; }
+        ///// <summary>
+        ///// Gets or sets the observer companies.
+        ///// </summary>
+        ///// <value>The observer companies.</value>
+        //public ICollection<ActivityObserverCompany> ObserverCompanies { get; set; }
     }
 }

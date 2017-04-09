@@ -36,8 +36,7 @@ namespace Stakeholders.Web.Models
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ActivityViewModels.ActivityViewModel, Stakeholders.Web.Models.Activity}" />
     /// <seealso cref="AutoMapper.IMappingAction{Stakeholders.Web.Models.ActivityTaskViewModels.ActivityTaskViewModel, Stakeholders.Web.Models.ActivityTask}" />
     public class ViewModelToEntity
-        : IMappingAction<CompanyViewModel, Company>,
-            IMappingAction<ActivityViewModel, Activity>,
+        : IMappingAction<ActivityViewModel, Activity>,
             IMappingAction<ActivityTaskViewModel, ActivityTask>,
             IMappingAction<ApplicationUserViewModel, ApplicationUser>,
             IMappingAction<ContactViewModel, Contact>,
@@ -158,30 +157,6 @@ namespace Stakeholders.Web.Models
         /// <summary>
         /// Implementors can modify both the source and destination objects
         /// </summary>
-        /// <param name="source">Source object</param>
-        /// <param name="destination">Destination object</param>
-        public void Process(CompanyViewModel source, Company destination)
-        {
-            destination.ObserverActivities = source.ObserverActivityIds?
-                .Select(
-                    activityId =>
-                        this.context.ActivityObserverCompanies.FirstOrDefault(
-                            it =>
-                                (it.CompanyId == destination.Id) &&
-                                (it.ActivityId == activityId)) ??
-                        new ActivityObserverCompany
-                        {
-                            CompanyId = destination.Id,
-                            Company = destination,
-                            ActivityId = activityId,
-                            Activity = this.repositoryActivities.FindById(activityId)
-                        })
-                .ToList();
-        }
-
-        /// <summary>
-        /// Implementors can modify both the source and destination objects
-        /// </summary>
         /// <param name="source">The activity view model.</param>
         /// <param name="destination">The entity.</param>
         public void Process(ActivityViewModel source, Activity destination)
@@ -191,22 +166,6 @@ namespace Stakeholders.Web.Models
 
             var taskId = source.TaskId;
             destination.Task = taskId != null ? this.repositoryTasks.FindById(taskId.Value) : null;
-
-            var activityObserverCompanies = source.ObserverCompanyIds?
-                                                .Select(
-                                                    observerCompanyId =>
-                                                        this.context.ActivityObserverCompanies.FirstOrDefault(
-                                                            it =>
-                                                                (it.CompanyId == observerCompanyId) &&
-                                                                (it.ActivityId == destination.Id)) ??
-                                                        new ActivityObserverCompany()
-                                                        {
-                                                            ActivityId = destination.Id,
-                                                            Activity = destination,
-                                                            CompanyId = observerCompanyId,
-                                                            Company =
-                                                                this.repositoryCompanies.FindById(observerCompanyId)
-                                                        }) ?? Enumerable.Empty<ActivityObserverCompany>();
 
             var activityObserverUsers = source.ObserverUserIds?
                                             .Select(
@@ -223,7 +182,6 @@ namespace Stakeholders.Web.Models
                                                                           this.repositoryUsers.FindById(observerUserId)
                                                                   }) ?? Enumerable.Empty<ActivityObserverUser>();
 
-            destination.ObserverCompanies = activityObserverCompanies.ToList();
             destination.ObserverUsers = activityObserverUsers.ToList();
 
             var typeId = source.TypeId;
@@ -231,9 +189,6 @@ namespace Stakeholders.Web.Models
 
             var userId = source.UserId;
             destination.User = userId != null ? this.repositoryUsers.FindById(userId.Value) : null;
-
-            var companyId = source.CompanyId;
-            destination.Company = companyId != null ? this.repositoryCompanies.FindById(companyId.Value) : null;
         }
 
         /// <summary>

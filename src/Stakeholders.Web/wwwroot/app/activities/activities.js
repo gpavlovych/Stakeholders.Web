@@ -29,18 +29,6 @@ angular
                 });
         }
     ])
-    .factory('Company',
-    [
-        '$resource',
-        function ($resource) {
-            return $resource(
-                '/api/Companies/:id',
-                null,
-                {
-                    'update': { method: 'PUT' }
-                });
-        }
-    ])
     .factory('User',
     [
         '$resource',
@@ -58,10 +46,9 @@ angular
         '$scope',
         '$rootScope',
         'Activity',
-        'Company',
         'User',
         'dialogService',
-        function ($scope, $rootScope, Activity, Company, User, dialogService) {
+        function ($scope, $rootScope, Activity, User, dialogService) {
             function refresh() {
                 Activity.query({ period: $scope.period, organizationId: $scope.organizationId, contactId: $scope.contactId, organizationCategoryId: $scope.categoryId }, function (activities) {
                         $scope.activities = activities;
@@ -107,11 +94,6 @@ angular
                     $scope.editedActivity.userId = value;
                 }
             };
-            $scope.editActivityCompanyChanged = function(value) {
-                if ($scope.editedActivity) {
-                    $scope.editedActivity.companyId = value;
-                }
-            };
             $scope.editActivityContactChanged = function(value) {
                 if ($scope.editedActivity) {
                     $scope.editedActivity.contactId = value;
@@ -122,25 +104,12 @@ angular
                 User.query(function(result) {
                     $scope.editedActivityUsers = result;
                 });
-                Company.query(function(result) {
-                    $scope.editedActivityCompanies = result;
-                });
-                
+
                 Activity.get({ id: id },
                     function(activity) {
                         $scope.dateActivityDate = activity.dateActivity != null
                             ? new Date(activity.dateActivity)
                             : null;
-                        $scope.selectedObserverCompanies = [];
-                        if (activity.observerCompanyIds != null) {
-                            for (var index = 0; index < activity.observerCompanyIds.length; index++) {
-                                var observerCompanyId = activity.observerCompanyIds[index];
-                                Company.get({ id: observerCompanyId },
-                                    function(company) {
-                                        $scope.selectedObserverCompanies.push(company);
-                                    });
-                            }
-                        }
                         $scope.selectedObserverUsers = [];
                         if (activity.observerUserIds != null) {
                             for (var index = 0; index < activity.observerUserIds.length; index++) {
@@ -167,15 +136,6 @@ angular
                             ? $scope.dateActivityDate.toISOString()
                             : null;
                         
-                        if ($scope.selectedObserverCompanies != null) {
-                            $scope.editedActivity.observerCompanyIds = [];
-                            for (var index = 0; index < $scope.selectedObserverCompanies.length; index++) {
-                                var company = $scope.selectedObserverCompanies[index];
-                                $scope.editedActivity.observerCompanyIds.push(company.id);
-                            }
-                        } else {
-                            $scope.editedActivity.observerCompanyIds = null;
-                        }
                         if ($scope.selectedObserverUsers != null) {
                             $scope.editedActivity.observerUserIds = [];
                             for (var index = 0; index < $scope.selectedObserverUsers.length; index++) {

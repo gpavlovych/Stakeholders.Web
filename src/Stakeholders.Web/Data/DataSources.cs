@@ -295,14 +295,12 @@ namespace Stakeholders.Web.Data
         public IQueryable<Activity> GetDataQueryable()
         {
             return this.context.Activities
-                .Include(it => it.Company)
                 .Include(it => it.Contact)
                     .ThenInclude(it=>it.Organization)
                         .ThenInclude(it=>it.Category)
                 .Include(it => it.ObserverUsers)
                     .ThenInclude(it => it.User)
-                .Include(it => it.ObserverCompanies)
-                    .ThenInclude(it => it.Company)
+                        .ThenInclude(it => it.Company)
                 .Include(it => it.Type)
                 .Include(it => it.User)
                 .Include(it => it.Task)
@@ -380,9 +378,7 @@ namespace Stakeholders.Web.Data
         /// <returns>IQueryable&lt;Company&gt;.</returns>
         public IQueryable<Company> GetDataQueryable()
         {
-            return this.context.Companies
-                .Include(it => it.ObserverActivities)
-                    .ThenInclude(it => it.Activity);
+            return this.context.Companies;
         }
     }
 

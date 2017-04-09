@@ -74,11 +74,5 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The email.</value>
         public string Email { get; set; }
-
-        /// <summary>
-        /// Gets or sets the observer activities.
-        /// </summary>
-        /// <value>The observer activities.</value>
-        public ICollection<ActivityObserverCompany> ObserverActivities { get; set; }
     }
 }
