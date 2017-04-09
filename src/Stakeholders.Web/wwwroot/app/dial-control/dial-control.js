@@ -1,9 +1,12 @@
 ﻿angular
     .module('porlaDashboard.dialControl',
-    [])
-.component('dialControl',
+        [])
+    .component('dialControl',
     {
         transclude: true,
+        bindings: {
+            hideFilterButton: "<"
+        },
         controller: ['$rootScope', function ($rootScope) {
             this.newActivity = function () {
                 $rootScope.$emit('newActivity', {

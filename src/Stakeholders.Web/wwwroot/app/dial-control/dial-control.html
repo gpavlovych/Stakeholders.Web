@@ -22,7 +22,7 @@
         </md-fab-actions>
     </md-fab-speed-dial>
 
-    <md-button ng-click="$ctrl.openFilter()" class="md-fab settings" aria-label="Add">
+    <md-button ng-hide="$ctrl.hideFilterButton" ng-click="$ctrl.openFilter()" class="md-fab settings" aria-label="Add">
         <md-icon md-svg-src="/images/levels-adjusment.svg"></md-icon>
     </md-button>
 </div>
