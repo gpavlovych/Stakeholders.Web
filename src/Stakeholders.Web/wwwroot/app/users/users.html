@@ -80,10 +80,10 @@
                         <td>{{ user.roleName }}</td>
                         <td><span class="brand"><img src="/images/user/john.png" /></span> <span class="companyname">{{ user.companyName }}</span></td>
                         <td>
-                            <md-button class="md-fab footertrash" aria-label="Trash" ng-click="remover($event, $index);">
+                            <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeUser(user.id)">
                                 <md-icon md-svg-src="/images/trash.svg"></md-icon>
                             </md-button>
-                            <md-button id="toggleFilterUsersEdit" ng-click="toggleFilterUsersEdit()" class="md-fab footerpen" aria-label="Pen">
+                            <md-button id="toggleFilterUsersEdit" ng-click="editUser(user.id)" class="md-fab footerpen" aria-label="Pen">
                                 <md-icon md-svg-src="/images/pen.svg"></md-icon>
                             </md-button>
                         </td>

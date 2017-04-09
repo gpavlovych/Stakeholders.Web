@@ -115,7 +115,7 @@
                         <p><span>{{'DATE_CREATED' | translate}}</span><strong>{{ activity.dateCreated }}</strong></p>
                     </div>
                     <div class="bottomFooter">
-                        <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeActivity($event, activity.id)">
+                        <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeActivity(activity.id)">
                             <md-icon md-svg-src="/images/trash.svg"></md-icon>
                         </md-button>
                         <md-button id="toggleFilterActvEdit" ng-click="editActivity(activity.id)" class="md-fab footerpen" aria-label="Pen">

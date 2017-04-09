@@ -47,19 +47,21 @@ angular
             };
 
             $scope.editUser = function (id) {
-                $scope.editedUser = User.get({ id: id });
+                User.get({ id: id }, function(result) {
+                    $scope.editedUser = result;
+                });
             };
 
             $scope.closeEditor = function () {
                 $scope.editedUser = null;
             };
 
-            $scope.saveEditor = function (event) {
-                dialogService.showConfirmationSaveDialog(event,
+            $scope.saveEditor = function () {
+                dialogService.showConfirmationSaveDialog(null,
                     function () {
-                        $scope.editedUser.$update({ id: $scope.editedOrganization.id },
+                        $scope.editedUser.$update({ id: $scope.editedUser.id },
                             function () {
-                                dialogService.showMessageSavedDialog(event, null);
+                                dialogService.showMessageSavedDialog(null, null);
                                 refresh();
                             });
                         $scope.editedUser = null;
@@ -67,10 +69,10 @@ angular
                     null);
             };
 
-            $scope.removeUser = function (event, id) {
-                dialogService.showConfirmationDeleteDialog(event,
+            $scope.removeUser = function (id) {
+                dialogService.showConfirmationDeleteDialog(null,
                     function () {
-                        User.remove({ id: id },
+                        User.delete({ id: id },
                             function () {
                                 refresh();
                             });

@@ -74,7 +74,7 @@ angular
             $scope.removeOrganizationCategory = function (id) {
                 dialogService.showConfirmationDeleteDialog(null,
                     function () {
-                        $scope.editedOrganizationCategory.$remove({ id: id },
+                        OrganizationCategory.delete({ id: id },
                             function () {
                                 refresh();
                             });

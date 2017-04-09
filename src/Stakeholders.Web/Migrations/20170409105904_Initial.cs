@@ -291,7 +291,7 @@ namespace Stakeholders.Web.Migrations
                         column: x => x.AssignToId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_ActivityTasks_Companies_CompanyId",
                         column: x => x.CompanyId,
@@ -309,7 +309,7 @@ namespace Stakeholders.Web.Migrations
                         column: x => x.GoalId,
                         principalTable: "Goals",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_ActivityTasks_ActivityTaskStatuses_StatusId",
                         column: x => x.StatusId,
@@ -340,7 +340,7 @@ namespace Stakeholders.Web.Migrations
                         column: x => x.CategoryId,
                         principalTable: "OrganizationCategories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Organizations_Companies_CompanyId",
                         column: x => x.CompanyId,
@@ -440,7 +440,7 @@ namespace Stakeholders.Web.Migrations
                         column: x => x.OrganizationId,
                         principalTable: "Organizations",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Contacts_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -479,13 +479,13 @@ namespace Stakeholders.Web.Migrations
                         column: x => x.ContactId,
                         principalTable: "Contacts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Activities_ActivityTasks_TaskId",
                         column: x => x.TaskId,
                         principalTable: "ActivityTasks",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "FK_Activities_ActivityTypes_TypeId",
                         column: x => x.TypeId,
@@ -497,7 +497,7 @@ namespace Stakeholders.Web.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(

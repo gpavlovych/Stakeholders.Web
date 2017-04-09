@@ -67,6 +67,12 @@ namespace Stakeholders.Web.Models
         public ICollection<ActivityTask> AssignedTasks { get; set; }
 
         /// <summary>
+        /// Gets or sets the created tasks.
+        /// </summary>
+        /// <value>The created tasks.</value>
+        public ICollection<ActivityTask> CreatedTasks { get; set; }
+
+        /// <summary>
         /// Gets or sets the activities.
         /// </summary>
         /// <value>The activities.</value>

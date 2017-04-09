@@ -99,12 +99,12 @@ angular
                 $scope.editedOrganization = null;
             };
 
-            $scope.saveEditor = function(event) {
-                dialogService.showConfirmationSaveDialog(event,
+            $scope.saveEditor = function() {
+                dialogService.showConfirmationSaveDialog(null,
                     function() {
                         $scope.editedOrganization.$update({ id: $scope.editedOrganization.id },
                             function() {
-                                dialogService.showMessageSavedDialog(event, null);
+                                dialogService.showMessageSavedDialog(null, null);
                                 refresh();
                             });
                         $scope.editedOrganization = null;
@@ -112,10 +112,10 @@ angular
                     null);
             };
 
-            $scope.removeOrganization = function (event, id) {
-                dialogService.showConfirmationDeleteDialog(event,
+            $scope.removeOrganization = function (id) {
+                dialogService.showConfirmationDeleteDialog(null,
                     function () {
-                        $scope.editedOrganization.$remove({ id: id },
+                        Organization.delete({ id: id },
                             function () {
                                 refresh();
                             });

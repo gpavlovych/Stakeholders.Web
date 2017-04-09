@@ -14,6 +14,7 @@
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Stakeholders.Web.Models;
 
 namespace Stakeholders.Web.Data
@@ -140,15 +141,16 @@ namespace Stakeholders.Web.Data
 
             var applicationUserEntityBuilder = builder.Entity<ApplicationUser>();
             applicationUserEntityBuilder.HasKey(it => it.Id);
-            applicationUserEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.User);
-            applicationUserEntityBuilder.HasMany(it => it.AssignedTasks).WithOne(it => it.AssignTo);
-            applicationUserEntityBuilder.HasMany(it => it.ObserverActivities).WithOne(it => it.User);
-            applicationUserEntityBuilder.HasMany(it => it.ObserverTasks).WithOne(it => it.User);
+            applicationUserEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.User).OnDelete(DeleteBehavior.SetNull);
+            applicationUserEntityBuilder.HasMany(it => it.AssignedTasks).WithOne(it => it.AssignTo).OnDelete(DeleteBehavior.SetNull);
+            applicationUserEntityBuilder.HasMany(it => it.CreatedTasks).WithOne(it => it.CreatedBy).OnDelete(DeleteBehavior.Restrict);
+            applicationUserEntityBuilder.HasMany(it => it.ObserverActivities).WithOne(it => it.User).OnDelete(DeleteBehavior.Cascade);
+            applicationUserEntityBuilder.HasMany(it => it.ObserverTasks).WithOne(it => it.User).OnDelete(DeleteBehavior.Cascade);
 
             var activityEntityBuilder = builder.Entity<Activity>();
             activityEntityBuilder.HasKey(it => it.Id);
-            activityEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Activity);
-            activityEntityBuilder.HasMany(it => it.ObserverCompanies).WithOne(it => it.Activity);
+            activityEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Activity).OnDelete(DeleteBehavior.Cascade);
+            activityEntityBuilder.HasMany(it => it.ObserverCompanies).WithOne(it => it.Activity).OnDelete(DeleteBehavior.Cascade);
             activityEntityBuilder.HasOne(it => it.User).WithMany(it=>it.Activities);
             activityEntityBuilder.HasOne(it => it.Company);
             activityEntityBuilder.HasOne(it => it.Contact).WithMany(it => it.Activities);
@@ -158,39 +160,39 @@ namespace Stakeholders.Web.Data
             var activityTaskEntityBuilder = builder.Entity<ActivityTask>();
             activityTaskEntityBuilder.HasKey(it => it.Id);
             activityTaskEntityBuilder.HasOne(it => it.AssignTo).WithMany(it=>it.AssignedTasks);
-            activityTaskEntityBuilder.HasOne(it => it.CreatedBy);
+            activityTaskEntityBuilder.HasOne(it => it.CreatedBy).WithMany(it=>it.CreatedTasks);
             activityTaskEntityBuilder.HasOne(it => it.Goal).WithMany(it => it.Tasks);
             activityTaskEntityBuilder.HasOne(it => it.Status);
-            activityTaskEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.Task);
-            activityTaskEntityBuilder.HasMany(it => it.Contacts).WithOne(it => it.Task);
-            activityTaskEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Task);
-            activityTaskEntityBuilder.HasMany(it => it.Organizations).WithOne(it => it.Task);
+            activityTaskEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.Task).OnDelete(DeleteBehavior.SetNull);
+            activityTaskEntityBuilder.HasMany(it => it.Contacts).WithOne(it => it.Task).OnDelete(DeleteBehavior.Cascade);
+            activityTaskEntityBuilder.HasMany(it => it.ObserverUsers).WithOne(it => it.Task).OnDelete(DeleteBehavior.Cascade);
+            activityTaskEntityBuilder.HasMany(it => it.Organizations).WithOne(it => it.Task).OnDelete(DeleteBehavior.Cascade);
 
             var activityTypeEntityBuilder = builder.Entity<ActivityType>();
             activityTypeEntityBuilder.HasKey(it => it.Id);
 
             var companyEntityBuilder = builder.Entity<Company>();
             companyEntityBuilder.HasKey(it => it.Id);
-            companyEntityBuilder.HasMany(it => it.ObserverActivities).WithOne(it => it.Company);
+            companyEntityBuilder.HasMany(it => it.ObserverActivities).WithOne(it => it.Company).OnDelete(DeleteBehavior.Cascade);
 
             var contactEntityBuilder = builder.Entity<Contact>();
             contactEntityBuilder.HasKey(it => it.Id);
             contactEntityBuilder.HasOne(it => it.Organization).WithMany(it => it.Contacts);
-            contactEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Contact);
-            contactEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.Contact);
+            contactEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Contact).OnDelete(DeleteBehavior.Cascade);
+            contactEntityBuilder.HasMany(it => it.Activities).WithOne(it => it.Contact).OnDelete(DeleteBehavior.SetNull);
 
             var goalEntityBuilder = builder.Entity<Goal>();
             goalEntityBuilder.HasKey(it => it.Id);
-            goalEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Goal);
+            goalEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Goal).OnDelete(DeleteBehavior.SetNull);
 
             var organizationEntityBuilder = builder.Entity<Organization>();
             organizationEntityBuilder.HasKey(it => it.Id);
             organizationEntityBuilder.HasOne(it => it.Category).WithMany(it => it.Organizations);
-            organizationEntityBuilder.HasMany(it => it.Contacts).WithOne(it => it.Organization);
+            organizationEntityBuilder.HasMany(it => it.Contacts).WithOne(it => it.Organization).OnDelete(DeleteBehavior.SetNull);
             organizationEntityBuilder.HasOne(it => it.Company);
             organizationEntityBuilder.HasOne(it => it.Type);
             organizationEntityBuilder.HasOne(it => it.User);
-            organizationEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Organization);
+            organizationEntityBuilder.HasMany(it => it.Tasks).WithOne(it => it.Organization).OnDelete(DeleteBehavior.Cascade);
 
             var organizationTypeEntityBuilder = builder.Entity<OrganizationType>();
             organizationTypeEntityBuilder.HasKey(it => it.Id);
@@ -198,7 +200,7 @@ namespace Stakeholders.Web.Data
             var organizationCategoryEntityBuilder = builder.Entity<OrganizationCategory>();
             organizationCategoryEntityBuilder.HasKey(it => it.Id);
             organizationCategoryEntityBuilder.HasOne(it => it.Company);
-            organizationCategoryEntityBuilder.HasMany(it => it.Organizations).WithOne(it => it.Category);
+            organizationCategoryEntityBuilder.HasMany(it => it.Organizations).WithOne(it => it.Category).OnDelete(DeleteBehavior.SetNull);
 
             var activityTaskStatusEntityBuilder = builder.Entity<ActivityTaskStatus>();
             activityTaskStatusEntityBuilder.HasKey(it => it.Id);

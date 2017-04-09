@@ -70,12 +70,12 @@ angular
                 $scope.editedContact = null;
             };
 
-            $scope.saveEditor = function(event) {
-                dialogService.showConfirmationSaveDialog(event,
+            $scope.saveEditor = function() {
+                dialogService.showConfirmationSaveDialog(null,
                     function() {
                         $scope.editedContact.$update({ id: $scope.editedContact.id },
                             function() {
-                                dialogService.showMessageSavedDialog(event, null);
+                                dialogService.showMessageSavedDialog(null, null);
                                 refresh();
                             });
                         $scope.editedContact = null;
@@ -83,10 +83,10 @@ angular
                     null);
             };
 
-            $scope.removeContact = function (event, id) {
-                dialogService.showConfirmationDeleteDialog(event,
+            $scope.removeContact = function (id) {
+                dialogService.showConfirmationDeleteDialog(null,
                     function () {
-                        Contact.remove({ id: id },
+                        Contact.delete({ id: id },
                             function () {
                                 refresh();
                             });

@@ -55,12 +55,12 @@ angular
                 $scope.editedCompany = null;
             };
 
-            $scope.saveEditor = function(event) {
-                dialogService.showConfirmationSaveDialog(event,
+            $scope.saveEditor = function() {
+                dialogService.showConfirmationSaveDialog(null,
                     function() {
                         $scope.editedCompany.$update({ id: $scope.editedCompany.id },
                             function() {
-                                dialogService.showMessageSavedDialog(event, null);
+                                dialogService.showMessageSavedDialog(null, null);
                                 refresh();
                             });
                         $scope.editedCompany = null;
@@ -68,10 +68,10 @@ angular
                     null);
             };
 
-            $scope.removeCompany = function(event, id) {
-                dialogService.showConfirmationDeleteDialog(event,
+            $scope.removeCompany = function(id) {
+                dialogService.showConfirmationDeleteDialog(null,
                     function() {
-                        $scope.editedCompany.$remove({ id: id },
+                       Company.delete({ id: id },
                             function() {
                                 refresh();
                             });

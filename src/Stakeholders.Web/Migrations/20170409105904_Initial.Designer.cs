@@ -8,7 +8,7 @@ using Stakeholders.Web.Data;
 namespace Stakeholders.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170407194825_Initial")]
+    [Migration("20170409105904_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -555,12 +555,14 @@ namespace Stakeholders.Web.Migrations
                         .HasForeignKey("CompanyId");
 
                     b.HasOne("Stakeholders.Web.Models.Contact", "Contact")
-                        .WithMany()
-                        .HasForeignKey("ContactId");
+                        .WithMany("Activities")
+                        .HasForeignKey("ContactId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Stakeholders.Web.Models.ActivityTask", "Task")
                         .WithMany("Activities")
-                        .HasForeignKey("TaskId");
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Stakeholders.Web.Models.ActivityType", "Type")
                         .WithMany()
@@ -568,7 +570,8 @@ namespace Stakeholders.Web.Migrations
 
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
                         .WithMany("Activities")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("Stakeholders.Web.Models.ActivityObserverCompany", b =>
@@ -601,19 +604,21 @@ namespace Stakeholders.Web.Migrations
                 {
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "AssignTo")
                         .WithMany("AssignedTasks")
-                        .HasForeignKey("AssignToId");
+                        .HasForeignKey("AssignToId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Stakeholders.Web.Models.Company", "Company")
                         .WithMany()
                         .HasForeignKey("CompanyId");
 
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "CreatedBy")
-                        .WithMany()
+                        .WithMany("CreatedTasks")
                         .HasForeignKey("CreatedById");
 
                     b.HasOne("Stakeholders.Web.Models.Goal", "Goal")
                         .WithMany("Tasks")
-                        .HasForeignKey("GoalId");
+                        .HasForeignKey("GoalId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Stakeholders.Web.Models.ActivityTaskStatus", "Status")
                         .WithMany()
@@ -677,8 +682,9 @@ namespace Stakeholders.Web.Migrations
                         .HasForeignKey("CompanyId");
 
                     b.HasOne("Stakeholders.Web.Models.Organization", "Organization")
-                        .WithMany()
-                        .HasForeignKey("OrganizationId");
+                        .WithMany("Contacts")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Stakeholders.Web.Models.ApplicationUser", "User")
                         .WithMany()
@@ -688,8 +694,9 @@ namespace Stakeholders.Web.Migrations
             modelBuilder.Entity("Stakeholders.Web.Models.Organization", b =>
                 {
                     b.HasOne("Stakeholders.Web.Models.OrganizationCategory", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
+                        .WithMany("Organizations")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Stakeholders.Web.Models.Company", "Company")
                         .WithMany()

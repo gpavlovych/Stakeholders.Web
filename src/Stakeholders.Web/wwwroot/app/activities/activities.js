@@ -134,8 +134,8 @@ angular
                 $scope.editedActivity = null;
             };
 
-            $scope.saveEditor = function (event) {
-                dialogService.showConfirmationSaveDialog(event,
+            $scope.saveEditor = function () {
+                dialogService.showConfirmationSaveDialog(null,
                     function () {
                         $scope.editedActivity
                             .dateActivity = $scope.dateActivityDate != null
@@ -163,7 +163,7 @@ angular
                         Activity.update({ id: $scope.editedActivity.id }, $scope.editedActivity)
                             .$promise
                             .then(function () {
-                                dialogService.showMessageSavedDialog(event, null);
+                                dialogService.showMessageSavedDialog(null, null);
                                 refresh();
                             });
                         $scope.closeEditor();
@@ -171,12 +171,10 @@ angular
                     null);
             };
 
-            $scope.removeActivity = function (event, id) {
-                dialogService.showConfirmationDeleteDialog(event,
+            $scope.removeActivity = function (id) {
+                dialogService.showConfirmationDeleteDialog(null,
                     function () {
-                        Activity.delete({ id: id })
-                            .$promise
-                            .then(function () {
+                        Activity.delete({ id: id },function () {
                                 refresh();
                             });
                     },

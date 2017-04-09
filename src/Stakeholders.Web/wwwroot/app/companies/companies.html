@@ -58,7 +58,7 @@
                                 <a href="#"><img src="{{ company.logoUrl }}" alt="{{ company.name }}" /></a>
                             </div>
                             <div class="bottomFooter">
-                                <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeCompany($event, company.id);">
+                                <md-button class="md-fab footertrash" aria-label="Trash" ng-click="removeCompany(company.id);">
                                         <md-icon md-svg-src="/images/trash.svg"></md-icon>
                                 </md-button>
                                 <md-button id="toggleFilterCompEdit" ng-click="editCompany(company.id)" class="md-fab footerpen" aria-label="Pen">
