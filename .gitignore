@@ -246,3 +246,4 @@ ModelManifest.xml
 
 # Less
 **/wwwroot/css
+/src/Stakeholders.Web/Properties/PublishProfiles

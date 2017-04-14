@@ -47,9 +47,9 @@
                         <div class="welcome" ng-if="user!=null">
                             <a class="userButton" href="#">
                                 <i class="on">{{ user.status }}</i>
-                                <img src="{{ user.image }}" alt="{{ user.name }}" />
+                                <img  src="/images/users/{{ user.id }}.png" alt="{{ user }}" />
                             </a>
-                            <span class="ng-binding">Welcome, {{ user.name }}</span>
+                            <span class="ng-binding">{{'WELCOME' | translate}}, {{ user.name }}</span>
                             <a class="logout" href="login"> <img src="/images/logout.png" /><span>{{'LOG_OUT' | translate}}</span></a>
                         </div>
                     </div>
