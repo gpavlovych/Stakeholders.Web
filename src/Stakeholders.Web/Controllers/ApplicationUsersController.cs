@@ -148,7 +148,7 @@ namespace Stakeholders.Web.Controllers
                 .Take(count);
             if (includeStats == 1)
             {
-                return query.Select(
+                var xxx =  query.Select(
                         it => new Tuple<ApplicationUser, long, long, long>(
 
                             //Item1 - User
@@ -187,6 +187,7 @@ namespace Stakeholders.Web.Controllers
                             return result;
                         })
                     .ToArray();
+					 return xxx;
             }
             else
             {

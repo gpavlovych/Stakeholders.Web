@@ -45,10 +45,12 @@ angular
         function ($scope, $rootScope, Activity, User) {
             function refresh() {
                 Activity.query({ period: $scope.period }, function (result) {
-                    $scope.activities = result;
+                	 $scope.activities = result;
+                	
                 });
                 User.query({ period: $scope.period, includeStats: 1 }, function (result) {
-                    $scope.users = result;
+                	 $scope.users = result;
+                
                 });
             }
 
