@@ -26,31 +26,31 @@
                 <header>
                     <div class="mainHeader">
                         <h1 class="logo">
-                            <a href="home">
+                            <a href="/app/#!/home">
                                 <img src="/images/logotype-porla.png" />
                             </a>
                         </h1>
                         <nav ng-if="user!=null">
                             <ul class="navMenu">
-                                <li ng-class="{active: $route.current.activetab=='home'}"><a class="home" href="home">{{'HOME' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='ceo-dashboard'}"><a href="ceo-dashboard">{{'CEO_DASHBOARD' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='managers-dashboard'}"><a href="managers-dashboard">{{'MANAGERS_DASHBOARD' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='tasks'}"><a href="tasks">{{'TASKS' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='activities'}"><a href="activities">{{'ACTIVITIES' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='organizations'}"><a href="organizations">{{'ORGANIZATIONS' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='contacts'}"><a href="contacts">{{'CONTACTS' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='users'}"><a class="users" href="users">{{'USERS' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='companies'}"><a class="companies" href="companies">{{'COMPANIES' | translate}}</a></li>
-                                <li ng-class="{active: $route.current.activetab=='organization-categories'}"><a href="organization-categories">{{'CATEGORIES' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='home'}"><a class="home" href="/app/#!/home">{{'HOME' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='ceo-dashboard'}"><a href="/app/#!/ceo-dashboard">{{'CEO_DASHBOARD' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='managers-dashboard'}"><a href="/app/#!/managers-dashboard">{{'MANAGERS_DASHBOARD' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='tasks'}"><a href="/app/#!/tasks">{{'TASKS' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='activities'}"><a href="/app/#!/activities">{{'ACTIVITIES' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='organizations'}"><a href="/app/#!/organizations">{{'ORGANIZATIONS' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='contacts'}"><a href="/app/#!/contacts">{{'CONTACTS' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='users'}"><a class="users" href="/app/#!/users">{{'USERS' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='companies'}"><a class="companies" href="/app/#!/companies">{{'COMPANIES' | translate}}</a></li>
+                                <li ng-class="{active: $route.current.activetab=='organization-categories'}"><a href="/app/#!/organization-categories">{{'CATEGORIES' | translate}}</a></li>
                             </ul>
                         </nav>
                         <div class="welcome" ng-if="user!=null">
-                            <a class="userButton" href="#">
+                            <a class="userButton" >
                                 <i class="on">{{ user.status }}</i>
                                 <img src="{{ user.image }}" alt="{{ user.name }}" />
                             </a>
                             <span class="ng-binding">Welcome, {{ user.name }}</span>
-                            <a class="logout" href="login"> <img src="/images/logout.png" /><span>{{'LOG_OUT' | translate}}</span></a>
+                            <a class="logout" href="/app/#!/login"> <img src="/images/logout.png" /><span>{{'LOG_OUT' | translate}}</span></a>
                         </div>
                     </div>
                 </header>
@@ -58,8 +58,8 @@
                 <footer>
                     <div class="mainFooter" style="white-space: nowrap">
                         <img src="/images/logo-footer.png"/><span>{{'COPYRIGHT' | translate}}</span>
-                        <a href="#" ng-click="setLanguage('he', 'rtl')" id='rtl'><img src="/images/he-il.png"/></a>
-                        <a href="#" ng-click="setLanguage('en', 'ltr')" id='ltr'><img src="/images/en-us.png"/></a>
+                        <a  ng-click="setLanguage('he', 'rtl')" id='rtl'><img src="/images/he-il.png"/></a>
+                        <a  ng-click="setLanguage('en', 'ltr')" id='ltr'><img src="/images/en-us.png"/></a>
                     </div>
                 </footer>
                 <div style="visibility: hidden">
