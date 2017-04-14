@@ -29,8 +29,11 @@
                 <ul class="listResult" ng-repeat="user in users">
                     <li>
                         <h3 class="title">
-                            <img class="imageUser" src="{{pathUser}}{{ user.userimage }}" />
+                            <img class="imageUser" src="/images/users/{{ user.id }}.png" />
                             <strong>{{ user.name }}</strong>
+									<!--<span>id: {{ user.id }}</span>-->
+									
+
                             <span>{{ user.title }}</span>
                         </h3>
                         <div class="statsResult">

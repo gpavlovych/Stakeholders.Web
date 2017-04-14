@@ -16,7 +16,8 @@ html[dir="rtl"] {
       /* Function Font-face */
       @font-face { font-family: 'bold'; src: url('../fonts/gotham/gothamhtf-bold-webfont.woff2') format('woff2'), url('../fonts/gotham/gothamhtf-bold-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
       @font-face { font-family: 'boldit'; src: url('../fonts/gotham/gothamhtf-bolditalic-webfont.woff2') format('woff2'), url('../fonts/gotham/gothamhtf-bolditalic-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
-      @font-face { font-family: 'book'; src: url('../fonts/gotham/gothamhtf-book-webfont.woff2') format('woff2'), url('../fonts/gotham/gothamhtf-book-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
+      /*@font-face { font-family: 'book'; src: url('../fonts/gotham/gothamhtf-book-webfont.woff2') format('woff2'), url('../fonts/gotham/gothamhtf-book-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }*/
+      @font-face { font-family: 'book'; font-family:unset ; font-weight: normal; font-style: normal; }
       @font-face { font-family: 'bookit'; src: url('../fonts/gotham/gothamhtf-bookitalic-webfont.woff2') format('woff2'), url('../fonts/gotham/gothamhtf-bookitalic-webfont.woff') format('woff'); font-weight: normal; font-style: normal; }
 
       /* Variable Colors */
@@ -63,10 +64,10 @@ html[dir="rtl"] {
       .opacitySet {.opacity (@opacity:0;)}
 
       /* Function - Button Default */
-      .button() { border: 1px solid; font-family: @bold; padding: 14px 0px; min-width: 106px; height: 46px; text-align: center; display: block; }
+      .button() { border: 1px solid; font-weight: bold; padding: 14px 0px; min-width: 106px; height: 46px; text-align: center; display: block; }
       .buttonFab() { line-height: 5.6rem; min-width: 0; width: 43px; height: 43px; border-radius: 50%; }
-      .btn-default { font-size: 12px; padding: 2px 45px; letter-spacing: 0.03em; font-family: @book; text-align: center; text-transform: uppercase; text-decoration: none; border: none; outline: none; background: @magenta; .borderRadius(@radius: 50px); .shadowbutton(); margin: 0 auto; span { color: @white !important; } }
-      .btn-transp { font-size: 12px; letter-spacing: 0.03em; font-family: @book; text-align: center; text-transform: uppercase; text-decoration: none; border: none; outline: none; background: #transp; .borderRadius(@radius: 50px); margin: 0 auto;
+      .btn-default { font-size: 12px; padding: 2px 45px; letter-spacing: 0.03em;  text-align: center; text-transform: uppercase; text-decoration: none; border: none; outline: none; background: @magenta; .borderRadius(@radius: 50px); .shadowbutton(); margin: 0 auto; span { color: @white !important; } }
+      .btn-transp { font-size: 12px; letter-spacing: 0.03em;  text-align: center; text-transform: uppercase; text-decoration: none; border: none; outline: none; background: #transp; .borderRadius(@radius: 50px); margin: 0 auto;
             span { color: @white !important; }
       }
       md-button { padding: 0 6px 0 6px; margin: 15px 8px 6px 8px; min-width: 88px; border-radius: 3px; font-size: 14px; text-align: center; text-transform: uppercase; text-decoration: none; border: none; outline: none; background: @magenta; }
@@ -118,7 +119,7 @@ html[dir="rtl"] {
       .inputfile + label:hover {border-color: @graymid;}
       .inputfile + label span, .inputfile + label strong {padding: 10px 20px;}
       .inputfile + label span { width: 200px; height: 40px; display: inline-block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; vertical-align: top; }
-      .inputfile + label strong { background: @cyan; color: @white; .borderRadius(@radius:25px); display: inline-block; font-family: @book; font-size: 15px; border: none; padding: 11px 28px; position: absolute; }
+      .inputfile + label strong { background: @cyan; color: @white; .borderRadius(@radius:25px); display: inline-block;  font-size: 15px; border: none; padding: 11px 28px; position: absolute; }
       .inputfile:focus + label strong,
       .inputfile.has-focus + label strong,
       .inputfile + label:hover strong { background-color: @cyanlight; float: right; position: absolute;}
@@ -152,7 +153,7 @@ html[dir="rtl"] {
       }
 
       #nav-show { position: relative; top: 23px; width: 700px; height: 34px; left: 200px; float: left; border: 1px solid rgba(153, 153, 153, 0.32); .borderRadius(@radius:25px);
-            a { color:@gray;position: relative; z-index: 2; padding: 9px 22px; top: 10px; text-indent: 3px; font-family: @book; letter-spacing: 0.03em; }
+            a { color:@gray;position: relative; z-index: 2; padding: 9px 22px; top: 10px; text-indent: 3px;  letter-spacing: 0.03em; }
             a:hover {color: @white;}
             a.current_page_item {color: @white;}
             #magic-line { position: absolute; left: 0; width: 60px; height: 30px; padding: 2px 23px; background: #fb375c; z-index: 1; border-radius: 15px; -moz-border-radius: 15px; -webkit-border-radius: 15px; color: #fff; margin-top: -14px; }
@@ -165,8 +166,8 @@ html[dir="rtl"] {
       .md-dialog-container {
             md-dialog-actions { min-height: 72px; }
             .md-title { display: none; }
-            .md-confirm-button { font-family: @book; background: rgb(255,64,129) !important; color: white !important; border-radius: 25px; margin: 0 auto !important; padding: 3px 30px !important; font-size: 16px; }
-            .md-cancel-button { font-family: @book; background: rgb(255,64,129) !important; color: white !important; border-radius: 25px; margin: 0 auto !important; padding: 3px 40px !important; }
+            .md-confirm-button {  background: rgb(255,64,129) !important; color: white !important; border-radius: 25px; margin: 0 auto !important; padding: 3px 30px !important; font-size: 16px; }
+            .md-cancel-button {  background: rgb(255,64,129) !important; color: white !important; border-radius: 25px; margin: 0 auto !important; padding: 3px 40px !important; }
       }
 
       .mainContainer { width: 100%; display: inline-block; background: @graylight;
@@ -178,7 +179,7 @@ html[dir="rtl"] {
                               nav { display: block; float: right; margin-left: 60px;
                                     .navMenu {
                                           li { display: inline-block; height: 60px; padding: 0px 18px;
-                                                a { display: block; color: @white; font-family: @book; height: 35px; font-size: 12px; padding: 21px 0 0; border-bottom: 4px solid @transp; transition: all 0.5s ease; }
+                                                a { display: block; color: @white;  height: 35px; font-size: 12px; padding: 21px 0 0; border-bottom: 4px solid @transp; transition: all 0.5s ease; }
                                           }
                                           li.active {
                                                 a { border-bottom: 4px solid @cyan; }
@@ -191,7 +192,7 @@ html[dir="rtl"] {
                               }
 
                               .welcome { width: 200px; height: 60px; float: left; display: block; margin-left:20px;
-                                    span { color: @white; font-family: @book; display: inline-block; position: relative; top: 20px; float: right; }
+                                    span { color: @white;  display: inline-block; position: relative; top: 20px; float: right; }
                                     .userButton { width: 43px; height: 43px; display: block; float: right; margin: 0 20px 0 30px; position: relative; z-index: 110;
                                           img { display: inline-block; position: relative; top: 8px; }
                                           .on { background: @green; width: 10px; height: 10px; font-size: 0px; display: block; .borderRadius; position: absolute; margin: 10px 0 0 34px; z-index: 9; -webkit-box-shadow: 0px 0px 22px 0px rgba(28,195,39,1); -moz-box-shadow: 0px 0px 22px 0px rgba(28,195,39,1); box-shadow: 0px 0px 22px 0px rgba(28,195,39,1); }
@@ -206,33 +207,33 @@ html[dir="rtl"] {
                         }
                         .editorPanelCreateTask {
                               height: 530px; position: absolute; width: 665px; background: #CACACA; z-index: 102; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); padding: 20px; -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); left: 50%; margin-left: -681px;
-                              h2 { font-family: @bold; display: block; margin-bottom: 8px; }
-                              h3 { font-family: @book; margin-top: 5px; margin-bottom: 3px; }
+                              h2 { font-weight: bold; display: block; margin-bottom: 8px; }
+                              h3 {  margin-top: 5px; margin-bottom: 3px; }
                               .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                               .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
                               .md-chip-content { line-height: 210%; }
                               .remove { height: 13px; width: 13px; top: 42%; }
                               .md-chips-select.md-focused { box-shadow: 0 2px @graylight; }
                               md-select-list { z-index: 9; }
-                              md-select-item-wrapper { font-family: @book; }
-                              md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                              md-select-item-wrapper {  }
+                              md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                               md-checkbox .md-icon { border: none; }
                               md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                               md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
                               md-checkbox.md-checked .md-icon:after { left: 6.66667px !important; top: 1.22222px !important; border-color: @gray; }
                               .colLeft { width: 335px; height: 450px; float: right;
                                     .formEditor {
-                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 70px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 70px;  font-size: 14px; margin-bottom: 10px; }
                                           p { margin-bottom: 15px;
-                                                a { color: @cyan; font-family: @book; font-size: 14px; }
+                                                a { color: @cyan;  font-size: 14px; }
                                           }
 
                                           .btnDefault {
                                                 background: @cyan;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -252,7 +253,7 @@ html[dir="rtl"] {
                                                 width: 305px;
                                                 float: left;
                                                 margin-bottom: 8px;
-                                                font-family: @book;
+                                                
                                                 padding: 13px 13px;
                                                 color: @graymid;
                                           }
@@ -272,7 +273,7 @@ html[dir="rtl"] {
                                     top: -17px;
 
                                     .highChk {
-                                          font-family: @bold;
+                                          font-weight: bold;
                                           margin-bottom: 15px;
 
                                           md-checkbox {
@@ -309,13 +310,13 @@ html[dir="rtl"] {
 
                                           .md-datepicker-input-container {
                                                 border: none;
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 position: relative;
                                                 top: 6px;
 
                                                 .md-datepicker-input {
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                 }
                                           }
@@ -330,14 +331,14 @@ html[dir="rtl"] {
                                     }
 
                                     .formEditor {
-                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 100px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 100px;  font-size: 14px; margin-bottom: 10px; }
                                     }
                                     .relatedContacts {margin: 0px 0 8px;
                                           .md-chips-select { width: 306px; }
                                     }
                                     .statusList {
-                                          .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 289px; float: left; margin-bottom: 15px; font-family: @book; padding: 13px 13px; }
+                                          .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 289px; float: left; margin-bottom: 15px;  padding: 13px 13px; }
                                     }
                                     .attached { display: block; width: 100%; margin-bottom: 5px; clear: left;
                                           h3 { margin-bottom: 10px; }
@@ -347,12 +348,12 @@ html[dir="rtl"] {
                                           }
                                     }
                               }
-                              .saveBlock { float: left; font-family: @book; font-size: 15px; position: relative;
+                              .saveBlock { float: left;  font-size: 15px; position: relative;
                                     .btnCancel {
                                           background: @gray;
                                           color: @white;
                                           .borderRadius(@radius:25px);
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           border: none;
                                           padding: 11px 28px;
@@ -364,7 +365,7 @@ html[dir="rtl"] {
                                           background: @magenta;
                                           color: @white;
                                           .borderRadius(@radius:25px);
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           border: none;
                                           padding: 11px 28px;
@@ -386,8 +387,8 @@ html[dir="rtl"] {
                               left: 50%;
                               margin-left: -681px;
 
-                              h2 { font-family: @bold; display: block; margin-bottom: 8px; }
-                              h3 { font-family: @book; margin-top: 5px; margin-bottom: 3px; }
+                              h2 { font-weight: bold; display: block; margin-bottom: 8px; }
+                              h3 {  margin-top: 5px; margin-bottom: 3px; }
 
                               .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                               .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
@@ -396,8 +397,8 @@ html[dir="rtl"] {
                               .md-chips-select.md-focused { box-shadow: 0 2px @graylight; }
 
                               md-select-list { z-index: 9; }
-                              md-select-item-wrapper { font-family: @book; }
-                              md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                              md-select-item-wrapper {  }
+                              md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                               md-checkbox .md-icon { border: none; }
                               md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                               md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -405,16 +406,16 @@ html[dir="rtl"] {
 
                               .colLeft { width: 333px; height: 450px; float: right;
                                     .formEditor {
-                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 74px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 74px;  font-size: 14px; margin-bottom: 10px; }
                                           p { margin-bottom: 15px;
-                                                a { color: @cyan; font-family: @book; font-size: 14px; }
+                                                a { color: @cyan;  font-size: 14px; }
                                           }
                                           .btnDefault {
                                                 background: @cyan;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -424,33 +425,33 @@ html[dir="rtl"] {
                                     }
                                     .relatedContacts { margin: 15px 0; }
                                     .statusList {
-                                          .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 305px; float: left; margin-bottom: 8px; font-family: @book; padding: 13px 13px; color: @graymid; }
+                                          .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 305px; float: left; margin-bottom: 8px;  padding: 13px 13px; color: @graymid; }
                                     }
                                     .statusList.one { margin-bottom: 0px; display: inline-block; }
                               }
                               .colRight { width: 296px; height: 450px; float: left; position: relative; top: -17px;
-                                    .highChk { font-family: @bold; margin-bottom: 15px;
+                                    .highChk { font-weight: bold; margin-bottom: 15px;
                                           md-checkbox { float: right; position: relative; right: -10px; }
                                     }
                                     .dateField { margin-bottom: 10px; height: 33px; background: @white; .borderRadius(@radius:5px); padding: 5px; display: inline-block; width: 305px;
                                           .md-button.md-icon-button { margin: 0; height: 40px; min-width: 0; line-height: 100%; padding: 0; width: 40px; border-radius: 50%; }
                                           .md-datepicker-button { float: right; position: relative; top: -3px; }
-                                          .md-datepicker-input-container { border: none; font-family: @book; font-size: 15px; position: relative; top: 6px;
-                                                .md-datepicker-input { font-family: @book; font-size: 15px; }
+                                          .md-datepicker-input-container { border: none;  font-size: 15px; position: relative; top: 6px;
+                                                .md-datepicker-input {  font-size: 15px; }
                                           }
                                           .md-datepicker-input-container.md-datepicker-focused { border: none; }
                                           .md-datepicker-triangle-button { display: none; }
                                     }
 
                                     .formEditor {
-                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 144px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                          input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                          textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 144px;  font-size: 14px; margin-bottom: 10px; }
                                     }
                                     .relatedContacts { margin: 0px 0 8px;
                                           .md-chips-select { width: 306px; }
                                     }
                                     .statusList {
-                                          .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 289px; float: left; margin-bottom: 15px; font-family: @book; padding: 13px 13px; }
+                                          .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 289px; float: left; margin-bottom: 15px;  padding: 13px 13px; }
                                     }
                                     .attached { display: block; width: 100%; margin-bottom: 5px;
                                           .itemAttached {
@@ -469,7 +470,7 @@ html[dir="rtl"] {
 
                               .saveBlock {
                                     float: left;
-                                    font-family: @book;
+                                    
                                     font-size: 15px;
                                     position: relative;
                                     top:25px;
@@ -478,7 +479,7 @@ html[dir="rtl"] {
                                           background: @gray;
                                           color: @white;
                                           .borderRadius(@radius:25px);
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           border: none;
                                           padding: 11px 28px;
@@ -490,7 +491,7 @@ html[dir="rtl"] {
                                           background: @magenta;
                                           color: @white;
                                           .borderRadius(@radius:25px);
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           border: none;
                                           padding: 11px 28px;
@@ -518,7 +519,7 @@ html[dir="rtl"] {
                                     display: block;
                                     font-size: 14px;
                                     line-height: 160%;
-                                    font-family: @book;
+                                    
                                     color: @graymid;
                               }
 
@@ -545,7 +546,7 @@ html[dir="rtl"] {
                                     display: block;
                                     font-size: 14px;
                                     line-height: 160%;
-                                    font-family: @book;
+                                    
                                     color: @graymid;
                               }
 
@@ -563,37 +564,37 @@ html[dir="rtl"] {
                                           .ng-tooltip-bt {margin: -10px 0px 0 -35px;}
                                     }
                               }
-                              h1 { font-size: 14px; font-family: @bold; color: @graymid; margin: 33px 25px 33px 0px; float: right; }
+                              h1 { font-size: 14px; font-weight: bold; color: @graymid; margin: 33px 25px 33px 0px; float: right; }
                               .goalsResult { clear: both; width: 100%;
                                     .contentList { max-height: 488px; padding-right: 12px; padding-left:10px;direction:rtl;
                                           .listResult {display: inline-block;width: 30.1%;margin-left: 40px;margin-bottom:14px;
                                                 li { height: 293px; width: 100%; padding: 0 25px 0 0px; margin: 0px; background-color: @white; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); float: right; display: inline-block;
-                                                      .title { width:70%; display: block; font-size: 14px; font-family: @bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0;text-indent: -8px; }
+                                                      .title { width:70%; display: block; font-size: 14px; font-weight: bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0;text-indent: -8px; }
                                                       .title:before { content: ""; width: 8px; height: 18px; position: relative; background: @green; display: block; float: right;float: right;right: -25px;}
                                                       .graphResult { width: 166px; float: right; position: relative;left:20px;margin-right:20px;z-index: 1;
                                                             .numberTasks { position: relative; z-index: 0;top:-115px;
-                                                                  h2 { font-size: 48px; font-family: @bold; text-align: center; line-height: 90%; }
-                                                                  span { font-size: 18px; font-family: @book; text-align: center; display: block; }
+                                                                  h2 { font-size: 48px; font-weight: bold; text-align: center; line-height: 90%; }
+                                                                  span { font-size: 18px;  text-align: center; display: block; }
                                                             }
                                                       }
                                                       .valuesResult { width: 45%; float:right; padding-left: 10px;
                                                             .process {margin-bottom: 15px;
-                                                                  p { font-size: 14px; font-family: @book; color: @graymid; line-height: 145%; margin-bottom: 8px;
+                                                                  p { font-size: 14px;  color: @graymid; line-height: 145%; margin-bottom: 8px;
                                                                         span { width: 10px; height: 10px; display: inline-block; background-color: @magenta; .borderRadius(); margin-left: 10px; }
                                                                   }
-                                                                  h3 { font-size: 18px; font-family: @bold; color: @gray; }
+                                                                  h3 { font-size: 18px; font-weight: bold; color: @gray; }
                                                             }
                                                             .tasks {margin-bottom: 15px;
-                                                                  p { font-size: 14px; font-family: @book; color: @graymid; line-height: 145%; margin-bottom: 8px;
+                                                                  p { font-size: 14px;  color: @graymid; line-height: 145%; margin-bottom: 8px;
                                                                         span { width: 10px; height: 10px; display: inline-block; background-color: @green; .borderRadius(); margin-left: 10px; }
                                                                   }
-                                                                  h3 { font-size: 18px; font-family: @bold; }
+                                                                  h3 { font-size: 18px; font-weight: bold; }
                                                             }
                                                             .ready {margin-bottom: 15px;
-                                                                  p { font-size: 14px; font-family: @book; color: @graymid; line-height: 145%; margin-bottom: 8px;
+                                                                  p { font-size: 14px;  color: @graymid; line-height: 145%; margin-bottom: 8px;
                                                                         span { width: 10px; height: 10px; display: inline-block; background-color: @cyan; .borderRadius(); margin-left: 10px; }
                                                                   }
-                                                                  h3 { font-size: 18px; font-family: @bold; }
+                                                                  h3 { font-size: 18px; font-weight: bold; }
                                                             }
                                                       }
                                                 }
@@ -603,7 +604,7 @@ html[dir="rtl"] {
                         }
 
                         .dashboardContent.ceo { width: 990px; float: left; display: inline-block; width: 100%;
-                              h1 { font-size: 14px; font-family: @bold; color: @graymid; margin: 33px 25px 33px 25px; float:right;}
+                              h1 { font-size: 14px; font-weight: bold; color: @graymid; margin: 33px 25px 33px 25px; float:right;}
                               .mCSB_inside > .mCSB_container {margin-left:20px;}
                               .fabButtonDial {float:left;position:relative;left: -550px;
                                     .md-fab { right: -20px; }
@@ -618,7 +619,7 @@ html[dir="rtl"] {
                                                       img { position: relative; top: 6px; left:-6px; }
                                                 }
                                                 .dashedUl { border-right: 2px dotted #ccc; display: inline-block; padding-right: 20px; margin-right: 20px; line-height: 140%;
-                                                      li { font-size: 12px; font-family: @book; color: @gray;
+                                                      li { font-size: 12px;  color: @gray;
                                                             h3 { font-size: 14px; color: @gray; }
                                                       }
                                                 }
@@ -635,7 +636,7 @@ html[dir="rtl"] {
                                                 background: @transp;
                                                 text-transform: lowercase;
                                                 .shadowbox(@shadow:none);
-                                                font-family: @book;
+                                                
                                                 width: 140px;
                                                 padding: 10px 0;
                                                 color: @graymid;
@@ -669,7 +670,7 @@ html[dir="rtl"] {
                                                             -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31);
                                                             box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31);
                                                             padding-right: 30px;
-                                                            font-family: @book;
+                                                            
                                                             font-size: 12px;
                                                             margin: 0 12px 11px 0px;
 
@@ -677,7 +678,7 @@ html[dir="rtl"] {
                                                                   width: 100%;
                                                                   display: block;
                                                                   font-size: 14px;
-                                                                  font-family: @bold;
+                                                                  font-weight: bold;
                                                                   line-height: 130%;
                                                                   color: @blue;
                                                                   margin: 25px 0 25px 0;
@@ -693,7 +694,7 @@ html[dir="rtl"] {
 
                                                                   span {
                                                                         display: block;
-                                                                        font-family: @book;
+                                                                        
                                                                         font-size: 12px;
                                                                   }
                                                             }
@@ -708,7 +709,7 @@ html[dir="rtl"] {
 
                                                             .statsResult {
                                                                   strong {
-                                                                        font-family: @bold;
+                                                                        font-weight: bold;
                                                                         font-size: 14px;
                                                                   }
                                                             }
@@ -720,7 +721,7 @@ html[dir="rtl"] {
                         }
 
                         .dashboardContent.manager { width: 990px; float: left; display: inline-block; width: 100%;
-                              h1 { font-size: 14px; font-family: @bold; color: @graymid; margin: 33px 25px 33px 0px; float:right; }
+                              h1 { font-size: 14px; font-weight: bold; color: @graymid; margin: 33px 25px 33px 0px; float:right; }
                               .fabButtonDial {float:left;position:relative;left: -490px;
                                     .toggleActiv {
                                           .ng-tooltip-bt {margin: -20px 0px 0 -35px;}
@@ -757,7 +758,7 @@ html[dir="rtl"] {
                                           .listActivities { width: 100%; display: block;
                                                 li.oneLevel { background: @white; display: block; .shadowbox(@shadow:-1px 3px 5px 0px @graylight); margin-bottom: 15px; padding: 20px;
                                                       .icon-activities { width: 64px; height: 64px; display: block; float: right; position: relative; top: 6px;
-                                                            h1 { font-size: 36px; color: @graylight; font-family: @book; line-height: 170%; padding: 0; margin: 0; text-align: center; }
+                                                            h1 { font-size: 36px; color: @graylight;  line-height: 170%; padding: 0; margin: 0; text-align: center; }
                                                       }
                                                       .dashedUl {
                                                             border-right: 2px dotted #ccc;
@@ -766,7 +767,7 @@ html[dir="rtl"] {
                                                             margin-right: 20px;
                                                             line-height: 140%;
                                                             list-style-type: disc;
-                                                            li { font-size: 12px; font-family: @book; color: @gray; text-indent: -4px;
+                                                            li { font-size: 12px;  color: @gray; text-indent: -4px;
                                                                   h3 { font-size: 14px; color: @gray; }
                                                             }
                                                             li:first-child { list-style-type: none;
@@ -788,8 +789,8 @@ html[dir="rtl"] {
                                           .mCSB_inside>.mCSB_container {margin-left:6px;}
                                           .contentList {max-height: 476px;
                                                 .listResult {
-                                                      li { width: 27.5%; height: 160px; display: block; float: right; background-color: @white; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.21); -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.21); box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.21); padding-left: 30px; padding-right:10px; font-family: @book; font-size: 12px; margin: 0 12px 11px 0px;
-                                                            .title { width: 100%; display: block; font-size: 14px; font-family: @bold; line-height: 130%; color: @blue; margin: 18px 14px 15px 0; }
+                                                      li { width: 27.5%; height: 160px; display: block; float: right; background-color: @white; -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.21); -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.21); box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.21); padding-left: 30px; padding-right:10px;  font-size: 12px; margin: 0 12px 11px 0px;
+                                                            .title { width: 100%; display: block; font-size: 14px; font-weight: bold; line-height: 130%; color: @blue; margin: 18px 14px 15px 0; }
                                                             .title:before { content: ""; width: 8px; height: 18px; position: relative; background: @green; display: block; float: right; right:-24px; }
                                                             .color.red { width: 10px; height: 10px; display: inline-block; background-color: @magenta; .borderRadius(); margin-left: 14px; }
                                                             .color.green { width: 10px; height: 10px; display: inline-block; background-color: @green; .borderRadius(); margin-left: 14px; }
@@ -802,7 +803,7 @@ html[dir="rtl"] {
                                                                   .leftEntity { width: 180px; float:right;position: relative;right: 15px;}
                                                             }
 
-                                                            .legend { clear: both; display: block; font-family: @book; font-size: 12px; padding-top: 7px;height:35px;
+                                                            .legend { clear: both; display: block;  font-size: 12px; padding-top: 7px;height:35px;
                                                                   .ng-tooltip {
                                                                         background-color:@gray;
                                                                         color:#fff;
@@ -839,7 +840,7 @@ html[dir="rtl"] {
                                           background: @transp;
                                           text-transform: lowercase;
                                           .shadowbox(@shadow:none);
-                                          font-family: @book;
+                                          
                                           width: 140px;
                                           padding: 10px 0;
                                           color: @graymid;
@@ -890,8 +891,8 @@ html[dir="rtl"] {
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
 
                                     .statusList {
                                           .wrap-dd-select {
@@ -900,7 +901,7 @@ html[dir="rtl"] {
                                                 width: 305px;
                                                 float: left;
                                                 margin-bottom: 8px;
-                                                font-family: @book;
+                                                
                                                 padding: 13px 13px;
                                                 color: @graymid;
                                           }
@@ -911,7 +912,7 @@ html[dir="rtl"] {
                                     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); padding: 20px; -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31);
                                     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31); left: 50%; margin-left: -681px;
                                     .closeModal { top: -10px !important; }
-                                    h3 { font-family: @book;margin-bottom: 10px; }
+                                    h3 { margin-bottom: 10px; }
                                     .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
                                     .md-chip-content { line-height: 210%; }
@@ -919,8 +920,8 @@ html[dir="rtl"] {
                                     .md-chips-select.md-focused { box-shadow: 0 2px @graylight; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                                     md-checkbox .md-icon { border: none; }
                                     md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                                     md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -942,7 +943,7 @@ html[dir="rtl"] {
                                                       .borderRadius(@radius:5px);
                                                       border: none;
                                                       width: 311px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -954,7 +955,7 @@ html[dir="rtl"] {
                                                       border: none;
                                                       width: 311px;
                                                       height: 144px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -971,7 +972,7 @@ html[dir="rtl"] {
                                                       width: 305px;
                                                       float: left;
                                                       margin-bottom: 15px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                 }
                                           }
@@ -983,7 +984,7 @@ html[dir="rtl"] {
                                           height: 470px;
 
                                           .highChk {
-                                                font-family: @bold;
+                                                font-weight: bold;
                                                 margin-bottom: 15px;
 
                                                 md-checkbox {
@@ -1020,13 +1021,13 @@ html[dir="rtl"] {
 
                                                 .md-datepicker-input-container {
                                                       border: none;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                       position: relative;
                                                       top: 6px;
 
                                                       .md-datepicker-input {
-                                                            font-family: @book;
+                                                            
                                                             font-size: 15px;
                                                       }
                                                 }
@@ -1047,7 +1048,7 @@ html[dir="rtl"] {
                                                       .borderRadius(@radius:5px);
                                                       border: none;
                                                       width: 311px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -1059,7 +1060,7 @@ html[dir="rtl"] {
                                                       border: none;
                                                       width: 311px;
                                                       height: 144px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -1080,7 +1081,7 @@ html[dir="rtl"] {
                                                       width: 289px;
                                                       float: left;
                                                       margin-bottom: 15px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                 }
                                           }
@@ -1122,7 +1123,7 @@ html[dir="rtl"] {
 
                                     .saveBlock {
                                           float:left;
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           position: relative;
 
@@ -1130,7 +1131,7 @@ html[dir="rtl"] {
                                                 background: @gray;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -1142,7 +1143,7 @@ html[dir="rtl"] {
                                                 background: @magenta;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -1167,12 +1168,12 @@ html[dir="rtl"] {
                                                 float:right;
 
                                                 .rollBox { max-height: 127px; display: block; width: 285px; }
-                                                .title { width: 60%; display: block; font-size: 14px; font-family: @bold; line-height: 140%; color: @blue; margin: 25px 0 0px 0; }
+                                                .title { width: 60%; display: block; font-size: 14px; font-weight: bold; line-height: 140%; color: @blue; margin: 25px 0 0px 0; }
                                                 .title:before { content: ""; width: 8px; height: 18px; position: relative; background: @green; display: block; float: right; right:-26px; }
-                                                .subtitle { font-family: @book; font-size: 12px; line-height: 150%; color: @graymid; margin-bottom: 10px; }
-                                                .content { font-family: @book; font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid @graylight; }
-                                                .related { display: block; width: 100%; font-family: @book; font-size: 11px; color: @graymid;
-                                                      strong { font-family: @bold; }
+                                                .subtitle {  font-size: 12px; line-height: 150%; color: @graymid; margin-bottom: 10px; }
+                                                .content {  font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; border-bottom: 1px solid @graylight; }
+                                                .related { display: block; width: 100%;  font-size: 11px; color: @graymid;
+                                                      strong { font-weight: bold; }
                                                 }
 
                                                 .Done {
@@ -1183,7 +1184,7 @@ html[dir="rtl"] {
                                                       line-height: 100%;
                                                       float: none;
                                                       top: 5px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       color: @white;
                                                       line-height: 100%;
@@ -1198,7 +1199,7 @@ html[dir="rtl"] {
                                                       line-height: 100%;
                                                       float: none;
                                                       top: 5px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       color: @white;
                                                       line-height: 100%;
@@ -1213,7 +1214,7 @@ html[dir="rtl"] {
                                                       line-height: 100%;
                                                       float: none;
                                                       top: 5px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       color: @white;
                                                       line-height: 100%;
@@ -1228,7 +1229,7 @@ html[dir="rtl"] {
                                                       line-height: 100%;
                                                       float: none;
                                                       top: 5px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       color: @white;
                                                       line-height: 100%;
@@ -1238,11 +1239,11 @@ html[dir="rtl"] {
                                                 .showRelated { display: block; width: 100%; margin-top: 10px; height: 40px;
                                                       .deadlinedate { width: 100%; display: block;
                                                             .date { width: 30%; float: right; line-height: 120%;
-                                                                  span { font-family: @book; font-size: 12px; }
-                                                                  strong { font-family: @bold; font-size: 14px; }
+                                                                  span {  font-size: 12px; }
+                                                                  strong { font-weight: bold; font-size: 14px; }
                                                             }
                                                             .dateCreated { width: 70%; float: right; text-align: left; direction: rtl;
-                                                                  span { font-family: @book; font-size: 12px; color: @graymid; text-align: right; }
+                                                                  span {  font-size: 12px; color: @graymid; text-align: right; }
                                                             }
                                                       }
                                                 }
@@ -1256,9 +1257,9 @@ html[dir="rtl"] {
                                                             border: 1px solid @graylight;
                                                             font-size: 12px;
                                                             margin-bottom: 4px;
-                                                            font-family: @book;
+                                                            
 
-                                                            .clip { height: 12px; width: 12px; min-height: 12px; min-width: 12px; margin-right: 3px; color: @cyan; font-family: @book; }
+                                                            .clip { height: 12px; width: 12px; min-height: 12px; min-width: 12px; margin-right: 3px; color: @cyan;  }
                                                             .close { height: 6px; width: 6px; min-height: 6px; min-width: 6px; margin-left: 8px; color: @cyan; }
                                                       }
                                                 }
@@ -1275,7 +1276,7 @@ html[dir="rtl"] {
                                                             margin-bottom: 10px;
                                                       }
 
-                                                      .accordionRelated { font-family: @book; font-size: 14px; color: @graymid; display: block; float: right;
+                                                      .accordionRelated {  font-size: 14px; color: @graymid; display: block; float: right;
                                                             md-icon { height: 12px; width: 12px; min-height: 12px; min-width: 12px; margin-right: 3px; }
                                                       }
 
@@ -1293,8 +1294,8 @@ html[dir="rtl"] {
                                                                   line-height: 140%;
                                                                   background: @white url(../images/bg-activities.png) no-repeat 218px;
 
-                                                                  strong { font-family: @bold; font-size: 14px; color: @gray; }
-                                                                  span { font-family: @book; font-size: 14px; color: @magenta; }
+                                                                  strong { font-weight: bold; font-size: 14px; color: @gray; }
+                                                                  span {  font-size: 14px; color: @magenta; }
                                                             }
                                                       }
 
@@ -1329,7 +1330,7 @@ html[dir="rtl"] {
                                           background: @transp;
                                           text-transform: lowercase;
                                           .shadowbox(@shadow:none);
-                                          font-family: @book;
+                                          
                                           width: 140px;
                                           padding: 10px 0;
                                           color: @graymid;
@@ -1392,8 +1393,8 @@ html[dir="rtl"] {
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
 
                                     .statusList {
                                           .wrap-dd-select {
@@ -1402,7 +1403,7 @@ html[dir="rtl"] {
                                                 width: 305px;
                                                 float: left;
                                                 margin-bottom: 8px;
-                                                font-family: @book;
+                                                
                                                 padding: 13px 13px;
                                                 color: @graymid;
                                           }
@@ -1424,7 +1425,7 @@ html[dir="rtl"] {
 
                                     .closeModal { top: -10px !important; }
 
-                                    h3 { font-family: @book; margin-top: 5px; margin-bottom: 3px; }
+                                    h3 {  margin-top: 5px; margin-bottom: 3px; }
 
                                     .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
@@ -1433,8 +1434,8 @@ html[dir="rtl"] {
                                     .remove { height: 13px; width: 13px; top: 42%; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                                     md-checkbox .md-icon { border: none; }
                                     md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                                     md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -1442,29 +1443,29 @@ html[dir="rtl"] {
 
                                     .colLeft { width: 333px; height: 470px; float: right;
                                           .formEditor {
-                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 144px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 144px;  font-size: 14px; margin-bottom: 10px; }
                                                 p { margin-bottom: 15px;
-                                                      a { color: @cyan; font-family: @book; font-size: 14px; }
+                                                      a { color: @cyan;  font-size: 14px; }
                                                 }
-                                                .btnDefault { background: @cyan; color: @white; .borderRadius(@radius:25px); font-family: @book; font-size: 15px; border: none; padding: 11px 28px; margin-bottom: 15px; margin-right: 8px; }
+                                                .btnDefault { background: @cyan; color: @white; .borderRadius(@radius:25px);  font-size: 15px; border: none; padding: 11px 28px; margin-bottom: 15px; margin-right: 8px; }
                                           }
                                           .relatedContacts { margin: 15px 0; }
                                           .statusList {
-                                                .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 305px; float: left; margin-bottom: 8px; font-family: @book; padding: 13px 13px; color: @graymid; }
+                                                .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 305px; float: left; margin-bottom: 8px;  padding: 13px 13px; color: @graymid; }
                                           }
                                           .statusList.one { margin-bottom: 0px; display: inline-block; }
                                     }
 
                                     .colRight { width: 316px; height: 470px; float: left; position: relative; top: -24px;
-                                          .highChk { font-family: @bold; margin-bottom: 15px;
+                                          .highChk { font-weight: bold; margin-bottom: 15px;
                                                 md-checkbox { float: right; position: relative; right: -10px; }
                                           }
                                           .dateField { margin-bottom: 10px; height: 33px; background: @white; .borderRadius(@radius:5px); padding: 5px; display: inline-block; width: 305px;
                                                 .md-button.md-icon-button { margin: 0; height: 40px; min-width: 0; line-height: 100%; padding: 0; width: 40px; border-radius: 50%; }
                                                 .md-datepicker-button { float: right; position: relative; top: -3px; }
-                                                .md-datepicker-input-container { border: none; font-family: @book; font-size: 15px; position: relative; top: 6px;
-                                                      .md-datepicker-input { font-family: @book; font-size: 15px; }
+                                                .md-datepicker-input-container { border: none;  font-size: 15px; position: relative; top: 6px;
+                                                      .md-datepicker-input {  font-size: 15px; }
                                                 }
 
                                                 .md-datepicker-input-container.md-datepicker-focused { border: none; }
@@ -1478,7 +1479,7 @@ html[dir="rtl"] {
                                                       .borderRadius(@radius:5px);
                                                       border: none;
                                                       width: 311px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -1490,7 +1491,7 @@ html[dir="rtl"] {
                                                       border: none;
                                                       width: 311px;
                                                       height: 144px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -1507,7 +1508,7 @@ html[dir="rtl"] {
                                                       width: 289px;
                                                       float: left;
                                                       margin-bottom: 15px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                 }
                                           }
@@ -1533,7 +1534,7 @@ html[dir="rtl"] {
                                                             background: @cyan;
                                                             color: @white;
                                                             .borderRadius(@radius:25px);
-                                                            font-family: @book;
+                                                            
                                                             font-size: 15px;
                                                             border: none;
                                                             padding: 11px 28px;
@@ -1547,9 +1548,9 @@ html[dir="rtl"] {
                                           }
                                     }
 
-                                    .saveBlock { float:left; font-family: @book; font-size: 15px; position: relative;
-                                          .btnCancel { background: @gray; color: @white; .borderRadius(@radius:25px); font-family: @book; font-size: 15px; border: none; padding: 11px 28px; margin-left: 10px; display: inline-block; }
-                                          .btnSave { background: @magenta; color: @white; .borderRadius(@radius:25px); font-family: @book; font-size: 15px; border: none; padding: 11px 28px; margin-left: 10px; display: inline-block; }
+                                    .saveBlock { float:left;  font-size: 15px; position: relative;
+                                          .btnCancel { background: @gray; color: @white; .borderRadius(@radius:25px);  font-size: 15px; border: none; padding: 11px 28px; margin-left: 10px; display: inline-block; }
+                                          .btnSave { background: @magenta; color: @white; .borderRadius(@radius:25px);  font-size: 15px; border: none; padding: 11px 28px; margin-left: 10px; display: inline-block; }
                                     }
                               }
 
@@ -1567,12 +1568,12 @@ html[dir="rtl"] {
                                                       box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31);
                                                       float: left;
                                                       display: block;
-                                                      font-family: @book;
+                                                      
 
-                                                      .title { width: 60%; display: block; font-size: 14px; font-family: @bold; line-height: 140%; color: @blue; margin: 25px 0 5px 0; }
+                                                      .title { width: 60%; display: block; font-size: 14px; font-weight: bold; line-height: 140%; color: @blue; margin: 25px 0 5px 0; }
                                                       .title:before { content: ""; width: 8px; height: 18px; position: relative; background: @green; display: block;float: right;right: -25px; }
 
-                                                      .subicons { font-family: @book; font-size: 12px; line-height: 150%; width: 100%; display: inline-block; margin-bottom: 10px;
+                                                      .subicons {  font-size: 12px; line-height: 150%; width: 100%; display: inline-block; margin-bottom: 10px;
                                                             .md-fab {
                                                                   width: 48px;
                                                                   height: 40px;
@@ -1591,22 +1592,22 @@ html[dir="rtl"] {
                                                                   md-icon { height: 20px; width: 20px; min-height: 20px; min-width: 12px; margin-right: 13px; color: @gray; }
                                                             }
                                                       }
-                                                      .content { font-family: @book; font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; }
-                                                      .contact { display: block; width: 100%; font-family: @book; font-size: 11px; color: @graymid;
+                                                      .content {  font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; }
+                                                      .contact { display: block; width: 100%;  font-size: 11px; color: @graymid;
                                                             p { margin-bottom: 10px; line-height: 140%;
-                                                                  span { display: block; font-family: @book; line-height: 140%; font-size: 11px; }
-                                                                  strong { display: block; font-family: @book; font-size: 12px; color: @cyan; line-height: 140%; }
+                                                                  span { display: block;  line-height: 140%; font-size: 11px; }
+                                                                  strong { display: block;  font-size: 12px; color: @cyan; line-height: 140%; }
                                                             }
                                                       }
 
                                                       .showRelated { display: block; width: 100%; margin-top: 10px; height: 40px;
                                                             .deadlinedate { width: 100%; display: block;
                                                                   .date { width: 30%; float: left; line-height: 120%;
-                                                                        span { font-family: @book; font-size: 12px; }
-                                                                        strong { font-family: @bold; font-size: 14px; }
+                                                                        span {  font-size: 12px; }
+                                                                        strong { font-weight: bold; font-size: 14px; }
                                                                   }
                                                                   .dateCreated { width: 70%; float: right; text-align: right;
-                                                                        span { font-family: @book; font-size: 12px; color: @graymid; text-align: right; }
+                                                                        span {  font-size: 12px; color: @graymid; text-align: right; }
                                                                   }
                                                             }
                                                       }
@@ -1669,14 +1670,14 @@ html[dir="rtl"] {
                               }
                               .blockFilters { width: 670px; float:left; position: relative; left:-50px;
                                     .table-gallery { width: 150px; height: 30px; display: inline-block; float:right; position: relative; top: 20px; margin-left: 15px;
-                                          span { font-family: @bold; font-size: 13px; display: block; float: left; padding: 5px 0px 0 5px; }
+                                          span { font-weight: bold; font-size: 13px; display: block; float: left; padding: 5px 0px 0 5px; }
                                           md-switch { display: block; float: left; margin: 0px; }
                                     }
-                                    .categoryList { width: 178px; float:right; position: relative; top: 15px; font-family: @book; font-size: 12px;
+                                    .categoryList { width: 178px; float:right; position: relative; top: 15px;  font-size: 12px;
                                           .wrap-dd-select {	width: 143px;padding: 13px 13px 13px 22px;}
                                     }
                                     .formSearch { display: inline-block; position: relative; top: 13px; margin-right: 15px;float:left;
-                                          .form-control { width: 215px; border: 1px solid rgba(0,0,0,0.15); .borderRadius(@radius:20px); padding: 13px 40px 13px 20px; font-family: @bold; font-size: 12px; background: @transp; color: @gray; }
+                                          .form-control { width: 215px; border: 1px solid rgba(0,0,0,0.15); .borderRadius(@radius:20px); padding: 13px 40px 13px 20px; font-weight: bold; font-size: 12px; background: @transp; color: @gray; }
                                           md-icon { position: relative; left: 40px; }
                                     }
                               }
@@ -1695,7 +1696,7 @@ html[dir="rtl"] {
                                     margin-left: -680px;
                                     .closeModal {top: -10px;}
 
-                                    h3 { font-family: @book; margin-top: 5px; margin-bottom: 3px; }
+                                    h3 {  margin-top: 5px; margin-bottom: 3px; }
 
                                     .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
@@ -1704,8 +1705,8 @@ html[dir="rtl"] {
                                     .remove { height: 13px; width: 13px; top: 42%; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                                     md-checkbox .md-icon { border: none; }
                                     md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                                     md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -1713,18 +1714,18 @@ html[dir="rtl"] {
 
                                     .colLeft { width: 333px; height: 470px; float: right;
                                           .formEditor {
-                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 74px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 74px;  font-size: 14px; margin-bottom: 10px; }
 
                                                 p { margin-bottom: 15px;
-                                                      a { color: @cyan; font-family: @book; font-size: 14px; }
+                                                      a { color: @cyan;  font-size: 14px; }
                                                 }
 
                                                 .btnDefault {
                                                       background: @cyan;
                                                       color: @white;
                                                       .borderRadius(@radius:25px);
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                       border: none;
                                                       padding: 11px 28px;
@@ -1741,7 +1742,7 @@ html[dir="rtl"] {
                                                       width: 305px;
                                                       float: left;
                                                       margin-bottom: 8px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                       color: @graymid;
                                                 }
@@ -1749,12 +1750,12 @@ html[dir="rtl"] {
                                           .statusList.one { margin-bottom: 0px; display: inline-block; }
                                     }
 
-                                    .saveBlock { float:left; font-family: @book; font-size: 15px; position: relative;
+                                    .saveBlock { float:left;  font-size: 15px; position: relative;
                                           .btnCancel {
                                                 background: @gray;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -1766,7 +1767,7 @@ html[dir="rtl"] {
                                                 background: @magenta;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -1789,11 +1790,11 @@ html[dir="rtl"] {
                                                       box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31);
                                                       float: left;
                                                       display: block;
-                                                      font-family: @book;
+                                                      
 
-                                                      .title { width:100%; display: block; font-size: 14px; font-family: @bold; line-height: 140%; color: @blue; margin: 25px 0 15px 0; }
+                                                      .title { width:100%; display: block; font-size: 14px; font-weight: bold; line-height: 140%; color: @blue; margin: 25px 0 15px 0; }
                                                       .title:before { content: ""; width: 8px; height: 18px; position: relative; background: #1cc327; display: block; float: right; right: -24px; }
-                                                      .subicons { font-family: @book; font-size: 12px; line-height: 150%; width: 100%; display: inline-block; margin-bottom: 10px;
+                                                      .subicons {  font-size: 12px; line-height: 150%; width: 100%; display: inline-block; margin-bottom: 10px;
 
                                                             .md-fab { width: 40px; height: 40px; min-height: 40px; background: @transp; float: left; top: -4px; right: 10px;
                                                                   margin: 0px; -webkit-box-shadow: none; -moz-box-shadow: none; box-shadow: none; .transition(0.3);
@@ -1805,23 +1806,23 @@ html[dir="rtl"] {
                                                             }
                                                       }
 
-                                                      .content { font-family: @book; font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; }
-                                                      .contact { display: block; width: 100%; font-family: @book; font-size: 11px; color: @graymid;
+                                                      .content {  font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; }
+                                                      .contact { display: block; width: 100%;  font-size: 11px; color: @graymid;
 
                                                             p { margin-bottom: 10px; line-height: 140%;
-                                                                  span { display: block; font-family: @book; line-height: 140%; font-size: 11px; }
-                                                                  strong { display: block; font-family: @book; font-size: 12px; color: @gray; line-height: 140%; }
+                                                                  span { display: block;  line-height: 140%; font-size: 11px; }
+                                                                  strong { display: block;  font-size: 12px; color: @gray; line-height: 140%; }
                                                             }
                                                       }
 
                                                       .showRelated { display: block; width: 100%; margin-top: 10px; height: 40px;
                                                             .deadlinedate { width: 100%; display: block;
                                                                   .date { width: 30%; float: left; line-height: 120%;
-                                                                        span { font-family: @book; font-size: 12px; }
-                                                                        strong { font-family: @bold; font-size: 14px; }
+                                                                        span {  font-size: 12px; }
+                                                                        strong { font-weight: bold; font-size: 14px; }
                                                                   }
                                                                   .dateCreated { width: 70%; float: right; text-align: right;
-                                                                        span { font-family: @book; font-size: 12px; color: @graymid; text-align: right; }
+                                                                        span {  font-size: 12px; color: @graymid; text-align: right; }
                                                                   }
                                                             }
                                                       }
@@ -1860,7 +1861,7 @@ html[dir="rtl"] {
                                                 top: -3px;
                                           }
 
-                                          table { width: 1320px; display: inline-block; font-family: @book; font-size: 12px; color: @graymid;
+                                          table { width: 1320px; display: inline-block;  font-size: 12px; color: @graymid;
                                                 thead { width: 1260px; display: inline-block; margin: 0 0px 0 0px;
                                                       th { padding: 30px 0px 10px 30px; line-height: 100%; border-bottom: 1px solid @graylight; }
                                                       th:nth-child(1) { width: 231px; }
@@ -1911,14 +1912,14 @@ html[dir="rtl"] {
                               }
                               .blockFilters { width:870px; float: left; position: relative; left:-50px;
                                     .table-gallery { width: 150px; height: 30px; display: inline-block; float:right; position: relative; top: 20px; margin-left: 15px;
-                                          span { font-family: @bold; font-size: 13px; display: block; float: left; padding: 5px 10px 0 0px; }
+                                          span { font-weight: bold; font-size: 13px; display: block; float: left; padding: 5px 10px 0 0px; }
                                           md-switch { display: block; float: left; margin: 0px; }
                                     }
-                                    .categoryList { width: 178px; float:right; position: relative; top: 15px; font-family: @book; font-size: 12px;margin-right:10px;
+                                    .categoryList { width: 178px; float:right; position: relative; top: 15px;  font-size: 12px;margin-right:10px;
                                           .wrap-dd-select {	width: 143px;padding: 13px 10px 13px 22px;}
                                     }
                                     .formSearch { display: inline-block; position: relative; top: 13px; margin-right: 15px;float:left;
-                                          .form-control { width: 215px; border: 1px solid rgba(0,0,0,0.15); .borderRadius(@radius:20px); padding: 13px 40px 13px 20px; font-family: @bold; font-size: 12px; background: @transp; color: @gray; }
+                                          .form-control { width: 215px; border: 1px solid rgba(0,0,0,0.15); .borderRadius(@radius:20px); padding: 13px 40px 13px 20px; font-weight: bold; font-size: 12px; background: @transp; color: @gray; }
                                           md-icon { position: relative; left: 40px; }
                                     }
                               }
@@ -1937,7 +1938,7 @@ html[dir="rtl"] {
                                     margin-left:-680px;
 
                                     .closeModal { top: -10px !important; }
-                                    h3 { font-family: @book; margin-top: 5px; margin-bottom: 3px; }
+                                    h3 {  margin-top: 5px; margin-bottom: 3px; }
 
                                     .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
@@ -1946,8 +1947,8 @@ html[dir="rtl"] {
                                     .remove { height: 13px; width: 13px; top: 42%; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                                     md-checkbox .md-icon { border: none; }
                                     md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                                     md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -1955,10 +1956,10 @@ html[dir="rtl"] {
 
                                     .colLeft { width: 333px; float: right; height: 470px;
                                           .formEditor {
-                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 144px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 144px;  font-size: 14px; margin-bottom: 10px; }
                                                 p { margin-bottom: 15px;
-                                                      a { color: @cyan; font-family: @book; font-size: 14px; }
+                                                      a { color: @cyan;  font-size: 14px; }
                                                 }
                                           }
                                           .relatedContacts {
@@ -1972,7 +1973,7 @@ html[dir="rtl"] {
                                                       width: 305px;
                                                       float: left;
                                                       margin-bottom: 8px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                       color: @graymid;
                                                 }
@@ -1998,7 +1999,7 @@ html[dir="rtl"] {
                                                       background: @cyan;
                                                       color: @white;
                                                       .borderRadius(@radius:25px);
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                       border: none;
                                                       padding: 11px 28px;
@@ -2034,7 +2035,7 @@ html[dir="rtl"] {
                                           margin-top: 10px;
 
                                           .highChk {
-                                                font-family: @bold;
+                                                font-weight: bold;
                                                 margin-bottom: 15px;
 
                                                 md-checkbox {
@@ -2071,13 +2072,13 @@ html[dir="rtl"] {
 
                                                 .md-datepicker-input-container {
                                                       border: none;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                       position: relative;
                                                       top: 6px;
 
                                                       .md-datepicker-input {
-                                                            font-family: @book;
+                                                            
                                                             font-size: 15px;
                                                       }
                                                 }
@@ -2097,7 +2098,7 @@ html[dir="rtl"] {
                                                 .borderRadius(@radius:5px);
                                                 border: none;
                                                 width: 311px;
-                                                font-family: @book;
+                                                
                                                 font-size: 14px;
                                                 margin-bottom: 10px;
                                           }
@@ -2109,7 +2110,7 @@ html[dir="rtl"] {
                                                 border: none;
                                                 width: 296px;
                                                 height: 144px;
-                                                font-family: @book;
+                                                
                                                 font-size: 14px;
                                                 margin-bottom: 10px;
                                           }
@@ -2129,7 +2130,7 @@ html[dir="rtl"] {
                                                       width: 289px;
                                                       float: left;
                                                       margin-bottom: 15px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                 }
                                           }
@@ -2163,7 +2164,7 @@ html[dir="rtl"] {
                                                             background: @cyan;
                                                             color: @white;
                                                             .borderRadius(@radius:25px);
-                                                            font-family: @book;
+                                                            
                                                             font-size: 15px;
                                                             border: none;
                                                             padding: 11px 28px;
@@ -2200,13 +2201,13 @@ html[dir="rtl"] {
                                           }
                                     }
 
-                                    .saveBlock { float: left; font-family: @book; font-size: 15px; position: relative;
+                                    .saveBlock { float: left;  font-size: 15px; position: relative;
 
                                           .btnCancel {
                                                 background: @gray;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -2218,7 +2219,7 @@ html[dir="rtl"] {
                                                 background: @magenta;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -2247,12 +2248,12 @@ html[dir="rtl"] {
                                                       box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31);
                                                       float: left;
                                                       display: block;
-                                                      font-family: @book;
+                                                      
 
-                                                      .title { width: 100%; display: block; font-size: 13px; font-family: @bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0;
+                                                      .title { width: 100%; display: block; font-size: 13px; font-weight: bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0;
                                                             .imageUser { float: right; margin-left: 10px; }
                                                             strong { display: block; }
-                                                            span { display: block; font-family: @book; font-size: 12px; }
+                                                            span { display: block;  font-size: 12px; }
                                                       }
 
                                                       .title:before {
@@ -2268,11 +2269,11 @@ html[dir="rtl"] {
 
                                                       .color.green { width: 10px; height: 10px; display: inline-block; background-color: @green; .borderRadius(); margin-left: 14px; }
                                                       .color.blue { width: 10px; height: 10px; display: inline-block; background-color: @cyan; .borderRadius(); margin-left: 14px; }
-                                                      .content { font-family: @book; font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; }
-                                                      .contact { display: block; width: 100%; font-family: @book; font-size: 11px; color: @graymid;
+                                                      .content {  font-size: 14px; line-height: 140%; padding-bottom: 10px; margin-bottom: 10px; }
+                                                      .contact { display: block; width: 100%;  font-size: 11px; color: @graymid;
                                                             p { margin-bottom: 10px; line-height: 140%;
-                                                                  span { display: block; font-family: @book; line-height: 140%; font-size: 11px; line-height: 140%; }
-                                                                  strong { display: block; font-family: @book; font-size: 12px; color: @gray; line-height: 140%; }
+                                                                  span { display: block;  line-height: 140%; font-size: 11px; line-height: 140%; }
+                                                                  strong { display: block;  font-size: 12px; color: @gray; line-height: 140%; }
                                                                   a { color: @cyan; }
                                                             }
                                                       }
@@ -2282,7 +2283,7 @@ html[dir="rtl"] {
                                                             margin-top: 5px;
 
                                                             p { line-height: 140%; font-size: 12px; margin-bottom: 3px;
-                                                                  strong { font-family: @bold; font-size: 12px; }
+                                                                  strong { font-weight: bold; font-size: 12px; }
                                                             }
                                                       }
 
@@ -2323,7 +2324,7 @@ html[dir="rtl"] {
                                           table {
                                                 width: 1320px;
                                                 display: inline-block;
-                                                font-family: @book;
+                                                
                                                 font-size: 12px;
                                                 color: @graymid;
 
@@ -2517,7 +2518,7 @@ html[dir="rtl"] {
                                                 border: 1px solid rgba(0,0,0,0.15);
                                                 .borderRadius(@radius:20px);
                                                 padding: 13px 40px 13px 20px;
-                                                font-family: @bold;
+                                                font-weight: bold;
                                                 font-size: 12px;
                                                 background: @transp;
                                                 color: @gray;
@@ -2544,7 +2545,7 @@ html[dir="rtl"] {
                                     margin-left:-680px;
 
                                     .closeModal { top: -10px !important; left: -8px; }
-                                    h3 { font-family: @book; margin-top: 5px; margin-bottom: 3px; }
+                                    h3 {  margin-top: 5px; margin-bottom: 3px; }
 
                                     .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
@@ -2553,8 +2554,8 @@ html[dir="rtl"] {
                                     .remove { height: 13px; width: 13px; top: 42%; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                                     md-checkbox .md-icon { border: none; }
                                     md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                                     md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -2568,7 +2569,7 @@ html[dir="rtl"] {
                                                       .borderRadius(@radius:5px);
                                                       border: none;
                                                       width: 311px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -2580,20 +2581,20 @@ html[dir="rtl"] {
                                                       border: none;
                                                       width: 311px;
                                                       height: 24px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
 
                                                 p { margin-bottom: 15px;
-                                                      a { color: @cyan; font-family: @book; font-size: 14px; }
+                                                      a { color: @cyan;  font-size: 14px; }
                                                 }
 
                                                 .btnDefault {
                                                       background: @cyan;
                                                       color: @white;
                                                       .borderRadius(@radius:25px);
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                       border: none;
                                                       padding: 11px 28px;
@@ -2613,7 +2614,7 @@ html[dir="rtl"] {
                                                       width: 305px;
                                                       float: left;
                                                       margin-bottom: 8px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                       color: @graymid;
                                                 }
@@ -2646,7 +2647,7 @@ html[dir="rtl"] {
                                                       background: @cyan;
                                                       color: @white;
                                                       .borderRadius(@radius:25px);
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                       border: none;
                                                       padding: 11px 28px;
@@ -2671,7 +2672,7 @@ html[dir="rtl"] {
 
                                     .saveBlock {
                                           float: left;
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           position: relative;
 
@@ -2679,7 +2680,7 @@ html[dir="rtl"] {
                                                 background: @gray;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -2691,7 +2692,7 @@ html[dir="rtl"] {
                                                 background: @magenta;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -2718,18 +2719,18 @@ html[dir="rtl"] {
                                                       box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.31);
                                                       float: left;
                                                       display: block;
-                                                      font-family: @book;
+                                                      
 
-                                                      .title { width: 100%; display: block; font-size: 14px; font-family: @bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0; }
+                                                      .title { width: 100%; display: block; font-size: 14px; font-weight: bold; line-height: 130%; color: @blue; margin: 25px 0 25px 0; }
                                                       .title:before { content: ""; width: 8px; height: 18px; position: relative; background: @green; display: block; float: right; right: -24px; }
 
-                                                      .contact { display: block; width: 100%; font-family: @book; font-size: 11px; color: @graymid;
+                                                      .contact { display: block; width: 100%;  font-size: 11px; color: @graymid;
                                                             a { width: 92px; height: 92px; overflow: hidden; .borderRadius(@radius:50px); background: @white; display: block; border: 1px solid @graylight; margin: 0 auto; }
                                                       }
 
                                                       .statsResult { line-height: 140%; margin-top: 15px;
                                                             p { line-height: 140%; font-size: 12px; margin-bottom: 3px;
-                                                                  strong { font-family: @bold; font-size: 12px; }
+                                                                  strong { font-weight: bold; font-size: 12px; }
                                                             }
                                                       }
 
@@ -2772,7 +2773,7 @@ html[dir="rtl"] {
                                     margin-left:-680px;
 
                                     .closeModal { top: -10px !important; }
-                                    h3 { font-family: @book; margin-top: 5px; margin-bottom: 3px; }
+                                    h3 {  margin-top: 5px; margin-bottom: 3px; }
                                     .md-chips-select { width: 321px; background: @white; padding: 5px 0 10px 10px; .borderRadius(@radius:5px); margin-top: 10px; }
                                     .md-chips-select .md-chip { height: 27px; line-height: 32px; padding: 0 0px 0 12px; border: 1px solid #999; background: white; }
                                     .md-chip-content { line-height: 210%; }
@@ -2780,8 +2781,8 @@ html[dir="rtl"] {
                                     .md-chips-select.md-focused { box-shadow: 0 2px @graylight; }
 
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                                     md-checkbox .md-icon { border: none; }
                                     md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                                     md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -2790,17 +2791,17 @@ html[dir="rtl"] {
                                     .colLeft { width: 345px; float: right; height: 490px;
                                           .formEditor {
                                                 margin-top: 20px;
-                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 24px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                                input[type="text"] { background: @white; padding: 10px 10px; .borderRadius(@radius:5px); border: none; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                                textarea { background: @white; padding: 10px; .borderRadius(@radius:5px); border: none; width: 311px; height: 24px;  font-size: 14px; margin-bottom: 10px; }
                                                 p { margin-bottom: 15px;
-                                                      a { color: @cyan; font-family: @book; font-size: 14px; }
+                                                      a { color: @cyan;  font-size: 14px; }
                                                 }
-                                                .btnDefault { background: @cyan; color: @white; .borderRadius(@radius:25px); font-family: @book; font-size: 15px; border: none; padding: 11px 28px; margin-bottom: 15px; margin-right: 8px; }
+                                                .btnDefault { background: @cyan; color: @white; .borderRadius(@radius:25px);  font-size: 15px; border: none; padding: 11px 28px; margin-bottom: 15px; margin-right: 8px; }
                                           }
 
                                           .relatedContacts { margin: 15px 0; }
                                           .statusList {
-                                                .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 305px; float: left; margin-bottom: 8px; font-family: @book; padding: 13px 13px; color: @graymid; }
+                                                .wrap-dd-select { .borderRadius(@radius:5px); background: @white; width: 305px; float: left; margin-bottom: 8px;  padding: 13px 13px; color: @graymid; }
                                           }
                                           .statusList.one { margin-bottom: 0px; display: inline-block; }
                                           .photoBrands { margin-bottom: 15px; display: block; height: 114px;
@@ -2808,7 +2809,7 @@ html[dir="rtl"] {
                                                 .brandImage { width: 89px; height: 89px; float:right; .borderRadius(@radius:50px); background: @white; overflow: hidden;
                                                       img { position: relative; top: 20px; left: -25px; }
                                                 }
-                                                .btnDefault { background: @cyan; color: @white; .borderRadius(@radius:25px); font-family: @book; font-size: 15px; border: none; padding: 11px 28px; margin: 25px 0 0 -5px; }
+                                                .btnDefault { background: @cyan; color: @white; .borderRadius(@radius:25px);  font-size: 15px; border: none; padding: 11px 28px; margin: 25px 0 0 -5px; }
                                                 .md-fab.footertrash { background: @white; float: right; top: -3px; left:23px; margin: 0px; position: relative; z-index: 9; width: 37px; height: 37px; min-height: 37px;
                                                       md-icon { color: @cyan; height: 14px; width: 14px; min-height: 14px; min-width: 14px; }
                                                 }
@@ -2817,7 +2818,7 @@ html[dir="rtl"] {
 
                                     .saveBlock {
                                           float: left;
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           position: relative;
 
@@ -2825,7 +2826,7 @@ html[dir="rtl"] {
                                                 background: @gray;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -2838,7 +2839,7 @@ html[dir="rtl"] {
                                                 background: @magenta;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -2864,7 +2865,7 @@ html[dir="rtl"] {
                                                 border: 1px solid rgba(0,0,0,0.15);
                                                 .borderRadius(@radius:20px);
                                                 padding: 13px 40px 13px 20px;
-                                                font-family: @bold;
+                                                font-weight: bold;
                                                 font-size: 12px;
                                                 background: @transp;
                                                 color: @gray;
@@ -2906,7 +2907,7 @@ html[dir="rtl"] {
                                           table {
                                                 width: 1320px;
                                                 display: inline-block;
-                                                font-family: @book;
+                                                
                                                 font-size: 12px;
                                                 color: @graymid;
 
@@ -3034,7 +3035,7 @@ html[dir="rtl"] {
                                                 border: 1px solid rgba(0,0,0,0.15);
                                                 .borderRadius(@radius:20px);
                                                 padding: 13px 40px 13px 20px;
-                                                font-family: @bold;
+                                                font-weight: bold;
                                                 font-size: 12px;
                                                 background: @transp;
                                                 color: @gray;
@@ -3062,7 +3063,7 @@ html[dir="rtl"] {
                                     }
 
                                     h3 {
-                                          font-family: @book;
+                                          
                                           margin-top: 5px;
                                           margin-bottom: 3px;
                                     }
@@ -3087,8 +3088,8 @@ html[dir="rtl"] {
                                     .remove { height: 13px; width: 13px; top: 42%; }
                                     .md-chips-select.md-focused { box-shadow: 0 2px @graylight; }
                                     md-select-list { z-index: 9; }
-                                    md-select-item-wrapper { font-family: @book; }
-                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px; font-family: @book; }
+                                    md-select-item-wrapper {  }
+                                    md-select-item-wrapper.active { color: #4a535c; background-color: rgb(189,189,189); padding: 0 0 3px 10px;  }
                                     md-checkbox .md-icon { border: none; }
                                     md-checkbox .md-container:before { background: @white; .borderRadius(@radius:2px); }
                                     md-checkbox.md-checked .md-icon { background-color: rgba(255, 255, 255, 0.87) !important; }
@@ -3107,7 +3108,7 @@ html[dir="rtl"] {
                                                       .borderRadius(@radius:5px);
                                                       border: none;
                                                       width: 311px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -3119,7 +3120,7 @@ html[dir="rtl"] {
                                                       border: none;
                                                       width: 311px;
                                                       height: 144px;
-                                                      font-family: @book;
+                                                      
                                                       font-size: 14px;
                                                       margin-bottom: 10px;
                                                 }
@@ -3129,7 +3130,7 @@ html[dir="rtl"] {
 
                                                       a {
                                                             color: @cyan;
-                                                            font-family: @book;
+                                                            
                                                             font-size: 14px;
                                                       }
                                                 }
@@ -3138,7 +3139,7 @@ html[dir="rtl"] {
                                                       background: @cyan;
                                                       color: @white;
                                                       .borderRadius(@radius:25px);
-                                                      font-family: @book;
+                                                      
                                                       font-size: 15px;
                                                       border: none;
                                                       padding: 11px 28px;
@@ -3158,7 +3159,7 @@ html[dir="rtl"] {
                                                       width: 305px;
                                                       float: left;
                                                       margin-bottom: 8px;
-                                                      font-family: @book;
+                                                      
                                                       padding: 13px 13px;
                                                       color: @graymid;
                                                 }
@@ -3172,7 +3173,7 @@ html[dir="rtl"] {
 
                                     .saveBlock {
                                           float: left;
-                                          font-family: @book;
+                                          
                                           font-size: 15px;
                                           position: relative;
 
@@ -3180,7 +3181,7 @@ html[dir="rtl"] {
                                                 background: @gray;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -3192,7 +3193,7 @@ html[dir="rtl"] {
                                                 background: @magenta;
                                                 color: @white;
                                                 .borderRadius(@radius:25px);
-                                                font-family: @book;
+                                                
                                                 font-size: 15px;
                                                 border: none;
                                                 padding: 11px 28px;
@@ -3230,7 +3231,7 @@ html[dir="rtl"] {
                                           table {
                                                 width: 1320px;
                                                 display: inline-block;
-                                                font-family: @book;
+                                                
                                                 font-size: 12px;
                                                 color: @graymid;
 
@@ -3380,19 +3381,19 @@ html[dir="rtl"] {
                         }
 
                         .loginBox { width: 431px; height: 305px; display: block; margin: 5% auto 0; padding: 200px 0 0 0; background: url('../images/bg-login.png') no-repeat center;
-                              h2 { width: 100%; display: block; text-align: center; font-size: 14px; font-family: @bold; margin-bottom: 10px; }
+                              h2 { width: 100%; display: block; text-align: center; font-size: 14px; font-weight: bold; margin-bottom: 10px; }
                               .formAccess { width: 80%; margin: 0 auto; height: 200px;
-                                    input[type="text"] { background: @white; color: @graymid; padding: 10px 10px; .borderRadius(@radius:1px); border: none; border-bottom: 1px solid #ccc; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
-                                    input[type="password"] { background: @white; color: @graymid; padding: 10px 10px; .borderRadius(@radius:1px); border: none; border-bottom: 1px solid #ccc; width: 311px; font-family: @book; font-size: 14px; margin-bottom: 10px; }
+                                    input[type="text"] { background: @white; color: @graymid; padding: 10px 10px; .borderRadius(@radius:1px); border: none; border-bottom: 1px solid #ccc; width: 311px;  font-size: 14px; margin-bottom: 10px; }
+                                    input[type="password"] { background: @white; color: @graymid; padding: 10px 10px; .borderRadius(@radius:1px); border: none; border-bottom: 1px solid #ccc; width: 311px;  font-size: 14px; margin-bottom: 10px; }
                                     .md-fab.login { width: 140px; min-width: 140px; height: 18px; display: block; background: @magenta; .borderRadius(@radius:25px); padding: 0; line-height: 100%; float: none; margin: 10px auto 0;
-                                          span { font-family: @book; font-size: 12px; color: @white; line-height: 100%; }
+                                          span {  font-size: 12px; color: @white; line-height: 100%; }
                                     }
                               }
                         }
 
                         footer { width: 100%; clear: both; margin-top: 0px;
                               // position: absolute; bottom: 0; left: 50%; margin-left: -960px;
-                              .mainFooter { background: #293847; color: #4a535c; max-width: 1366px; margin: 0 auto; padding: 5px 10px; font-family: @bold;
+                              .mainFooter { background: #293847; color: #4a535c; max-width: 1366px; margin: 0 auto; padding: 5px 10px; font-weight: bold;
                                     img { display: inline-block; margin: 0 33px 0 15px; position: relative; top: 2px; }
                                     span { display: inline-block; position: relative; top: -4px; font-size: 10px; vertical-align: middle; color: @gray; }
                                     .rtlchange { width: 100px; float: right; display: inline-block;
