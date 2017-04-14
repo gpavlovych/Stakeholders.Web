@@ -3,7 +3,8 @@
 	"ACTIVITIES_LOW": "אינטרקציות",
 	"ADD_ICON": "הוסף אייקון",
 	"ADD_LOGO": "הוסף לוגו",
-	"APPROACHING_DEADLINE_TASKS": "APPROACHING DEADLINE TASKS",
+	"APPROACHING_DEADLINE_TASKS": "משימות קרובות",
+	"ALL_TIME": "הכל",
 	"ATTACH": "צרף",
 	"ATTACH_DOCUMENT": "צרף מסמך",
 	"BROWSE": "Browse…",
@@ -94,5 +95,6 @@
 	"PASSWORD": "סיסמה",
 	"SUBJECT": "נושא",
 	"USERS": "מנהלים",
-	"USER_NAME": "שם מנהל"
+	"USER_NAME": "שם מנהל",
+	"WELCOME": "שלום"
 }
