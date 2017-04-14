@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Stakeholders.Web",
-		"_postman_id": "60942225-3a0c-cb75-6c6c-6f010541f823",
+		"_postman_id": "840af610-0edb-1d87-b33f-ef6d510b7e50",
 		"description": "Here you can find samples how to use Stakeholders.Web REST API. \nImport this collection to Postman, replace the domain name (http://localhost:33347) if needed\nIf API call requires no authorization (no need for header \"Authorization: Bearer token\", register new user via POST http://localhost:33347/ApplicationUsers or login via POST http://localhost:33347/token), run.\nIf API call requires authorization (header \"Authorization: Bearer token\" is required), signup first (POST http://localhost:33347/ApplicationUsers), then login (POST http://localhost:33347/ApplicationUsers) and replace token in API call's header \"Authorization: Bearer token\" with the generated one, then run.\nReplace IDs in URI and edit JSON if needed.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -48,7 +48,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all activities"
 					},
 					"response": []
@@ -65,7 +68,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activities with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -82,7 +88,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activities"
 					},
 					"response": []
@@ -99,7 +108,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting activity with id=3"
 					},
 					"response": []
@@ -141,7 +153,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the activity with id=3"
 					},
 					"response": []
@@ -189,7 +204,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all activities"
 					},
 					"response": []
@@ -206,7 +224,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activity task statuses with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -223,7 +244,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activity task statuses"
 					},
 					"response": []
@@ -240,7 +264,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting activity task status with id=3"
 					},
 					"response": []
@@ -282,7 +309,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the activity task status with id=3"
 					},
 					"response": []
@@ -330,7 +360,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all activity tasks"
 					},
 					"response": []
@@ -347,7 +380,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activity tasks with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -364,7 +400,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activity tasks"
 					},
 					"response": []
@@ -381,7 +420,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting activity task with id=3"
 					},
 					"response": []
@@ -423,7 +465,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the activity task with id=3"
 					},
 					"response": []
@@ -471,7 +516,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all activity types"
 					},
 					"response": []
@@ -488,7 +536,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activity types with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -505,7 +556,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all activity types"
 					},
 					"response": []
@@ -522,7 +576,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting activity type with id=3"
 					},
 					"response": []
@@ -564,7 +621,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the activity type with id=3"
 					},
 					"response": []
@@ -575,6 +635,23 @@
 			"name": "ApplicationUsers",
 			"description": "",
 			"item": [
+				{
+					"name": "http://localhost:33347/api/ApplicationUsers/current",
+					"request": {
+						"url": "http://localhost:33347/api/ApplicationUsers/current",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c2VyMUBleGFtcGxlLmNvbSIsImp0aSI6IjEwZWQ1ZjY1LWQ4N2MtNGZmYS1iNmIxLTRhMzg0ODQwNDRmNiIsImlhdCI6NjM2Mjc3OTI1MDMzMTA3MjE0LCJuYmYiOjE0OTIxOTU3MDMsImV4cCI6MTQ5NDc4NzcwMywiaXNzIjoiRXhhbXBsZUlzc3VlciIsImF1ZCI6IkV4YW1wbGVBdWRpZW5jZSJ9.uHSuy3kewZz54uvR-KyCUUfnO8UnXBSc5tzZ0rpN7cI",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Gets total count of all application users"
+					},
+					"response": []
+				},
 				{
 					"name": "http://localhost:33347/api/ApplicationUsers",
 					"request": {
@@ -607,7 +684,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all application users"
 					},
 					"response": []
@@ -624,7 +704,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all application users with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -641,7 +724,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all application users"
 					},
 					"response": []
@@ -658,7 +744,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting application user with id=3"
 					},
 					"response": []
@@ -700,7 +789,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the application user with id=3"
 					},
 					"response": []
@@ -748,7 +840,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all companies"
 					},
 					"response": []
@@ -765,7 +860,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all companies with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -782,7 +880,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all companies"
 					},
 					"response": []
@@ -799,7 +900,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting company with id=3"
 					},
 					"response": []
@@ -841,7 +945,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the company with id=3"
 					},
 					"response": []
@@ -889,7 +996,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all activities"
 					},
 					"response": []
@@ -906,7 +1016,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all contacts with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -923,7 +1036,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all contacts"
 					},
 					"response": []
@@ -940,7 +1056,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting contact with id=3"
 					},
 					"response": []
@@ -982,7 +1101,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the contact with id=3"
 					},
 					"response": []
@@ -1030,7 +1152,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all goals"
 					},
 					"response": []
@@ -1047,7 +1172,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all goals with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -1064,7 +1192,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all goals"
 					},
 					"response": []
@@ -1081,7 +1212,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting goal with id=3"
 					},
 					"response": []
@@ -1123,7 +1257,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the goal with id=3"
 					},
 					"response": []
@@ -1171,7 +1308,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all organization categories"
 					},
 					"response": []
@@ -1188,7 +1328,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all organization categories with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -1205,7 +1348,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all organization categories"
 					},
 					"response": []
@@ -1222,7 +1368,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting organization category with id=3"
 					},
 					"response": []
@@ -1264,7 +1413,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the organization category with id=3"
 					},
 					"response": []
@@ -1312,7 +1464,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all organization types"
 					},
 					"response": []
@@ -1329,7 +1484,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all organization types with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -1346,7 +1504,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all organization types"
 					},
 					"response": []
@@ -1363,7 +1524,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets the organization type with id=4"
 					},
 					"response": []
@@ -1405,7 +1569,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the organization type with id=3"
 					},
 					"response": []
@@ -1453,7 +1620,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all organizations"
 					},
 					"response": []
@@ -1470,7 +1640,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all organizations with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -1487,7 +1660,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all organizations"
 					},
 					"response": []
@@ -1504,7 +1680,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting organization with id=3"
 					},
 					"response": []
@@ -1546,7 +1725,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the organization with id=3"
 					},
 					"response": []
@@ -1594,7 +1776,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all roles"
 					},
 					"response": []
@@ -1611,7 +1796,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all roles with default start (0) and count (10) request query parameters"
 					},
 					"response": []
@@ -1628,7 +1816,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting all roles"
 					},
 					"response": []
@@ -1645,7 +1836,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Getting role with id=3"
 					},
 					"response": []
@@ -1687,7 +1881,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Deletes the role with id=3"
 					},
 					"response": []
