@@ -77,5 +77,6 @@ namespace Stakeholders.Web.Models
         /// </summary>
         /// <value>The activities.</value>
         public ICollection<Activity> Activities { get; set; }
+        public string PhotoUrl { get; internal set; }
     }
 }

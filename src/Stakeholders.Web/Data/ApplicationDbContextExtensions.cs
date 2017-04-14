@@ -75,11 +75,11 @@ namespace Stakeholders.Web.Data
 
                 #region Stub users
 
-                var user1 = context.FindApplicationUserByNameOrCreate("user1", "אוד", "אדמיניסטרטור", role1, company0);
-                var user2 = context.FindApplicationUserByNameOrCreate("user2", "עמוס", "מנכ\"ל", role2, company1);
-                var user3 = context.FindApplicationUserByNameOrCreate("user3", "דני", "שיווק", role3, company1);
-                var user4 = context.FindApplicationUserByNameOrCreate("user4", "אהד", "קשרי לקוחות", role3, company1);
-                var user5 = context.FindApplicationUserByNameOrCreate("user5", "ענת", "מכירות", role3, company1);
+                var user1 = context.FindApplicationUserByNameOrCreate("user1", "אוד", "אדמיניסטרטור", "/images/users/1.png", role1, company0);
+                var user2 = context.FindApplicationUserByNameOrCreate("user2", "עמוס", "מנכ\"ל", "/images/users/2.png", role2, company1);
+                var user3 = context.FindApplicationUserByNameOrCreate("user3", "דני", "שיווק", "/images/users/3.png", role3, company1);
+                var user4 = context.FindApplicationUserByNameOrCreate("user4", "אהד", "קשרי לקוחות", "/images/users/4.png", role3, company1);
+                var user5 = context.FindApplicationUserByNameOrCreate("user5", "ענת", "מכירות", "/images/users/5.png", role3, company1);
 
                 #endregion
 
@@ -1127,6 +1127,7 @@ namespace Stakeholders.Web.Data
             string alias,
             string name,
             string title,
+            string photoUrl,
             Role role,
             Company company)
         {
@@ -1145,7 +1146,8 @@ namespace Stakeholders.Web.Data
                     NormalizedUserName = email,
                     UserName = email,
                     Title = title,
-                    Company = company
+                    Company = company,
+                    PhotoUrl = photoUrl
                 };
                 result.PasswordHash = passwordHash.HashPassword(result, "Password@123");
                 context.Users.Add(result);

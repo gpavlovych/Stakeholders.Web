@@ -11,6 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Stakeholders.Web.Models;
 
@@ -35,5 +36,12 @@ namespace Stakeholders.Web
         /// <param name="userName">Name of the user.</param>
         /// <returns>Task&lt;ApplicationUser&gt;.</returns>
         Task<ApplicationUser> FindByNameAsync(string userName);
+
+        /// <summary>
+        /// Gets the user asynchronous.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>Task&lt;ApplicationUser&gt;.</returns>
+        Task<ApplicationUser> GetUserAsync(ClaimsPrincipal user);
     }
 }

@@ -17,11 +17,24 @@ angular
             });
         }
     ])
+    .factory('User',
+    [
+        '$resource',
+        function($resource) {
+            return $resource(
+                '/api/ApplicationUsers/:id',
+                null,
+                {
+                    'update': { method: 'PUT' }
+                });
+        }
+    ])
     .service('loginService',
     [
         '$http',
         '$localStorage',
         '$rootScope',
+        'User',
         function($http, $localStorage, $rootScope) {
             this.login = function(username, password, callback) {
                 $http.post('/token', { email: username, password: password })
@@ -36,11 +49,13 @@ angular
                                 //    .then(function(users) {
                                 //        var user = users[0];
                                 // store username and token in local storage to keep user logged in between page refreshes
-
+                                User.get({id: 'current'},function(result){
+                                    alert(JSON.toString(result));
+                                });
                                 var user = {
                                     name: username,
                                     status: "",
-                                    image: "/images/user/sara.png"
+                                    image: 
                                 };
                                 $localStorage.loggedIn = {
                                     user: user,

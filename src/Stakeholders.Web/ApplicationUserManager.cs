@@ -12,6 +12,7 @@
 // <summary></summary>
 // ***********************************************************************
 using System;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Stakeholders.Web.Models;
@@ -62,6 +63,17 @@ namespace Stakeholders.Web
         public async Task<ApplicationUser> FindByNameAsync(string userName)
         {
             var result = await this.userManager.FindByNameAsync(userName);
+            return result;
+        }
+
+        /// <summary>
+        /// get user as an asynchronous operation.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>Task&lt;ApplicationUser&gt;.</returns>
+        public async Task<ApplicationUser> GetUserAsync(ClaimsPrincipal user)
+        {
+            var result = await this.userManager.GetUserAsync(user);
             return result;
         }
     }

@@ -43,14 +43,19 @@ namespace Stakeholders.Web.Tests.Controllers
         private readonly Mock<IRepository<Activity>> repositoryMock;
 
         /// <summary>
-        /// The target
-        /// </summary>
-        private readonly ActivitiesController target;
-
-        /// <summary>
         /// The mapper mock
         /// </summary>
         private readonly Mock<IMapper> mapperMock;
+
+        /// <summary>
+        /// The period provider
+        /// </summary>
+        private readonly Mock<IPeriodProvider> periodProvider;
+
+        /// <summary>
+        /// The target
+        /// </summary>
+        private readonly ActivitiesController target;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivitiesControllerTest" /> class.
@@ -58,10 +63,12 @@ namespace Stakeholders.Web.Tests.Controllers
         public ActivitiesControllerTest()
         {
             this.entitiesForTest = new EntitiesForTest();
+            this.periodProvider = new Mock<IPeriodProvider>();
             this.repositoryMock = new Mock<IRepository<Activity>>();
             this.mapperMock = new Mock<IMapper>();
 
             this.target = new ActivitiesController(
+                this.periodProvider.Object,
                 this.repositoryMock.Object,
                 this.mapperMock.Object);
         }

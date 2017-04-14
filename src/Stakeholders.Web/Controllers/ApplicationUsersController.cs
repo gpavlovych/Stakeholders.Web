@@ -195,6 +195,19 @@ namespace Stakeholders.Web.Controllers
             }
         }
 
+        // GET: api/ApplicationUsers/current
+        /// <summary>
+        /// Gets the application users count.
+        /// </summary>
+        /// <returns>System.Int64.</returns>
+        [HttpGet("current")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var currentUser = await this.userManager.GetUserAsync(User);
+            var result = this.mapper.Map<ApplicationUserViewModel>(currentUser);
+            return Ok(result);
+        }
+
         // GET: api/ApplicationUsers/count
         /// <summary>
         /// Gets the application users count.

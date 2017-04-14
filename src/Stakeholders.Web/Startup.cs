@@ -227,7 +227,7 @@ namespace Stakeholders.Web
                 using (
                     var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
                 {
-                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.Migrate();
+                    serviceScope.ServiceProvider.GetService<ApplicationDbContext>().Database.EnsureCreated();
                     serviceScope.ServiceProvider.GetService<ApplicationDbContext>().EnsureSeedData();
                 }
             }
