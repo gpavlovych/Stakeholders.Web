@@ -130,14 +130,13 @@ angular
     .config([
         '$locationProvider',
         function($locationProvider) {
-            $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode(false);
         }
     ])
     .config([
         '$routeProvider',
         function($routeProvider) {
-            $routeProvider.when(
-                '/',
+            $routeProvider.otherwise(
                 {
                     redirectTo: '/home'
                 });
