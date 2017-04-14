@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
 using Stakeholders.Web.Models.ApplicationUserViewModels;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Stakeholders.Web.Controllers
 {
@@ -44,6 +46,11 @@ namespace Stakeholders.Web.Controllers
         /// The mapper
         /// </summary>
         private readonly IMapper mapper;
+
+        /// <summary>
+        /// The HTTP context accessor
+        /// </summary>
+        private readonly IHttpContextAccessor httpContextAccessor;
 
         /// <summary>
         /// The user manager
@@ -81,7 +88,8 @@ namespace Stakeholders.Web.Controllers
             IRepository<Company> companyRepository,
             IRepository<Role> roleRepository,
             IMapper mapper,
-            IApplicationUserManager userManager)
+            IApplicationUserManager userManager,
+            IHttpContextAccessor httpContextAccessor)
         {
             if (repository == null)
             {
@@ -100,6 +108,7 @@ namespace Stakeholders.Web.Controllers
             this.userManager = userManager;
             this.roleRepository = roleRepository;
             this.companyRepository = companyRepository;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         // GET: api/ApplicationUsers
@@ -203,7 +212,9 @@ namespace Stakeholders.Web.Controllers
         [HttpGet("current")]
         public async Task<IActionResult> GetCurrentUser()
         {
-            var currentUser = await this.userManager.GetUserAsync(User);
+            var currentUserId = this.httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var currentUser = await this.userManager.FindByNameAsync(currentUserId);
+            currentUser = await this.repository.FindByIdAsync(currentUser.Id);
             var result = this.mapper.Map<ApplicationUserViewModel>(currentUser);
             return Ok(result);
         }

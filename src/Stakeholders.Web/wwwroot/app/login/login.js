@@ -35,7 +35,7 @@ angular
         '$localStorage',
         '$rootScope',
         'User',
-        function($http, $localStorage, $rootScope) {
+        function ($http, $localStorage, $rootScope, User) {
             this.login = function(username, password, callback) {
                 $http.post('/token', { email: username, password: password })
                     .then(function(response) {
@@ -49,28 +49,22 @@ angular
                                 //    .then(function(users) {
                                 //        var user = users[0];
                                 // store username and token in local storage to keep user logged in between page refreshes
-                                User.get({id: 'current'},function(result){
-                                    alert(JSON.toString(result));
-                                });
-                                var user = {
-                                    name: username,
-                                    status: "",
-                                    image: 
-                                };
-                                $localStorage.loggedIn = {
-                                    user: user,
-                                    token: token
-                                };
-                                $rootScope.user = user;
-                                // execute callback with true to indicate successful login
-                                callback(true);
-                                //})
-                                //.catch(function() {
-                                //    callback(false);
-                                //});
-                                // add jwt token to auth header for all requests made by the $http service
+                                User.get({ id: 'current' }, function (user) {
+                                    $localStorage.loggedIn = {
+                                        user: user,
+                                        token: token
+                                    };
+                                    $rootScope.user = user;
+                                    // execute callback with true to indicate successful login
+                                    callback(true);
+                                    //})
+                                    //.catch(function() {
+                                    //    callback(false);
+                                    //});
+                                    // add jwt token to auth header for all requests made by the $http service
 
-                                // execute callback with true to indicate successful login
+                                    // execute callback with true to indicate successful login
+                                });
                             } else {
 
                                 // execute callback with false to indicate failed login

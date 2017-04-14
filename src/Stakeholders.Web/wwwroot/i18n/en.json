@@ -111,5 +111,6 @@
   "USER_NAME": "User Name",
   "USERNAME_OR_PASSWORD_INCORRECT": "username or password is incorrect",
   "YES": "Yes",
-  "NO": "No"
+	"NO": "No",
+	"WELCOME": "Welcome"
 }
