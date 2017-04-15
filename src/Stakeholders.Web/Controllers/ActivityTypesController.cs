@@ -4,7 +4,7 @@
 // Created          : 02-20-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="ActivityTypesController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -47,7 +47,11 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository</exception>
+        /// <exception cref="ArgumentNullException">
+        /// repository
+        /// or
+        /// mapper
+        /// </exception>
         public ActivityTypesController(
             IRepository<ActivityType> repository,
             IMapper mapper)
@@ -55,6 +59,11 @@ namespace Stakeholders.Web.Controllers
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
+            }
+
+            if (mapper == null)
+            {
+                throw new ArgumentNullException(nameof(mapper));
             }
 
             this.repository = repository;
@@ -70,7 +79,10 @@ namespace Stakeholders.Web.Controllers
         /// <param name="search">The search.</param>
         /// <returns>ActivityTypeInfoViewModel[].</returns>
         [HttpGet]
-        public ActivityTypeViewModel[] GetActivityTypes(int start = 0, int count = 10, string search="")
+        public ActivityTypeViewModel[] GetActivityTypes(
+            int start = 0, 
+            int count = 10,
+            string search="")
         {
             return this.repository.GetAll(start, count, it=>string.IsNullOrEmpty(search)||it.Name.Contains(search)).Select(it => this.mapper.Map<ActivityTypeViewModel>(it)).ToArray();
         }

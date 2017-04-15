@@ -2,7 +2,7 @@
 	"variables": [],
 	"info": {
 		"name": "Stakeholders.Web",
-		"_postman_id": "840af610-0edb-1d87-b33f-ef6d510b7e50",
+		"_postman_id": "2cf1e92a-3e21-63f3-00a3-d50010f4495d",
 		"description": "Here you can find samples how to use Stakeholders.Web REST API. \nImport this collection to Postman, replace the domain name (http://localhost:33347) if needed\nIf API call requires no authorization (no need for header \"Authorization: Bearer token\", register new user via POST http://localhost:33347/ApplicationUsers or login via POST http://localhost:33347/token), run.\nIf API call requires authorization (header \"Authorization: Bearer token\" is required), signup first (POST http://localhost:33347/ApplicationUsers), then login (POST http://localhost:33347/ApplicationUsers) and replace token in API call's header \"Authorization: Bearer token\" with the generated one, then run.\nReplace IDs in URI and edit JSON if needed.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
@@ -647,7 +647,10 @@
 								"description": ""
 							}
 						],
-						"body": {},
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Gets total count of all application users"
 					},
 					"response": []
@@ -1905,7 +1908,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"email\":\"user1@example.com\",\r\n\t\"password\":\"Password@123\"\r\n}"
+					"raw": "{\r\n\t\"username\":\"user1@example.com\",\r\n\t\"password\":\"Password@123\"\r\n}"
 				},
 				"description": "Generating JWT for Stakeholders.Web"
 			},

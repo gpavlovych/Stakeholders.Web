@@ -25,7 +25,9 @@ using Microsoft.IdentityModel.Tokens;
 using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Serialization;
 using Stakeholders.Web.Models.ActivityTaskStatusViewModels;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityTypeViewModels;
@@ -38,6 +40,8 @@ using Stakeholders.Web.Models.OrganizationCategoryViewModels;
 using Stakeholders.Web.Models.OrganizationTypeViewModels;
 using Stakeholders.Web.Models.OrganizationViewModels;
 using Stakeholders.Web.Models.RoleViewModels;
+using Swashbuckle.AspNetCore.Swagger;
+using Contact = Stakeholders.Web.Models.Contact;
 
 namespace Stakeholders.Web
 {
@@ -110,7 +114,40 @@ namespace Stakeholders.Web
                 .AddEntityFrameworkStores<ApplicationDbContext, long>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvcCore()
+                .AddJsonFormatters(
+                    options =>
+                    {
+                        options.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    })
+                .AddApiExplorer()
+                .AddAuthorization(
+                    options =>
+                    {
+                        options.DefaultPolicy =
+                            new AuthorizationPolicyBuilder()
+                                .RequireAuthenticatedUser()
+                                .Build();
+                    });
+
+            services.AddSwaggerGen(
+                c =>
+                {
+                    c.AddSecurityDefinition(
+                        "oauth2",
+                        new OAuth2Scheme()
+                        {
+                            Flow = "password",
+                            TokenUrl = "/token"
+                        });
+                    c.SwaggerDoc(
+                        "v1",
+                        new Info
+                        {
+                            Title = "Stakeholders API",
+                            Version = "v1"
+                        });
+                });
 
             // Add application services.
             services.AddScoped<EntityToViewModel>();
@@ -235,10 +272,8 @@ namespace Stakeholders.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            
             app.UseApplicationInsightsExceptionTelemetry();
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
 
             // Add JWT generation endpoint:
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
@@ -281,13 +316,14 @@ namespace Stakeholders.Web
                     TokenValidationParameters = tokenValidationParameters
                 });
 
-            app.UseMvc(
-                routes =>
+            app.UseSwagger();
+            app.UseSwaggerUI(
+                o =>
                 {
-                    routes.MapRoute(
-                        name: "default",
-                        template: "{controller=Home}/{action=Index}/{id?}");
+                    o.SwaggerEndpoint("/swagger/v1/swagger.json", "Stakeholders API V1");
                 });
+
+            app.UseMvc();
         }
     }
 }

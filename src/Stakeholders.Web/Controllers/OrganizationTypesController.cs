@@ -4,14 +4,13 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="OrganizationTypesController.cs" company="">
 //     Copyright (c) . All rights reserved.
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,9 +47,11 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">
+        /// repository
         /// or
-        /// mapper</exception>
+        /// mapper
+        /// </exception>
         public OrganizationTypesController(IRepository<OrganizationType> repository, IMapper mapper)
         {
             if (repository == null)
@@ -76,7 +77,10 @@ namespace Stakeholders.Web.Controllers
         /// <param name="search">The search.</param>
         /// <returns>OrganizationTypeViewModel[].</returns>
         [HttpGet]
-        public OrganizationTypeViewModel[] GetOrganizationTypes(int start = 0, int count = 10,string search = "")
+        public OrganizationTypeViewModel[] GetOrganizationTypes(
+            int start = 0,
+            int count = 10,
+            string search = "")
         {
             return this.repository.GetAll(start, count, it => string.IsNullOrEmpty(search) || it.Type.Contains(search)).Select(
                     it => this.mapper.Map<OrganizationTypeViewModel>(it)).ToArray();

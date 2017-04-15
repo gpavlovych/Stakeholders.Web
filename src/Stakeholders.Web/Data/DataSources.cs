@@ -14,7 +14,6 @@
 using System.Linq;
 using Stakeholders.Web.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.ResultOperators.Internal;
 
 namespace Stakeholders.Web.Data
 {

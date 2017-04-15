@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="ActivityTasksController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -22,7 +22,6 @@ using Stakeholders.Web.Data;
 using Stakeholders.Web.Models;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 
 namespace Stakeholders.Web.Controllers
 {
@@ -35,8 +34,19 @@ namespace Stakeholders.Web.Controllers
     [Authorize]
     public class ActivityTasksController : Controller
     {
+        /// <summary>
+        /// The period provider
+        /// </summary>
         private readonly IPeriodProvider periodProvider;
+
+        /// <summary>
+        /// The user manager
+        /// </summary>
         private readonly IApplicationUserManager userManager;
+
+        /// <summary>
+        /// The HTTP context accessor
+        /// </summary>
         private readonly IHttpContextAccessor httpContextAccessor;
 
         /// <summary>
@@ -52,11 +62,22 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivityTasksController" /> class.
         /// </summary>
+        /// <param name="periodProvider">The period provider.</param>
+        /// <param name="userManager">The user manager.</param>
+        /// <param name="httpContextAccessor">The HTTP context accessor.</param>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">
+        /// periodProvider
         /// or
-        /// mapper</exception>
+        /// userManager
+        /// or
+        /// httpContextAccessor
+        /// or
+        /// repository
+        /// or
+        /// mapper
+        /// </exception>
         public ActivityTasksController(
             IPeriodProvider periodProvider,
             IApplicationUserManager userManager,
@@ -64,6 +85,21 @@ namespace Stakeholders.Web.Controllers
             IRepository<ActivityTask> repository,
             IMapper mapper)
         {
+            if (periodProvider == null)
+            {
+                throw new ArgumentNullException(nameof(periodProvider));
+            }
+
+            if (userManager == null)
+            {
+                throw new ArgumentNullException(nameof(userManager));
+            }
+
+            if (httpContextAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(httpContextAccessor));
+            }
+
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));

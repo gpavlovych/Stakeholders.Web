@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="ApplicationUsersController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -34,7 +34,14 @@ namespace Stakeholders.Web.Controllers
     [Authorize]
     public class ApplicationUsersController : Controller
     {
+        /// <summary>
+        /// The period provider
+        /// </summary>
         private readonly IPeriodProvider periodProvider;
+
+        /// <summary>
+        /// The source
+        /// </summary>
         private readonly IDataSource<ApplicationUser> source;
 
         /// <summary>
@@ -70,17 +77,31 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationUsersController" /> class.
         /// </summary>
+        /// <param name="periodProvider">The period provider.</param>
+        /// <param name="source">The source.</param>
         /// <param name="repository">The repository.</param>
         /// <param name="companyRepository">The company repository.</param>
         /// <param name="roleRepository">The role repository.</param>
         /// <param name="mapper">The mapper.</param>
         /// <param name="userManager">The user manager.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <param name="httpContextAccessor">The HTTP context accessor.</param>
+        /// <exception cref="ArgumentNullException">
+        /// periodProvider
         /// or
-        /// mapper</exception>
-        /// <exception cref="System.ArgumentNullException">repository
+        /// source
         /// or
-        /// mapper</exception>
+        /// repository
+        /// or
+        /// companyRepository
+        /// or
+        /// roleRepository
+        /// or
+        /// mapper
+        /// or
+        /// userManager
+        /// or
+        /// httpContextAccessor
+        /// </exception>
         public ApplicationUsersController(
             IPeriodProvider periodProvider,
             IDataSource<ApplicationUser> source,
@@ -91,14 +112,44 @@ namespace Stakeholders.Web.Controllers
             IApplicationUserManager userManager,
             IHttpContextAccessor httpContextAccessor)
         {
+            if (periodProvider == null)
+            {
+                throw new ArgumentNullException(nameof(periodProvider));
+            }
+
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
             }
 
+            if (companyRepository == null)
+            {
+                throw new ArgumentNullException(nameof(companyRepository));
+            }
+
+            if (roleRepository == null)
+            {
+                throw new ArgumentNullException(nameof(roleRepository));
+            }
+
             if (mapper == null)
             {
                 throw new ArgumentNullException(nameof(mapper));
+            }
+
+            if (userManager == null)
+            {
+                throw new ArgumentNullException(nameof(userManager));
+            }
+
+            if (httpContextAccessor == null)
+            {
+                throw new ArgumentNullException(nameof(httpContextAccessor));
             }
 
             this.periodProvider = periodProvider;
@@ -118,6 +169,8 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         /// <param name="search">The search.</param>
+        /// <param name="period">The period.</param>
+        /// <param name="includeStats">The include stats.</param>
         /// <returns>ApplicationUserInfoViewModel[].</returns>
         [HttpGet]
         public ApplicationUserViewModel[] GetApplicationUsers(
@@ -216,7 +269,7 @@ namespace Stakeholders.Web.Controllers
             var currentUser = await this.userManager.FindByNameAsync(currentUserId);
             currentUser = await this.repository.FindByIdAsync(currentUser.Id);
             var result = this.mapper.Map<ApplicationUserViewModel>(currentUser);
-            return Ok(result);
+            return this.Ok(result);
         }
 
         // GET: api/ApplicationUsers/count

@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-09-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="OrganizationCategoriesController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -59,18 +59,26 @@ namespace Stakeholders.Web.Controllers
         /// <param name="source">The source.</param>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="System.ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">
+        /// periodProvider
         /// or
-        /// mapper</exception>
-        /// <exception cref="ArgumentNullException">repository
+        /// source
         /// or
-        /// mapper</exception>
+        /// repository
+        /// or
+        /// mapper
+        /// </exception>
         public OrganizationCategoriesController(
             IPeriodProvider periodProvider,
             IDataSource<OrganizationCategory> source, 
             IRepository<OrganizationCategory> repository,
             IMapper mapper)
         {
+            if (periodProvider == null)
+            {
+                throw new ArgumentNullException(nameof(periodProvider));
+            }
+
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
@@ -103,7 +111,12 @@ namespace Stakeholders.Web.Controllers
         /// <param name="includeStats">The include stats.</param>
         /// <returns>OrganizationCategoryViewModel[].</returns>
         [HttpGet]
-        public OrganizationCategoryViewModel[] GetOrganizationCategories(int start = 0, int count = 10, string search = "", int? period = null, int? includeStats = 0)
+        public OrganizationCategoryViewModel[] GetOrganizationCategories(
+            int start = 0, 
+            int count = 10,
+            string search = "", 
+            int? period = null, 
+            int? includeStats = 0)
         {
             DateRange periodRange = null;
             switch (period)

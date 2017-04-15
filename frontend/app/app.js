@@ -87,7 +87,7 @@ angular
         '$translateProvider',
         function($translateProvider) {
             $translateProvider.useStaticFilesLoader({
-                prefix: '/i18n/',
+                prefix: '/assets/i18n/',
                 suffix: '.json'
             });
 

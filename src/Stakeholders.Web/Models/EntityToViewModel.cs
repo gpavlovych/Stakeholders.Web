@@ -18,11 +18,8 @@ using AutoMapper;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
 using Stakeholders.Web.Models.ApplicationUserViewModels;
-using Stakeholders.Web.Models.CompanyViewModels;
 using Stakeholders.Web.Models.ContactViewModels;
 using Stakeholders.Web.Models.GoalViewModels;
-using Stakeholders.Web.Data;
-using Stakeholders.Web.Models.OrganizationCategoryViewModels;
 
 namespace Stakeholders.Web.Models
 {

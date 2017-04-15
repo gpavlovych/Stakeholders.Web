@@ -17,7 +17,6 @@ using Stakeholders.Web.Data;
 using Stakeholders.Web.Models.ActivityTaskViewModels;
 using Stakeholders.Web.Models.ActivityViewModels;
 using Stakeholders.Web.Models.ApplicationUserViewModels;
-using Stakeholders.Web.Models.CompanyViewModels;
 using Stakeholders.Web.Models.ContactViewModels;
 using Stakeholders.Web.Models.OrganizationCategoryViewModels;
 using Stakeholders.Web.Models.OrganizationViewModels;

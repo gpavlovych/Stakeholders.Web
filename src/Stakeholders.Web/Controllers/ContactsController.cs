@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="ContactsController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -32,6 +32,9 @@ namespace Stakeholders.Web.Controllers
     [Authorize]
     public class ContactsController : Controller
     {
+        /// <summary>
+        /// The period provider
+        /// </summary>
         private readonly IPeriodProvider periodProvider;
 
         /// <summary>
@@ -52,21 +55,35 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="ContactsController" /> class.
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="periodProvider">The period provider.</param>
+        /// <param name="source">The source.</param>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">
+        /// periodProvider
         /// or
-        /// mapper</exception>
-        /// <exception cref="System.ArgumentNullException">repository
+        /// source
         /// or
-        /// mapper</exception>
+        /// repository
+        /// or
+        /// mapper
+        /// </exception>
         public ContactsController(
             IPeriodProvider periodProvider,
             IDataSource<Contact> source,
             IRepository<Contact> repository,
             IMapper mapper)
         {
+            if (periodProvider == null)
+            {
+                throw new ArgumentNullException(nameof(periodProvider));
+            }
+
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
             if (repository == null)
             {
                 throw new ArgumentNullException(nameof(repository));
@@ -90,6 +107,9 @@ namespace Stakeholders.Web.Controllers
         /// <param name="start">The start.</param>
         /// <param name="count">The count.</param>
         /// <param name="search">The search.</param>
+        /// <param name="period">The period.</param>
+        /// <param name="organizationCategoryId">The organization category identifier.</param>
+        /// <param name="organizationId">The organization identifier.</param>
         /// <returns>ContactInfoViewModel[].</returns>
         [HttpGet]
         public ContactViewModel[] GetContacts(

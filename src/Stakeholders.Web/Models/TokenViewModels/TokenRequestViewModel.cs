@@ -23,7 +23,7 @@ namespace Stakeholders.Web.Models.TokenViewModels
         /// Gets or sets the email.
         /// </summary>
         /// <value>The email.</value>
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         /// <summary>
         /// Gets or sets the password.

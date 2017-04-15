@@ -8,17 +8,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="/lib/angular-material/angular-material.css">
-        <link rel="stylesheet" href="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" type="text/css"/>
-        <link rel="stylesheet" href="/lib/md-chips-select/md-chips-select.css" type="text/css"/>
+        <link rel="stylesheet" href="/app/bower_components/angular-material/angular-material.css">
+        <link rel="stylesheet" href="/app/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" type="text/css"/>
+        <link rel="stylesheet" href="/app/bower_components/md-chips-select/md-chips-select.css" type="text/css"/>
         <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="/lib/animate.css/animate.css">
-        <link rel="stylesheet" href="/lib/angular-dropdowns/angular-dropdowns.css">
+        <link rel="stylesheet" href="/app/bower_components/animate.css/animate.css">
+        <link rel="stylesheet" href="/app/bower_components/angular-dropdowns/angular-dropdowns.css">
 
-        <link rel="stylesheet" href="/css/angular-chart.css" />
-        <link rel="stylesheet" href="/css/reset.css" >
-        <link rel="stylesheet" href="/css/porlastyles-main.css" media="screen">
-        <link rel="stylesheet" href="/css/porlastyles-rtl.css" media="screen">
+        <link rel="stylesheet" href="/assets/styles/angular-chart.css" />
+        <link rel="stylesheet" href="/assets/styles/reset.css" >
+        <link rel="stylesheet" href="/assets/styles/porlastyles-main.css" media="screen">
+        <link rel="stylesheet" href="/assets/styles/porlastyles-rtl.css" media="screen">
     </head>
     <body>
         <div class="mainContainer">
@@ -27,7 +27,7 @@
                     <div class="mainHeader">
                         <h1 class="logo">
                             <a href="/app/#!/home">
-                                <img src="/images/logotype-porla.png" />
+                                <img src="/assets/images/logotype-porla.png" />
                             </a>
                         </h1>
                         <nav ng-if="user!=null">
@@ -50,16 +50,16 @@
                                 <img src="{{ user.photoUrl }}" alt="{{ user.name }}" />
                             </a>
                             <span class="ng-binding">{{'WELCOME' | translate}}, {{ user.name }}</span>
-                            <a class="logout" href="/app/#!/login"> <img src="/images/logout.png" /><span>{{'LOG_OUT' | translate}}</span></a>
+                            <a class="logout" href="/app/#!/login"> <img src="/assets/images/logout.png" /><span>{{'LOG_OUT' | translate}}</span></a>
                         </div>
                     </div>
                 </header>
                 <div ng-view></div>
                 <footer>
                     <div class="mainFooter" style="white-space: nowrap">
-                        <img src="/images/logo-footer.png"/><span>{{'COPYRIGHT' | translate}}</span>
-                        <a  ng-click="setLanguage('he', 'rtl')" id='rtl'><img src="/images/he-il.png"/></a>
-                        <a  ng-click="setLanguage('en', 'ltr')" id='ltr'><img src="/images/en-us.png"/></a>
+                        <img src="/assets/images/logo-footer.png"/><span>{{'COPYRIGHT' | translate}}</span>
+                        <a  ng-click="setLanguage('he', 'rtl')" id='rtl'><img src="/assets/images/he-il.png"/></a>
+                        <a  ng-click="setLanguage('en', 'ltr')" id='ltr'><img src="/assets/images/en-us.png"/></a>
                     </div>
                 </footer>
                 <div style="visibility: hidden">
@@ -80,41 +80,41 @@
             </div>
         </div>
         <!-- Jquery -->
-        <script src="/lib/jquery/dist/jquery.min.js"></script>
+        <script src="/app/bower_components/jquery/dist/jquery.min.js"></script>
 
         <!-- Angular -->
-        <script src="/lib/angular/angular.min.js"></script>
-        <script src="/lib/angular-route/angular-route.min.js"></script>
-        <script src="/lib/angular-filter/dist/angular-filter.min.js"></script>
-        <script src="/lib/angular-jwt/dist/angular-jwt.min.js"></script>
-        <script src="/lib/ngstorage/ngStorage.min.js"></script>
-        <script src="/lib/angular-resource/angular-resource.min.js"></script>
-        <script src="/lib/angular-hateoas/src/angular-hateoas.js"></script>
+        <script src="/app/bower_components/angular/angular.min.js"></script>
+        <script src="/app/bower_components/angular-route/angular-route.min.js"></script>
+        <script src="/app/bower_components/angular-filter/dist/angular-filter.min.js"></script>
+        <script src="/app/bower_components/angular-jwt/dist/angular-jwt.min.js"></script>
+        <script src="/app/bower_components/ngstorage/ngStorage.min.js"></script>
+        <script src="/app/bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="/app/bower_components/angular-hateoas/src/angular-hateoas.js"></script>
 
         <!-- Angular Translate Library -->
-        <script src="/lib/angular-translate/angular-translate.min.js"></script>
-        <script src="/lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+        <script src="/app/bower_components/angular-translate/angular-translate.min.js"></script>
+        <script src="/app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
 
         <!-- Angular Material Library -->
-        <script src="/lib/angular-aria/angular-aria.min.js"></script>
-        <script src="/lib/angular-messages/angular-messages.min.js"></script>
-        <script src="/lib/angular-animate/angular-animate.min.js"></script>
-        <script src="/lib/angular-sanitize/angular-sanitize.min.js"></script>
-        <script src="/lib/angular-material/angular-material.min.js"></script>
+        <script src="/app/bower_components/angular-aria/angular-aria.min.js"></script>
+        <script src="/app/bower_components/angular-messages/angular-messages.min.js"></script>
+        <script src="/app/bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="/app/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="/app/bower_components/angular-material/angular-material.min.js"></script>
 
         <!-- Angular ChartJS Library -->
-        <script type="text/javascript" src="/lib/chart.js/dist/chart.min.js"></script>
-        <script type="text/javascript" src="/lib/angular-chart.js/dist/angular-chart.min.js"></script>
+        <script type="text/javascript" src="/app/bower_components/chart.js/dist/Chart.min.js"></script>
+        <script type="text/javascript" src="/app/bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
 
         <!-- CustomScroller Library -->
-        <script src="/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="/lib/ng-scrollbars/dist/scrollbars.min.js"></script>
+        <script src="/app/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="/app/bower_components/ng-scrollbars/dist/scrollbars.min.js"></script>
 
         <!-- Dropdown Library
         <script src="/app/searchable-dropdown/searchable-dropdown.js"></script> -->
 
         <!-- Chips Library -->
-        <script src="/lib/md-chips-select/dist/md-chips-select.min.js"></script>
+        <script src="/app/bower_components/md-chips-select/dist/md-chips-select.min.js"></script>
 
         <!-- Our code-->
         <script src="/app/app.js"></script>

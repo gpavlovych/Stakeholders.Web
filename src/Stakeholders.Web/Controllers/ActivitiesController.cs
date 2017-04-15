@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="ActivitiesController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -13,6 +13,7 @@
 // ***********************************************************************
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -32,6 +33,9 @@ namespace Stakeholders.Web.Controllers
     [Authorize]
     public class ActivitiesController : Controller
     {
+        /// <summary>
+        /// The period provider
+        /// </summary>
         private readonly IPeriodProvider periodProvider;
 
         /// <summary>
@@ -47,11 +51,16 @@ namespace Stakeholders.Web.Controllers
         /// <summary>
         /// Initializes a new instance of the <see cref="ActivitiesController" /> class.
         /// </summary>
+        /// <param name="periodProvider">The period provider.</param>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">
+        /// periodProvider
         /// or
-        /// mapper</exception>
+        /// repository
+        /// or
+        /// mapper
+        /// </exception>
         public ActivitiesController(
             IPeriodProvider periodProvider,
             IRepository<Activity> repository,
@@ -88,6 +97,7 @@ namespace Stakeholders.Web.Controllers
         /// <param name="organizationId">The organization identifier.</param>
         /// <param name="organizationCategoryId">The organization category identifier.</param>
         /// <param name="contactId">The contact identifier.</param>
+        /// <param name="taskId">The task identifier.</param>
         /// <returns>ActivityInfoViewModel[].</returns>
         [HttpGet]
         public ActivityViewModel[] GetActivities(

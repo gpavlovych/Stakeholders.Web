@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-07-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="GoalsController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -47,12 +47,11 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">
+        /// repository
         /// or
-        /// mapper</exception>
-        /// <exception cref="System.ArgumentNullException">repository
-        /// or
-        /// mapper</exception>
+        /// mapper
+        /// </exception>
         public GoalsController(
             IRepository<Goal> repository,
             IMapper mapper)
@@ -80,7 +79,10 @@ namespace Stakeholders.Web.Controllers
         /// <param name="search">The search.</param>
         /// <returns>GoalInfoViewModel[].</returns>
         [HttpGet]
-        public GoalViewModel[] GetGoals(int start = 0, int count = 10, string search = "")
+        public GoalViewModel[] GetGoals(
+            int start = 0, 
+            int count = 10,
+            string search = "")
         {
             return this.repository.GetAll(start, count, it => string.IsNullOrEmpty(search) || it.Title.Contains(search)).Select(it => this.mapper.Map<GoalViewModel>(it)).ToArray();
         }

@@ -4,7 +4,7 @@
 // Created          : 02-19-2017
 //
 // Last Modified By : George
-// Last Modified On : 04-03-2017
+// Last Modified On : 04-15-2017
 // ***********************************************************************
 // <copyright file="CompaniesController.cs" company="">
 //     Copyright (c) . All rights reserved.
@@ -47,9 +47,11 @@ namespace Stakeholders.Web.Controllers
         /// </summary>
         /// <param name="repository">The repository.</param>
         /// <param name="mapper">The mapper.</param>
-        /// <exception cref="ArgumentNullException">repository
+        /// <exception cref="ArgumentNullException">
+        /// repository
         /// or
-        /// mapper</exception>
+        /// mapper
+        /// </exception>
         public CompaniesController(
             IRepository<Company> repository,
             IMapper mapper)
@@ -77,7 +79,10 @@ namespace Stakeholders.Web.Controllers
         /// <param name="search">The search.</param>
         /// <returns>CompanyInfoViewModel[].</returns>
         [HttpGet]
-        public CompanyViewModel[] GetCompanies(int start = 0, int count = 10, string search = "")
+        public CompanyViewModel[] GetCompanies(
+            int start = 0,
+            int count = 10,
+            string search = "")
         {
             if (string.IsNullOrEmpty(search))
             {
